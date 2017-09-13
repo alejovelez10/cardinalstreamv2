@@ -1,0 +1,67 @@
+<%= form_with(model: event, local: true) do |form| %>
+  <% if event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+      <ul>
+      <% event.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :date_event %>
+    <%= form.datetime_select :date_event, id: :event_date_event %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :event_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :event_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :state %>
+    <%= form.number_field :state, id: :event_state %>
+  </div>
+
+  <div class="field">
+    <%= form.label :backgroud_event %>
+    <%= form.text_field :backgroud_event, id: :event_backgroud_event %>
+  </div>
+
+  <div class="field">
+    <%= form.label :video %>
+    <%= form.text_field :video, id: :event_video %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ppts %>
+    <%= form.text_field :ppts, id: :event_ppts %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id, id: :event_user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :admin_user %>
+    <%= form.number_field :admin_user, id: :event_admin_user %>
+  </div>
+
+  <div class="field">
+    <%= form.label :account_id %>
+    <%= form.number_field :account_id, id: :event_account_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

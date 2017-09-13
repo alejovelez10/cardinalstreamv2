@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date_event: 2017-09-13 13:00:30
+  name: MyString
+  description: MyText
+  state: 1
+  backgroud_event: MyString
+  video: MyString
+  ppts: MyString
+  user_id: 1
+  admin_user: 1
+  account_id: 1
+
+two:
+  date_event: 2017-09-13 13:00:30
+  name: MyString
+  description: MyText
+  state: 1
+  backgroud_event: MyString
+  video: MyString
+  ppts: MyString
+  user_id: 1
+  admin_user: 1
+  account_id: 1

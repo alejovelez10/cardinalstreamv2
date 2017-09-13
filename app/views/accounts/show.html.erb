@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+<%= @account1.domain %>
+<p>
+  <strong>Account</strong>
+  <%= @account1.domain %>
+</p>
+
+<p>
+  <strong>Logo:</strong>
+  <%= @account1.logo %>
+</p>
+
+<p>
+  <strong>Admin user:</strong>
+  <%= @account1.admin_user %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @account1.user_id %>
+</p>
+
+<p>
+  <strong>Background portal:</strong>
+  <%= @account1.background_portal %>
+</p>
+
+<p>
+  <strong>Background stream:</strong>
+  <%= @account1.background_stream %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @account1.name %>
+</p>
+
+<p>
+  <strong>Questions:</strong>
+  <%= @account1.questions %>
+</p>
+
+<p>
+  <strong>Download docs:</strong>
+  <%= @account1.download_docs %>
+</p>
+
+<p>
+  <strong>Chat:</strong>
+  <%= @account1.chat %>
+</p>
+
+<%= link_to 'Edit', edit_account_path(@account1) %> |
+<%= link_to 'Back', accounts_path %>
