@@ -10,6 +10,17 @@ class AccountsController < ApplicationController
     @accounts = Account.all
   end
 
+  def portal
+    
+    @events = @account1.events
+  end  
+
+  def portal_show
+    
+    @event = Event.find(params[:id])
+
+  end  
+
   # GET /accounts/1
   # GET /accounts/1.json
   def show

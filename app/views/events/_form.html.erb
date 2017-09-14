@@ -46,20 +46,13 @@
     <%= form.text_field :ppts, id: :event_ppts %>
   </div>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id, id: :event_user_id %>
-  </div>
+ 
 
-  <div class="field">
-    <%= form.label :admin_user %>
-    <%= form.number_field :admin_user, id: :event_admin_user %>
-  </div>
-
-  <div class="field">
-    <%= form.label :account_id %>
-    <%= form.number_field :account_id, id: :event_account_id %>
-  </div>
+ 
+ <%= form.hidden_field :account_id, :value => @account.id %>
+ <%= form.hidden_field :admin_user,:value => current_user.admin_user %>
+ <%= form.hidden_field :user_id,:value => current_user.id %>
+ 
 
   <div class="actions">
     <%= form.submit %>

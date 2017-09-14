@@ -1,0 +1,26 @@
+
+
+<div class="row eventos">
+<%@events.each do |event|%>
+  <div class="col-sm-6 col-md-3">
+    <div class="thumbnail">
+      <img src="http://cdn.macsfera.com/wp-content/uploads/2012/01/Evento-educativo-de-Apple.png" alt="...">
+      <div class="caption">
+        <h3><%= event.name%></h3>
+       
+        <p><%= link_to "Ver", portal_show_path(event.id), class: "btn btn-primary"%></p>
+      </div>
+    </div>
+  </div>
+  <%end%>
+</div>
+
+
+<style>
+.eventos img
+{
+  width: 250px;
+}
+
+  
+</style>

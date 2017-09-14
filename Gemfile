@@ -41,7 +41,7 @@ gem "mini_magick"
 gem 'active_decorator', '~> 0.7.1'
 gem 'jquery-validation-rails'
 gem 'twitter-bootstrap-rails', '~> 4.0'
-
+gem 'therubyracer',  platforms: :ruby
 
 
 # Use Capistrano for deployment
