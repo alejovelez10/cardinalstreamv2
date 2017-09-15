@@ -11,6 +11,7 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_tree .
+ *= require font-awesome
  *= require_self
  */
 .application
@@ -24,15 +25,17 @@
 
 .login1
     {
+      widows: 80%;
     margin-top:10px;    
     padding-top: 50px;
     padding-bottom: 20px;
     padding-left: 50px !important;
     padding-right: 50px  !important;
        background: white;
-
+border-top: 7px solid #159ec7;
+    border-bottom: 7px solid #159ec7;
     background-color: #fff;
-    border: 1px solid rgba(0, 0, 0, 0.12);
+
     border-radius: 4px;
       p
       {

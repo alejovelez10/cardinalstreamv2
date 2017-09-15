@@ -38,12 +38,12 @@
 
   <div class="field">
     <%= form.label :video %>
-    <%= form.text_field :video, id: :event_video %>
+    <%= form.file_field :video, id: :event_video , accept: "video/mp4" %>
   </div>
 
   <div class="field">
     <%= form.label :ppts %>
-    <%= form.text_field :ppts, id: :event_ppts %>
+    <%= form.file_field :ppts, id: :event_ppts, accept: "application/pdf" %>
   </div>
 
  

@@ -13,6 +13,8 @@
 //= require rails-ujs
 //= require jquery
 //= require jquery_ujs
+//= require jquery.tinyscrollbar
 //= require twitter/bootstrap
+
 //= require turbolinks
 //= require_tree .

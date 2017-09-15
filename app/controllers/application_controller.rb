@@ -23,8 +23,12 @@ protected
             else
             	'admin'
         end
-    	else
+    elsif (controller_name == 'accounts' and (action_name == "portal_show" || action_name == "portal"))
+      
+      'portal'
+    else
       'admin'
+  
     end
   end
 

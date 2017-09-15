@@ -21,15 +21,29 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
+    @account = Account.where(admin_user: current_user.admin_user).first
   end
 
   # POST /events
   # POST /events.json
   def create
     @event = Event.new(event_params)
-
+    
     respond_to do |format|
       if @event.save
+        `mkdir public/uploads/event/ppts/#{@event.id}/ppt`
+        `convert  public/uploads/event/ppts/#{@event.id}/event.pdf  public/uploads/event/ppts/#{@event.id}/ppt/ppt.png`
+        file_count = Dir.glob(File.join("public/uploads/event/ppts/#{@event.id}/ppt", '**', '*')).select { |file| File.file?(file) }.count
+        puts file_count
+        ppts = Array.new
+        pptss = ""
+        for i in 0..(file_count - 1)
+           pptss = pptss + "/uploads/event/ppts/#{@event.id}/ppt/ppt-#{i}.png,"
+        end
+        puts pptss
+        ppts = pptss.split(/,/)
+        @event.slides = pptss
+        @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
@@ -44,6 +58,20 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(event_params)
+        `rm -rf public/uploads/event/ppts/#{@event.id}/ppt`
+        `mkdir public/uploads/event/ppts/#{@event.id}/ppt`
+        `convert  public/uploads/event/ppts/#{@event.id}/event.pdf  public/uploads/event/ppts/#{@event.id}/ppt/ppt.png`
+        file_count = Dir.glob(File.join("public/uploads/event/ppts/#{@event.id}/ppt", '**', '*')).select { |file| File.file?(file) }.count
+        puts file_count
+        ppts = Array.new
+        pptss = ""
+        for i in 0..(file_count - 1)
+           pptss = pptss + "/uploads/event/ppts/#{@event.id}/ppt/ppt-#{i}.png,"
+        end
+        puts pptss
+        ppts = pptss.split(/,/)
+        @event.slides = pptss
+        @event.save
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
       else

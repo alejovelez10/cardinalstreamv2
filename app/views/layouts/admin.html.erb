@@ -9,6 +9,12 @@
   </head>
 
   <body class = "admin">
+  <%if user_signed_in?%>
+  <%= link_to  destroy_user_session_path, :method => :delete,:class => "indicadores" do %>
+                           <span class="fa fa-sign-out" style = "color:gray"></span>
+                           <span style = "color:gray!important">Cerrar Sesión</span>
+                           <% end %>
+                           <% end %>
     <%= yield %>
   </body>
 </html>

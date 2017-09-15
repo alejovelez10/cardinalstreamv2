@@ -13,7 +13,7 @@ class User < ApplicationRecord
               self.admin_user = self.id
               self.count = 1
               Account.create(domain: self.account_domain, admin_user: self.id, user_id: self.id)
-            
+              
                 
             end  
               

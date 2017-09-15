@@ -1,8 +1,8 @@
 class AccountsController < ApplicationController
-  #before_action :set_account, only: [:show, :edit, :update, :destroy]
+  before_action :set_account, only: [:show, :edit, :update, :destroy]
   before_action :get_blog
   before_action :authenticate_user! , only: [:index, :edit, :update, :destroy]
-  before_action :get_blog
+
 
   # GET /accounts
   # GET /accounts.json
@@ -16,8 +16,11 @@ class AccountsController < ApplicationController
   end  
 
   def portal_show
-    
+   
     @event = Event.find(params[:id])
+    @account = Account.find(@event.account_id)
+    @array = @event.slides.split(/,/)
+    @count = @array.count
 
   end  
 
@@ -56,7 +59,7 @@ class AccountsController < ApplicationController
   def update
     respond_to do |format|
       if @account.update(account_params)
-        format.html { redirect_to @account, notice: 'Account was successfully updated.' }
+        format.html { redirect_to accounts_url, notice: 'Account was successfully updated.' }
         format.json { render :show, status: :ok, location: @account }
       else
         format.html { render :edit }
