@@ -14,6 +14,12 @@
                            <span class="fa fa-sign-out" style = "color:gray"></span>
                            <span style = "color:gray!important">Cerrar Sesión</span>
                            <% end %>
+                         
+
+                           <%= link_to  edit_account_path(get_account),:class => "indicadores" do %>
+                           <span class="fa fa-sign-out" style = "color:gray"></span>
+                           <span style = "color:gray!important">Editar Cuenta</span>
+                           <% end %>
                            <% end %>
     <%= yield %>
   </body>

@@ -1,7 +1,9 @@
 class AccountsController < ApplicationController
-  before_action :set_account, only: [:show, :edit, :update, :destroy]
+  before_action :set_account, only: [ :edit, :update, :destroy]
   before_action :get_blog
   before_action :authenticate_user! , only: [:index, :edit, :update, :destroy]
+  
+  
 
 
   # GET /accounts
@@ -10,9 +12,17 @@ class AccountsController < ApplicationController
     @accounts = Account.all
   end
 
-  def portal
+   def portal
     
-    @events = @account1.events
+    @events = @account1.events 
+   end 
+  
+
+  def live
+    @event = Event.last
+    @account = Account.find(@event.account_id)
+    @array = @event.slides.split(/,/)
+    @count = @array.count
   end  
 
   def portal_show
@@ -27,6 +37,7 @@ class AccountsController < ApplicationController
   # GET /accounts/1
   # GET /accounts/1.json
   def show
+
   end
 
   # GET /accounts/new

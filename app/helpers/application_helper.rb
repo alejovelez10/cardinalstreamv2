@@ -6,4 +6,10 @@ def portal_background
     
 end
 
+def get_account
+
+    return Account.where(admin_user: current_user.admin_user).first.id
+    
+end
+
 end

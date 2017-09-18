@@ -23,7 +23,7 @@ protected
             else
             	'admin'
         end
-    elsif (controller_name == 'accounts' and (action_name == "portal_show" || action_name == "portal"))
+    elsif (controller_name == 'accounts' and (action_name == "portal_show" || action_name == "portal" || action_name == "live"))
       
       'portal'
     else
@@ -41,7 +41,7 @@ protected
       @account1 = account.first
        
     elsif request.subdomain != 'www'
-      redirect_to root_url(subdomain: 'www')
+      redirect_to home_url(subdomain: '')
     end
   end
 end

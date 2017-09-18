@@ -42,7 +42,7 @@ gem 'active_decorator', '~> 0.7.1'
 gem 'jquery-validation-rails'
 gem 'twitter-bootstrap-rails', '~> 4.0'
 gem 'therubyracer',  platforms: :ruby
-
+gem 'pusher', '~> 1.3'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -61,8 +61,13 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+
+
+
