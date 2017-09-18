@@ -1,54 +1,217 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Date event:</strong>
-  <%= @event.date_event %>
-</p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @event.name %>
-</p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @event.description %>
-</p>
+<div class = "row">
+<div class = "col-md-10 text-center">
+<br>
 
-<p>
-  <strong>State:</strong>
-  <%= @event.state %>
-</p>
 
-<p>
-  <strong>Backgroud event:</strong>
-  <%= @event.backgroud_event %>
-</p>
+<img class = "imgp" style = "width:850px;background: white" src = "<%=@array[0]%>"/>
+</div>
+<div class="col-md-2">
+  <div id="scrollbar1">
+            <div class="scrollbar"><div class="track"><div class="thumb" style = "height:10px !important"><div class="end"></div></div></div></div>
+            <div class="viewport" style = "background:#323232">
+                 <div class="overview">
 
-<p>
-  <strong>Video:</strong>
-  <%= @event.video %>
-</p>
+                   <% a = 1;
+                    @array.each do |elemento|%>
+             
+            <div class = "pad">
+          <div class = "numeral n<%=a%>"><%=a%></div>
+                    <img id = "<%=a%>" class = "imagen img<%=a%>" src = "<%=elemento%>">
+                    
+          </div>
+          <%a = a +1
+          end%>
+                </div>
+            </div>
+        </div>
+</div>
+</div>
 
-<p>
-  <strong>Ppts:</strong>
-  <%= @event.ppts %>
-</p>
+<style>
+body
+{
+  background: #484848;
+}
+.active
+{border: 7px solid #d85252;
 
-<p>
-  <strong>User:</strong>
-  <%= @event.user_id %>
-</p>
+}
+.inactive
+{border:none;
+} 
+.num
+{
+         position: absolute;
+    /* top: 30px; */
+    z-index: 1;
+    font-size: 20px;
+    margin-left: 7px;
+    color: #868080;
+    width: 26px;
+    background: #e2e2e6;
+}
 
-<p>
-  <strong>Admin user:</strong>
-  <%= @event.admin_user %>
-</p>
+</style>
+<script>
+$(document).ready(function(){
 
-<p>
-  <strong>Account:</strong>
-  <%= @event.account_id %>
-</p>
+  $(".imagen").click(function(){
+  var a = $(this).attr("src");
+  var b = $(this).attr("id");
+  var c = parseInt(b) - 1 
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+
+
+   $.get("cardinalppt/" + c , function(data) {
+
+      
+          
+
+});
+        $(".imgp").attr("src", a);
+       
+
+    });
+
+$(document).keydown(function(e){
+    a = $(".activeon").attr("id");
+    b = parseInt(a) - 1;
+    if (e.keyCode == 37  && b > 0 ) { 
+       
+       
+       
+       c = "#" + b;
+       d = "#" + a;  
+       img = $(c).attr("src");
+       $(c).addClass("activeon");
+       $(c).removeClass("activeoff");
+       $(d).removeClass("activeon");
+       $(d).addClass("activeoff");
+       $(".imgp").attr('src', img);
+       $.get("cardinalppt/" + (b-1) , function(data) {
+        
+          
+
+});   
+        
+
+
+
+    }
+    a = $(".activeon").attr("id");
+    b = parseInt(a) + 1;
+    if (e.keyCode == 39  && (b -1) < <%=@count%> ) { 
+       a = $(".activeon").attr("id");
+       
+       b = parseInt(a) + 1;
+       c = "#" + b;
+       d = "#" + a;  
+       img = $(c).attr("src");
+       $(c).addClass("activeon");
+       $(c).removeClass("activeoff");
+       $(d).removeClass("activeon");
+       $(d).addClass("activeoff");
+       $(".imgp").attr('src', img);
+         $.get("cardinalppt/" + (b-1) , function(data) {
+        
+          
+
+});   
+        
+    }
+
+});
+
+
+
+
+
+});
+</script>
+
+<style>
+.col-md-1
+{
+ margin-right:10px;
+}
+.col-md-1 img
+{
+ width:110px;
+}
+</style>
+
+<script >
+ $(document).ready(function(){
+ 
+        $('.img1').addClass("activeon")
+      $('.pad').click(function(){
+          $('.pad').children('img').removeClass("activeon");
+          
+          $(this).children('img').addClass("activeon");
+         
+          $('#ppts img').attr('src', $(this).children('img').attr("src"));
+
+        
+                $('.cont').text($(this).children('div').text());
+        }); 
+
+
+            
+});
+</script>
+
+<style>
+#scrollbar1 img {
+    width: 125px;
+    background: #fff;
+    border: none;
+    opacity: 0.3;
+  }
+
+  #scrollbar1 .viewport {
+    width: calc(100% - 15px);
+    height: 600px;
+    overflow: hidden;
+    position: relative;
+}
+#scrollbar1 {
+    width: 80%;
+    margin: 20px 0 10px;
+}
+#scrollbar1 .scrollbar {
+    background: #e9e9e9 url(/../../images/bg-scrollbar-track-y.png) no-repeat 0 0;
+}
+
+.row {
+    margin-left:0px !important; 
+    margin-right:0px !important;
+}
+.activeoff
+{
+  border: none !important;
+  opacity: 0.3 !important;
+}
+.activeon
+{
+  border:2px solid red !important;
+  opacity: 1 !important;
+}
+.numeral {
+    font-size: 13px;
+    font-family: Arial;
+    padding: 30% 3px;
+    position: absolute;
+    top: 0px;
+    right: -1px;
+    background: rgba(0,0,0,1);
+    line-height: 4px;
+    color: #ddd;
+    text-align: center;
+    width: 24px;
+
+}
+</style>
+

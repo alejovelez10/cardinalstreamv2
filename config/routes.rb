@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
  
+
+  get 'events/cardinalppt/:id' ,to: "events#cardinalppt", as: "cardinalppt"
   resources :events
   get 'home', to: 'home#index', as: "home"
   resources :accounts
@@ -14,6 +16,7 @@ Rails.application.routes.draw do
   get 'portal', to:"accounts#portal", as: "portal"
   get 'portal/:id', to:"accounts#portal_show", as: "portal_show"
   get  'admin' , to: "events#index"
+
   root 'events#index'
  
 
