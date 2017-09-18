@@ -1,3 +1,4 @@
+<script type="text/javascript" src="//player.wowza.com/player/latest/wowzaplayer.min.js"></script>
 <div class="container-fluid">
 
     <div class="row">
@@ -32,7 +33,7 @@
 					</div>
 					<style>.wrapppt{max-width:100%!important;background:none!important;height:auto!important;}#ppts{float:none!important;margin:auto;}#scrollbar1{width:100%}</style>
 					<div class="right-bar">
-						<div class="roundbutton fullppt">
+						<div class="roundbutton fullppt fullbuttonppt">
 							<div class="col-md-4 fa fa-expand fa-2x"></div>
 						</div>
 						<div class="roundbutton zoom1">
@@ -70,7 +71,7 @@
     	<div class="row">
         <div class="col-md-12 fixeddown">
 
-        	
+        	<div id="playerElement" style="width:320px; height:120px; padding:0"></div>
         </div>
     	
     </div>
@@ -78,7 +79,23 @@
 </div>
 
 
-
+<script type="text/javascript">
+WowzaPlayer.create('playerElement',
+    {
+    "license":"PLAY1-94nX9-WjkJY-fwhpz-Cd8aA-9wmMD",
+    "title":"",
+    "description":"",
+    "sourceURL":"http%3A%2F%2Fceipa.cardinalstream.com%3A1935%2Flive%2Ftest%2Fplaylist.m3u8",
+    "autoPlay":false,
+    "volume":"75",
+    "mute":false,
+    "loop":false,
+    "audioOnly":true,
+    "uiShowQuickRewind":true,
+    "uiQuickRewindSeconds":"30"
+    }
+);
+</script>
 
 
 
@@ -98,7 +115,17 @@
                 $('.cont').text($(this).children('div').text());
 				});	
 
-
+      $('.fullbuttonppt').click(function(){
+        $('.backppt').toggleClass('fullsize');
+        $('.zoom1').show();
+        console.log("si")
+        
+      });
+      $('.quitar').click(function(){
+        $('.ppt_cont').removeClass('fullsize');
+        console.log("si")
+        
+      });
             
 });
 </script>
@@ -114,6 +141,18 @@ body
     background-position: center center;
     background-size: 100%;
 }
+    .fullsize
+  {
+      position: fixed!important;
+    width: 100vw!important;
+    min-height: 100vh!important;
+    top: 0!important;
+    left: 0!important;
+    z-index: 1030!important;
+    background: #000;
+    text-align: center;
+  
+  }
   
 </style>
 
