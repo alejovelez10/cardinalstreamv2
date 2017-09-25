@@ -1,0 +1,60 @@
+<div id="contact-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Configurar de Diapositivas</h4>
+      </div>
+
+  <div class="alert alert-danger" style="display:none">
+    <ul>
+    
+    </ul>
+  </div>
+      <div class="modal-body">
+
+      <%= form_tag sinc_ppts_path, method: :post do %>
+ <div class="descnum1">
+   
+ 
+   <div class="row conf_slides text-center">
+      <div class="col-md-1">Slide</div>
+      <div class="col-md-3">Hora</div>
+      <div class="col-md-3">Minuto</div>
+      <div class="col-md-3">Segundo</div>
+     </div>     
+        
+      
+         <% for i in 1..count %>
+    
+         <div class="row conf_slides text-center" style="margin-bottom: 5px;">
+      <div class="col-md-1"><%=i%></div>
+      <div class="col-md-3"><%= text_field_tag "Hora_ids[]", horas[i - 1] %></div>
+      <div class="col-md-3"><%= text_field_tag "Minuto_ids[]",minutos[i - 1]%></div>
+      <div class="col-md-3"><%= text_field_tag "Segundo_ids[]",segundos[i - 1]%></div>
+     </div>
+     
+         <% end %>
+
+   </div>
+   <br>
+   <br>
+   <%= hidden_field_tag :count, count %>
+   <%= hidden_field_tag :id, id %>
+<div class="row">
+<div class="col-md-12 text-center">
+  <%= submit_tag "Guardar", class: "btn btn-primary" %>
+<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+</div>
+       
+     </div>     
+
+        <% end %>
+  
+   
+  </div>
+
+  </div>
+    </div>
+      </div>
+

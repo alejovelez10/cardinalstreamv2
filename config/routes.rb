@@ -14,9 +14,11 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
   get 'portal', to:"accounts#portal", as: "portal"
-  get 'portal/:id', to:"accounts#portal_show", as: "portal_show"
+  get 'show_audio/:id', to:"accounts#portal_show", as: "portal_show"
+  get 'show_video/:id', to:"accounts#portal_show_video", as: "portal_show_video"
   get  'admin' , to: "events#index"
-
+  get  'ppts/views/:id' , to: "events#ppts_views" , as: "ppts_views"
+  post   'sinc_ppts', to: "events#sinc_ppts", as: "sinc_ppts"
   root 'events#index'
  
 

@@ -1,0 +1,5 @@
+$('<%= j render "form_ppts", count: @count, id:@id , horas: @horas , minutos: @minutos , segundos: @segundos%>').on('hidden.bs.modal', function (e) {
+  $(this).remove();
+  $('.modal-backdrop').remove();
+}).modal();
+

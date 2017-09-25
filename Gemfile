@@ -43,7 +43,7 @@ gem 'jquery-validation-rails'
 gem 'twitter-bootstrap-rails', '~> 4.0'
 gem 'therubyracer',  platforms: :ruby
 gem 'pusher', '~> 1.3'
-
+gem 'jquery-ui-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

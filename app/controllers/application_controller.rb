@@ -23,7 +23,7 @@ protected
             else
             	'admin'
         end
-    elsif (controller_name == 'accounts' and (action_name == "portal_show" || action_name == "portal" || action_name == "live"))
+    elsif (controller_name == 'accounts' and (action_name == "portal_show_video" || action_name == "portal_show" || action_name == "portal" || action_name == "live"))
       
       'portal'
     else
@@ -37,11 +37,15 @@ protected
   def get_blog
 
     account = Account.where(domain: request.subdomain)
+    puts request.subdomain
+    puts(account)
+    puts "************************************"
     if account.count > 0
       @account1 = account.first
-       
+       puts "entre a if ++++++++++++++++++++++"
     elsif request.subdomain != 'www'
       redirect_to home_url(subdomain: '')
+      puts "entre a else if +++++++++++++++++++++++++++"
     end
   end
 end

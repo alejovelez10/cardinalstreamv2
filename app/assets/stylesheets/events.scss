@@ -21,7 +21,7 @@
 
 .fixeddown {
     font-size: 0.8vw;
-    height: 6em;
+    height: 8.8em;
     bottom: 0;
     background: #262626;
     color: #aaa;
@@ -113,10 +113,81 @@ element.style {
     margin-bottom: 1em;
 }
 #ppts {
-    width: 80%!important;
+    width: 87%!important;
     float: none!important;
     margin: auto;
 }
 
 
 
+
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.inputfile + label {
+       font-size: 1em;
+    border: 1px solid #d0d0d0;
+    border-radius: 5px;
+    font-weight: 100!important;
+    color: white;
+    background-color: #f9f9f9;
+    padding: 4px 20px;
+    display: inline-block;
+    border-bottom: 2px solid gray;
+    margin-left: 10px;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    
+}
+
+.inputfile + label {
+  cursor: pointer; /* "hand" cursor */
+}
+
+.inputfile:focus + label {
+  outline: 1px dotted #000;
+  outline: -webkit-focus-ring-color auto 5px;
+}
+.shi1
+   {
+   width: 150px !important;
+   display: inline-block;
+   height:  30px !important;
+   color:gray !important;
+   font-size: 10px !important;
+   padding: 6px 2px;
+      }
+         .busqueda
+   {
+        display: block;
+    padding: 10px;
+    background: #e8e8e8;
+   }
+  
+
+      .descnum1
+{
+  max-height: 300px !important;
+    overflow: auto;
+   
+}
+        
+        .conf_slides
+        {
+          margin-left: 0px !important;
+           margin-right: 0px !important;
+        }
+        .conf_slides input
+        {
+          width: 90%;
+          text-align: center;
+        }
+   

@@ -1,7 +1,8 @@
 class AccountsController < ApplicationController
   before_action :set_account, only: [ :edit, :update, :destroy]
-  before_action :get_blog
   before_action :authenticate_user! , only: [:index, :edit, :update, :destroy]
+  before_action :get_blog
+ 
   
   
 
@@ -31,6 +32,17 @@ class AccountsController < ApplicationController
     @account = Account.find(@event.account_id)
     @array = @event.slides.split(/,/)
     @count = @array.count
+    @sync =  @event.sync
+
+  end  
+
+  def portal_show_video
+   
+    @event = Event.find(params[:id])
+    @account = Account.find(@event.account_id)
+    @array = @event.slides.split(/,/)
+    @count = @array.count
+    @sync =  @event.sync
 
   end  
 

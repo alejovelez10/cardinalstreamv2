@@ -32,7 +32,7 @@
     	<div class="col-md-10">
     		<div class="backppt col-md-12 no-float">
 					<div class="ppt-block">
-						<div class="ppt_cont"><div class="wrapppt" style="max-width: 555.4px; height: 416.55px; background: rgb(50, 50, 50);"><div id="ppts" style="opacity: 1;"><div id="controls"><div class="nextbutt">&gt;</div><div class="prevbutt">&lt;</div></div><img class = "imagensup img-responsive" src="<%=@array[0]%>" style="height: auto;"></div></div></div>
+						<div class="ppt_cont"><div class="wrapppt" style="max-width: 555.4px; height: 416.55px; background: rgb(50, 50, 50);"><div id="ppts" style="opacity: 1;"><div id="controls"><div class="nextbutt">&gt;</div><div class="prevbutt">&lt;</div></div><img class = "imagensup" src="<%=@array[0]%>" style="height: auto;"></div></div></div>
 					</div>
 					<style>.wrapppt{max-width:100%!important;background:none!important;height:auto!important;}#ppts{float:none!important;margin:auto;}#scrollbar1{width:100%}</style>
 					<div class="right-bar hidden-sm hidden-xs">
@@ -76,15 +76,11 @@
             
         
         <div class="col-md-2" style="margin-left:5%;border-right:1px solid gray">
-                      <div class="col-md-6">
-                      <div class="roundgif">
-                          
-                      
+                      <div class="col-md-6 roundgif">
                  <img class="gif" src="/../../images/equ.gif" alt="">
                  <img class="png" src="/../../images/equ.png" alt="">
-                 </div>
             </div>
-            <div class="col-md-6 pp">
+            <div class="col-md-6">
                          <button class = "but play" type=""><i class="fa fa-play" aria-hidden="true"></i></button>  
          <button class = " but pause" type=""><i class="fa fa-pause" aria-hidden="true"></i></button>    
                  
@@ -281,29 +277,6 @@ myPlayer.onPlayheadTime( playheadTimeListener );
 .roundgif img {
     width: 150%;
     margin-left: -22%;
-}
-@media only screen and (max-width: 500px) {
-    .ppt-block{
-        background-color: lightblue;
-            margin-right: 0em;
-    margin-left: 0em;
-    }
-    .ppt-block img {
-    width: 100%;
-}
-.roundgif{
-    width: 10em;
-    height: 10em;
-
-}
-.fixeddown
-{
- height:28em;    
-}
-.pp
-{
-    text-align: center;
-    margin-top: 10px;
 }
 </style>
 

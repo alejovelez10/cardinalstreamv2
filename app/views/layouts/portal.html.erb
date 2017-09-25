@@ -5,11 +5,14 @@
     <%= csrf_meta_tags %>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
       <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-     
+        <meta name="turbolinks-cache-control" content="no-cache">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+     <%= javascript_include_tag 'https://player.wowza.com/player/latest/wowzaplayer.min.js', 'data-turbolinks-track': 'reload' %>
+   
     <script type="text/javascript" src="/assets/jquery.tinyscrollbar.js"></script>
-     <meta name="turbolinks-cache-control" content="no-cache">
+  
+
   </head>
 <style>
 	

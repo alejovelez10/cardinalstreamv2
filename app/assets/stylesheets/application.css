@@ -64,3 +64,176 @@ border-top: 7px solid #159ec7;
        
     color: #b9b9b9;
 }
+p
+{
+   color:gray;
+}
+.title-table
+{
+  font-size: 23px;
+    padding: 6px;
+    color: #0db497;
+    font-family: 'Days One', sans-serif ;
+
+}
+.title-table1
+{
+  font-size: 10px;
+    padding: 10px;
+    color: #0db497;
+    font-family: 'Days One', sans-serif;
+}
+
+.contenido
+{
+  background:white;
+  margin-top: 0px;
+      width: 100%;
+    margin-left: 0%;
+    padding: 0px 30px;
+        padding-top: 25px;
+
+}
+
+.tr-table
+{
+background: #f2f2f2;
+    color: #7a7a7a;
+    font-weight:bold;
+
+    }
+    .table
+    {
+
+        color: #7a7a7a;
+        font-size:12px;
+        padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 50px !important;
+
+
+
+    }
+
+    .tbody td
+        {
+        vertical-align: middle !important;
+        }
+
+
+        .paginate
+{
+  text-align:center;
+
+}
+.pagination
+{
+  
+  position: relative;
+    top: -10px;
+}
+.page_info
+  {
+  color:#0db497  !important;
+  }
+  .titulo1
+  {
+      margin-left: 120px;
+    color:#0db497  !important;
+  }
+  .def
+  {
+  color:green;
+  }
+
+.pagination {
+
+    margin: 10px 0 !important;
+  
+    }
+
+
+.form-control {
+
+    border: 1px solid #a2a2a2 !important;
+
+    font-weight: 200;
+    background: #fbfbfb !important;
+
+}
+
+.row-form
+{
+      padding: 29px 36px;
+    margin-top: 4px;
+    background: #white;
+    /* border: 3px solid #3aa7da; */
+    /*box-shadow: #969595 0px 0px 22px;*/
+}
+
+.btn-form
+{
+  padding-left:50px !important;
+  padding-right:50px !important;
+}
+   
+
+ .jumbotron {
+
+     background-color: white !important;
+     padding-top:0px !important;
+}  
+label
+{
+        
+    color: #888888  !important;
+   
+}
+.h1-tittle
+{
+    
+    color:#38b5af;
+
+    
+    margin:0px;
+    padding: 2px 30px;
+    font-size: 40px;
+    border-radius: 5px 5px 0px 0px;
+    font-family: 'Days One', sans-serif;
+    text-align:center;
+
+}
+.row-form h3
+{
+
+   /* background: #3b84a7;*/
+    color: white;
+    /* margin-bottom: 4px !important; */
+    /* display: inline; */
+    padding: 3px 17px;
+    margin-left: 10px;
+   /* width: 500px;*/
+    margin: 0px;
+    margin-left: 10px;
+    border-radius: 8px 8px 0px 0px;
+
+}
+
+hr
+{
+  margin:10px !important;
+}
+
+.field_date
+{
+  font-size: 20px;
+  color:#187191;
+}
+#event_date_event
+{
+  margin: 0px 10px;
+}
+.date_select
+{
+  display:inline-flex !important;
+}

@@ -1,6 +1,6 @@
 <script type="text/javascript" src="//player.wowza.com/player/latest/wowzaplayer.min.js"></script>
 <div class="container-fluid">
-
+<%= link_to "Ver", portal_show_path(37), class: "btn btn-primary"%>
     <div class="row">
 
         <div class="col-md-2 blockhead">
@@ -117,7 +117,8 @@ WowzaPlayer.create('playerElement',
 
       $('.fullbuttonppt').click(function(){
         $('.backppt').toggleClass('fullsize');
-        $('.zoom1').show();
+         $('.zoom1').toggle();
+         $('.zoom2').toggle();
         console.log("si")
         
       });

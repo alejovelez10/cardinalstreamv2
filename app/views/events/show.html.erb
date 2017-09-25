@@ -56,8 +56,7 @@ body
 
 </style>
 <script>
-$(document).ready(function(){
-
+$(document).on('turbolinks:load',function() {
   $(".imagen").click(function(){
   var a = $(this).attr("src");
   var b = $(this).attr("id");
@@ -144,7 +143,7 @@ $(document).keydown(function(e){
 </style>
 
 <script >
- $(document).ready(function(){
+$(document).on('turbolinks:load',function() {
  
         $('.img1').addClass("activeon")
       $('.pad').click(function(){

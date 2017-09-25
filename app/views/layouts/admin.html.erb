@@ -6,21 +6,88 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+     <link href="https://fonts.googleapis.com/css?family=Days+One" rel="stylesheet">
   </head>
 
   <body class = "admin">
-  <%if user_signed_in?%>
-  <%= link_to  destroy_user_session_path, :method => :delete,:class => "indicadores" do %>
+   <nav class="navbar navbar-default second-navbar">
+         <div class="container-fluid">
+
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+             <a class="navbar-brand" style = "background:white" href="#"><p class = "logop text-center" style = "color:#187191;   font-size: 18px;font-weight: bold"><img style= "width:30px;position: relative;
+    top: -3px;left: -5px;" id="slack" src="/../../images/cardinal_solo.png"><span sytle = "">cardnal</span><span style = "font-style:italic;">stream</span></p></a>
+               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+               <span class="sr-only">Toggle navigation</span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               </button>
+            
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+               <ul class="nav navbar-nav">
+                                  <li  class="li">
+                        </li>
+                   <li class="li">
+                        </li>
+
+                         <li class="li">
+                        </li>
+
+                                <li class="li">
+                        </li>
+
+                  
+                 
+                  <li class="dropdown" >
+                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-cog color-gray icon" aria-hidden="true"></i> Configuración<span class="caret"></span></a>
+                     <ul class="dropdown-menu">
+
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">One more separated link</a></li>
+                     </ul>
+                  </li>
+               </ul>
+               <ul class="nav navbar-nav navbar-right">
+                  <li><%= link_to  edit_account_path(get_account),:class => "indicadores" do %>
+                           <span class="fa fa-sign-out" style = "color:gray"></span>
+                           <span style = "color:gray!important">Editar Cuenta</span>
+                           <% end %></li>
+                  <li style = "height: 51px;margin-left: 20px;margin-right: 15px;" ></li>
+                  <li class="dropdown">
+                     <a href="#" class="dropdown-toggle user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%=current_user.names  %> <span style = "color:gray" class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li> <%= link_to  destroy_user_session_path, :method => :delete,:class => "indicadores" do %>
                            <span class="fa fa-sign-out" style = "color:gray"></span>
                            <span style = "color:gray!important">Cerrar Sesión</span>
                            <% end %>
-                         
-
-                           <%= link_to  edit_account_path(get_account),:class => "indicadores" do %>
+                        </li>
+                        <li> <%= link_to  edit_user_registration_path(current_user.id), :class => "indicadores" do %>
                            <span class="fa fa-sign-out" style = "color:gray"></span>
-                           <span style = "color:gray!important">Editar Cuenta</span>
+                           <span style = "color:gray!important" >Ver Usuario</span>
                            <% end %>
-                           <% end %>
+                        </li>
+                     </ul>
+                  </li>
+               </ul>
+               <!--<form class="navbar-form navbar-left">
+                  <div class="form-group">
+                     <input type="text" class="form-control" placeholder="Search">
+                  </div>
+                  <button type="submit" class="btn btn-default">Submit</button>
+               </form>-->
+              
+            </div>
+            <!-- /.navbar-collapse -->
+         </div>
+         <!-- /.container-fluid -->
+      </nav>
+
     <%= yield %>
   </body>
 </html>

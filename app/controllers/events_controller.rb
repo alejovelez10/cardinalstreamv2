@@ -5,7 +5,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    @events = Event.where(admin_user: current_user.admin_user).paginate(page: params[:page],:per_page => 10)
   end
 
   # GET /events/1
@@ -15,6 +15,8 @@ class EventsController < ApplicationController
     @account = Account.find(@event.account_id)
     @array = @event.slides.split(/,/)
     @count = @array.count
+
+
   end
 
   # GET /events/new
@@ -32,23 +34,27 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
-    
+    sync = ""
     respond_to do |format|
       if @event.save
+        #Crea carpeta para guardar ppts
         `mkdir public/uploads/event/ppts/#{@event.id}/ppt`
-        `convert  public/uploads/event/ppts/#{@event.id}/event.pdf  public/uploads/event/ppts/#{@event.id}/ppt/ppt.png`
+        #Convierte ppts en imagenes 
+        `convert  public/uploads/event/ppts/#{@event.id}/event.pdf  public/uploads/event/ppts/#{@event.id}/ppt/ppt.png` 
+        #Cuenta el numero de diapositivas
         file_count = Dir.glob(File.join("public/uploads/event/ppts/#{@event.id}/ppt", '**', '*')).select { |file| File.file?(file) }.count
-        puts file_count
         ppts = Array.new
         pptss = ""
+        #Crea un string con las rutas de las imagenes y inicializa las sincronizacion en 0
         for i in 0..(file_count - 1)
            pptss = pptss + "/uploads/event/ppts/#{@event.id}/ppt/ppt-#{i}.png,"
+           sync = sync + "0,"
         end
-        puts pptss
         ppts = pptss.split(/,/)
         @event.slides = pptss
+        @event.sync = sync
         @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.html { redirect_to events_path, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }
@@ -62,21 +68,20 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(event_params)
+        #Elimina el folder con las ppt para luego volver a crearlos
         `rm -rf public/uploads/event/ppts/#{@event.id}/ppt`
         `mkdir public/uploads/event/ppts/#{@event.id}/ppt`
         `convert  public/uploads/event/ppts/#{@event.id}/event.pdf  public/uploads/event/ppts/#{@event.id}/ppt/ppt.png`
         file_count = Dir.glob(File.join("public/uploads/event/ppts/#{@event.id}/ppt", '**', '*')).select { |file| File.file?(file) }.count
-        puts file_count
         ppts = Array.new
         pptss = ""
         for i in 0..(file_count - 1)
            pptss = pptss + "/uploads/event/ppts/#{@event.id}/ppt/ppt-#{i}.png,"
         end
-        puts pptss
         ppts = pptss.split(/,/)
         @event.slides = pptss
         @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+        format.html { redirect_to events_path, notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
       else
         format.html { render :edit }
@@ -116,6 +121,45 @@ class EventsController < ApplicationController
 
   end
 
+  def ppts_views
+    @event = Event.find(params[:id])
+    @array = @event.slides.split(/,/)
+    @sync =  @event.sync.split(/,/)
+    @count = @array.count
+    @horas = Array.new
+    @minutos = Array.new
+    @segundos = Array.new
+    for i in 0..(@count - 1)
+      
+      hms =  Time.at(@sync[i].to_i).utc.strftime("%H:%M:%S")
+      arrays = hms.split(/:/)
+      @horas[i] = arrays[0]
+      @minutos[i] = arrays[1]
+      @segundos[i] = arrays[2]
+
+    
+    end
+    @id = params[:id]
+  end
+
+  def sinc_ppts
+    @event = Event.find(params[:id])
+    puts "hola"
+    pptss = ""
+    a = params[:count].to_i
+    for i in 0..(a-1)
+     b = "#{params[:Hora_ids][i]}:#{params[:Minuto_ids][i]}:#{params[:Segundo_ids][i]}" 
+     puts b
+     c =  b.split(':').map { |a| a.to_i }.inject(0) { |a, b| a * 60 + b}
+     pptss = pptss + c.to_s + ","
+    end
+    puts pptss
+    array = pptss.split(/,/)
+    @event.sync = pptss
+    @event.save
+    puts array
+    redirect_to events_path
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -125,6 +169,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:date_event, :name, :description, :state, :backgroud_event, :video, :ppts, :user_id, :admin_user, :account_id)
+      params.require(:event).permit(:date_event, :name, :description, :state, :backgroud_event, :video, :ppts, :user_id, :admin_user, :account_id, :event_type, :event_date)
     end
 end

@@ -1,45 +1,98 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Events</h1>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Date event</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>State</th>
-      <th>Backgroud event</th>
+<div class="container">
+   <div class="row" >
+      <div class = "row title-table">
+         <div class = "col-md-5">
+            <p>Eventos <span class="label label-primary"><%=@events.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @events, :entry_name => 'Eventos' %></span> </p>
+         </div>
+         <div class = "col-md-4 paginate text-left title-table1">
+            <%= will_paginate @events%>
+         </div>
+         <div class = "col-md-3">
+            <%= link_to new_event_path, remote: true,class: "btn btn-primary" do %>
+            <i class="fa fa-video-camera" style = "font-size:30px; aria-hidden="true"></i>
+             Live
+            <%end%>
+            <%= link_to new_event_path, remote: true, class: "btn btn-primary" do %>
+            <i class="fa fa-hdd-o" style = "font-size:30px;" aria-hidden="true"></i>
+             Ondemand
+            <%end%>
+         </div>
+      </div>
+      <hr class="hr">
+      <div class = "row">
+         <table class="table">
+            <thead>
+               <tr class = "tr-table">
+               <th>Opciones</th>
+     <th>Fecha del Evento</th>
+      <th>Nombre</th>
+      <th>Tipo</th>
+      
       <th>Video</th>
       <th>Ppts</th>
-      <th>User</th>
-      <th>Admin user</th>
-      <th>Account</th>
-      <th colspan="3"></th>
-    </tr>
+      <th></th>
+      
   </thead>
 
   <tbody>
     <% @events.each do |event| %>
       <tr>
-        <td><%= event.date_event %></td>
+      <td><div class="dropdown">
+  <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+   <i class="fa fa-bars" aria-hidden="true"></i>
+  
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dLabel">
+   <li><%= link_to  ppts_views_path(event), remote:true do%>
+     <i class="fa fa-television fa1" aria-hidden="true"></i>
+     Configurar diapositivas
+     <%end%>
+   </li>
+   <li><%= link_to  event, remote:true do%>
+    <i class="fa fa-eye fa1" aria-hidden="true"></i>
+
+     Ver
+     <%end%>
+   </li>
+   <li><%= link_to  edit_event_path(event), remote:true  do%>
+    <i class="fa fa-pencil fa1" aria-hidden="true"></i>
+
+     Editar
+     <%end%>
+   </li>
+   <li><%= link_to  event, method: :delete, data: { confirm: 'Are you sure?' }  do%>
+     <i class="fa fa-trash fa1" aria-hidden="true"></i>
+     Eliminar
+     <%end%>
+   </li>
+  </ul>
+</div></td>
+        <td ><%= get_date(event.event_date) %></td>
         <td><%= event.name %></td>
-        <td><%= event.description %></td>
-        <td><%= event.state %></td>
-        <td><%= event.backgroud_event %></td>
-        <td><%= event.video %></td>
-        <td><%= event.ppts %></td>
-        <td><%= event.user_id %></td>
-        <td><%= event.admin_user %></td>
-        <td><%= event.account.domain %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        <td style = "font-size:20px"><%= get_event_type(event.event_type).html_safe %></td>
+        
+        <td class=""><%= get_aov(event.video_url).html_safe  %></td>
+        <td class=""><%= get_aov(event.ppts_url).html_safe %></td>
 
-<br>
+        <td> <%= link_to "Ver", get_clase_event(event.event_type , event.id), class: "btn btn-primary"%></td>
+       
+               </tr>
+               <%end%>
+            </tbody>
+         </table>
+      </div>
+   </div>
+</div>
 
-<%= link_to 'New Event', new_event_path %>
+<style>
+.fa1
+{
+margin-bottom: 10px;
+margin-right: 10px;
+font-size: 15px;  
+
+}
+  
+</style>
