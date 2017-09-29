@@ -3,8 +3,9 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .blockhead {
     background: rgba(0,0,0,0.6);
+    background: rgb(255, 255, 255);
     color: #fff;
-    padding: 1em;
+        padding: 10px 0px 0px 0px;
     text-transform: uppercase;
 }
 .blockhead span.fa {
@@ -15,6 +16,7 @@
     text-align: center;
     margin: 0;
     background: rgba(255,255,255,0.3);
+    background: rgba(0, 0, 0, 0.57);
 }
 
 

@@ -21,4 +21,6 @@ class Account < ApplicationRecord
 	has_many :events
 	mount_uploader :logo, AccountLogoUploader
 	mount_uploader :background_stream, AccountBackgroundUploader
+	mount_uploader :background_portal, BackgroundPortalUploader
+
 end

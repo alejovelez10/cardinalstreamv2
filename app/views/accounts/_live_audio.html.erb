@@ -1,13 +1,11 @@
 <div class="container-fluid">
    <div class="row">
       <div class="col-md-12 blockhead ">
-       <div class="col-md-3 ">
-         <img src="<%=@account.logo_url%>" alt="">
-      </div>
-     
+         <div class="col-md-3 ">
+            <img src="<%=@account.logo_url%>" alt="">
+         </div>
          <div class="col-md-6">
-            <p><%= @event.name.upcase%><br><span style="font-size: 10px;">MARZO 10 DE 2017</span></p>
-
+            <p><%= event.name.upcase%><br><span style="font-size: 10px;"><%= get_date(event.event_date)%></span></p>
          </div>
          <div class="col-md-3 hidden-xs">
             <div class="redessociales" style="float:right;padding:0 2em;margin: -0.5em;line-height: 2em;background: none;right: -0.7em;font-size: 1.7em;padding: 0;padding-right: 1.7em;margin-bottom: -0.8em;margin-top: -0.46em;">
@@ -18,11 +16,22 @@
       </div>
    </div>
    <div class="row">
-      <div class="col-md-5">
-         <div id="playerElement" style="width:100%;height:350px;margin-top:80px">
-         </div>
+      <div class="col-md-2 backppt1  hidden-sm hidden-xs">
+         
+        
+            <div class="col-md-12 play_stop text-center" >
+            
+                 
+                     <img class="gif roundgif" src="/../../images/equ.gif" alt="">
+                     <img class="png roundgif" src="/../../images/equ.png" alt="">
+                                       <button class = "but play" type=""><i class="fa fa-play" aria-hidden="true"></i></button>  
+                  <button class = " but pause" type=""><i class="fa fa-pause" aria-hidden="true"></i></button>  
+                 
+            
+            </div>
+         
       </div>
-      <div class="col-md-7">
+      <div class="col-md-10">
          <div class="backppt col-md-12 no-float">
             <div class="ppt-block">
                <div class="ppt_cont">
@@ -32,7 +41,7 @@
                            <div class="nextbutt">&gt;</div>
                            <div class="prevbutt">&lt;</div>
                         </div>
-                        <img class = "imagensup img-responsive" src="<%=@array[0]%>" style="height: auto;">
+                        <img class = "imagensup img-responsive" src="<%=array[0]%>" style="height: auto;">
                      </div>
                   </div>
                </div>
@@ -60,7 +69,7 @@
                   <div class="viewport" style = "background:#323232">
                      <div class="overview">
                         <% a = 1;
-                           @array.each do |elemento|%>
+                           array.each do |elemento|%>
                         <div class = "pad">
                            <div class = "numeral n<%=a%>"><%=a%></div>
                            <img id = "<%=a%>" class = "i<%=a%> tumb" src = "<%=elemento%>">
@@ -74,13 +83,29 @@
          </div>
       </div>
    </div>
-   <div class="row">
-      <div class="col-md-12 fixeddown">
-         <div class="col-md-12 middle-div no-float" style="background:#424242;text-align:center;float:left;margin-top:12px;">
-            <a href="http://iptics.com.co/productos/cardinalstream/" target="_blank"><img src="http://cardinalstream.com/wordpress/cardinalstream/foot_cardinal.png"></a>
+   <div class="row hidden-md hidden-lg">
+      
+         <div class="col-md-12 text-center" style="   margin-top:20px;">
+            
+               <img class="gif roundgif" src="/../../images/equ.gif" alt="">
+               <img class="png roundgif" src="/../../images/equ.png" alt="">
+                <button class = "but play" type=""><i class="fa fa-play" aria-hidden="true"></i></button>  
+            <button class = " but pause" type=""><i class="fa fa-pause" aria-hidden="true"></i></button>   
+            </div>
          </div>
+      
+      
+   </div>
+
+</div>
+<div class="row">
+   <div class="col-md-12 fixeddown">
+      <div class="col-md-12"></div>
+      <div class="col-md-12 middle-div no-float" style="background:#424242;text-align:center;float:left;margin-top:12px;">
+         <a href="http://iptics.com.co/productos/cardinalstream/" target="_blank"><img src="http://cardinalstream.com/wordpress/cardinalstream/foot_cardinal.png"></a>
       </div>
    </div>
+   <div id="playerElement" style="width:100%;height:350px;margin-top:80px;display: none""></div>
 </div>
 <script >
    $(document).on('turbolinks:load',function() {
@@ -117,31 +142,31 @@
 </script>
 <script >
    $(document).on('turbolinks:load',function() {
-      $('.play').hide();
-      $('.png').hide();   
-   $('.play').click(function(){
-              $('.play').hide();
-              $('.pause').show();
-              $('.gif').show();
-              $('.png').hide();    
-              myPlayer.play()
-          });
-   $('.pause').click(function(){
-              
-              $('.play').show();
-              $('.pause').hide();
-              $('.gif').hide();
-              $('.png').show(); 
-              myPlayer.pause()
    
-          });
-      
+      $('.play').hide();
+    $('.png').hide();   
+   $('.play').click(function(){
+            $('.play').hide();
+            $('.pause').show();
+            $('.gif').show();
+            $('.png').hide();    
+            myPlayer.play()
+        });
+   $('.pause').click(function(){
+            
+            $('.play').show();
+            $('.pause').hide();
+            $('.gif').hide();
+            $('.png').show(); 
+            myPlayer.pause()
+   
+        });
    WowzaPlayer.create('playerElement',
       {
       "license":"PLAY1-94nX9-WjkJY-fwhpz-Cd8aA-9wmMD",
       "title":"",
       "description":"",
-      "sourceURL":"http://ceipa.cardinalstream.com:1935/vod/_definst_/mp4:82/adminceipa/2189/video/default.mp4/playlist.m3u8",
+      "sourceURL":"http://ceipa.cardinalstream.com:1935/live/smil:myStream.smil/playlist.m3u8",
       "autoPlay":true,
       "volume":"75",
       "mute":false,
@@ -156,53 +181,10 @@
    
    
       var myPlayer = WowzaPlayer.get('playerElement');
-      console.log( 'Playhead time (ms): ' + myPlayer.getCurrentTime() );
    
+        }); 
+                
    
-   errorListener = function ( errorEvent ) {
-      console.log('Message: hoolaaaaaaaaaaaaaaaaaaa ' + errorEvent.error);
-      
-   };
-   
-      var array = "<%=@sync%>".split(",");
-       array.pop();
-      console.log (array);
-   
-   
-   playheadTimeListener = function ( playheadTimeEvent ) {
-      myPlayer.onError( errorListener );  
-      
-      console.log('Time: ' + playheadTimeEvent.time);
-       times = parseInt(playheadTimeEvent.time/1000)
-      console.log(array)
-       stimes = times.toString();
-      if (array.indexOf(stimes) != -1 && array.indexOf(stimes) > 0 )
-      {   
-   
-          pos = array.indexOf(stimes)  + 1;
-          console.log(pos + "aaaaa");
-          b = "#" + pos;
-          a = $(b).attr("src");
-          $('.imagensup').attr("src", a);
-          $('.tumb').addClass("activeoff"); 
-          $('.tumb').removeClass("activeon"); 
-          $(b).addClass("activeon");
-   
-      }
-      $('h1').html(times)
-    
-   };
-   
-   myPlayer.onPlayheadTime( playheadTimeListener );
-   
-   setTimeout(function(){
-   
-   $('#playerElement').prepend('<img src="<%=@account.logo_url%>" alt="">');
-   
-   }, 3000);
-   
-   
-   });
 </script>
 <style>
    .fixeddown
@@ -238,24 +220,25 @@
    border:2px solid red !important;
    opacity: 1 !important;
    }
-   .but
-   {
-   padding: 8px;
-   border-radius: 26px;
-   border: none;
-   background: #565656;
-   font-size: 20px;
-   color: white;
-   width: 45px;
-   }
+  .but {
+    padding-bottom: 1px;
+    margin-left: 10px;
+    border-radius: 26px;
+    border: 2px solid orange;
+    background: #565656;
+    font-size: 21px;
+    color: white;
+    width: 45px;
+    height: 45px;
+}
    .roundgif {
    border: 2px solid #cb8509;
-   width: 4em;
-   height: 4em;
+    width: 45px;
+   height: 45px;
    -webkit-border-radius: 5em;
    -moz-border-radius: 5em;
    border-radius: 5em;
-   margin: auto;
+  
    padding: 0;
    overflow: hidden;
    background: #000;
@@ -267,9 +250,9 @@
    .ppt-block {
    margin-right: 6em;
    margin-left: 1em;
-   margin-top: 60px;
+   margin-top: 20px;
    }
-   @media only screen and (max-width: 500px) {
+   @media only screen and (max-width:992px) {
    .ppt-block{
    background-color: lightblue;
    margin-right: 0em;
@@ -279,12 +262,12 @@
    width: 100%;
    }
    .roundgif{
-   width: 10em;
-   height: 10em;
+    width: 45px;
+   height: 45px;
    }
    .fixeddown
    {
-   height:28em;    
+   height:auto;    
    }
    .pp
    {
@@ -294,9 +277,14 @@
    #ppts {
    width: 100% !important;
    }
-    #playerElement 
+   #playerElement 
    {
-    margin-top: 0px !important;
+   margin-top: 0px !important;
+   }
+   .backppt {
+   position: relative;
+    height:auto;
+    padding-left: 15px !important;
    }
    }
    #playerElement img
@@ -306,4 +294,54 @@
    z-index: 100;
    top: 90px;
    }
+   .play_stop{
+    position: absolute;
+    bottom: 30px;
+    right: 10px;
+    left: 6px;
+    padding-top: 10px;
+    border-top: 1px solid gray
+
+   }
+   .backppt1 {
+   position: relative;
+   height: calc(100vh - 7em);
+   }
+
 </style>
+<script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+<script>
+   // Enable pusher logging - don't include this in production
+   Pusher.logToConsole = true;
+   
+   var pusher = new Pusher('194f0bfe827f047fcf64', {
+     cluster: 'us2',
+     encrypted: true
+   });
+   
+   var channel = pusher.subscribe('my-channel');
+   channel.bind('my-event', function(data) {
+    a = data.message
+   
+   
+      setTimeout(function(){
+       console.log(data.message);
+    $('.img-responsive').attr("src", a[0]);
+    c = ".i" + (a[1] +1)
+    $('.tumb').addClass("activeoff"); 
+    $('.tumb').removeClass("activeon");
+   
+    $(c).addClass("activeon");
+    $(c).removeClass("activeoff");
+   
+       }, 1000);
+     
+   
+   
+   
+   });
+   
+   
+   
+   
+</script>

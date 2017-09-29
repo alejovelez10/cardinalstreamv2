@@ -1,67 +1,83 @@
-<%= form_with(model: account, local: true) do |form| %>
-  <% if account.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(account.errors.count, "error") %> prohibited this account from being saved:</h2>
-
-      <ul>
-      <% account.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :domain %>
-    <%= form.text_field :domain, id: :account_domain %>
-  </div>
-
-  <div class="field">
-    <%= form.label :logo %>
-    <%= form.file_field :logo, id: :account_logo %>
-  </div>
-
-  <div class="field">
-    <%= form.label :admin_user %>
-    <%= form.number_field :admin_user, id: :account_admin_user %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id, id: :account_user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :background_portal %>
-    <%= form.file_field :background_portal, id: :account_background_portal %>
-  </div>
-
-  <div class="field">
-    <%= form.label :background_stream %>
-    <%= form.file_field :background_stream, id: :account_background_stream %>
-  </div>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :account_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :questions %>
-    <%= form.check_box :questions, id: :account_questions %>
-  </div>
-
-  <div class="field">
-    <%= form.label :download_docs %>
-    <%= form.check_box :download_docs, id: :account_download_docs %>
-  </div>
-
-  <div class="field">
-    <%= form.label :chat %>
-    <%= form.check_box :chat, id: :account_chat %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+<div id="contact-modal" class="modal fade">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title"><%= action_name %> Evento</h4>
+         </div>
+         <div class="alert alert-danger" style="display:none">
+            <ul>
+            </ul>
+         </div>
+         <div class="modal-body">
+            <%= form_with(model: account, local: true) do |form| %>
+            <% if account.errors.any? %>
+            <div id="error_explanation">
+               <h2><%= pluralize(account.errors.count, "error") %> prohibited this account from being saved:</h2>
+               <ul>
+                  <% account.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                  <% end %>
+               </ul>
+            </div>
+            <% end %>
+            <div class="row">
+               <div class="col-md-6">
+                  <div class="form-group">
+                     <%= form.label :domain %>
+                     <%= form.text_field :domain, id: :account_domain, class: "form form-control" %>
+                  </div>
+               </div>
+               <div class="col-md-6">
+                  <div class="form-group">
+                     <%= form.label :name %>
+                     <%= form.text_field :name, id: :account_name , class: "form form-control" %>
+                  </div>
+               </div>
+            </div>
+            <br>
+            <div class="row">
+               <div class="col-md-4">
+                  <div class="form-group acc1">
+                     <label class="radio-inline">
+                     <%= form.check_box :questions, class: 'rb cksi check1' %><span style = "margin-left:10px">Formulario de Preguntas</span>
+                     </label>
+                  </div>
+               </div>
+               <div class="col-md-4">
+                  <div class="form-group acc1">
+                     <label class="radio-inline">
+                     <%= form.check_box :download_docs, class: 'rb cksi check1' %><span style = "margin-left:10px">Mostrar Descargables</span>
+                     </label>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-4">
+                  <div class="form-group">
+                     <%= form.label :logo %>
+                     <%= form.file_field :logo, id: :account_logo, class: "form form-control"  %>
+                  </div>
+               </div>
+               <div class="col-md-4">
+                  <div class="form-group">
+                     <%= form.label "Fondo del Portal" %>
+                     <%= form.file_field :background_portal, id: :account_background_portal , class: "form form-control" %>
+                  </div>
+               </div>
+               <div class="col-md-4">
+                  <div class="form-group">
+                     <%= form.label "Fondo de los streamings" %>
+                     <%= form.file_field :background_stream, id: :account_background_stream, class: "form form-control"  %>
+                  </div>
+               </div>
+            </div>
+            <div class="actions">
+               <%= form.submit "Guardar" , class: "btn btn-primary" %>
+               <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            </div>
+            <% end %>
+         </div>
+      </div>
+   </div>
+</div>

@@ -2,10 +2,11 @@ Rails.application.routes.draw do
  
 
   get 'events/cardinalppt/:id' ,to: "events#cardinalppt", as: "cardinalppt"
-  resources :events
+  resources :events , :only => [:index, :show, :create, :update, :edit, :destroy]
+  get 'new/:state' , to: "events#new" , as: "new_event"
   get 'home', to: 'home#index', as: "home"
   resources :accounts
-  devise_for :users
+  devise_for :users, controllers: { registrations: "registrations" }
 
   #match '/', to: 'accounts#index', constraints: { subdomain: 'www' }, via: [:get, :post, :put, :patch, :delete]
   #match '/', to: 'accounts#show', constraints: { subdomain: /.+/ }, via: [:get, :post, :put, :patch, :delete]
@@ -19,8 +20,9 @@ Rails.application.routes.draw do
   get  'admin' , to: "events#index"
   get  'ppts/views/:id' , to: "events#ppts_views" , as: "ppts_views"
   post   'sinc_ppts', to: "events#sinc_ppts", as: "sinc_ppts"
+  get 'admin', to: 'events#admin', as: "admin_events"
   root 'events#index'
- 
+  get "redir", to: "home#redir", as: "redir"
 
 end
 

@@ -14,16 +14,21 @@ class AccountsController < ApplicationController
   end
 
    def portal
-    
+    @account = Account.where(domain: request.subdomain).first
     @events = @account1.events 
    end 
   
 
   def live
-    @event = Event.last
-    @account = Account.find(@event.account_id)
+    @account = Account.where(domain: request.subdomain).first
+    @event = Event.where(account_id: @account.id).where("state != 4").last
+    if @event != nil
     @array = @event.slides.split(/,/)
     @count = @array.count
+    render "live"
+    else
+      render "no_live" , :layout => false
+    end
   end  
 
   def portal_show
@@ -82,7 +87,7 @@ class AccountsController < ApplicationController
   def update
     respond_to do |format|
       if @account.update(account_params)
-        format.html { redirect_to accounts_url, notice: 'Account was successfully updated.' }
+        format.html { redirect_to @account, notice: 'Account was successfully updated.' }
         format.json { render :show, status: :ok, location: @account }
       else
         format.html { render :edit }

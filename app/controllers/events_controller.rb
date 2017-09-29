@@ -1,10 +1,18 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :get_blog
   before_action :authenticate_user!
+
+
 
   # GET /events
   # GET /events.json
   def index
+    @events = Event.where(admin_user: current_user.admin_user).paginate(page: params[:page],:per_page => 10)
+    puts current_user.email
+  end
+
+  def admin
     @events = Event.where(admin_user: current_user.admin_user).paginate(page: params[:page],:per_page => 10)
   end
 
@@ -23,6 +31,7 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
     @account = Account.where(admin_user: current_user.admin_user).first
+    @state = params[:state]
   end
 
   # GET /events/1/edit
@@ -54,6 +63,12 @@ class EventsController < ApplicationController
         @event.slides = pptss
         @event.sync = sync
         @event.save
+        tv = `ffprobe -v error -select_streams v:0 -show_entries stream=duration \ -of default=noprint_wrappers=1:nokey=1 public/uploads/event/video/#{@event.id}/default.mp4`
+        tvi = (tv.to_i/2)
+        puts tvi
+        tvisi =  Time.at(tvi).utc.strftime("%H:%M:%S")  
+        puts tvisi
+        `ffmpeg -i  public/uploads/event/video/#{@event.id}/default.mp4 -r 1 -ss #{tvisi} -t 1 public/uploads/event/video/#{@event.id}/screamshot.jpg` if  !@event.event_type
         format.html { redirect_to events_path, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
@@ -171,4 +186,8 @@ class EventsController < ApplicationController
     def event_params
       params.require(:event).permit(:date_event, :name, :description, :state, :backgroud_event, :video, :ppts, :user_id, :admin_user, :account_id, :event_type, :event_date)
     end
+  
+
+
+
 end

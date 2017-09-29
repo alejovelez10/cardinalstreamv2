@@ -14,13 +14,18 @@
  *= require font-awesome
  *= require_self
  */
+ body
+ {
+   font-family: 'Poppins' , sans-serif !important;
+ }
 .application
 {
-	    margin: 0px;
-    height: 100%;
-    background-color: #267A8A;
-    background-image: url(http://wallpoper.com/images/00/44/20/48/blue-fabric-background_00442048.jpg);
-    font-family: "robotoregular";
+
+    background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), 
+  url('/../../images/fondo_application.jpg')no-repeat center top;
+  background-size: cover;
+
+
 }
 
 .login1
@@ -231,7 +236,9 @@ hr
 }
 #event_date_event
 {
-  margin: 0px 10px;
+margin: 0px 10px;
+    width: 110px;
+    text-align: center;
 }
 .date_select
 {

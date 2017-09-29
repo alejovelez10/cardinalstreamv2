@@ -17,16 +17,38 @@
   </head>
 <style>
 	
-	.portal{
+body{
 
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-color: #404040;
+  background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), 
+  url('/../../images/fondo_application.jpg')no-repeat center top;
+  background-size: cover;
+
+}
+h1
+{
+	color: white;
+	font-weight: bold;
+}
+.row
+{
+ margin-top:200px;
 }
 </style>
-  <body class= "portal">
+  <body>
+  <div class="container">
+  <div class="row">
+  	<div class="col-md-8 col-md-offset-2">
+     <h1>NO HAY NINGUN EVENTO LIVE PROGRAMADO</h1>
+	
+</div>
+  </div>
+  	
+  </div>
 
-    <%= yield %>
+
   </body>
 </html>
+
+
+
+
