@@ -19,6 +19,17 @@ class AccountsController < ApplicationController
    end 
   
 
+   def iframe
+   
+    @event = Event.where(iframe: params[:iframe]).first
+    @account = Account.find(@event.account_id)
+    @array = @event.slides.split(/,/)
+    @count = @array.count
+    @sync =  @event.sync
+    
+
+  end  
+
   def live
     @account = Account.where(domain: request.subdomain).first
     @event = Event.where(account_id: @account.id).where.not(state: 4).last

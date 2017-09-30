@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   root 'events#index'
   get 'redir', to: 'home#redir', as: 'redir'
   post 'create_question', to: 'questions#create_question', as: 'create_question'
+  get 'iframe/:iframe', to:"accounts#iframe", as: "iframe"
 end
 
 

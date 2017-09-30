@@ -8,6 +8,12 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
+    a = ("a".."z")
+    b = (0..9)
+    c = a.to_a + b.to_a
+    key = c.shuffle[0,8].join
+
+   puts key
     @events = Event.where(admin_user: current_user.admin_user).paginate(page: params[:page],:per_page => 10).order(created_at: :DESC)
     puts current_user.email
   end
@@ -20,12 +26,14 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @event = Event.last
+
     @account = Account.find(@event.account_id)
     @array = @event.slides.split(/,/)
     @count = @array.count
-
-
   end
+
+   
+
 
   # GET /events/new
   def new
@@ -63,6 +71,12 @@ class EventsController < ApplicationController
         ppts = pptss.split(/,/)
         @event.slides = pptss
         @event.sync = sync
+
+        a = ("a".."z")
+        b = (0..9)
+        c = a.to_a + b.to_a
+        key = c.shuffle[0,8].join
+        @event.iframe = key
         @event.save
         tv = `ffprobe -v error -select_streams v:0 -show_entries stream=duration \ -of default=noprint_wrappers=1:nokey=1 public/uploads/event/video/#{@event.id}/default.mp4`
         tvi = (tv.to_i/2)
