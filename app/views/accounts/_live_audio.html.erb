@@ -17,8 +17,32 @@
    </div>
    <div class="row">
       <div class="col-md-2 backppt1  hidden-sm hidden-xs">
-         
-        
+            <br>
+            <div class="col-md-12 text-center" style= "padding: 9px;background: #313030;">
+              <%= form_tag create_question_path, method: :post, remote:true do%>
+                   <div class="form-group">
+                     <%= label_tag "Nombre" %>
+                     <%= text_field_tag :name , nil, class: "form form-control" %>
+                  </div>
+                                     <div class="form-group">
+                     <%= label_tag "Email" %>
+                     <%= text_field_tag :email , nil, class: "form form-control" %>
+                  </div>
+                                     <div class="form-group">
+                     <%= label_tag "Asunto" %>
+                     <%= text_field_tag :affair , nil, class: "form form-control" %>
+                  </div>
+                                     <div class="form-group">
+                     <%= label_tag "Descripcion" %>
+                     <%= text_area_tag :description ,nil, class: "form form-control", style: "height: 100px;" %>
+                  </div>
+                  <%= hidden_field_tag :account_id , event.account_id%>
+                  <%= hidden_field_tag :event_id , event.id%>
+                  <%= submit_tag "Enviar", class: "btn btn-primary btn-block"%>
+
+              <%end%>
+            
+            </div> 
             <div class="col-md-12 play_stop text-center" >
             
                  
@@ -306,6 +330,7 @@
    .backppt1 {
    position: relative;
    height: calc(100vh - 7em);
+       padding: 0px 0px 0px 14px;
    }
 
 </style>

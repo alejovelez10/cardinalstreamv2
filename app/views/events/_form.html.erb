@@ -50,36 +50,39 @@
                      <%= form.check_box :event_type, style: "margin-left:10px" %>
             </div>
             </div>
+            <%if @state != 4%>
             <div class="col-md-3">
                        <div class="form-group" >
                <%= form.label "Delay" %>
                <%= form.text_field :delay, id: :delay, class: "form form-control" %>
             </div>
+
              </div>
+             <%end%>
             </div>
            
             <div class="form-group">
-               <%= form.label :name %>
+               <%= form.label "Nombre"%>
                <%= form.text_field :name, id: :event_name, class: "form form-control" %>
             </div>
             <div class="form-group">
-               <%= form.label :description %>
+               <%= form.label "Descripcion" %>
                <%= form.text_area :description, id: :event_description, class: "form form-control" %>
             </div>
             <div class="form-group">
-               <%= form.label :backgroud_event %>
+               <%= form.label "Fondo del Evento" %>
                <%= form.file_field :backgroud_event, id: :event_backgroud_event, class: "form form-control" %>
             </div>
             <div class="row">
                <div class="col-md-6">
                   <div class="form-group">
-                     <%= form.label :video %>
+                     <%= form.label "Video" %>
                      <%= form.file_field :video, id: :event_video, class: "form form-control" , accept: "video/mp4" %>
                   </div>
                </div>
                <div class="col-md-6">
                   <div class="form-group">
-                     <%= form.label :ppts %>
+                     <%= form.label "Diapositivas" %>
                      <%= form.file_field :ppts, id: :event_ppts, class: "form form-control", accept: "application/pdf" %>
                   </div>
                </div>
@@ -88,7 +91,7 @@
             <%= form.hidden_field :admin_user,:value => current_user.admin_user %>
             <%= form.hidden_field :user_id,:value => current_user.id %>
             <%= form.hidden_field :state,:value => @state %>
-            
+
             <%= form.submit "Guardar" , class: "btn btn-primary" %>
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
             <% end %>
@@ -96,3 +99,5 @@
       </div>
    </div>
 </div>
+
+

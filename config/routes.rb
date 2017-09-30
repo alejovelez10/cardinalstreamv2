@@ -22,8 +22,8 @@ Rails.application.routes.draw do
   post   'sinc_ppts', to: "events#sinc_ppts", as: "sinc_ppts"
   get 'admin', to: 'events#admin', as: "admin_events"
   root 'events#index'
-  get "redir", to: "home#redir", as: "redir"
-
+  get 'redir', to: 'home#redir', as: 'redir'
+  post 'create_question', to: 'questions#create_question', as: 'create_question'
 end
 
 
