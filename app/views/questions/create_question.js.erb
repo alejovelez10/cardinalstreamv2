@@ -1,5 +1,13 @@
 <% if @question.errors.blank? %>
-    alert("hola")
+    $('.erase').val("");
+
+        
+ $('.alert-success').fadeIn();
+    setTimeout(function() {
+        $('.alert-success').fadeOut();
+    }, 2000);
+
+
 <% else %>
 
 <% end %>

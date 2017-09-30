@@ -1,13 +1,11 @@
 <div class="container-fluid">
    <div class="row">
       <div class="col-md-12 blockhead ">
-       <div class="col-md-3 ">
-         <img src="<%=@account.logo_url%>" alt="">
-      </div>
-     
+         <div class="col-md-3 ">
+            <img src="<%=@account.logo_url%>" alt="">
+         </div>
          <div class="col-md-6">
             <p><%= event.name.upcase%><br><span style="font-size: 10px;"><%= get_date(event.event_date)%></span></p>
-
          </div>
          <div class="col-md-3 hidden-xs">
             <div class="redessociales" style="float:right;padding:0 2em;margin: -0.5em;line-height: 2em;background: none;right: -0.7em;font-size: 1.7em;padding: 0;padding-right: 1.7em;margin-bottom: -0.8em;margin-top: -0.46em;">
@@ -19,9 +17,42 @@
    </div>
    <div class="row">
       <div class="col-md-5">
-         <div id="playerElement" style="width:100%;height:350px;margin-top:80px">
-
+         <div id="playerElement" style="width:100%;height:350px;margin-top:<%=event.account.questions ? '30px' : '90px'%>">
          </div>
+         <%if event.account.questions%>
+         <div class="col-md-12" style= "padding: 9px;background: #313030;margin-top:5px">
+            <%= form_tag create_question_path, method: :post, remote:true do%>
+            <div class="col-md-6">
+               <div class="form-group">
+                  <%= label_tag "Nombre" %>
+                  <%= text_field_tag :name , nil, class: "form form-control" %>
+               </div>
+            </div>
+            <div class="col-md-6">
+               <div class="form-group">
+                  <%= label_tag "Email" %>
+                  <%= text_field_tag :email , nil, class: "form form-control" %>
+               </div>
+            </div>
+            <div class="col-md-12">
+               <div class="form-group">
+                  <%= label_tag "Pregunta" %>
+                  <%= text_field_tag :description ,nil, class: "form form-control erase" %>
+               </div>
+            </div>
+            <%= hidden_field_tag :account_id , event.account_id%>
+            <%= hidden_field_tag :event_id , event.id%>
+            <div class="col-md-3" >
+               <%= submit_tag "Enviar", class: "btn btn-primary"%>
+            </div>
+            <div class="col-md-9" >
+               <div class="alert alert-success" style="margin-top:5px;display:none">
+                  Tu pregunsta se envio con exito.
+               </div>
+            </div>
+            <%end%>
+         </div>
+         <%end%>
       </div>
       <div class="col-md-7">
          <div class="backppt col-md-12 no-float">
@@ -83,9 +114,6 @@
       </div>
    </div>
 </div>
-
-
-
 <script >
    $(document).on('turbolinks:load',function() {
    
@@ -121,7 +149,7 @@
 </script>
 <script >
    $(document).on('turbolinks:load',function() {
- 
+   
       
    WowzaPlayer.create('playerElement',
       {
@@ -143,10 +171,10 @@
    
    
       var myPlayer = WowzaPlayer.get('playerElement');
-
+   
         }); 
                 
-
+   
 </script>
 <style>
    .fixeddown
@@ -232,8 +260,8 @@
    }
    .backppt {
    position: relative;
-    height:auto !important;
-    padding-left: 15px !important;
+   height:auto !important;
+   padding-left: 15px !important;
    }
    .pp
    {
@@ -243,9 +271,9 @@
    #ppts {
    width: 100% !important;
    }
-    #playerElement 
+   #playerElement 
    {
-    margin-top: 0px !important;
+   margin-top: 0px !important;
    }
    }
    #playerElement img
@@ -255,42 +283,48 @@
    z-index: 100;
    top: 90px;
    }
+   .form-control {
+   display: block;
+   width: 100%;
+   height: 26px;
+   }
+   .form-group {
+   margin-bottom: 9px;
+   }
 </style>
-
 <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
-  <script>
-
-    // Enable pusher logging - don't include this in production
-    Pusher.logToConsole = true;
-
-    var pusher = new Pusher('194f0bfe827f047fcf64', {
-      cluster: 'us2',
-      encrypted: true
-    });
-
-    var channel = pusher.subscribe('my-channel');
-    channel.bind('my-event', function(data) {
-     a = data.message
-
-
-       setTimeout(function(){
-        console.log(data.message);
-     $('.img-responsive').attr("src", a[0]);
-     c = ".i" + (a[1] +1)
-     $('.tumb').addClass("activeoff"); 
-     $('.tumb').removeClass("activeon");
-
-     $(c).addClass("activeon");
-     $(c).removeClass("activeoff");
+<script>
+   // Enable pusher logging - don't include this in production
+   Pusher.logToConsole = true;
    
-        }, <%=event.delay * 1000%>);
-      
-
-
-
-    });
-
-
-
-
-  </script>
+   var pusher = new Pusher('194f0bfe827f047fcf64', {
+     cluster: 'us2',
+     encrypted: true
+   });
+   
+   var channel = pusher.subscribe('my-channel');
+   channel.bind('my-event', function(data) {
+    a = data.message
+   
+   
+      setTimeout(function(){
+       console.log(data.message);
+    $('.img-responsive').attr("src", a[0]);
+    c = ".i" + (a[1] +1)
+    $('.tumb').addClass("activeoff"); 
+    $('.tumb').removeClass("activeon");
+   
+    $(c).addClass("activeon");
+    $(c).removeClass("activeoff");
+   
+       }, <%=event.delay * 1000%>);
+     
+   
+   
+   
+   });
+   
+   
+   
+   
+</script>

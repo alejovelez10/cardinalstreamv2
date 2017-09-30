@@ -28,20 +28,20 @@
                      <%= label_tag "Email" %>
                      <%= text_field_tag :email , nil, class: "form form-control" %>
                   </div>
-                                     <div class="form-group">
-                     <%= label_tag "Asunto" %>
-                     <%= text_field_tag :affair , nil, class: "form form-control" %>
-                  </div>
+                   
                                      <div class="form-group">
                      <%= label_tag "Descripcion" %>
-                     <%= text_area_tag :description ,nil, class: "form form-control", style: "height: 100px;" %>
+                     <%= text_area_tag :description ,nil, class: "form form-control erase", style: "height: 100px;" %>
                   </div>
                   <%= hidden_field_tag :account_id , event.account_id%>
                   <%= hidden_field_tag :event_id , event.id%>
                   <%= submit_tag "Enviar", class: "btn btn-primary btn-block"%>
 
               <%end%>
-            
+            <div class="alert alert-success" style="margin-top:5px;display:none">
+                Tu pregunsta se envio con exito.
+            </div>
+
             </div> 
             <div class="col-md-12 play_stop text-center" >
             
