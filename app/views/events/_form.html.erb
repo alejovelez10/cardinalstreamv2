@@ -40,6 +40,8 @@
                </div>
             
             </div>
+             <div class="row">
+               <div class="col-md-3" style = "position: relative;top: 23px;">
             <div class="form-group">
                      <%= form.label "Solo Audio" do %>
                      <i class="fa fa-volume-up" style = "font-size:20px" aria-hidden="true"></i>
@@ -47,6 +49,15 @@
                      <%end%>
                      <%= form.check_box :event_type, style: "margin-left:10px" %>
             </div>
+            </div>
+            <div class="col-md-3">
+                       <div class="form-group" >
+               <%= form.label "Delay" %>
+               <%= form.text_field :delay, id: :delay, class: "form form-control" %>
+            </div>
+             </div>
+            </div>
+           
             <div class="form-group">
                <%= form.label :name %>
                <%= form.text_field :name, id: :event_name, class: "form form-control" %>
@@ -77,6 +88,7 @@
             <%= form.hidden_field :admin_user,:value => current_user.admin_user %>
             <%= form.hidden_field :user_id,:value => current_user.id %>
             <%= form.hidden_field :state,:value => @state %>
+            
             <%= form.submit "Guardar" , class: "btn btn-primary" %>
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
             <% end %>

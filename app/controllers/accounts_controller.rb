@@ -21,7 +21,10 @@ class AccountsController < ApplicationController
 
   def live
     @account = Account.where(domain: request.subdomain).first
-    @event = Event.where(account_id: @account.id).where("state != 4").last
+    @event = Event.where(account_id: @account.id).where.not(state: 4).last
+    puts @event
+    puts Event.where(account_id: @account.id).where.not(state: 4).first
+    puts "eventtttttttttttt"
     if @event != nil
     @array = @event.slides.split(/,/)
     @count = @array.count

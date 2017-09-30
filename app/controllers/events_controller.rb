@@ -8,12 +8,12 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.where(admin_user: current_user.admin_user).paginate(page: params[:page],:per_page => 10)
+    @events = Event.where(admin_user: current_user.admin_user).paginate(page: params[:page],:per_page => 10).order(created_at: :DESC)
     puts current_user.email
   end
 
   def admin
-    @events = Event.where(admin_user: current_user.admin_user).paginate(page: params[:page],:per_page => 10)
+    @events = Event.where(admin_user: current_user.admin_user).paginate(page: params[:page],:per_page => 10).order(created_at: :DESC)
   end
 
   # GET /events/1
@@ -37,6 +37,7 @@ class EventsController < ApplicationController
   # GET /events/1/edit
   def edit
     @account = Account.where(admin_user: current_user.admin_user).first
+    @state = @event.state
   end
 
   # POST /events
@@ -184,7 +185,7 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:date_event, :name, :description, :state, :backgroud_event, :video, :ppts, :user_id, :admin_user, :account_id, :event_type, :event_date)
+      params.require(:event).permit(:date_event, :name, :description, :state, :backgroud_event, :video, :ppts, :user_id, :admin_user, :account_id, :event_type, :event_date, :delay)
     end
   
 
