@@ -1,6 +1,14 @@
 module ApplicationHelper
 
 
+def action_type
+    
+   if action_name == "new" 
+    return "Crear"
+else
+     return "Editar"
+    end
+end
 
 
 def get_clase_event(event,id)

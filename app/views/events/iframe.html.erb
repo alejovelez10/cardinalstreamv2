@@ -1,0 +1,285 @@
+<div class="container-fluid">
+
+   <div class="row">
+      <div class="col-md-5">
+         <div id="playerElement" style="width:100%;height:350px;margin-top:80px">
+         </div>
+      </div>
+      <div class="col-md-7">
+         <div class="backppt col-md-12 no-float">
+            <div class="ppt-block">
+               <div class="ppt_cont">
+                  <div class="wrapppt" style="max-width: 555.4px; height: 416.55px; background: rgb(50, 50, 50);">
+                     <div id="ppts" style="opacity: 1;">
+                        <div id="controls">
+                           <div class="nextbutt">&gt;</div>
+                           <div class="prevbutt">&lt;</div>
+                        </div>
+                        <img class = "imagensup img-responsive" src="<%=@array[0]%>" style="height: auto;">
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <style>.wrapppt{max-width:100%!important;background:none!important;height:auto!important;}#ppts{float:none!important;margin:auto;}#scrollbar1{width:100%}</style>
+            <div class="right-bar hidden-sm hidden-xs">
+               <div class="roundbutton fullppt fullbuttonppt">
+                  <div class="col-md-4 fa fa-expand fa-2x"></div>
+               </div>
+               <div class="roundbutton zoom1">
+                  <div class="col-md-4 fa fa-search-plus fa-2x"></div>
+               </div>
+               <div class="roundbutton zoom2">
+                  <div class="col-md-4 fa fa-search-minus fa-2x"></div>
+               </div>
+               <div class="roundbutton countppt"><span class="cont">1</span>/<%=@count%></div>
+               <div id="scrollbar1">
+                  <div class="scrollbar">
+                     <div class="track">
+                        <div class="thumb">
+                           <div class="end"></div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="viewport" style = "background:#323232">
+                     <div class="overview">
+                        <% a = 1;
+                           @array.each do |elemento|%>
+                        <div class = "pad">
+                           <div class = "numeral n<%=a%>"><%=a%></div>
+                           <img id = "<%=a%>" class = "i<%=a%> tumb" src = "<%=elemento%>">
+                        </div>
+                        <%a = a +1
+                           end%>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+  </div>
+<script >
+   $(document).on('turbolinks:load',function() {
+   
+   
+   
+                  $('.i1').addClass("activeon");
+              
+              $('.pad').click(function(){
+                      $('.pad').children('img').removeClass("activeon");
+                      $(this).children('img').addClass("activeon");
+                      $('#ppts img').attr('src', $(this).children('img').attr("src"));
+   
+                  
+                  $('.cont').text($(this).children('div').text());
+                  }); 
+   
+                    $('.fullbuttonppt').click(function(){
+                      $('.backppt').toggleClass('fullsize');
+                       $('.zoom1').toggle();
+                       $('.zoom2').toggle();
+                       console.log("si");
+          
+        });
+   
+   
+   
+          }); 
+              
+   
+   
+   
+   
+</script>
+<script >
+   $(document).on('turbolinks:load',function() {
+      $('.play').hide();
+      $('.png').hide();   
+   $('.play').click(function(){
+              $('.play').hide();
+              $('.pause').show();
+              $('.gif').show();
+              $('.png').hide();    
+              myPlayer.play()
+          });
+   $('.pause').click(function(){
+              
+              $('.play').show();
+              $('.pause').hide();
+              $('.gif').hide();
+              $('.png').show(); 
+              myPlayer.pause()
+   
+          });
+      
+   WowzaPlayer.create('playerElement',
+      {
+      "license":"PLAY1-94nX9-WjkJY-fwhpz-Cd8aA-9wmMD",
+      "title":"",
+      "description":"",
+      "sourceURL":"http://aletacloud.com:1935/vod/_definst_/mp4:<%=@event.id%>/default.mp4/playlist.m3u8",
+      "autoPlay":true,
+      "volume":"75",
+      "mute":false,
+      "loop":false,
+      "audioOnly":false,
+      "uiShowQuickRewind":true,
+      "uiQuickRewindSeconds":"30"
+      }
+   );
+   
+   
+   
+   
+      var myPlayer = WowzaPlayer.get('playerElement');
+      console.log( 'Playhead time (ms): ' + myPlayer.getCurrentTime() );
+   
+   
+   errorListener = function ( errorEvent ) {
+      console.log('Message: hoolaaaaaaaaaaaaaaaaaaa ' + errorEvent.error);
+      
+   };
+   
+      var array = "<%=@sync%>".split(",");
+       array.pop();
+      console.log (array);
+   
+   
+   playheadTimeListener = function ( playheadTimeEvent ) {
+      myPlayer.onError( errorListener );  
+      
+      console.log('Time: ' + playheadTimeEvent.time);
+       times = parseInt(playheadTimeEvent.time/1000)
+      console.log(array)
+       stimes = times.toString();
+      if (array.indexOf(stimes) != -1 && array.indexOf(stimes) > 0 )
+      {   
+   
+          pos = array.indexOf(stimes)  + 1;
+          console.log(pos + "aaaaa");
+          b = "#" + pos;
+          a = $(b).attr("src");
+          $('.imagensup').attr("src", a);
+          $('.tumb').addClass("activeoff"); 
+          $('.tumb').removeClass("activeon"); 
+          $(b).addClass("activeon");
+   
+      }
+      $('h1').html(times)
+    
+   };
+   
+   myPlayer.onPlayheadTime( playheadTimeListener );
+   
+   setTimeout(function(){
+   
+   $('#playerElement').prepend('<img src="<%=@account.logo_url%>" alt="">');
+   
+   }, 3000);
+   
+   
+   });
+</script>
+<style>
+   .fixeddown
+   {
+   height: auto;
+   }
+   .logoblock {
+   background: #fff;
+   height: 7em;
+   background-image: url(<%=@account.logo_url%>);
+   background-repeat: no-repeat;
+   background-position: center center;
+   background-size: 100%;
+   }
+   .fullsize
+   {
+   position: fixed!important;
+   width: 100vw!important;
+   min-height: 100vh!important;
+   top: 0!important;
+   left: 0!important;
+   z-index: 1030!important;
+   background: #000;
+   text-align: center;
+   }
+   .activeoff
+   {
+   border: none !important;
+   opacity: 0.3 !important;
+   }
+   .activeon
+   {
+   border:2px solid red !important;
+   opacity: 1 !important;
+   }
+   .but
+   {
+   padding: 8px;
+   border-radius: 26px;
+   border: none;
+   background: #565656;
+   font-size: 20px;
+   color: white;
+   width: 45px;
+   }
+   .roundgif {
+   border: 2px solid #cb8509;
+   width: 4em;
+   height: 4em;
+   -webkit-border-radius: 5em;
+   -moz-border-radius: 5em;
+   border-radius: 5em;
+   margin: auto;
+   padding: 0;
+   overflow: hidden;
+   background: #000;
+   }
+   .roundgif img {
+   width: 150%;
+   margin-left: -22%;
+   }
+   .ppt-block {
+   margin-right: 6em;
+   margin-left: 1em;
+   margin-top: 60px;
+   }
+   @media only screen and (max-width: 500px) {
+   .ppt-block{
+   background-color: lightblue;
+   margin-right: 0em;
+   margin-left: 0em;
+   }
+   .ppt-block img {
+   width: 100%;
+   }
+   .roundgif{
+   width: 10em;
+   height: 10em;
+   }
+   .fixeddown
+   {
+   height:28em;    
+   }
+   .pp
+   {
+   text-align: center;
+   margin-top: 10px;
+   }
+   #ppts {
+   width: 100% !important;
+   }
+    #playerElement 
+   {
+    margin-top: 0px !important;
+   }
+   }
+   #playerElement img
+   {
+   width: 100px;
+   position: absolute;
+   z-index: 100;
+   top: 90px;
+   }
+</style>

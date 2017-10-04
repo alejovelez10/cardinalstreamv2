@@ -24,4 +24,15 @@
 $(document).on('turbolinks:load',function() {
 	 setTimeout(function(){ $('#scrollbar1').tinyscrollbar();}, 1000);
 
+
+ $(function () {
+  $('[data-toggle="popover"]').popover({
+    trigger: 'hover',
+    html: true,
+    container: 'body'
+    
+  
+  })
+})
+
 });

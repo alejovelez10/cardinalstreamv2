@@ -1,103 +1,269 @@
 <div id="contact-modal" class="modal fade">
-   <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-         <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h4 class="modal-title"><%= action_name %> Evento</h4>
-         </div>
-         <div class="alert alert-danger" style="display:none">
-            <ul>
-            </ul>
-         </div>
-         <div class="modal-body">
-            <%= form_with(model: event, local: true) do |form| %>
-            <% if event.errors.any? %>
-            <div id="error_explanation">
-               <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
-               <ul>
-                  <% event.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-                  <% end %>
-               </ul>
-            </div>
-            <% end %>
-            <div class="row">
-               <div class="col-md-12">
-                  <%= form.label "Fecha del Evento" %><br>
-                  <div class="form-group date_select">
-                     <%= form.datetime_select :event_date,{
-                        :start_year =>
-                        Time.now.year + 1,
-                        :end_year => 1900,
-                        :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre','Diciembre'],
-                        :use_short_month => true,
-                        :order => [:day, :month, :year],
-                        :prompt => {:month => 'Mes', :day => 'Dia', :year => 'Año'}},
-                        {:class => 'year form-control line1 required',
-                        :id => 'event_date_event' , :title => "Es un Campo Obligatorio" }
-                        %>
-                  </div>
-               </div>
-            
-            </div>
-             <div class="row">
-               <div class="col-md-3" style = "position: relative;top: 23px;">
-            <div class="form-group">
-                     <%= form.label "Solo Audio" do %>
-                     <i class="fa fa-volume-up" style = "font-size:20px" aria-hidden="true"></i>
-                     Solo Audio
-                     <%end%>
-                     <%= form.check_box :event_type, style: "margin-left:10px" %>
-            </div>
-            </div>
-            <%if @state != 4%>
-            <div class="col-md-3">
-                       <div class="form-group" >
-               <%= form.label "Delay" %>
-               <%= form.text_field :delay, id: :delay, class: "form form-control" %>
-            </div>
-
-             </div>
-             <%end%>
-            </div>
-           
-            <div class="form-group">
-               <%= form.label "Nombre"%>
-               <%= form.text_field :name, id: :event_name, class: "form form-control" %>
-            </div>
-            <div class="form-group">
-               <%= form.label "Descripcion" %>
-               <%= form.text_area :description, id: :event_description, class: "form form-control" %>
-            </div>
-            <div class="form-group">
-               <%= form.label "Fondo del Evento" %>
-               <%= form.file_field :backgroud_event, id: :event_backgroud_event, class: "form form-control" %>
-            </div>
-            <div class="row">
-               <div class="col-md-6">
-                  <div class="form-group">
-                     <%= form.label "Video" %>
-                     <%= form.file_field :video, id: :event_video, class: "form form-control" , accept: "video/mp4" %>
-                  </div>
-               </div>
-               <div class="col-md-6">
-                  <div class="form-group">
-                     <%= form.label "Diapositivas" %>
-                     <%= form.file_field :ppts, id: :event_ppts, class: "form form-control", accept: "application/pdf" %>
-                  </div>
-               </div>
-            </div>
-            <%= form.hidden_field :account_id, :value => @account.id %>
-            <%= form.hidden_field :admin_user,:value => current_user.admin_user %>
-            <%= form.hidden_field :user_id,:value => current_user.id %>
-            <%= form.hidden_field :state,:value => @state %>
-
-            <%= form.submit "Guardar" , class: "btn btn-primary" %>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-            <% end %>
-         </div>
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="modal-header">
+   <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+   <h4 class="modal-title"><%= action_type %> Evento <%= @state == "4" ? "Ondemand" : "Live" %> </h4>
+</div>
+<div class="alert alert-danger" style="display:none">
+   <ul>
+   </ul>
+</div>
+<div class="modal-body modal-body1">
+<%= form_with(model: event, local: true) do |form| %>
+<% if event.errors.any? %>
+<div id="error_explanation">
+   <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
+   <ul>
+      <% event.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+   </ul>
+</div>
+<% end %>
+<div class="row">
+   <div class="col-md-12">
+      <%= form.label "Fecha del Evento" %><br>
+      <div class="form-group date_select">
+         <%= form.datetime_select :event_date,{
+            :start_year =>
+            Time.now.year + 1,
+            :end_year => 1900,
+            :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre','Diciembre'],
+            :use_short_month => true,
+            :order => [:day, :month, :year],
+            :prompt => {:month => 'Mes', :day => 'Dia', :year => 'Año'}},
+            {:class => 'year form-control line1 required',
+            :id => 'event_date_event' , :title => "Es un Campo Obligatorio" }
+            %>
       </div>
    </div>
 </div>
-
-
+<div class="row">
+   <div class="col-md-3" style = "position: relative;top: 23px;">
+      <div class="form-group">
+         <%= form.label "Solo Audio" do %>
+         <i class="fa fa-volume-up fa1" style = "font-size:20px" aria-hidden="true"></i>
+         Solo Audio
+         <%end%>
+         <%= form.check_box :event_type, style: "margin-left:10px" %>
+      </div>
+   </div>
+   <%if @state != "4"%>
+   <div class="col-md-3">
+      <div class="form-group" >
+         <%= form.label "Delay" %>
+         <%= form.text_field :delay, id: :delay, class: "form form-control" %>
+      </div>
+   </div>
+   <%end%>
+</div>
+<div class="form-group">
+   <%= form.label "Nombre"%>
+   <%= form.text_field :name, id: :event_name, class: "form form-control" %>
+</div>
+<div class="form-group">
+   <%= form.label "Descripcion" %>
+   <%= form.text_area :description, id: :event_description, class: "form form-control" %>
+</div>
+<div class="row">
+<%if @state == "4"%>
+   <div class="col-md-6">
+      <div class="field">
+         <%= form.label "Audio/Video" %><br>
+         <%= form.file_field :video,  class: "form-control inputfilev" , id: 'file1', accept: "video/mp4"%>
+         <label for="file1" ><i class="fa fa-video-camera fa1" aria-hidden="true" style="font-size: 20px" > /</i> <i class="fa fa-volume-up fa1" aria-hidden="true" style="font-size: 22px" ></i>
+         <span class="levidenciav" style = "margin-right:10px;">Adjuntar </span> <%if @event.video.blank?   != true %>
+         <br><%= form.check_box :remove_video %> 
+         <%= form.label "Eliminar", style: "color:red!important" %></label>
+         <%end%>
+      </div>
+   </div>
+<%end%>   
+   <div class="col-md-6">
+      <div class="field">
+         <%= form.label "Diapositivas" %><br>
+         <%= form.file_field :ppts,  class: "form-control inputfile" , id: 'file', accept: "application/pdf"%>
+         <label for="file" ><i class="fa fa-desktop fa1" aria-hidden="true" style="font-size: 22px"></i>
+         <span class="levidencia" style = "margin-right:10px;" >Adjuntar </span> <%if @event.ppts.blank?   != true %>
+         <br><%= form.check_box :remove_ppts %> 
+         <%= form.label "Eliminar", style: "color:red!important" %></label>
+         <%end%>
+      </div>
+   </div>
+</div>
+<br>
+<hr>
+<%= form.hidden_field :account_id, :value => @account.id %>
+<%= form.hidden_field :admin_user,:value => current_user.admin_user %>
+<%= form.hidden_field :user_id,:value => current_user.id %>
+<%= form.hidden_field :state,:value => @state %>
+<%= form.submit "Guardar" , class: "btn btn-primary" %>
+<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+<% end %>
+<script>
+   if ("<%=action_name%>" == "edit" && <%= @event.ppts.blank?  %> != true)
+   {
+   $('.levidencia').html(" <%=@event.ppts.file.filename if @event.ppts.file %> ")
+   
+   }
+    if ("<%=action_name%>" == "edit" && <%= @event.video.blank?  %> != true)
+   {
+   $('.levidenciav').html(" <%=@event.video.file.filename if @event.video.file %> ")
+   
+   }
+   
+   
+   
+   'use strict';
+   
+   ;( function ( document, window, index )
+   {
+     var inputs = document.querySelectorAll( '.inputfile' );
+     Array.prototype.forEach.call( inputs, function( input )
+     {
+       var label  = input.nextElementSibling,
+         labelVal = label.innerHTML;
+   
+       input.addEventListener( 'change', function( e )
+       {
+         var fileName = '';
+         if( this.files && this.files.length > 1 )
+           fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
+         else
+           fileName = e.target.value.split( '\\' ).pop();
+   
+         if( fileName )
+           label.querySelector( 'span' ).innerHTML = fileName;
+         else
+           label.innerHTML = labelVal;
+       });
+   
+       // Firefox bug fix
+       input.addEventListener( 'focus', function(){ input.classList.add( 'has-focus' ); });
+       input.addEventListener( 'blur', function(){ input.classList.remove( 'has-focus' ); });
+     });
+   }( document, window, 0 ));
+   
+      
+      'use strict';
+   
+   ;( function ( document, window, index )
+   {
+     var inputs = document.querySelectorAll( '.inputfilev' );
+     Array.prototype.forEach.call( inputs, function( input )
+     {
+       var label  = input.nextElementSibling,
+         labelVal = label.innerHTML;
+   
+       input.addEventListener( 'change', function( e )
+       {
+         var fileName = '';
+         if( this.files && this.files.length > 1 )
+           fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
+         else
+           fileName = e.target.value.split( '\\' ).pop();
+   
+         if( fileName )
+           label.querySelector( 'span' ).innerHTML = fileName;
+         else
+           label.innerHTML = labelVal;
+       });
+   
+       // Firefox bug fix
+       input.addEventListener( 'focus', function(){ input.classList.add( 'has-focus' ); });
+       input.addEventListener( 'blur', function(){ input.classList.remove( 'has-focus' ); });
+     });
+   }( document, window, 0 ));
+   
+</script>
+<style>
+   .inputfile {
+   width: 0.1px;
+   height: 0.1px;
+   opacity: 0;
+   overflow: hidden;
+   position: absolute;
+   z-index: -1;
+   }
+   .inputfile + label {
+   font-size: 1em;
+   border: 1px solid #d0d0d0;
+   border-radius: 5px;
+   font-weight: 100!important;
+   color: white;
+   background-color: #f9f9f9;
+   padding: 4px 20px;
+   display: inline-block;
+   border-bottom: 2px solid gray;
+   margin-left: 10px;
+   }
+   .inputfile:focus + label,
+   .inputfile + label:hover {
+   }
+   .inputfile + label {
+   cursor: pointer; /* "hand" cursor */
+   }
+   .inputfile:focus + label {
+   outline: 1px dotted #000;
+   outline: -webkit-focus-ring-color auto 5px;
+   }
+   .shi1
+   {
+   width: 150px !important;
+   display: inline-block;
+   height:  30px !important;
+   color:gray !important;
+   font-size: 10px !important;
+   padding: 6px 2px;
+   }
+   .busqueda
+   {
+   display: block;
+   padding: 10px;
+   background: #e8e8e8;
+   }
+   .inputfilev {
+   width: 0.1px;
+   height: 0.1px;
+   opacity: 0;
+   overflow: hidden;
+   position: absolute;
+   z-index: -1;
+   }
+   .inputfilev + label {
+   font-size: 1em;
+   border: 1px solid #d0d0d0;
+   border-radius: 5px;
+   font-weight: 100!important;
+   color: white;
+   background-color: #f9f9f9;
+   padding: 4px 20px;
+   display: inline-block;
+   border-bottom: 2px solid gray;
+   margin-left: 10px;
+   }
+   .inputfilev:focus + label,
+   .inputfilev + label:hover {
+   }
+   .inputfilev + label {
+   cursor: pointer; /* "hand" cursor */
+   }
+   .inputfilev:focus + label {
+   outline: 1px dotted #000;
+   outline: -webkit-focus-ring-color auto 5px;
+   }
+   .fa1
+   {
+   color: #2083de;
+   }
+   .modal-body1 {
+    position: relative;
+    padding: 15px 40px;
+}
+.modal-content
+{
+   border-left: 5px solid #2083de;
+   border-right: 5px solid #2083de;
+}
+</style>
