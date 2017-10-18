@@ -10,7 +10,7 @@
    </ul>
 </div>
 <div class="modal-body modal-body1">
-<%= form_with(model: event, local: true) do |form| %>
+<%= nested_form_for(@event) do |form| %>
 <% if event.errors.any? %>
 <div id="error_explanation">
    <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
@@ -50,6 +50,27 @@
       </div>
    </div>
    <%if @state != "4"%>
+   <div class="col-md-3" style = "position: relative;top: 23px;">
+      <div class="form-group">
+         <%= form.label "Registro" do %>
+         <i class="fa fa-sign-in fa1" style = "font-size:20px" aria-hidden="true"></i>
+        Registro
+         <%end%>
+         <%= form.check_box :has_register, style: "margin-left:10px" %>
+      </div>
+   </div>
+    
+   <div class="col-md-3" style = "position: relative;top: 23px;">
+      <div class="form-group">
+         <%= form.label "Evento PPal" do %>
+         <i class="fa fa-sign-in fa1" style = "font-size:20px" aria-hidden="true"></i>
+        Evento PPal
+         <%end%>
+         <%= form.check_box :root_event, style: "margin-left:10px" %>
+      </div>
+   </div>
+
+
    <div class="col-md-3">
       <div class="form-group" >
          <%= form.label "Delay" %>
@@ -58,14 +79,26 @@
    </div>
    <%end%>
 </div>
-<div class="form-group">
+<div class="row">
+<div class="col-md-9">
+  <div class="form-group">
    <%= form.label "Nombre"%>
    <%= form.text_field :name, id: :event_name, class: "form form-control" %>
 </div>
+</div>
+<div class="col-md-3">
+  <div class="form-group">
+   <%= form.label "Estado"%>
+   <%= form.number_field :state, id: :state, class: "form form-control" %>
+</div>
+</div>  
+</div>
+<%if @state != "4" && action_name == "edit"%>
 <div class="form-group">
    <%= form.label "Descripcion" %>
    <%= form.text_area :description, id: :event_description, class: "form form-control" %>
 </div>
+<%end%>
 <div class="row">
 <%if @state == "4"%>
    <div class="col-md-6">
@@ -94,10 +127,130 @@
 </div>
 <br>
 <hr>
+
+
+<div class="col-lg-12">
+   
+    <h3 class = "" style = "margin :0px 0px 5px 0;color:gray">Documentos</h3>
+
+    <%= form.fields_for :event_files do |contact|  %>
+  <div class="clearfix" style="margin-bottom: 30px;">
+ <div class="col-md-12" >
+
+  
+    <div class="col-md-6 pdd" >
+     <%= contact.link_to_remove do %>
+<i style = "    color: #e74b09;
+    font-size: 18px;
+    margin-left: 0px;
+    position: relative;
+    left: -18px;" class="fa fa-trash" aria-hidden="true"></i>
+  <% end %>
+    <%= contact.label "Nombre" %>
+   <%= contact.text_field :name, :class => 'form-control' %>
+    </div>
+      <div class="col-md-6 pdd" >
+    <%= contact.label "Celular" %>
+    <%= contact.file_field :attachment, :class => 'form-control' %>
+    </div>
+    
+<%= contact.hidden_field :admin_user , :value => current_user.admin_user %>
+  <%= contact.hidden_field :user_id ,:value =>  current_user.id %>
+  <%= contact.hidden_field :account_id, :value => @account.id %>
+
+
+   
+   </div>
+    </div>
+   
+
+
+
+
+
+
+
+
+
+<%end%>
+
+<div class="col-md-12" style="    text-align: right;
+    margin-bottom: 25px;">
+  <%= form.link_to_add "Agregar Contacto", :event_files, :class => 'btn btn-primary top10'  %>
+</div>
+
+    </div>
+
+
+<hr>
+<%if @state != "4"%>
+
+<div class="col-lg-12">
+   
+    <h3 class = "" style = "margin :0px 0px 5px 0;color:gray">Contactos Email</h3>
+
+    <%= form.fields_for :ask_emails do |contact|  %>
+  <div class="clearfix" style="margin-bottom: 30px;">
+ <div class="col-md-12" >
+
+  
+    <div class="col-md-6 pdd" >
+     <%= contact.link_to_remove do %>
+<i style = "    color: #e74b09;
+    font-size: 18px;
+    margin-left: 0px;
+    position: relative;
+    left: -18px;" class="fa fa-trash" aria-hidden="true"></i>
+  <% end %>
+    <%= contact.label "Nombre" %>
+   <%= contact.text_field :email, :class => 'form-control' %>
+    </div>
+      <div class="col-md-6 pdd" >
+    <%= contact.label "Celular" %>
+    <%= contact.text_field :comment, :class => 'form-control' %>
+    </div>
+    
+<%= contact.hidden_field :admin_user , :value => current_user.admin_user %>
+  <%= contact.hidden_field :user_id ,:value =>  current_user.id %>
+  <%= contact.hidden_field :account_id, :value => @account.id %>
+
+
+   
+   </div>
+    </div>
+   
+
+
+
+
+
+
+
+
+
+<%end%>
+
+<div class="col-md-12" style="    text-align: right;
+    margin-bottom: 25px;">
+  <%= form.link_to_add "Agregar Contacto", :ask_emails, :class => 'btn btn-primary top10'  %>
+</div>
+
+    </div>
+
+
+
+<%end%>
+
+
+
+
+<%if action_name != "edit"%>
 <%= form.hidden_field :account_id, :value => @account.id %>
 <%= form.hidden_field :admin_user,:value => current_user.admin_user %>
 <%= form.hidden_field :user_id,:value => current_user.id %>
 <%= form.hidden_field :state,:value => @state %>
+<%end%>
+
 <%= form.submit "Guardar" , class: "btn btn-primary" %>
 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
 <% end %>

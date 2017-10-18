@@ -1,26 +1,43 @@
 <div class="container-fluid">
-   <div class="row">
+  <div class="row">
       <div class="col-md-12 blockhead ">
-         <div class="col-md-3 ">
-            <img src="<%=@account.logo_url%>" alt="">
+       <div class="col-md-2 logo">
+         <img src="<%=@account.logo_url%>" alt="">
+      </div>
+     
+         <div class="col-md-6 name">
+            <p><%= @event.name.upcase%><br><span style="font-size: 10px;">MARZO 10 DE 2017</span></p>
+
          </div>
-         <div class="col-md-6">
-            <p><%= event.name.upcase%><br><span style="font-size: 10px;"><%= get_date(event.event_date)%></span></p>
-         </div>
-         <div class="col-md-3 hidden-xs">
-            <div class="redessociales" style="float:right;padding:0 2em;margin: -0.5em;line-height: 2em;background: none;right: -0.7em;font-size: 1.7em;padding: 0;padding-right: 1.7em;margin-bottom: -0.8em;margin-top: -0.46em;">
+         <div class="col-md-4 hidden-xs social">
+            <div class="redessociales" style="float:right;padding:0 2em;line-height: 2em;background: none;right: -0.7em;font-size: 1.7em;padding: 0;padding-right: 1.7em;margin-bottom: -0.8em;margin-top: -0.46em;">
                <a href="https://www.instagram.com/textilesfabricato/" target="_blank"><span class="fa fa-facebook" aria-hidden="true"></span></a>
                <a href="https://facebook.com/Fabricato-SA-1706689456298683/ " target="_blank"><span class="fa fa-twitter" aria-hidden="true"></span></a>
+               <%= link_to "Salir", logout_path(event.id), method: :delete, class: "viewer_salir" %>
             </div>
          </div>
       </div>
    </div>
    <div class="row">
-      <div class="col-md-5">
-         <div id="playerElement" style="width:100%;height:350px;margin-top:<%=event.account.questions ? '30px' : '90px'%>">
+      <div class="col-md-6">
+         <div id="playerElement" style="width:100%;height:400px;margin-top:<%=event.account.questions ? '30px' : '90px'%>">
          </div>
+
+      </div>
+      <div class="col-md-6">
+         <div class="backppt col-md-12 no-float">
          <%if event.account.questions%>
-         <div class="col-md-12" style= "padding: 9px;background: #313030;margin-top:5px">
+         
+         <div style="margin-top:5px">
+            
+         <a class="form-toggle" role="button" data-toggle="collapse" href="" aria-expanded="false" aria-controls="collapseExample"><img style = "width:50px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Gtk-dialog-question.svg/120px-Gtk-dialog-question.svg.png" alt="">
+
+</a></div>
+
+
+         
+
+         <div id="collapseExample1" class="col-md-8 collapse" style= "display:none;position:absolute;z-index:10;padding: 9px;background: #313030;margin-top:5px">
             <%= form_tag create_question_path, method: :post, remote:true do%>
             <div class="col-md-6">
                <div class="form-group">
@@ -37,11 +54,13 @@
             <div class="col-md-12">
                <div class="form-group">
                   <%= label_tag "Pregunta" %>
-                  <%= text_field_tag :description ,nil, class: "form form-control erase" %>
+                  <%= text_area_tag :description ,nil, class: "form form-control erase", style:"height:100px" %>
                </div>
             </div>
             <%= hidden_field_tag :account_id , event.account_id%>
             <%= hidden_field_tag :event_id , event.id%>
+             <%= hidden_field_tag :type , "video"%>
+
             <div class="col-md-3" >
                <%= submit_tag "Enviar", class: "btn btn-primary"%>
             </div>
@@ -53,9 +72,6 @@
             <%end%>
          </div>
          <%end%>
-      </div>
-      <div class="col-md-7">
-         <div class="backppt col-md-12 no-float">
             <div class="ppt-block">
                <div class="ppt_cont">
                   <div class="wrapppt" style="max-width: 555.4px; height: 416.55px; background: rgb(50, 50, 50);">
@@ -69,6 +85,7 @@
                   </div>
                </div>
             </div>
+                
             <style>.wrapppt{max-width:100%!important;background:none!important;height:auto!important;}#ppts{float:none!important;margin:auto;}#scrollbar1{width:100%}</style>
             <div class="right-bar hidden-sm hidden-xs">
                <div class="roundbutton fullppt fullbuttonppt">
@@ -106,18 +123,31 @@
          </div>
       </div>
    </div>
-   <div class="row">
-      <div class="col-md-12 fixeddown">
-         <div class="col-md-12 middle-div no-float" style="background:#424242;text-align:center;float:left;margin-top:12px;">
-            <a href="http://iptics.com.co/productos/cardinalstream/" target="_blank"><img src="http://cardinalstream.com/wordpress/cardinalstream/foot_cardinal.png"></a>
-         </div>
+    <div class="row">
+   <div class="col-md-12 fixeddown">
+      <div class="col-md-3">
+        <p  style="border-right: 1px solid gray;    margin-top: 3px;"><%= @event.name%><br><span style="font-size: 10px;"><%= get_date(@event.event_date)%></span></p>
+
+      </div>
+            <div class="col-md-9">
+        <% @event.event_files.each do |event|%>
+        <%= link_to "#{event.name}", event.attachment_url, class: "document"%>
+        <%end%>
+
+      </div>
+      <div class="col-md-12 middle-div no-float" style="padding-left:0px !important;bottom:0px;background:#424242;text-align:center;float:left;margin-top:5px;">
+         <a href="http://iptics.com.co/productos/cardinalstream/" target="_blank"><img src="http://cardinalstream.com/wordpress/cardinalstream/foot_cardinal.png"></a>
       </div>
    </div>
+  
+</div>
 </div>
 <script >
    $(document).on('turbolinks:load',function() {
    
-   
+      $('.form-toggle').click(function(){
+    $('#collapseExample1').fadeToggle();
+   })
    
                   $('.i1').addClass("activeon");
               
@@ -132,6 +162,7 @@
    
                     $('.fullbuttonppt').click(function(){
                       $('.backppt').toggleClass('fullsize');
+                      $('.ppt-block').toggleClass('mtop');
                        $('.zoom1').toggle();
                        $('.zoom2').toggle();
                        console.log("si");
@@ -156,7 +187,7 @@
       "license":"PLAY1-94nX9-WjkJY-fwhpz-Cd8aA-9wmMD",
       "title":"",
       "description":"",
-      "sourceURL":"http://ceipa.cardinalstream.com:1935/live/smil:myStream.smil/playlist.m3u8",
+      "sourceURL":"http://ceipa.cardinalstream.com:1935/live/test/playlist.m3u8",
       "autoPlay":true,
       "volume":"75",
       "mute":false,
@@ -177,6 +208,21 @@
    
 </script>
 <style>
+.document:hover
+{
+  text-decoration: none
+}
+.document 
+{
+         font-size: 12px;
+    padding: 10px;
+    border: 3px solid #2b772b;
+    background: rgba(119, 119, 119, 0.43);
+    position: relative;
+    margin-right: 10px;
+    top: 17px;
+    color: white;
+}
    .fixeddown
    {
    height: auto;
@@ -199,6 +245,10 @@
    z-index: 1030!important;
    background: #000;
    text-align: center;
+   }
+   .mtop
+   {
+    margin-top: 20px !important;
    }
    .activeoff
    {
@@ -239,7 +289,7 @@
    .ppt-block {
    margin-right: 6em;
    margin-left: 1em;
-   margin-top: 60px;
+   margin-top: 70px;
    }
    @media only screen and (max-width:992px) {
    .ppt-block{
@@ -291,6 +341,58 @@
    .form-group {
    margin-bottom: 9px;
    }
+    .logo
+  {
+    height: 60px;
+    background: white;
+    padding: 10px 0px 0px 0px; */
+  }
+  .logo img
+  {
+    width: 200px;
+  }
+    .name
+  {
+    height: 60px;
+    background: #38A049;
+    padding: 10px 0px 0px 20px;
+
+  }
+  .name p
+  {
+    color: white;
+  }
+     .social
+  {
+    height: 60px;
+    background: #38A049;
+    padding: 10px 0px 0px 0px; 
+  }
+   .blockhead
+    {
+  padding-left: 0px!important; 
+      padding: 0px;
+          
+  background: none !important;
+  }
+  .viewer_salir
+  {
+    color: white;
+    border: 2px solid white;
+    padding: 2px 16px;
+    border-radius: 9px;
+    margin-left: 10px;
+    font-size: 16px
+  }
+   .viewer_salir:hover
+  {
+    color: white;
+    border: 2px solid white;
+    padding: 2px 16px;
+    border-radius: 9px;
+    margin-left: 10px;
+    font-size: 16px
+  }
 </style>
 <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
 <script>

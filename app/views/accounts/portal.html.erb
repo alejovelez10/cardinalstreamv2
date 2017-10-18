@@ -33,9 +33,9 @@
       <div class="caption">
         <h5><%= event.name%></h5>
         <%if event.event_type %>
-        <p><%= link_to "Ver", portal_show_path(event.id), class: "btn btn-primary"%></p>
+        <p><%= link_to "Ver", portal_show_path(event.id), class: "btn btn-primary" , data: { turbolinks: false }%></p>
           <%else%>
-          <p><%= link_to "Ver", portal_show_video_path(event.id), class: "btn btn-primary"%></p>
+          <p><%= link_to "Ver", portal_show_video_path(event.id), class: "btn btn-primary" , data: { turbolinks: false }%></p>
           <%end%>
         
       </div>

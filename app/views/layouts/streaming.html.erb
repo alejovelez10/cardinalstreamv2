@@ -4,16 +4,17 @@
     <title>CardinalStreamV2</title>
     <%= csrf_meta_tags %>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+       <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+<%= javascript_include_tag 'https://player.wowza.com/player/1.1.04.4934/wowzaplayer.min.js', 'data-turbolinks-track': 'reload' %>
         <meta name="turbolinks-cache-control" content="no-cache">
-         <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+       
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-     <%= javascript_include_tag 'https://player.wowza.com/player/latest/wowzaplayer.min.js', 'data-turbolinks-track': 'reload' %>
+     
    
        <script type="text/javascript" src="../../jquery.tinyscrollbar.js"></script>
 
-  
 
   </head>
 <style>
@@ -22,7 +23,7 @@
   
     background-image: url(<%=portal_background%>);
     background-size: cover;
-    background-position: center center;
+   
     background-repeat: no-repeat;
     background-color: #404040;
 }

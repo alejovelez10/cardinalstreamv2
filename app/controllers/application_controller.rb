@@ -49,6 +49,30 @@ protected
 
     end
   end
+
+
+
+def viewer_sign_in(viewer)
+  cookies.permanent.signed[:viewer_id] = viewer.id
+  @current_viewer = viewer
+end
+
+def viewer_sign_out
+  cookies.delete(:viewer_id)
+  @current_viewer = nil
+end
+
+private
+  def viewer_signed_in?
+    !current_viewer.nil?
+  end
+  helper_method :viewer_signed_in?
+
+  def current_viewer
+    @current_viewer ||= Viewer.find(cookies.signed[:viewer_id]) if cookies.signed[:viewer_id]
+  rescue ActiveRecord::RecordNotFound
+  end
+  helper_method :current_viewer
 end
 
 

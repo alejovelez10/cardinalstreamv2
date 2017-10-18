@@ -1,5 +1,24 @@
+<% if @event.state == 1%>
+<% if viewer_signed_in? || !@event.has_register %>
+  
+  
 <%if @event.event_type%>
 <%= render "live_audio", event: @event, array: @array%>
 <%else%>
 <%= render "live_video", event: @event, array: @array%>
 <%end%>
+
+<%else%>
+<%= render "login" , event: @event%>
+<% end %>
+<%else%>
+<%= render "expectation" , event: @event%>
+
+<%end%>
+
+
+
+
+
+
+

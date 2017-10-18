@@ -28,6 +28,7 @@
                   <th>Nombre</th>
                   <th>Streaming</th>
                   <th>Tipo</th>
+                  <th>Principal</th>
                   <th>Video</th>
                   <th>Ppts</th>
                   <th></th>
@@ -69,9 +70,10 @@
                   <td><%= event.name %></td>
                   <td><%= event.state != 4 ? "Live" : "Ondemand" %></td>
                   <td style = "font-size:20px"><%= get_event_type(event.event_type).html_safe %></td>
+                  <td class=""><%= get_state(event.root_event).html_safe %></td>
                   <td class=""><%= get_aov(event.video_url).html_safe  %></td>
                   <td class=""><%= get_aov(event.ppts_url).html_safe %></td>
-                  <td> <%= link_to "Ver", get_clase_event(event.event_type , event.id), class: "btn btn-primary"%></td>
+                  <td> <%= link_to "Ver", portal_show_path( event.id), class: "btn btn-primary"%></td>
                </tr>
                <%end%>
             </tbody>

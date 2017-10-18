@@ -14,6 +14,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require jquery_nested_form
 //= require jquery.tinyscrollbar
 //= require twitter/bootstrap
 //= require turbolinks

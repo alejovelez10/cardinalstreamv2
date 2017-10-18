@@ -1,9 +1,14 @@
 <% if @question.errors.blank? %>
     $('.erase').val("");
-
         
+       
  $('.alert-success').fadeIn();
     setTimeout(function() {
+    	a = "<%=params[:event_id]%>"
+    	if (a = "video")
+    	{
+        $('#collapseExample1').fadeOut();
+        }    
         $('.alert-success').fadeOut();
     }, 2000);
 

@@ -13,7 +13,7 @@ layout 'application'
          @domain = ""
          if request.subdomain == ''
        
-             redirect_to  new_user_registration_url(subdomain: "#{params[:domain]}.www")
+             redirect_to  new_user_registration_url(subdomain: "#{params[:domain]}")
 
   	     end
   	#sino existe renderea nuevamente la vista y muestra el error     

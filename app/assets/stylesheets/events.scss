@@ -23,14 +23,25 @@
 
 .fixeddown {
     font-size: 0.8vw;
-    height: 8.8em;
+    height: auto;
     bottom: 0;
     background: #262626;
     color: #aaa;
     position: fixed;
     width: 100%;
-    padding: 1em 0em;
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+   
 }
+.fixeddown p {
+    padding-top: 10px;
+    color:white;
+    font-size: 12px;
+
+
+margin-bottom:0px;
+}
+
 .backppt {
     background-color: rgba(25, 25, 25, 0.84);
     position: relative;
@@ -193,4 +204,31 @@ element.style {
           width: 90%;
           text-align: center;
         }
-   
+
+.nextbutt {
+    position: absolute;
+    right: 0px;
+    line-height: 45px;
+    padding: 0px 5px;
+    padding-bottom: 5px;
+    background: rgba(0,0,0,0.5);
+    width: 1.7em;
+    color: #fff;
+    font-size: 1.5em;
+    cursor: pointer;
+    text-align: center;
+}
+
+.prevbutt {
+    position: asolute;
+    left: 0px;
+    line-height: 45px;
+    padding: 0px 5px;
+    padding-bottom: 5px;
+    background: rgba(0,0,0,0.5);
+    width: 1.7em;
+    color: #fff;
+    font-size: 1.5em;
+    cursor: pointer;
+    text-align: center;
+}

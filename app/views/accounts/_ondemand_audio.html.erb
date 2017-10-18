@@ -1,0 +1,519 @@
+
+<div class="container-fluid">
+
+<div class="row">
+      <div class="col-md-12 blockhead ">
+       <div class="col-md-2 logo">
+         <img src="<%=@account.logo_url%>" alt="">
+      </div>
+     
+         <div class="col-md-6 name">
+            <p><%= event.name.upcase%><br><span style="font-size: 10px;">MARZO 10 DE 2017</span></p>
+
+         </div>
+         <div class="col-md-4 hidden-xs social">
+            <div class="redessociales" style="float:right;padding:0 2em;line-height: 2em;background: none;right: -0.7em;font-size: 1.7em;padding: 0;padding-right: 1.7em;margin-bottom: -0.8em;margin-top: -0.46em;">
+               <a href="https://www.instagram.com/textilesfabricato/" target="_blank"><span class="fa fa-facebook" aria-hidden="true"></span></a>
+               <a href="https://facebook.com/Fabricato-SA-1706689456298683/ " target="_blank"><span class="fa fa-twitter" aria-hidden="true"></span></a>
+            </div>
+         </div>
+      </div>
+   </div>
+	<div class="row">
+
+        <div class="col-md-2 backppt1 idden-sm hidden-xs">
+ 
+        	<div id="playerElement" style="width:220px; height:80px; padding:0;display: none"></div>
+                      <div class="col-md-12 play_stop text-center" >
+            
+                 
+                     <img class="gif roundgif" src="/../../images/equ.gif" alt="">
+                     <img class="png roundgif" src="/../../images/equ.png" alt="">
+                                       <button class = "but play" type=""><i class="fa fa-play" aria-hidden="true"></i></button>  
+                  <button class = " but pause" type=""><i class="fa fa-pause" aria-hidden="true"></i></button>  
+                 
+            
+            </div>
+
+
+        </div>
+    	<div class="col-md-10 superppts">
+    		<div class="backppt col-md-12 no-float">
+					<div class="ppt-block">
+						<div class="ppt_cont"><div class="wrapppt" style="max-width: 555.4px; height: 416.55px; background: rgb(50, 50, 50);"><div id="ppts" style="opacity: 1;"><div id="controls"><div class="nextbutt">&gt;</div><div class="prevbutt">&lt;</div></div><img class = "imagensup img-responsive" src="<%=array[0]%>" style="height: auto;"></div></div></div>
+					</div>
+					<style>.wrapppt{max-width:100%!important;background:none!important;height:auto!important;}#ppts{float:none!important;margin:auto;}#scrollbar1{width:100%}</style>
+					<div class="right-bar hidden-sm hidden-xs">
+						<div class="roundbutton fullppt fullbuttonppt">
+							<div class="col-md-4 fa fa-expand fa-2x"></div>
+						</div>
+						<div class="roundbutton zoom1">
+							<div class="col-md-4 fa fa-search-plus fa-2x"></div>
+						</div>
+						<div class="roundbutton zoom2">
+							<div class="col-md-4 fa fa-search-minus fa-2x"></div>
+						</div>
+						<div class="roundbutton countppt"><span class="cont">1</span>/<%=count%></div>
+										<div id="scrollbar1">
+            <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+            <div class="viewport" style = "background:#323232">
+                 <div class="overview">
+
+                   <% a = 1;
+                    array.each do |elemento|%>
+				     
+					  <div class = "pad">
+					<div class = "numeral n<%=a%>"><%=a%></div>
+                    <img id = "<%=a%>" class = "i<%=a%> tumb" src = "<%=elemento%>">
+					</div>
+					<%a = a +1
+					end%>
+                </div>
+            </div>
+        </div>
+					
+				</div>
+
+				</div>
+    	</div>
+
+    </div>
+    	
+       <div class="row">
+   <div class="col-md-12 fixeddown">
+      <div class="col-md-3">
+        <p  style="border-right: 1px solid gray;    margin-top: 3px;"><%= event.name%><br><span style="font-size: 10px;"><%= get_date(event.event_date)%></span></p>
+
+      </div>
+            <div class="col-md-9">
+            <div class="bar-audio" style="width: 100%">
+                    <div class="hp_slide">
+     <div class="hp_range"></div>
+
+</div>
+<div ><span class= "hms" >00:00:00</span> / <span class= "hms-duration" >00:00:00</span>  </div>
+            </div>
+      
+        
+
+      </div>
+      <div class="col-md-12 middle-div no-float" style=";bottom:0px;background:#424242;text-align:center;float:left;margin-top:5px;">
+         <a href="http://iptics.com.co/productos/cardinalstream/" target="_blank"><img src="http://cardinalstream.com/wordpress/cardinalstream/foot_cardinal.png"></a>
+      </div>
+   </div>
+  
+</div>
+
+</div>
+
+
+
+         
+
+
+<script >
+ $(document).on('turbolinks:load',function() {
+
+
+ 
+				$('.i1').addClass("activeon");
+			
+			$('.pad').click(function(){
+					$('.pad').children('img').removeClass("activeon");
+                    $(this).children('img').addClass("activeon");
+					$('#ppts img').attr('src', $(this).children('img').attr("src"));
+
+				
+                $('.cont').text($(this).children('div').text());
+				});	
+
+                  $('.fullbuttonppt').click(function(){
+                    $('.backppt').toggleClass('fullsize');
+                     $('.zoom1').toggle();
+                     $('.zoom2').toggle();
+                     console.log("si");
+        
+      });
+
+
+
+        }); 
+            
+
+
+
+
+</script>
+<script >
+
+ $(document).on('turbolinks:load',function() {
+
+    $('.play').hide();
+    $('.gif').hide();  
+ $('.play').click(function(){
+            $('.play').hide();
+            $('.pause').show();
+            myPlayer.play()
+        });
+ $('.pause').click(function(){
+              $('.play').show();
+             $('.pause').hide();
+            
+            
+            myPlayer.pause()
+
+        });
+    
+WowzaPlayer.create('playerElement',
+    {
+    "license":"PLAY1-94nX9-WjkJY-fwhpz-Cd8aA-9wmMD",
+    "title":"",
+    "description":"",
+    "sourceURL":"http://aletacloud.com:1935/vod/_definst_/mp4:20/default.mp4/playlist.m3u8",
+    "autoPlay":true,
+    "volume":"75",
+    "mute":false,
+    "loop":false,
+    "audioOnly":true,
+    "uiShowQuickRewind":true,
+    "uiQuickRewindSeconds":"30" 
+    }
+);
+
+
+
+
+    var myPlayer = WowzaPlayer.get('playerElement');
+    console.log( 'Playhead time (ms): ' + myPlayer.getCurrentTime() );
+
+
+errorListener = function ( errorEvent ) {
+    console.log('Message: hoolaaaaaaaaaaaaaaaaaaa ' + errorEvent.error);
+    $('.gif').hide();
+    $('.png').show(); 
+    $('.play').show();
+    $('.pause').hide();
+    
+};
+
+    var array = "<%=sync%>".split(",");
+     array.pop();
+    console.log (array);
+
+//adelantar o atrazar el audio
+$(".hp_slide").mouseup(function(e){
+    var duration = myPlayer.getDuration();
+    var leftOffset = e.pageX - $(this).offset().left;
+    var songPercents = leftOffset / $(this).width();
+    var timesong = Math.floor(songPercents * duration)
+
+    var timesongs = parseInt((timesong/1000))
+    myPlayer.seek(songPercents * duration);
+    console.log(timesongs)
+    console.log("timesssssssssssssssssssssssssssssssssssssssssss")
+     ultimapos = array[array.length-1]
+  arrayLenght = array.length
+  for (i = 0; i < (arrayLenght - 1); i++) {
+  if (array[i] == timesongs) {
+        pos = array.indexOf(timesongs)  + 1;
+        console.log(pos + "1111aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        console.log(array[i])
+        console.log(array[i])
+        b = "#" + pos;
+        a = $(b).attr("src");
+        $('.imagensup').attr("src", a);
+        $('.tumb').addClass("activeoff"); 
+        $('.tumb').removeClass("activeon"); 
+        $(b).addClass("activeon");
+    break;
+  }
+  if (timesongs > array[i] &&  timesongs < array[i + 1]) {
+        pos = array.indexOf(array[i])  + 1;
+        console.log(pos + "22222aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        console.log(array[i])
+        console.log(array[i])
+        b = "#" + pos;
+        a = $(b).attr("src");
+        $('.imagensup').attr("src", a);
+        $('.tumb').addClass("activeoff"); 
+        $('.tumb').removeClass("activeon"); 
+        $(b).addClass("activeon");
+    break;
+  }
+    if (timesongs > ultimapos) {
+        pos = array.indexOf(ultimapos) + 1;
+        console.log(pos + "22222aaaaaaaaasssssssssssssssssssssssssaaaaaaa");
+        console.log(array[i])
+        console.log(array[i])
+        b = "#" + pos;
+        a = $(b).attr("src");
+        $('.imagensup').attr("src", a);
+        $('.tumb').addClass("activeoff"); 
+        $('.tumb').removeClass("activeon"); 
+        $(b).addClass("activeon");
+    break;
+  }
+}
+   
+
+   });
+
+if (myPlayer.getCurrentState() == WowzaPlayer.State.PLAYBACK_COMPLETE) {
+    console.log('Playback Complete');
+}
+
+
+function msToTime(duration) {
+    var milliseconds = parseInt((duration%1000)/100)
+        , seconds = parseInt((duration/1000)%60)
+        , minutes = parseInt((duration/(1000*60))%60)
+        , hours = parseInt((duration/(1000*60*60))%24);
+
+    hours = (hours < 10) ? "0" + hours : hours;
+    minutes = (minutes < 10) ? "0" + minutes : minutes;
+    seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+    return hours + ":" + minutes + ":" + seconds;
+    
+}
+
+
+
+
+playheadTimeListener = function ( playheadTimeEvent ) {
+    myPlayer.onError( errorListener );  
+    
+    console.log('Time: ' + playheadTimeEvent.time);
+      var currentTime = playheadTimeEvent.time;
+     var duration = myPlayer.getDuration();
+
+     $(".hms").html(msToTime(currentTime))
+     $(".hms-duration").html(msToTime(myPlayer.getDuration()))
+    $('.hp_range').stop(true,true).animate({'width':(currentTime +.25)/duration*100+'%'},250,'linear');
+
+
+
+     times = parseInt(playheadTimeEvent.time/1000)
+    console.log(array)
+     stimes = times.toString();
+    if (array.indexOf(stimes) != -1 && array.indexOf(stimes) > 0 )
+    {   
+
+        pos = array.indexOf(stimes)  + 1;
+        console.log(pos + "aaaaa");
+        b = "#" + pos;
+        a = $(b).attr("src");
+        $('.imagensup').attr("src", a);
+        $('.tumb').addClass("activeoff"); 
+        $('.tumb').removeClass("activeon"); 
+        $(b).addClass("activeon");
+
+    }
+    $('h1').html(times)
+  
+  if ((duration == (currentTime + 1)) || (duration == (currentTime - 1)) || (duration == (currentTime )) && duration != 0) {
+    $('.gif').hide();
+    $('.png').show(); 
+    $('.play').show();
+    $('.pause').hide();
+    console.log("final")
+
+}
+
+
+};
+
+onLoadListener = function () {
+            
+            
+            $('.gif').show();
+            $('.png').hide(); 
+}
+myPlayer.onLoad(onLoadListener);
+
+
+
+onStateChangedListener = function ( stateChangedEvent ) {
+if (stateChangedEvent.currentState == WowzaPlayer.State.PLAYING) {
+console.log('Playing');
+
+            $('.gif').show();
+            $('.png').hide();    
+} else if (stateChangedEvent.currentState == WowzaPlayer.State.PAUSED) {
+
+            $('.gif').hide();
+            $('.png').show(); 
+console.log('Paused');
+}
+}
+
+myPlayer.onStateChanged( onStateChangedListener );
+
+
+
+myPlayer.onPlayheadTime( playheadTimeListener );
+
+
+
+});
+</script>
+<style>
+.logoblock {
+    background: #fff;
+    height: 7em;
+    background-image: url(<%=@account.logo_url%>);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100%;
+}
+	
+        .fullsize
+  {
+      position: fixed!important;
+    width: 100vw!important;
+    min-height: 100vh!important;
+    top: 0!important;
+    left: 0!important;
+    z-index: 1030!important;
+    background: #000;
+    text-align: center;
+  
+  }
+  .activeoff
+{
+  border: none !important;
+  opacity: 0.3 !important;
+}
+.activeon
+{
+  border:2px solid red !important;
+  opacity: 1 !important;
+}
+ .but {
+    padding-bottom: 1px;
+    margin-left: 10px;
+    border-radius: 26px;
+    border: 2px solid orange;
+    background: #565656;
+    font-size: 21px;
+    color: white;
+    width: 45px;
+    height: 45px;
+    position: relative;
+    top: -4px;
+}
+   .roundgif {
+   border: 2px solid #cb8509;
+    width: 45px;
+   height: 45px;
+   -webkit-border-radius: 5em;
+   -moz-border-radius: 5em;
+   border-radius: 5em;
+   position: relative;
+   top: -7px;
+   padding: 0;
+   overflow: hidden;
+   background: #000;
+   }
+   .roundgif img {
+   width: 150%;
+   margin-left: -22%;
+   }
+@media only screen and (max-width: 500px) {
+    .ppt-block{
+        background-color: lightblue;
+            margin-right: 0em;
+    margin-left: 0em;
+    }
+    .ppt-block img {
+    width: 100%;
+}
+.roundgif{
+    width: 10em;
+    height: 10em;
+
+}
+.fixeddown
+{
+ height:28em;    
+}
+.pp
+{
+    text-align: center;
+    margin-top: 10px;
+}
+#ppts {
+    width: 100% !important;
+  }
+}
+  .logo
+  {
+    height: 60px;
+    background: white;
+    padding: 10px 0px 0px 0px; */
+  }
+  .logo img
+  {
+    width: 200px;
+  }
+    .name
+  {
+    height: 60px;
+    background: #38A049;
+    padding: 10px 0px 0px 20px;
+
+  }
+  .name p
+  {
+    color: white;
+  }
+     .social
+  {
+    height: 60px;
+    background: #38A049;
+    padding: 10px 0px 0px 0px; 
+  }
+   .play_stop{
+    position: absolute;
+    bottom: 33px;
+    right: 10px;
+    left: 0px;
+    padding-top: 10px;
+    border-top: 1px solid gray;
+    background: rgba(0, 0, 0, 0.65);
+   }
+   .backppt1 {
+   position: relative;
+   height: calc(100vh - 7em);
+       padding: 0px 7px 0px 7px;
+   }
+  .blockhead
+    {
+  padding-left: 0px!important; 
+      padding: 0px;
+          
+  background: none !important;
+  }
+  .superppts
+  {
+    padding-left: 0px!important; 
+  }
+
+  .hp_slide{
+
+    width: 100%;
+    top: 0px;
+    background: #676767;
+   
+}
+.hp_range{
+    width:0;
+    background: #6cb7b9;
+    height: 6px;
+}
+.hp_slide:hover {
+    cursor: pointer;
+}
+</style>
+
+
