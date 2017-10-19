@@ -147,7 +147,7 @@
 
       </div>
     
-            <div class="col-md-10">
+            <div class="col-md-10 hidden-sm hidden-xs">
             <span style = "position:relative;font-size:14px;top:10px;margin-right:10px"> <%= "Click para descargar" if event.event_files.count != 0%></span>
         <% @event.event_files.each do |event|%>
         <%= link_to  event.attachment_url, class: "document" do %>
