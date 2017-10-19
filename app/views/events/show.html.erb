@@ -64,7 +64,7 @@ $(document).on('turbolinks:load',function() {
 
       setTimeout(function(){
 
-   $.get("cardinalppt/" + c , function(data) {
+   $.get("cardinalppt/" + c + "/" + <%=@event.id%>, function(data) {
 
    });
 
@@ -89,7 +89,7 @@ $(document).keydown(function(e){
        $(d).removeClass("activeon");
        $(d).addClass("activeoff");
        $(".imgp").attr('src', img);
-       $.get("cardinalppt/" + (b-1) , function(data) {
+       $.get("cardinalppt/" + (b-1) + "/" + <%=@event.id%>, function(data) {
         
           
 
@@ -113,7 +113,7 @@ $(document).keydown(function(e){
        $(d).removeClass("activeon");
        $(d).addClass("activeoff");
        $(".imgp").attr('src', img);
-         $.get("cardinalppt/" + (b-1) , function(data) {
+          $.get("cardinalppt/" + (b-1) + "/" + <%=@event.id%>, function(data) {
         
           
 

@@ -170,7 +170,7 @@ class EventsController < ApplicationController
 
 
   def cardinalppt
-    @event = Event.last
+    @event = Event.find(params[:id_event])
     @account = Account.find(@event.account_id)
     @array = @event.slides.split(/,/)
     @count = @array.count
