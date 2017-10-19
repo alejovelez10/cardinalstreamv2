@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   
   resources :viewers
   post 'create_viewer', to: "viewers#create_viewer", as: "create_viewer"
-  get 'events/cardinalppt/:id' ,to: "events#cardinalppt", as: "cardinalppt"
+  get 'events/cardinalppt/:id/:id_event' ,to: "events#cardinalppt", as: "cardinalppt"
   resources :events , :only => [:index, :show, :create, :update, :edit, :destroy]
   get 'new/:state' , to: "events#new" , as: "new_event"
   get 'home', to: 'home#index', as: "home"
