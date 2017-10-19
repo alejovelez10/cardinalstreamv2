@@ -3,7 +3,7 @@
 
 <div class="row">
       <div class="col-md-12 blockhead ">
-       <div class="col-md-2 logo">
+       <div class="col-md-2 logo text-center">
          <img src="<%=@account.logo_url%>" alt="">
       </div>
      
@@ -11,10 +11,25 @@
             <p><%= event.name.upcase%><br><span style="font-size: 10px;">MARZO 10 DE 2017</span></p>
 
          </div>
-         <div class="col-md-4 hidden-xs social">
+          <div class="col-md-4 social hidden-sm hidden-xs">
             <div class="redessociales" style="float:right;padding:0 2em;line-height: 2em;background: none;right: -0.7em;font-size: 1.7em;padding: 0;padding-right: 1.7em;margin-bottom: -0.8em;margin-top: -0.46em;">
-               <a href="https://www.instagram.com/textilesfabricato/" target="_blank"><span class="fa fa-facebook" aria-hidden="true"></span></a>
-               <a href="https://facebook.com/Fabricato-SA-1706689456298683/ " target="_blank"><span class="fa fa-twitter" aria-hidden="true"></span></a>
+              <%if event.social%>
+
+                <%if !@account.facebook.blank?%>
+               <a href="<%=@account.facebook%>" target="_blank"><span class="fa fa-facebook" aria-hidden="true"></span></a>
+               <%end%>
+               <%if !@account.twitter.blank?%>
+               <a href="<%=@account.twitter%>" target="_blank"><span class="fa fa-twitter" aria-hidden="true"></span></a>
+               <%end%>
+             <%if !@account.instagram.blank?%>
+               <a href="<%=@account.instagram%>" target="_blank"><span class="fa fa-instagram" aria-hidden="true"></span></a>
+               <%end%>
+                <%if !@account.linkedin.blank?%>
+               <a href="<%=@account.linkedin%>" target="_blank"><span class="fa fa-linkedin" aria-hidden="true"></span></a>
+               <%end%>
+                 <%end%>
+               <%= (link_to "Salir", logout_path(event.id), method: :delete, class: "viewer_salir") if event.has_register %>
+             
             </div>
          </div>
       </div>
@@ -24,16 +39,7 @@
         <div class="col-md-2 backppt1 idden-sm hidden-xs">
  
         	<div id="playerElement" style="width:220px; height:80px; padding:0;display: none"></div>
-                      <div class="col-md-12 play_stop text-center" >
-            
-                 
-                     <img class="gif roundgif" src="/../../images/equ.gif" alt="">
-                     <img class="png roundgif" src="/../../images/equ.png" alt="">
-                                       <button class = "but play" type=""><i class="fa fa-play" aria-hidden="true"></i></button>  
-                  <button class = " but pause" type=""><i class="fa fa-pause" aria-hidden="true"></i></button>  
-                 
-            
-            </div>
+                    
 
 
         </div>
@@ -81,11 +87,20 @@
     	
        <div class="row">
    <div class="col-md-12 fixeddown">
-      <div class="col-md-3">
-        <p  style="border-right: 1px solid gray;    margin-top: 3px;"><%= event.name%><br><span style="font-size: 10px;"><%= get_date(event.event_date)%></span></p>
+      <div class="col-md-2">
+        <div class="col-md-12 play_stop text-center" >
+            
+                 
+                     <img class="gif roundgif" src="/../../images/equ.gif" alt="">
+                     <img class="png roundgif" src="/../../images/equ.png" alt="" >
+                                       <button class = "but play" type=""><i class="fa fa-play" aria-hidden="true"></i></button>  
+                  <button class = " but pause" type=""><i class="fa fa-pause" aria-hidden="true"></i></button>  
+                 
+            
+            </div>
 
       </div>
-            <div class="col-md-9">
+            <div class="col-md-10">
             <div class="bar-audio" style="width: 100%">
                     <div class="hp_slide">
      <div class="hp_range"></div>
@@ -98,7 +113,7 @@
 
       </div>
       <div class="col-md-12 middle-div no-float" style=";bottom:0px;background:#424242;text-align:center;float:left;margin-top:5px;">
-         <a href="http://iptics.com.co/productos/cardinalstream/" target="_blank"><img src="http://cardinalstream.com/wordpress/cardinalstream/foot_cardinal.png"></a>
+         <a href="http://iptics.com.co/productos/cardinalstream/" target="_blank"><img src="../../images/logo.png"></a>
       </div>
    </div>
   
@@ -148,7 +163,7 @@
 
  $(document).on('turbolinks:load',function() {
 
-    $('.play').hide();
+    $('.pause').hide();
     $('.gif').hide();  
  $('.play').click(function(){
             $('.play').hide();
@@ -326,8 +341,8 @@ playheadTimeListener = function ( playheadTimeEvent ) {
 onLoadListener = function () {
             
             
-            $('.gif').show();
-            $('.png').hide(); 
+            //$('.gif').show();
+            //$('.png').hide(); 
 }
 myPlayer.onLoad(onLoadListener);
 
@@ -408,9 +423,9 @@ myPlayer.onPlayheadTime( playheadTimeListener );
    height: 45px;
    -webkit-border-radius: 5em;
    -moz-border-radius: 5em;
-   border-radius: 5em;
+   border-radius: 6em;
    position: relative;
-   top: -7px;
+   top: -8px;
    padding: 0;
    overflow: hidden;
    background: #000;
@@ -429,8 +444,8 @@ myPlayer.onPlayheadTime( playheadTimeListener );
     width: 100%;
 }
 .roundgif{
-    width: 10em;
-    height: 10em;
+    width: 45px;
+    height: 45px;
 
 }
 .fixeddown
@@ -446,20 +461,21 @@ myPlayer.onPlayheadTime( playheadTimeListener );
     width: 100% !important;
   }
 }
-  .logo
+    .logo
   {
-    height: 60px;
+    height: 70px;
     background: white;
-    padding: 10px 0px 0px 0px; */
+    padding: 0px 0px 0px 0px;
   }
   .logo img
   {
-    width: 200px;
+    width: 162px;
+
   }
     .name
   {
-    height: 60px;
-    background: #38A049;
+    height: 70px;
+    background: rgba(39, 39, 39, 0.83);
     padding: 10px 0px 0px 20px;
 
   }
@@ -469,18 +485,17 @@ myPlayer.onPlayheadTime( playheadTimeListener );
   }
      .social
   {
-    height: 60px;
-    background: #38A049;
+    height: 70px;
+    background: rgba(39, 39, 39, 0.83);
     padding: 10px 0px 0px 0px; 
   }
    .play_stop{
-    position: absolute;
-    bottom: 33px;
+    
+    margin-top: 10px;
     right: 10px;
     left: 0px;
     padding-top: 10px;
-    border-top: 1px solid gray;
-    background: rgba(0, 0, 0, 0.65);
+ 
    }
    .backppt1 {
    position: relative;
