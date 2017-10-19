@@ -20,7 +20,7 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @event = Event.last
+    
 
     @account = Account.find(@event.account_id)
     @array = @event.slides.split(/,/)
