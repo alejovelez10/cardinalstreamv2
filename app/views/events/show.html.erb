@@ -62,14 +62,13 @@ $(document).on('turbolinks:load',function() {
   var b = $(this).attr("id");
   var c = parseInt(b) - 1 
 
-
+      setTimeout(function(){
 
    $.get("cardinalppt/" + c , function(data) {
 
-      
-          
+   });
 
-});
+}, <%=@event.delay * 1000%>);
         $(".imgp").attr("src", a);
        
 

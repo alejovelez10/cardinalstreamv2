@@ -24,6 +24,7 @@
 #  iframe          :string
 #  has_ppts        :boolean
 #  has_register    :boolean
+#  social          :boolean
 #
 
 class Event < ApplicationRecord

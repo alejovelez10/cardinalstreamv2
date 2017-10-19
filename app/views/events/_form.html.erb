@@ -69,8 +69,18 @@
          <%= form.check_box :root_event, style: "margin-left:10px" %>
       </div>
    </div>
+   <%end%>
+   <div class="col-md-3" style = "position: relative;top: 23px;">
+      <div class="form-group">
+         <%= form.label "Redes Sociales" do %>
+         <i class="fa fa-address-book-o fa1" style = "font-size:20px" aria-hidden="true"></i>
+        Redes Sociales
+         <%end%>
+         <%= form.check_box :social, style: "margin-left:10px" %>
+      </div>
+   </div>
 
-
+<%if @state != "4"%>
    <div class="col-md-3">
       <div class="form-group" >
          <%= form.label "Delay" %>

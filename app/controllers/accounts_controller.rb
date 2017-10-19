@@ -128,6 +128,6 @@ class AccountsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
-      params.require(:account).permit(:domain, :logo, :admin_user, :user_id, :background_portal, :background_stream, :name, :questions, :download_docs, :chat)
+      params.require(:account).permit(:domain, :logo, :admin_user, :user_id, :background_portal, :background_stream, :name, :questions, :download_docs, :chat, :facebook, :twitter, :instagram, :linkedin)
     end
 end

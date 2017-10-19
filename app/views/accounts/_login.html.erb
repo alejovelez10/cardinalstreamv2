@@ -3,43 +3,53 @@
 <div class="container-fluid">
    <div class="row">
       <div class="col-md-12 blockhead ">
-         <div class="col-md-2 logo">
+         <div class="col-md-2 logo text-center">
             <img src="<%=@account.logo_url%>" alt="">
          </div>
          <div class="col-md-6 name">
-            <p><%= event.name.upcase%><br><span style="font-size: 10px;"><%=edate[0]%> DE <%=edate[2]%> DE <%=edate[4]%></p>
+            
+            <p style="    font-size: 20px;" >
+              
+            <%= event.name.upcase%><br><span style="font-size: 15px;"><%=edate[0]%> DE <%=edate[2]%> DE <%=edate[4]%></p>
          </div>
          <div class="col-md-4 hidden-xs social">
-            <div class="redessociales" style="float:right;padding:0 2em;line-height: 2em;background: none;right: -0.7em;font-size: 1.7em;padding: 0;padding-right: 1.7em;margin-bottom: -0.8em;margin-top: -0.46em;">
-               <a href="https://www.instagram.com/textilesfabricato/" target="_blank"><span class="fa fa-facebook" aria-hidden="true"></span></a>
-               <a href="https://facebook.com/Fabricato-SA-1706689456298683/ " target="_blank"><span class="fa fa-twitter" aria-hidden="true"></span></a>
-              
-            </div>
+         
          </div>
       </div>
    </div>
    <div class="row">
      
       <div class="col-md-12 superppts">
-        <div class="col-sm-4 col-sm-offset-4 login-black" >
-       <span style="font-size:22px;color: white"> <%= event.name.upcase%><br><%=edate[0]%> DE <%=edate[2]%> DE <%=edate[4]%></span>
-      <h3>Registro</h3>
+        <div class="col-sm-4 col-sm-offset-4 login-black text-center" >
+        <p style="    font-size: 20px;" >
+              EN VIVO <%= @account.name%>
+            </p>
+       <span style="font-size:18px;color: white"> <%= event.name%></span>
+       <br><br>
+          <span style="font-size:16px;color: white"> <%=edate[1]%> <%=edate[0]%> de <%=edate[2].capitalize%>, <%=edate[5]%></span>
+     
+<br><br>      <%= form_tag create_viewer_path, method: :post do |f| %>
+       
+ <div class="form-group">
+          <%= text_field_tag :name,nil ,class: "form-control input", placeholder: "Nombre" %>
+        </div>
 
-      <%= form_tag create_viewer_path, method: :post do |f| %>
         <div class="form-group">
-          <%= email_field_tag :email,nil, class: "form-control", placeholder: "Email" %>
+          <%= email_field_tag :email,nil, class: "form-control input", placeholder: "Email" %>
         </div>
 
 
-        <div class="form-group">
-          <%= text_field_tag :name,nil ,class: "form-control", placeholder: "Nombre" %>
+       
+
+                <div class="form-group">
+          <%= text_field_tag :company,nil ,class: "form-control input", placeholder: "Empresa" %>
         </div>
         
         <%=hidden_field_tag :event_id, @event.id %>
 
 
         <div class="actions">
-          <%= submit_tag "Crear" ,  class: "btn btn-primary btn-block" %>
+          <%= submit_tag "Ingresar" ,  class: "btn btn-primary btn-block" %>
         </div>
       <% end %>
     </div>
@@ -54,15 +64,15 @@
 <div class="row">
    <div class="col-md-12 fixeddown">
       <div class="col-md-3">
-        <p style="border-right: 1px solid gray;    margin-top: 3px;"><%= event.name%><br><span style="font-size: 10px;"><%= get_date(event.event_date)%></span></p>
+        
 
       </div>
             <div class="col-md-9">
-        <p><%= event.name%><br><span style="font-size: 10px;"><%= get_date(event.event_date)%></span></p>
+       
 
       </div>
       <div class="col-md-12 middle-div no-float" style=";bottom:0px;background:#424242;text-align:center;float:left;margin-top:5px;">
-         <a href="http://iptics.com.co/productos/cardinalstream/" target="_blank"><img src="http://cardinalstream.com/wordpress/cardinalstream/foot_cardinal.png"></a>
+         <a href="http://iptics.com.co/productos/cardinalstream/" target="_blank"><img src="../../images/logo.png"></a>
       </div>
    </div>
   
@@ -140,6 +150,13 @@
     .ppt-block img {
     width: 100%;
 }
+.login-black
+
+  {
+      
+    margin-top:10px !important;    
+ 
+  }
 .roundgif{
     width: 10em;
     height: 10em;
@@ -158,20 +175,20 @@
     width: 100% !important;
   }
 }
-  .logo
+   .logo
   {
-    height: 60px;
+    height: 70px;
     background: white;
-    padding: 10px 0px 0px 0px; */
+    padding: 0px 0px 0px 0px;
   }
   .logo img
   {
-    width: 200px;
+    width: 162px;
   }
     .name
   {
-    height: 60px;
-    background: #38A049;
+    height: 70px;
+    background: rgba(39, 39, 39, 0.83);
     padding: 10px 0px 0px 20px;
 
   }
@@ -181,8 +198,8 @@
   }
      .social
   {
-    height: 60px;
-    background: #38A049;
+    height: 70px;
+    background: rgba(39, 39, 39, 0.83);
     padding: 10px 0px 0px 0px; 
   }
    .play_stop{
@@ -208,23 +225,21 @@
   }
   .superppts
   {
-    padding-left: 0px!important; 
+    
   }
 
   .login-black
 
   {
-  	background: #262626;
+  	    background: rgba(10, 10, 10, 0.88);
   	widows: 80%;
-    margin-top:10px;    
+    margin-top:50px;    
     padding-top: 50px;
     padding-bottom: 20px;
-    padding-left: 50px !important;
-    padding-right: 50px  !important;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
 
-border-top: 7px solid #159ec7;
-    border-bottom: 7px solid #159ec7;
-    
+
     border-radius: 4px;
 
   }
@@ -234,10 +249,15 @@ border-top: 7px solid #159ec7;
   	color:white;
 
   }
-   .login-black input
+  .input
 
   {
     
+  
+    border: 1px solid #a2a2a2 !important;
+    font-weight: 200;
+    color: white !important;
+    background: rgba(86, 86, 86, 0.15) !important;
 
   }
 </style>

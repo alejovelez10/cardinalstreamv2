@@ -84,7 +84,7 @@ if fecha != nil
     tipo = fecha.hour > 12 ? "pm" : "am"
     horat = fecha.hour > 12 ?   fecha.hour - 12 : fecha.hour
     horas  = hora + horat.to_s + ":" + min + fecha.min.to_s + " "+ tipo
-    date = [dm, dias, meses[m].upcase ,m  ,yi , horas]
+    date = [dm, dias[ds], meses[m].upcase ,m  ,yi , horas]
     return date
 #dias[ds] + ", " +
 end 

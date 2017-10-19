@@ -1,17 +1,32 @@
+<% edate = get_date_array(event.event_date)%>
 <div class="container-fluid">
    <div class="row">
       <div class="col-md-12 blockhead ">
-         <div class="col-md-2 logo">
+         <div class="col-md-2 logo text-center">
             <img src="<%=@account.logo_url%>" alt="">
          </div>
          <div class="col-md-6 name">
-            <p><%= event.name.upcase%><br><span style="font-size: 10px;"><%= get_date(event.event_date)%></span></p>
+            <p style="    font-size: 20px;"><%= event.name.upcase%><br><span style="font-size: 15px;"><%=edate[0]%> DE <%=edate[2]%> DE <%=edate[4]%></span></p>
          </div>
          <div class="col-md-4 hidden-xs social">
             <div class="redessociales" style="float:right;padding:0 2em;line-height: 2em;background: none;right: -0.7em;font-size: 1.7em;padding: 0;padding-right: 1.7em;margin-bottom: -0.8em;margin-top: -0.46em;">
-               <a href="https://www.instagram.com/textilesfabricato/" target="_blank"><span class="fa fa-facebook" aria-hidden="true"></span></a>
-               <a href="https://facebook.com/Fabricato-SA-1706689456298683/ " target="_blank"><span class="fa fa-twitter" aria-hidden="true"></span></a>
+              <%if event.social%>
+
+                <%if !@account.facebook.blank?%>
+               <a href="<%=@account.facebook%>" target="_blank"><span class="fa fa-facebook" aria-hidden="true"></span></a>
+               <%end%>
+               <%if !@account.twitter.blank?%>
+               <a href="<%=@account.twitter%>" target="_blank"><span class="fa fa-twitter" aria-hidden="true"></span></a>
+               <%end%>
+             <%if !@account.instagram.blank?%>
+               <a href="<%=@account.instagram%>" target="_blank"><span class="fa fa-instagram" aria-hidden="true"></span></a>
+               <%end%>
+                <%if !@account.linkedin.blank?%>
+               <a href="<%=@account.linkedin%>" target="_blank"><span class="fa fa-linkedin" aria-hidden="true"></span></a>
+               <%end%>
+                 <%end%>
                <%= (link_to "Salir", logout_path(event.id), method: :delete, class: "viewer_salir") if event.has_register %>
+             
             </div>
          </div>
       </div>
@@ -19,8 +34,9 @@
    <div class="row">
       <div class="col-md-2 backppt1  hidden-sm hidden-xs">
             <br>
-            <div class="col-md-12 text-center" style= "padding: 9px;background: #313030;">
+            <div class="col-md-12" style= "padding: 9px;background: #313030;padding-top: 50px;">
               <%= form_tag create_question_path, method: :post, remote:true do%>
+              <div class="roundimg"></div>
                    <div class="form-group">
                      <%= label_tag "Nombre" %>
                      <%= text_field_tag :name , (current_viewer.name if event.has_register), class: "form form-control question" %>
@@ -83,7 +99,7 @@
                <div class="roundbutton zoom2">
                   <div class="col-md-4 fa fa-search-minus fa-2x"></div>
                </div>
-               <div class="roundbutton countppt"><span class="cont">1</span>/<%=@count%></div>
+               <div class="roundbutton countppt"><span class="cont">1</span> / <%=@count%></div>
                <div id="scrollbar1">
                   <div class="scrollbar">
                      <div class="track">
@@ -131,15 +147,16 @@
 
       </div>
             <div class="col-md-9">
-         <% @event.event_files.each do |event|%>
+            <span style = "position:relative;font-size:14px;top:10px;margin-right:10px"> <%= "Click para descargar" if event.event_files.count != 0%></span>
+        <% @event.event_files.each do |event|%>
         <%= link_to  event.attachment_url, class: "document" do %>
-<span style="background: #9c2323;color:white;padding:5px">PDF</span>
+<span style="background: #00c9ca;color:white;padding:5px"><i class="fa fa-download" aria-hidden="true"></i></span>
 <%=event.name%>
         <%end%>
         <%end%>
       </div>
       <div class="col-md-12 middle-div no-float" style=";bottom:0px;background:#424242;text-align:center;float:left;margin-top:5px;">
-         <a href="http://iptics.com.co/productos/cardinalstream/" target="_blank"><img src="http://cardinalstream.com/wordpress/cardinalstream/foot_cardinal.png"></a>
+         <a href="http://iptics.com.co/productos/cardinalstream/" target="_blank"><img src="../../images/logo.png"></a>
       </div>
    </div>
    <div id="playerElement" style="width:100%;height:350px;margin-top:80px;display: none""></div>
@@ -227,13 +244,15 @@
 <style>
 .document:hover
 {
-  text-decoration: none
+  text-decoration: none;
+  color:white;
+   border: 1px solid red;
 }
 .document 
 {
       font-size: 12px;
     padding: 10px;
-    border: 3px solid #2b772b;
+       border: 1px solid #bdbdbd;
     background: rgba(119, 119, 119, 0.43);
     position: relative;
     margin-right: 10px;
@@ -301,7 +320,29 @@
    width: 150%;
    margin-left: -22%;
    }
+    .superppts
+  {
+    padding-left: 0px!important; 
+  }
+  .ppt-block img {
+    width: 85%;
+}
+
+
 @media only screen and (max-width: 500px) {
+  .ppt-block img {
+    width: 100%;
+}
+
+
+    .superppts
+  {
+    padding-left:  15px !important; 
+  }
+  .backppt {
+
+    height: 50%;
+}
     .ppt-block{
         background-color: lightblue;
             margin-right: 0em;
@@ -311,8 +352,13 @@
     width: 100%;
 }
 .roundgif{
-    width: 10em;
-    height: 10em;
+        width: 60px;
+    height: 60px;
+
+}
+.but{
+        width: 60px;
+    height: 60px;
 
 }
 .fixeddown
@@ -330,18 +376,18 @@
 }
   .logo
   {
-    height: 60px;
+    height: 70px;
     background: white;
-    padding: 10px 0px 0px 0px; */
+    padding: 0px 0px 0px 0px;
   }
   .logo img
   {
-    width: 200px;
+    width: 162px;
   }
     .name
   {
-    height: 60px;
-    background: #38A049;
+    height: 70px;
+    background: rgba(39, 39, 39, 0.83);
     padding: 10px 0px 0px 20px;
 
   }
@@ -351,13 +397,13 @@
   }
      .social
   {
-    height: 60px;
-    background: #38A049;
+    height: 70px;
+    background: rgba(39, 39, 39, 0.83);
     padding: 10px 0px 0px 0px; 
   }
    .play_stop{
     position: absolute;
-    bottom: 33px;
+      bottom: 45px;
     right: 10px;
     left: 0px;
     padding-top: 10px;
@@ -376,10 +422,7 @@
           
   background: none !important;
   }
-  .superppts
-  {
-    padding-left: 0px!important; 
-  }
+ 
   .viewer_salir
   {
     color: white;
@@ -402,6 +445,25 @@
   {
         font-size: 12px;
   }
+  .roundimg {
+    width: 4em;
+    height: 4em;
+    -webkit-border-radius: 5em;
+    -moz-border-radius: 5em;
+    border-radius: 5em;
+    margin: auto;
+    margin-bottom: 1em;
+    position: absolute;
+    top: -0.5em;
+    left: 5.5em;
+    background-image: url("../../images/ask.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;}
+    .form-group
+    {
+      margin-bottom: 5px;
+    }
 </style>
 <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
 <script>
@@ -418,17 +480,18 @@
     a = data.message
    
    
-      setTimeout(function(){
-       console.log(data.message);
+
+   
     $('.img-responsive').attr("src", a[0]);
     c = ".i" + (a[1] +1)
     $('.tumb').addClass("activeoff"); 
     $('.tumb').removeClass("activeon");
+    $('.cont').html(a[1] +1 );
    
     $(c).addClass("activeon");
     $(c).removeClass("activeoff");
    
-       }, <%=event.delay * 1000%>);
+      
      
    
    

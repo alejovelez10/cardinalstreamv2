@@ -15,6 +15,10 @@
 #  chat              :boolean
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  facebook          :string
+#  instagram         :string
+#  twitter           :string
+#  linkedin          :string
 #
 
 class Account < ApplicationRecord
