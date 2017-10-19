@@ -160,7 +160,7 @@
          <a class="hidden-xs hidden-sm" href="http://iptics.com.co/productos/cardinalstream/" target="_blank"><img src="../../images/logo.png"></a>
       </div>
    </div>
-   <div id="playerElement" style="width:100%;height:350px;margin-top:80px;display: none""></div>
+   <div id="playerElement" style="width:100%;height:350px;margin-top:80px;display: block""></div>
 </div>
 </div>
 <script >
@@ -199,24 +199,7 @@
 <script >
    $(document).on('turbolinks:load',function() {
    
-      $('.play').hide();
-    $('.png').hide();   
-   $('.play').click(function(){
-            $('.play').hide();
-            $('.pause').show();
-            $('.gif').show();
-            $('.png').hide();    
-            myPlayer.play()
-        });
-   $('.pause').click(function(){
-            
-            $('.play').show();
-            $('.pause').hide();
-            $('.gif').hide();
-            $('.png').show(); 
-            myPlayer.pause()
-   
-        });
+
    WowzaPlayer.create('playerElement',
       {
       "license":"PLAY1-94nX9-WjkJY-fwhpz-Cd8aA-9wmMD",
@@ -238,6 +221,27 @@
    
       var myPlayer = WowzaPlayer.get('playerElement');
    
+      $('.play').hide();
+    $('.png').hide();   
+   $('.play').click(function(){
+            $('.play').hide();
+            $('.pause').show();
+            $('.gif').show();
+            $('.png').hide();    
+            myPlayer.play()
+        });
+   $('.pause').click(function(){
+            
+            $('.play').show();
+            $('.pause').hide();
+            $('.gif').hide();
+            $('.png').show(); 
+            myPlayer.pause()
+   
+        });
+
+
+
         }); 
                 
    
