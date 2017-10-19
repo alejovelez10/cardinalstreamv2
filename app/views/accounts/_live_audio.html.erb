@@ -8,7 +8,7 @@
          <div class="col-md-6 name">
             <p style="    font-size: 20px;"><%= event.name.upcase%><br><span  class="hidden-xs hidden-sm" style="font-size: 15px;"><%=edate[0]%> DE <%=edate[2]%> DE <%=edate[4]%></span></p>
          </div>
-         <div class="col-md-4 hidden-xs social">
+         <div class="col-md-4 social hidden-sm hidden-xs">
             <div class="redessociales" style="float:right;padding:0 2em;line-height: 2em;background: none;right: -0.7em;font-size: 1.7em;padding: 0;padding-right: 1.7em;margin-bottom: -0.8em;margin-top: -0.46em;">
               <%if event.social%>
 
@@ -142,10 +142,11 @@
 
 <div class="row">
    <div class="col-md-12 fixeddown">
-      <div class="col-md-2">
-        <p style="border-right: 1px solid gray;    margin-top: 3px;">EN VIVO<br><span style="font-size: 10px;"><%= get_date(event.event_date)%></span></p>
+      <div class="col-md-2 col-xs-12 col-sm-12">
+        <p style="border-right: 1px solid gray;    margin-top: 3px;">EN VIVO<br><span style="font-size: 10px;"><%= get_date(event.event_date)%></span><%= (link_to "Salir", logout_path(event.id), method: :delete, class: "viewer_salir hidden-lg hidden-md") if event.has_register %></p>
 
       </div>
+    
             <div class="col-md-10">
             <span style = "position:relative;font-size:14px;top:10px;margin-right:10px"> <%= "Click para descargar" if event.event_files.count != 0%></span>
         <% @event.event_files.each do |event|%>
