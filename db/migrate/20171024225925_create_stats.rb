@@ -10,7 +10,7 @@ class CreateStats < ActiveRecord::Migration[5.1]
       t.string :month
       t.string :year
       t.string :hour
-      t.timestamps :time_stat
+      t.datetime :time_stat
 
       t.timestamps
     end
