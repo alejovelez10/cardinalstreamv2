@@ -1,7 +1,7 @@
 <div class="container-fluid">
 <div class="row">
       <div class="col-md-12 blockhead ">
-       <div class="col-md-2 logo">
+       <div class="col-md-2 logo text-center">
          <img src="<%=@account.logo_url%>" alt="">
       </div>
      
@@ -9,10 +9,25 @@
             <p><%= @event.name.upcase%><br><span style="font-size: 10px;">MARZO 10 DE 2017</span></p>
 
          </div>
-         <div class="col-md-4 hidden-xs social">
+        <div class="col-md-4 social hidden-sm hidden-xs">
             <div class="redessociales" style="float:right;padding:0 2em;line-height: 2em;background: none;right: -0.7em;font-size: 1.7em;padding: 0;padding-right: 1.7em;margin-bottom: -0.8em;margin-top: -0.46em;">
-               <a href="https://www.instagram.com/textilesfabricato/" target="_blank"><span class="fa fa-facebook" aria-hidden="true"></span></a>
-               <a href="https://facebook.com/Fabricato-SA-1706689456298683/ " target="_blank"><span class="fa fa-twitter" aria-hidden="true"></span></a>
+              <%if event.social%>
+
+                <%if !@account.facebook.blank?%>
+               <a href="<%=@account.facebook%>" target="_blank"><span class="fa fa-facebook" aria-hidden="true"></span></a>
+               <%end%>
+               <%if !@account.twitter.blank?%>
+               <a href="<%=@account.twitter%>" target="_blank"><span class="fa fa-twitter" aria-hidden="true"></span></a>
+               <%end%>
+             <%if !@account.instagram.blank?%>
+               <a href="<%=@account.instagram%>" target="_blank"><span class="fa fa-instagram" aria-hidden="true"></span></a>
+               <%end%>
+                <%if !@account.linkedin.blank?%>
+               <a href="<%=@account.linkedin%>" target="_blank"><span class="fa fa-linkedin" aria-hidden="true"></span></a>
+               <%end%>
+                 <%end%>
+               <%= (link_to "Salir", logout_path(event.id), method: :delete, class: "viewer_salir") if event.has_register %>
+             
             </div>
          </div>
       </div>
@@ -77,16 +92,13 @@
    </div>
    <div class="row">
    <div class="col-md-12 fixeddown">
-      <div class="col-md-3">
-        <p  style="border-right: 1px solid gray;    margin-top: 3px;"><%= @event.name%><br><span style="font-size: 10px;"><%= get_date(@event.event_date)%></span></p>
-
-      </div>
+      
             <div class="col-md-9">
         <p><%= @event.name%><br><span style="font-size: 10px;"><%= get_date(@event.event_date)%></span></p>
 
       </div>
       <div class="col-md-12 middle-div no-float" style="padding-left:0px !important;bottom:0px;background:#424242;text-align:center;float:left;margin-top:5px;">
-         <a href="http://iptics.com.co/productos/cardinalstream/" target="_blank"><img src="http://cardinalstream.com/wordpress/cardinalstream/foot_cardinal.png"></a>
+         <a href="http://iptics.com.co/productos/cardinalstream/" target="_blank"><img src="../../images/logo.png"></a>
       </div>
    </div>
   
@@ -286,11 +298,16 @@
    margin-left: 1em;
    margin-top: 110px;
    }
+      #ppts {
+   width: 95% !important;
+   margin-left: 0px;
+   }
    @media only screen and (max-width: 500px) {
    .ppt-block{
    background-color: lightblue;
    margin-right: 0em;
    margin-left: 0em;
+   margin-top:10px;
    }
    .ppt-block img {
    width: 100%;
@@ -324,20 +341,21 @@
    z-index: 100;
    top: 90px;
    }
-    .logo
+   .logo
   {
-    height: 60px;
+    height: 70px;
     background: white;
-    padding: 10px 0px 0px 0px; */
+    padding: 0px 0px 0px 0px;
   }
   .logo img
   {
-    width: 200px;
+    width: 162px;
+
   }
     .name
   {
-    height: 60px;
-    background: #38A049;
+    height: 70px;
+    background: rgba(39, 39, 39, 0.83);
     padding: 10px 0px 0px 20px;
 
   }
@@ -347,8 +365,8 @@
   }
      .social
   {
-    height: 60px;
-    background: #38A049;
+    height: 70px;
+    background: rgba(39, 39, 39, 0.83);
     padding: 10px 0px 0px 0px; 
   }
    .blockhead

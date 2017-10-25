@@ -21,6 +21,7 @@
    </ul>
 </div>
 <% end %>
+<%if @type == "principal" || action_name == "new"%>
 <div class="row">
    <div class="col-md-12">
       <%= form.label "Fecha del Evento" %><br>
@@ -39,220 +40,203 @@
       </div>
    </div>
 </div>
+<br>
 <div class="row">
-   <div class="col-md-3" style = "position: relative;top: 23px;">
+   <div class="col-md-8">
       <div class="form-group">
-         <%= form.label "Solo Audio" do %>
-         <i class="fa fa-volume-up fa1" style = "font-size:20px" aria-hidden="true"></i>
-         Solo Audio
-         <%end%>
-         <%= form.check_box :event_type, style: "margin-left:10px" %>
+         <%= form.label "Nombre del Evento"%>
+         <%= form.text_field :name, id: :event_name, class: "form form-control" %>
       </div>
    </div>
-   <%if @state != "4"%>
-   <div class="col-md-3" style = "position: relative;top: 23px;">
+   <%if @state != "4" %>
+   <div class="col-md-4">
       <div class="form-group">
-         <%= form.label "Registro" do %>
-         <i class="fa fa-sign-in fa1" style = "font-size:20px" aria-hidden="true"></i>
-        Registro
-         <%end%>
-         <%= form.check_box :has_register, style: "margin-left:10px" %>
+         <%= form.label "Estado"%><br>
+         <label class="radio-inline">
+         <%= form.radio_button :state, 0, class: 'rb statec check1' %><span style = "">Campaña de espectativa</span>
+         </label><br>
+         <label class="radio-inline" style="margin-bottom:5px;">
+         <%= form.radio_button :state, 1, class: 'rb statev check1' %><span style = "">En vivo</span>
+         </label>
+         <label class="radio-inline" style="margin-bottom:5px;">
+         <%= form.radio_button :state, 4 , class: 'rb stateo check1' %><span style = "">Ondemant</span>
+         </label>
       </div>
    </div>
-    
-   <div class="col-md-3" style = "position: relative;top: 23px;">
-      <div class="form-group">
-         <%= form.label "Evento PPal" do %>
-         <i class="fa fa-sign-in fa1" style = "font-size:20px" aria-hidden="true"></i>
-        Evento PPal
-         <%end%>
-         <%= form.check_box :root_event, style: "margin-left:10px" %>
+   <%end%>  
+   <div class="col-md-12">
+      <div class="form-group" style="margin-bottom:0px">
+         <%= form.label "Descripcion" %>
+         <%= form.text_area :description, id: :event_description, class: "form form-control" %>
       </div>
    </div>
-   <%end%>
-   <div class="col-md-3" style = "position: relative;top: 23px;">
-      <div class="form-group">
-         <%= form.label "Redes Sociales" do %>
-         <i class="fa fa-address-book-o fa1" style = "font-size:20px" aria-hidden="true"></i>
-        Redes Sociales
-         <%end%>
-         <%= form.check_box :social, style: "margin-left:10px" %>
-      </div>
+   <div class="col-md-6" style = "position: relative;top: 23px;">
+      <label for="">Tipo</label><br>
+      <label class="radio-inline">
+      <%= form.radio_button :event_type, false, class: 'rb cksi check1' %><span style = "">Audio/Video</span>
+      </label>
+      <label class="radio-inline" style="margin-bottom:5px;">
+      <%= form.radio_button :event_type, true, class: 'rb ckno check1' %><span style = "">Audio</span>
+      </label>
+      <br>
+      <%if @state == "4"%>
+      <%= form.file_field :video,  class: "form-control inputfilev" , id: 'file1', accept: "video/mp4"%>
+      <label for="file1" ><i class="fa fa-video-camera fa1" aria-hidden="true" style="font-size: 20px;margin-right:0px;" > /</i> <i class="fa fa-volume-up fa1" aria-hidden="true" style="font-size: 22px" ></i>
+      <span class="levidenciav" style = "margin-right:10px;">Adjuntar(.mp4-h264) </span> <%if @event.video.blank?   != true %>
+      <br><%= form.check_box :remove_video %> 
+      <%= form.label "Eliminar", style: "color:red!important" %></label>
+      <%end%>
+      <%end%>
    </div>
-
-<%if @state != "4"%>
-   <div class="col-md-3">
-      <div class="form-group" >
-         <%= form.label "Delay" %>
-         <%= form.text_field :delay, id: :delay, class: "form form-control" %>
-      </div>
-   </div>
-   <%end%>
-</div>
-<div class="row">
-<div class="col-md-9">
-  <div class="form-group">
-   <%= form.label "Nombre"%>
-   <%= form.text_field :name, id: :event_name, class: "form form-control" %>
-</div>
-</div>
-<div class="col-md-3">
-  <div class="form-group">
-   <%= form.label "Estado"%>
-   <%= form.number_field :state, id: :state, class: "form form-control" %>
-</div>
-</div>  
-</div>
-<%if @state != "4" && action_name == "edit"%>
-<div class="form-group">
-   <%= form.label "Descripcion" %>
-   <%= form.text_area :description, id: :event_description, class: "form form-control" %>
-</div>
-<%end%>
-<div class="row">
-<%if @state == "4"%>
-   <div class="col-md-6">
-      <div class="field">
-         <%= form.label "Audio/Video" %><br>
-         <%= form.file_field :video,  class: "form-control inputfilev" , id: 'file1', accept: "video/mp4"%>
-         <label for="file1" ><i class="fa fa-video-camera fa1" aria-hidden="true" style="font-size: 20px" > /</i> <i class="fa fa-volume-up fa1" aria-hidden="true" style="font-size: 22px" ></i>
-         <span class="levidenciav" style = "margin-right:10px;">Adjuntar </span> <%if @event.video.blank?   != true %>
-         <br><%= form.check_box :remove_video %> 
-         <%= form.label "Eliminar", style: "color:red!important" %></label>
-         <%end%>
-      </div>
-   </div>
-<%end%>   
-   <div class="col-md-6">
-      <div class="field">
-         <%= form.label "Diapositivas" %><br>
-         <%= form.file_field :ppts,  class: "form-control inputfile" , id: 'file', accept: "application/pdf"%>
-         <label for="file" ><i class="fa fa-desktop fa1" aria-hidden="true" style="font-size: 22px"></i>
-         <span class="levidencia" style = "margin-right:10px;" >Adjuntar </span> <%if @event.ppts.blank?   != true %>
-         <br><%= form.check_box :remove_ppts %> 
-         <%= form.label "Eliminar", style: "color:red!important" %></label>
-         <%end%>
-      </div>
+   <div class="col-md-6" style = "position: relative;top: 23px;">
+      <label for="">¿Diapositivas?</label><br>
+      <label class="radio-inline">
+      <%= form.radio_button :has_ppts, true, class: 'rb dia check1' %><span style = "">Si</span>
+      </label>
+      <label class="radio-inline" style="margin-bottom:5px;">
+      <%= form.radio_button :has_ppts, false, class: 'rb nodia check1' %><span style = "">No</span>
+      </label>
+      <br>
+      <%= form.file_field :ppts,  class: "form-control inputfile" , id: 'file', accept: "application/pdf"%>
+      <label for="file" ><i class="fa fa-desktop fa1" aria-hidden="true" style="font-size: 22px"></i>
+      <span class="levidencia" style = "margin-right:10px;" >Adjuntar (.pdf) </span> <%if @event.ppts.blank?   != true %>
+      <br><%= form.check_box :remove_ppts %> 
+      <%= form.label "Eliminar", style: "color:red!important" %></label>
+      <%end%>
    </div>
 </div>
 <br>
 <hr>
-
-
-<div class="col-lg-12">
-   
-    <h3 class = "" style = "margin :0px 0px 5px 0;color:gray">Documentos</h3>
-
-    <%= form.fields_for :event_files do |contact|  %>
-  <div class="clearfix" style="margin-bottom: 30px;">
- <div class="col-md-12" >
-
-  
-    <div class="col-md-6 pdd" >
-     <%= contact.link_to_remove do %>
-<i style = "    color: #e74b09;
-    font-size: 18px;
-    margin-left: 0px;
-    position: relative;
-    left: -18px;" class="fa fa-trash" aria-hidden="true"></i>
-  <% end %>
-    <%= contact.label "Nombre" %>
-   <%= contact.text_field :name, :class => 'form-control' %>
-    </div>
-      <div class="col-md-6 pdd" >
-    <%= contact.label "Archivo" %>
-    <%= contact.file_field :attachment, :class => 'form-control' %>
-    </div>
-    
-<%= contact.hidden_field :admin_user , :value => current_user.admin_user %>
-  <%= contact.hidden_field :user_id ,:value =>  current_user.id %>
-  <%= contact.hidden_field :account_id, :value => @account.id %>
-
-
-   
-   </div>
-    </div>
-   
-
-
-
-
-
-
-
-
-
 <%end%>
-
-<div class="col-md-12" style="    text-align: right;
-    margin-bottom: 25px;">
-  <%= form.link_to_add "Agregar Contacto", :event_files, :class => 'btn btn-primary top10'  %>
+<div class="row">
+   <% @state != "4" ? display = "" : display = "display:none" %>
+   <div class="col-md-3" style = "position: relative;top: 23px;<%=display%>">
+      <label for=""><i class="fa fa-sign-in fa1" style = "font-size:20px" aria-hidden="true"></i> ¿Registro?</label><br>
+      <label class="radio-inline">
+      <%= form.radio_button :has_register, true, class: 'rb regsi check1' %><span style = "">Si</span>
+      </label>
+      <label class="radio-inline">
+      <%= form.radio_button :has_register, false, class: 'rb regno check1' %><span style = "">No</span>
+      </label>
+   </div>
+   <div class="col-md-3" style = "position: relative;top: 23px;<%=display%>">
+      <label for=""><i class="fa fa-sign-in fa1" style = "font-size:20px" aria-hidden="true"></i> Evento Prinpal?</label><br>
+      <label class="radio-inline">
+      <%= form.radio_button :root_event, true, class: 'rb rootsi check1' %><span style = "">Si</span>
+      </label>
+      <label class="radio-inline">
+      <%= form.radio_button :root_event, false, class: 'rb rootno check1' %><span style = "">No</span>
+      </label>
+   </div>
+ 
+   <div class="col-md-3" style = "position: relative;top: 23px;">
+      <label for=""><i class="fa fa-address-book-o fa1" style = "font-size:20px" aria-hidden="true"></i> ¿Redes Sociales?</label><br>
+      <label class="radio-inline">
+      <%= form.radio_button :social, true, class: 'rb redsi check1' %><span style = "">Si</span>
+      </label>
+      <label class="radio-inline">
+      <%= form.radio_button :social, false, class: 'rb redno check1' %><span style = "">No</span>
+      </label>
+   </div>
+   
+   <div class="col-md-3" style="<%=display%>">
+      <div class="form-group" >
+         <%= form.label "Delay (segundos)" %>
+         <%= form.text_field :delay, id: :delay, class: "form form-control" %>
+      </div>
+   </div>
+   
 </div>
-
-    </div>
-
-
+<% @type == "adicional" && action_name != "new" ? display1 = "" : display1 = "display:none;"  %>
+<% @state == "4" ? display2 = "display:none;" : display2 = ""  %>
+<br>
 <hr>
-<%if @state != "4"%>
+<div class="row" >
+   <div class="col-lg-12" style ="<%=display1%>">
 
-<div class="col-lg-12">
-   
-    <h3 class = "" style = "margin :0px 0px 5px 0;color:gray">Contactos Email</h3>
+         <label for=""> ¿ Mostrar Documentos ?</label>
+      <label class="radio-inline">
+      <%= form.radio_button :has_files, true, class: 'rb docsi check1' %><span style = "">Si</span>
+      </label>
+      <label class="radio-inline">
+      <%= form.radio_button :has_files, false, class: 'rb docno check1' %><span style = "">No</span>
+      </label>
+      <br>
+      <h4 class = "" style = "margin :0px 0px 5px 0;color:gray">Documentos</h4>
 
-    <%= form.fields_for :ask_emails do |contact|  %>
-  <div class="clearfix" style="margin-bottom: 30px;">
- <div class="col-md-12" >
-
-  
-    <div class="col-md-6 pdd" >
-     <%= contact.link_to_remove do %>
-<i style = "    color: #e74b09;
-    font-size: 18px;
-    margin-left: 0px;
-    position: relative;
-    left: -18px;" class="fa fa-trash" aria-hidden="true"></i>
-  <% end %>
-    <%= contact.label "Email" %>
-   <%= contact.text_field :email, :class => 'form-control' %>
-    </div>
-      <div class="col-md-6 pdd" >
-    <%= contact.label "Comentario" %>
-    <%= contact.text_field :comment, :class => 'form-control' %>
-    </div>
-    
-<%= contact.hidden_field :admin_user , :value => current_user.admin_user %>
-  <%= contact.hidden_field :user_id ,:value =>  current_user.id %>
-  <%= contact.hidden_field :account_id, :value => @account.id %>
-
-
-   
+      <%= form.fields_for :event_files do |contact|  %>
+      <div class="clearfix" style="margin-bottom: 30px;">
+         <div class="col-md-12" >
+            <div class="col-md-6 pdd" >
+               <%= contact.link_to_remove do %>
+               <i style = "    color: #e74b09;
+                  font-size: 18px;
+                  margin-left: 0px;
+                  position: relative;
+                  left: -18px;" class="fa fa-trash" aria-hidden="true"></i>
+               <% end %>
+               <%= contact.label "Nombre" %>
+               <%= contact.text_field :name, :class => 'form-control' %>
+            </div>
+            <div class="col-md-6 pdd" >
+               <%= contact.label "Archivo" %>
+               <%= contact.file_field :attachment, :class => 'form-control' %>
+            </div>
+            <%= contact.hidden_field :admin_user , :value => current_user.admin_user %>
+            <%= contact.hidden_field :user_id ,:value =>  current_user.id %>
+            <%= contact.hidden_field :account_id, :value => @account.id %>
+         </div>
+      </div>
+      <%end%>
+      <div class="col-md-12" style="    text-align: right;
+         margin-bottom: 25px;">
+         <%= form.link_to_add "Agregar Contacto", :event_files, :class => 'btn btn-primary top10'  %>
+      </div>
    </div>
-    </div>
+  
    
+   <div class="col-lg-12" style="<%=display1%> <%=display2%>">
 
-
-
-
-
-
-
-
-
-<%end%>
-
-<div class="col-md-12" style="    text-align: right;
-    margin-bottom: 25px;">
-  <%= form.link_to_add "Agregar Contacto", :ask_emails, :class => 'btn btn-primary top10'  %>
+     <label for=""> ¿ Mostrar formulario de preguntas?</label>
+      <label class="radio-inline">
+      <%= form.radio_button :has_question, true, class: 'rb regsi check1' %><span style = "">Si</span>
+      </label>
+      <label class="radio-inline">
+      <%= form.radio_button :has_question, false, class: 'rb regno check1' %><span style = "">No</span>
+      </label>
+<br><br>
+      <h4 class = "" style = "margin :0px 0px 5px 0;color:gray">Contactos Email</h4>
+      <%= form.fields_for :ask_emails do |contact|  %>
+      <div class="clearfix" style="margin-bottom: 30px;">
+         <div class="col-md-12" >
+            <div class="col-md-6 pdd" >
+               <%= contact.link_to_remove do %>
+               <i style = "    color: #e74b09;
+                  font-size: 18px;
+                  margin-left: 0px;
+                  position: relative;
+                  left: -18px;" class="fa fa-trash" aria-hidden="true"></i>
+               <% end %>
+               <%= contact.label "Email" %>
+               <%= contact.text_field :email, :class => 'form-control' %>
+            </div>
+            <div class="col-md-6 pdd" >
+               <%= contact.label "Comentario" %>
+               <%= contact.text_field :comment, :class => 'form-control' %>
+            </div>
+            <%= contact.hidden_field :admin_user , :value => current_user.admin_user %>
+            <%= contact.hidden_field :user_id ,:value =>  current_user.id %>
+            <%= contact.hidden_field :account_id, :value => @account.id %>
+         </div>
+      </div> <%end%>
+      
+      <div class="col-md-12" style="    text-align: right;
+         margin-bottom: 25px;">
+         <%= form.link_to_add "Agregar Contacto", :ask_emails, :class => 'btn btn-primary top10'  %>
+      </div>
+   </div>
+  
 </div>
-
-    </div>
-
-
-
-<%end%>
-
-
-
 
 <%if action_name != "edit"%>
 <%= form.hidden_field :account_id, :value => @account.id %>
@@ -260,7 +244,8 @@
 <%= form.hidden_field :user_id,:value => current_user.id %>
 <%= form.hidden_field :state,:value => @state %>
 <%end%>
-
+<br>
+<hr>
 <%= form.submit "Guardar" , class: "btn btn-primary" %>
 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
 <% end %>
@@ -274,6 +259,34 @@
    {
    $('.levidenciav').html(" <%=@event.video.file.filename if @event.video.file %> ")
    
+   }
+   
+    if ("<%=action_name%>" != "edit")
+   {
+   $('.cksi').prop('checked', true);
+   $('.ckno').prop('checked', false);
+   $('.dia').prop('checked', true);
+   $('.nodia').prop('checked', false);
+   $('.regsi').prop('checked', false);
+   $('.regno').prop('checked', true);
+   $('.rootsi').prop('checked', true);
+   $('.rootno').prop('checked', false);
+   $('.redsi').prop('checked', false);
+   $('.redno').prop('checked', true);
+   if ("<%=@state%>" == "4")
+    {
+        $('.stateo').prop('checked', true);
+    }
+    else
+
+    {
+      $('.statec').prop('checked', true);
+    }
+   
+   $('.docsi').prop('checked', false);
+   $('.docno').prop('checked', true);
+   $('.regsi').prop('checked', false);
+   $('.regno').prop('checked', true);
    }
    
    
@@ -421,12 +434,12 @@
    color: #2083de;
    }
    .modal-body1 {
-    position: relative;
-    padding: 15px 40px;
-}
-.modal-content
-{
+   position: relative;
+   padding: 15px 40px;
+   }
+   .modal-content
+   {
    border-left: 5px solid #2083de;
    border-right: 5px solid #2083de;
-}
+   }
 </style>

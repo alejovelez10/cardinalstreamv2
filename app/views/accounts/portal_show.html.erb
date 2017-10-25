@@ -4,15 +4,19 @@
   
     <%if @event.state == 4%>
         <%if @event.event_type%>
-            <%= render "ondemand_audio", event: @event, array: @array, count: @count, sync: @sync%>
+            <%= render "accounts/ondemands/ondemand_audio", event: @event, array: @array, count: @count, sync: @sync%>
         <%else%>
-            <%= render "ondemand_video", event: @event, array: @array,  count: @count, sync: @sync%>
+            <%if @event.has_ppts%>
+            <%= render "accounts/ondemands/ondemand_video_ppts", event: @event, array: @array,  count: @count, sync: @sync%>
+            <%else%>
+            <%= render "accounts/ondemands/ondemand_video", event: @event, array: @array,  count: @count, sync: @sync%>
+            <%end%>
         <%end%>
     <%else%>
          <%if @event.event_type%>
-            <%= render "live_audio", event: @event, array: @array%>
+            <%= render "accounts/lives/live_audio", event: @event, array: @array%>
         <%else%>
-            <%= render "live_video", event: @event, array: @array%>
+            <%= render "accounts/lives/live_video", event: @event, array: @array%>
         <%end%>
     <%end%>    
 

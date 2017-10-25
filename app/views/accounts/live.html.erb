@@ -3,9 +3,9 @@
   
   
 <%if @event.event_type%>
-<%= render "live_audio", event: @event, array: @array%>
+<%= render "accounts/lives/live_audio", event: @event, array: @array%>
 <%else%>
-<%= render "live_video", event: @event, array: @array%>
+<%= render "accounts/lives/live_video", event: @event, array: @array%>
 <%end%>
 
 <%else%>

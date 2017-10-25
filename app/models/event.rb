@@ -25,6 +25,8 @@
 #  has_ppts        :boolean
 #  has_register    :boolean
 #  social          :boolean
+#  has_files       :boolean
+#  has_question    :boolean
 #
 
 class Event < ApplicationRecord

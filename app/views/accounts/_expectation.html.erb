@@ -29,9 +29,17 @@
            <h3 style="font-size: 200px;margin-top:0px;font-family: sans-serif;"><%=edate[0]%></h3>
          </div>
          <div class="col-md-12 text-center" style="    padding: 15px 5px;
-    background: rgba(128, 128, 128, 0.4);">
+        background: rgba(0, 0, 0, 0.63);">
          <%= link_to root_path do %>
               <p style="font-size:16px;color: white"><span style="padding:10px;background: #b10000;; margin-right:10px">PDF</span>Descargar Requisitos</p>
+              <%end%>
+            </div>
+
+        <div class="col-md-12 text-center" style="    padding: 15px 5px;
+     background: rgba(0, 0, 0, 0.63);margin-top:20px">
+         <%= link_to root_path do %>
+          
+               <a data-toggle="modal" href="#myModal"> Video de Prueba</a>
               <%end%>
             </div>
       
@@ -41,9 +49,17 @@
       </div>
    </div>
 
+      <%= render "video_prueba", event: @event%>
       
-      
-  
+
+
+
+
+
+
+
+
+
 
 
 <div class="row">
@@ -64,11 +80,50 @@
 </div>
 </div>
 
+<script>
+    WowzaPlayer.create('playerElement',
+      {
+      "license":"PLAY1-94nX9-WjkJY-fwhpz-Cd8aA-9wmMD",
+      "title":"",
+      "description":"",
+      "sourceURL":"http://aletacloud.com:1935/vod/_definst_/mp4:27/default.mp4/playlist.m3u8",
+      "autoPlay":true,
+      "volume":"75",
+      "mute":false,
+      "loop":false,
+      "audioOnly":false,
+      "uiShowQuickRewind":true,
+      "uiQuickRewindSeconds":"30"
+      }
+   );
+
+    var myPlayer = WowzaPlayer.get('playerElement');
+
+    $("#myModal").on("hidden.bs.modal", function () {
+    myPlayer.finish();
+});
+
+
+</script>
+
+
 <style>
 a:hover
 {text-decoration:none!important;
+  color:white;
 
 }
+a{
+  color:white;
+}
+a:focus { 
+
+    text-decoration:none!important;
+  color:white;
+
+    outline: 0px auto -webkit-focus-ring-color;
+}
+
    .logoblock {
     background: #fff;
     height: 7em;

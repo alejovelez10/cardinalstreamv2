@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
  
 
+  get 'stats/index'
+  get 'portal_show/stats/create/:id', to: 'stats#create', as: 'create'
+
   get 'viewer_sessions/new'
 
   get 'login', to: 'viewer_sessions#new'
@@ -11,6 +14,9 @@ Rails.application.routes.draw do
   post 'create_viewer', to: "viewers#create_viewer", as: "create_viewer"
   get 'events/cardinalppt/:id/:id_event' ,to: "events#cardinalppt", as: "cardinalppt"
   resources :events , :only => [:index, :show, :create, :update, :edit, :destroy]
+  get 'edit_more/:id/:type' , to: "events#edit" , as: "edit_more"
+  get 'event_info/:id', to: "events#event_info", as: "event_info" 
+
   get 'new/:state' , to: "events#new" , as: "new_event"
   get 'home', to: 'home#index', as: "home"
   resources :accounts

@@ -48,15 +48,29 @@
                               Configurar diapositivas
                               <%end%>
                            </li>
-                           <li><%= link_to  event  do%>
+                           <li><%= link_to  event, target: :_blank  do%>
                               <i class="fa fa-eye fa1" aria-hidden="true"></i>
-                              Ver
+                              Transmitir Diapositivas
                               <%end%>
                            </li>
-                           <li><%= link_to  edit_event_path(event), remote:true  do%>
+                           <li><%= link_to  edit_more_path(event, "principal"), remote:true  do%>
                               <i class="fa fa-pencil fa1" aria-hidden="true"></i>
                               Editar
                               <%end%>
+                           </li>
+                          
+                            <li><%= link_to  edit_more_path(event, "adicional"), remote:true  do%>
+                              <i class="fa fa-pencil fa1" aria-hidden="true"></i>
+                              Configuracion adicional del evento
+                              <%end%>
+                           </li>
+                           <li><%= link_to  event_info_path(event) do%>
+                              <i class="fa fa-pencil fa1" aria-hidden="true"></i>
+                              Informacion General
+                              <%end%>
+                           </li>
+                            <li>
+                           <a data-toggle="modal" id = "<%=event.iframe%>" class = "modal-links" href="#myModal-links"><i class="fa fa-pencil fa1" aria-hidden="true"></i>Iframe</a>
                            </li>
                            <li><%= link_to  event, method: :delete, data: { confirm: 'Are you sure?' }  do%>
                               <i class="fa fa-trash fa1" aria-hidden="true"></i>
@@ -81,6 +95,7 @@
       </div>
    </div>
 </div>
+<%= render "links"%>
 <style>
    .fa1
    {
@@ -89,3 +104,11 @@
    font-size: 15px;  
    }
 </style>
+
+<script>
+   $('.modal-links').click(function(){
+      $('.iframe').val("http://" + "<%=request.subdomain%>" + ".www.localhost:3000/iframe/" + $(this).attr("id"))
+
+
+   })
+</script>

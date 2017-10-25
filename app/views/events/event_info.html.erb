@@ -1,0 +1,87 @@
+<% edate = get_date_array(@event.event_date)%>
+<div class="container event-info">
+    <div class="row" >
+
+        <div class="col-md-4 fecha-info">
+            <div class="col-md-6 text-right" style="color:#00ccff;border-right: 1px solid white;    margin-top: 20px;margin-bottom:0px">
+                 <h3><%=edate[2]%> <br><%=edate[5]%> </h3>
+                 
+            </div>
+            <div class="col-md-6" >
+                 <h3 style="color:#00ccff;font-size: 100px;margin-top:0px;font-family: sans-serif;"><%=edate[0]%></h3>
+            </div>
+       
+	
+        </div>
+        <div class="col-md-8">
+            <h3><%=@event.name%></h3>
+            <h4><%=@event.description%></h4> 
+        	 <h4><strong>Estado: <%=get_state_event(@event.state)%></strong></h4>
+        </div>
+        <div class="col-md-12">
+        <hr>
+        	
+        </div>
+         </div>
+
+
+         <div class="row" >
+        <div class="col-md-3">
+            <h4>Tipo: <%= get_event_type_s(@event.type)%> <%= get_event_type(@event.type).html_safe%></h4>	
+        </div>
+        <div class="col-md-3">
+        	<h4>Diapositivas: <span style="font-size:20px;font-weight: bold"><%= get_ppts(@event.has_ppts)%></span></h4>
+        	<%= link_to "Ver Diapositivas", @event.ppts_url if @event.ppts_url%>
+        </div>
+        <div class="col-md-3">
+        	<h4>Solicitud de Registro: <span style="font-size:20px;font-weight: bold"><%= get_ppts(@event.has_register)%></span></h4>
+        	
+        </div>
+        <div class="col-md-3">
+        	<h4>Evento Principal: <span style="font-size:20px;font-weight: bold"> <%= get_ppts(@event.root_event)%></span></h4>
+        	
+        </div>
+        <div class="col-md-12">
+        <hr>
+        	
+        </div>
+          </div>
+        <div class="row" >
+        <div class="col-md-4">
+        	<h4>Redes Sociales: <span style="font-size:20px;font-weight: bold"> <%= get_ppts(@event.social)%></span></h4>
+        	<p style = "color:#187191;font-weight:bold">Links</p>
+        	<%= @account.facebook%><br>
+        	<%= @account.twitter%><br>
+        	<%= @account.instagram%><br>
+        	<%= @account.linkedin%><br>
+        </div>
+        <div class="col-md-4">
+        	<h4>Documentos: <span style="font-size:20px;font-weight: bold"> <%= get_ppts(@event.has_files)%></span></h4>
+        	<p style = "color:#187191;font-weight:bold">Descargables</p>
+        	<% @event.event_files.each do |file|%>
+        	<%= file.name%>(<%= link_to "Descargar", file.attachment_url if file.attachment_url%>)<br>
+        	<%end%>
+       
+        </div>
+        <div class="col-md-4">
+        	<h4>Formulario de Preguntas: <span style="font-size:20px;font-weight: bold"> <%= get_ppts(@event.has_question)%></span></h4>
+        	<p style = "color:#187191;font-weight:bold">Emails para recibir preguntas</p>
+        <% @event.ask_emails.each do |email|%>
+        	<%= email.email%><br>
+        	<%end%>
+        </div>
+	
+    </div>
+	
+</div>
+
+<style>
+.event-info
+{
+	color:gray;
+}
+.fecha-info	
+{
+	border-right: 1px solid gray;
+}
+</style>

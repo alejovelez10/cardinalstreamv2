@@ -51,6 +51,32 @@ def get_event_type(x)
 
 end
 
+def get_event_type_s(x)
+
+  return x ? 'Audio' : 'Video'
+
+end
+
+def get_state_event(x)
+
+  if x = 0
+      "Campaña de espectativa"
+  elsif x = 1
+    "En Vivo"
+  else
+    "Ondemand"
+  end
+        
+
+end
+
+def get_ppts(x)
+
+  return x ? 'Si' : 'No'
+
+end
+
+
 #convierte la fecha a un formato mas amigable
 def get_date(fecha)
    

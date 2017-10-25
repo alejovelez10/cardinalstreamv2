@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :event_info]
   before_action :get_blog
   before_action :authenticate_user!
 
@@ -23,6 +23,12 @@ class EventsController < ApplicationController
     
 
     @account = Account.find(@event.account_id)
+
+  end
+
+  def event_info
+      
+    @account = Account.find(@event.account_id)
     @array = @event.slides.split(/,/)
     @count = @array.count
   end
@@ -41,6 +47,9 @@ class EventsController < ApplicationController
   def edit
     @account = Account.where(admin_user: current_user.admin_user).first
     @state = @event.state.to_s
+    @type = params[:type]
+    
+      
   end
 
   # POST /events
@@ -51,7 +60,7 @@ class EventsController < ApplicationController
     respond_to do |format|
       if @event.save
         if @event.ppts_url != nil
-            @event.has_ppts = true
+            #@event.has_ppts = true
             #Crea carpeta para guardar ppts
             `mkdir public/uploads/event/ppts/#{@event.id}/ppt`
             #Convierte ppts en imagenes 
@@ -118,7 +127,7 @@ class EventsController < ApplicationController
 
 
         if hasppts && !params[:remove_ppts]
-          @event.has_ppts = true
+          #@event.has_ppts = true
           sync = ""
           `rm -rf public/uploads/event/ppts/#{@event.id}/ppt`
           `mkdir public/uploads/event/ppts/#{@event.id}/ppt`
@@ -236,7 +245,7 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:date_event, :name, :description, :state, :backgroud_event, :video, :ppts, :user_id, :admin_user, :account_id, :event_type, :event_date, :delay, :remove_ppts, :remove_video, :has_register, :social ,:root_event,ask_emails_attributes: [:id, :email, :user_id,:admin_user, :event_id,:account_id,:comment, :_destroy], event_files_attributes: [:id, :attachment, :user_id,:admin_user, :event_id,:account_id,:name, :_destroy])
+      params.require(:event).permit(:date_event, :name, :description, :state, :backgroud_event, :video, :has_ppts ,:ppts, :user_id, :admin_user, :account_id, :event_type, :event_date, :delay, :remove_ppts, :remove_video, :has_register, :social, :has_files, :has_question ,:root_event,ask_emails_attributes: [:id, :email, :user_id,:admin_user, :event_id,:account_id,:comment, :_destroy], event_files_attributes: [:id, :attachment, :user_id,:admin_user, :event_id,:account_id,:name, :_destroy])
     end
   
 

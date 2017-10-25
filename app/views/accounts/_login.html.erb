@@ -52,13 +52,24 @@
           <%= submit_tag "Ingresar" ,  class: "btn btn-primary btn-block" %>
         </div>
       <% end %>
+       <div class="col-md-12 text-center" style="    padding: 15px 5px;
+     background: rgba(0, 0, 0, 0.63);margin-top:20px">
+         <%= link_to root_path do %>
+          
+               <a data-toggle="modal" href="#myModal"> Video de Prueba</a>
+              <%end%>
+            </div>
+      
     </div>
+
       </div>
+
+
    </div>
 
       
       
-  
+   <%= render "video_prueba", event: @event%>
 
 
 <div class="row hidden-xs hidden-sm">
@@ -80,6 +91,22 @@
 </div>
 
 <style>
+
+a:hover
+{text-decoration:none!important;
+  color:white;
+
+}
+a{
+  color:white;
+}
+a:focus { 
+
+    text-decoration:none!important;
+  color:white;
+
+    outline: 0px auto -webkit-focus-ring-color;
+}
    .logoblock {
     background: #fff;
     height: 7em;
@@ -261,3 +288,28 @@
 
   }
 </style>
+<script>
+    WowzaPlayer.create('playerElement',
+      {
+      "license":"PLAY1-94nX9-WjkJY-fwhpz-Cd8aA-9wmMD",
+      "title":"",
+      "description":"",
+      "sourceURL":"http://aletacloud.com:1935/vod/_definst_/mp4:27/default.mp4/playlist.m3u8",
+      "autoPlay":true,
+      "volume":"75",
+      "mute":false,
+      "loop":false,
+      "audioOnly":false,
+      "uiShowQuickRewind":true,
+      "uiQuickRewindSeconds":"30"
+      }
+   );
+
+    var myPlayer = WowzaPlayer.get('playerElement');
+
+    $("#myModal").on("hidden.bs.modal", function () {
+    myPlayer.finish();
+});
+
+
+</script>
