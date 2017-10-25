@@ -33,6 +33,8 @@ class Event < ApplicationRecord
 	belongs_to :account
 	mount_uploader :ppts, PpptUploader
 	mount_uploader :video, VideoUploader
+  mount_uploader :video_p, VideopEventUploader
+  
 	after_save :root_event_change
 	has_many :ask_emails , inverse_of: :event, dependent: :destroy
 	has_many :event_files , inverse_of: :event, dependent: :destroy
