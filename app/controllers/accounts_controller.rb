@@ -65,6 +65,11 @@ class AccountsController < ApplicationController
 
   end  
 
+  def real_time_stats
+    
+    @event = Event.find(params[:id])
+  end
+
   # GET /accounts/1
   # GET /accounts/1.json
   def show

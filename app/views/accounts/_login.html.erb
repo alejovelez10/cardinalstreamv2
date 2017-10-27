@@ -1,4 +1,7 @@
 
+
+
+
 <% edate = get_date_array(event.event_date)%>
 <div class="container-fluid">
    <div class="row">
@@ -44,8 +47,9 @@
                 <div class="form-group">
           <%= text_field_tag :company,nil ,class: "form-control input", placeholder: "Empresa" %>
         </div>
-        
-        <%=hidden_field_tag :event_id, @event.id %>
+
+        <%=hidden_field_tag :event_id, event.id %>
+        <%=hidden_field_tag :account_id, @account.id %>
 
 
         <div class="actions">
@@ -69,7 +73,7 @@
 
       
       
-   <%= render "video_prueba", event: @event%>
+   <%= render "video_prueba", event: event%>
 
 
 <div class="row hidden-xs hidden-sm">

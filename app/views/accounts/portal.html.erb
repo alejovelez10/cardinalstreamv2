@@ -2,21 +2,18 @@
 <div class="container-fluid">
   
 
-   <div class="row">
+  <div class="row">
       <div class="col-md-12 blockhead ">
-       <div class="col-md-3 ">
+       <div class="col-md-2 logo text-center">
          <img src="<%=@account.logo_url%>" alt="">
       </div>
      
-         <div class="col-md-6">
-            <p></p>
+         <div class="col-md-6 name">
+          <p style="font-size: 20px;">EVENTOS ONDEMAND</p>
 
          </div>
-         <div class="col-md-3 hidden-xs">
-            <div class="redessociales" style="float:right;padding:0 2em;margin: -0.5em;line-height: 2em;background: none;right: -0.7em;font-size: 1.7em;padding: 0;padding-right: 1.7em;margin-bottom: -0.8em;margin-top: -0.46em;">
-               <a href="https://www.instagram.com/textilesfabricato/" target="_blank"><span class="fa fa-facebook" aria-hidden="true"></span></a>
-               <a href="https://facebook.com/Fabricato-SA-1706689456298683/ " target="_blank"><span class="fa fa-twitter" aria-hidden="true"></span></a>
-            </div>
+          <div class="col-md-4 social hidden-sm hidden-xs">
+      
          </div>
       </div>
    </div>
@@ -32,11 +29,23 @@
     <%end%> 
       <div class="caption">
         <h5><%= event.name%></h5>
-        <%if event.event_type %>
+
+
+        
+        <div class="row">
+          <div class="col-md-4">
+                    <%if event.event_type %>
         <p><%= link_to "Ver", portal_show_path(event.id), class: "btn btn-primary" , data: { turbolinks: false }%></p>
           <%else%>
           <p><%= link_to "Ver", portal_show_video_path(event.id), class: "btn btn-primary" , data: { turbolinks: false }%></p>
           <%end%>
+          </div>
+          <div class="col-md-8 text-right views-event">
+            <p><i class="fa fa-eye" aria-hidden="true"></i> <%=event.stats.count%>
+</p>
+          </div>
+        </div>
+
         
       </div>
     </div>
@@ -46,19 +55,65 @@
 </div>
 
 <style>
-.eventos img {
-    width: 200px;
-    height: 130px;
-}
-.blockhead
+.views-event p
 {
+     font-size: 25px;
+    color: #b1b1b1;
 
+}
+.eventos img {
+    width: 250px;
+    height: 150px;
+}
+  .blockhead
+    {
+  padding-left: 0px!important; 
+      padding: 15px 0px 0px 0px;
+          
+  background: white !important;
+  }
+   .logo
+  {
+    height: 70px;
     background: white;
-    color: #fff;
-    padding: 20px 0px 15px 0px;
-    text-transform: uppercase;
+    padding: 0px 0px 0px 0px;
+  }
+  .logo img
+  {
+    width: 162px;
+
+  }
+    .name
+  {
+    height: 70px;
+    padding: 10px 0px 0px 20px;
+   background: white;
+  }
+  .name p
+  {
+    font-weight: bold;
+  }
+     .social
+  {
+
+    height: 70px;
+    background: white;
+    padding: 10px 0px 0px 0px; 
+  }
+  .thumbnail {
+
+    max-height: 300px;
+    height: 300px;
 }
 
+.thumbnail h5 {
+
+font-size: 14px;
+    max-height: 50px;
+    height: 50px;
+    overflow: hidden;
+  }
+    
 </style>
 
 

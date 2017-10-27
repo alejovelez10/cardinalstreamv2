@@ -59,9 +59,9 @@ end
 
 def get_state_event(x)
 
-  if x = 0
+  if x == 0
       "Campaña de espectativa"
-  elsif x = 1
+  elsif x == 1
     "En Vivo"
   else
     "Ondemand"

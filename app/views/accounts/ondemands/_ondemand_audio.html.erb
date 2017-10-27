@@ -1,4 +1,4 @@
-
+<% edate = get_date_array(event.event_date)%>
 <div class="container-fluid">
 
 <div class="row">
@@ -8,7 +8,8 @@
       </div>
      
          <div class="col-md-6 name">
-            <p><%= event.name.upcase%><br><span style="font-size: 10px;">MARZO 10 DE 2017</span></p>
+           <p style="    font-size: 20px;"><%= event.name.upcase%> <span style="font-size:12px;color:white;margin-left:50px;"> <%= link_to "Volver a listado", portal_path, style: "color:white" %></span><br><span  class="hidden-xs hidden-sm" style="font-size: 15px;"><%=edate[0]%> DE <%=edate[2]%> DE <%=edate[4]%></span></p>
+
 
          </div>
           <div class="col-md-4 social hidden-sm hidden-xs">

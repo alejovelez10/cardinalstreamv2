@@ -27,10 +27,14 @@
 #  social          :boolean
 #  has_files       :boolean
 #  has_question    :boolean
+#  video_p         :string
 #
 
 class Event < ApplicationRecord
 	belongs_to :account
+  has_many :stats
+  has_many :viewers
+  has_many :questions
 	mount_uploader :ppts, PpptUploader
 	mount_uploader :video, VideoUploader
   mount_uploader :video_p, VideopEventUploader

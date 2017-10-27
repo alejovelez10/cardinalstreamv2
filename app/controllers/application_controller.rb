@@ -33,7 +33,8 @@ protected
     elsif (action_name == "iframe")
     'iframe' 
 
-
+     elsif (action_name == "real_time_stats")
+    'stats' 
       
     else
       'admin'

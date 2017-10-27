@@ -32,6 +32,7 @@
                   <th>Video</th>
                   <th>Ppts</th>
                   <th></th>
+                   <th></th>
             </thead>
             <tbody>
                <% @events.each do |event| %>
@@ -88,6 +89,7 @@
                   <td class=""><%= get_aov(event.video_url).html_safe  %></td>
                   <td class=""><%= get_aov(event.ppts_url).html_safe %></td>
                   <td> <%= link_to "Ver", portal_show_path( event.id), class: "btn btn-primary"%></td>
+                  <td> <%= link_to "Ver", real_time_stats_path( event.id), class: "btn btn-primary"%></td>
                </tr>
                <%end%>
             </tbody>

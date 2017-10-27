@@ -11,7 +11,11 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  company    :string
+#  event_id   :integer
+#  account_id :integer
 #
 
 class Viewer < ApplicationRecord
+	belongs_to :event
+	belongs_to :account
 end

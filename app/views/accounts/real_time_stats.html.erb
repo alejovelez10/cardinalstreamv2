@@ -1,0 +1,117 @@
+<% edate = get_date_array(@event.event_date)%>
+<div class="container-fluid event-info ">
+    <div class="row" >
+
+       
+             <div class="col-md-2">
+      <h4><%=image_tag @event.account.logo_url, style: "width:200px"%></h4>
+            
+        </div>
+          <div class="col-md-1">
+        <h4><img style = "width:100px" src="../../images/live.png" alt=""></h4>
+            
+        </div>
+        <div class="col-md-9" style = "padding-left:50px;">
+           
+            <h3><%=@event.name%></h3>
+            <h4><%=edate[0]%> de <%=edate[2]%> de <%=edate[4]%>, <%=edate[5]%></h4> 
+        	 
+        </div>
+
+        <div class="col-md-12">
+        <hr>
+        	
+        </div>
+         </div>
+         <div class="row">
+          <div class="col-md-4 fecha-info">
+            
+         
+            <div class="col-md-12" >
+                 <h3 style="color:#00ccff;font-size: 70px;margin-top:0px;font-family: sans-serif;"><i class="fa fa-user" style="font-size: 70px;margin-right: 20px;" aria-hidden="true"></i><%=@event.viewers.count%></h3>
+            </div>
+       
+    
+        </div>
+    <div class="col-md-4 fecha-info">
+            
+         
+            <div class="col-md-12" >
+                 <h3 style="color:#00ccff;font-size: 70px;margin-top:0px;font-family: sans-serif;"><i class="fa fa-question-circle" style="font-size: 70px;margin-right: 20px;" aria-hidden="true"></i><%=@event.questions.count%></h3>
+            </div>
+       
+    
+        </div>
+             
+         </div>
+         <div class="row">
+         <div class="col-md-4">
+         <h3>Usuarios Registrados</h3>
+            
+                <table class="table">
+                    
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Empresa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                     <% @event.viewers.each do |viewer|%>
+                        <tr>
+                            <td><%=viewer.name%></td>
+                            <td><%=viewer.email%></td>
+                            <td><%=viewer.company%></td>
+                        </tr>
+                    <%end%>
+                    </tbody>
+                </table>
+           
+         </div>
+           <div class="col-md-4">
+              
+           <h3>Preguntas</h3>
+                <table class="table" >
+                    
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Pregunta</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <% @event.questions.each do |question|%>
+                        <tr>
+                            <td><%=question.name%></td>
+                            <td><%=question.email%></td>
+                            <td><%=question.description%></td>
+                        </tr>
+                       <%end%>  
+                    </tbody>
+                </table>
+            
+        
+         </div>
+             
+             
+         </div>
+
+
+         
+        
+	
+</div>
+
+<style>
+
+.event-info
+{
+	color:gray;
+}
+.fecha-info	
+{
+	border-right: 1px solid gray;
+}
+</style>
