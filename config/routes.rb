@@ -40,6 +40,8 @@ Rails.application.routes.draw do
   get 'redir', to: 'home#redir', as: 'redir'
   post 'create_question', to: 'questions#create_question', as: 'create_question'
   get 'iframe/:iframe', to:"accounts#iframe", as: "iframe"
+
+  get '*path' => redirect('/portal')
 end
 
 
