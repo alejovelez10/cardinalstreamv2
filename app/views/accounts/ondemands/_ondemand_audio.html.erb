@@ -241,6 +241,7 @@ $(".hp_slide").mouseup(function(e){
         $('.tumb').addClass("activeoff"); 
         $('.tumb').removeClass("activeon"); 
         $(b).addClass("activeon");
+        $('.cont').html(pos);
     break;
   }
   if (timesongs > array[i] &&  timesongs < array[i + 1]) {
@@ -254,6 +255,7 @@ $(".hp_slide").mouseup(function(e){
         $('.tumb').addClass("activeoff"); 
         $('.tumb').removeClass("activeon"); 
         $(b).addClass("activeon");
+         $('.cont').html(pos);
     break;
   }
     if (timesongs > ultimapos) {
@@ -267,6 +269,7 @@ $(".hp_slide").mouseup(function(e){
         $('.tumb').addClass("activeoff"); 
         $('.tumb').removeClass("activeon"); 
         $(b).addClass("activeon");
+         $('.cont').html(pos);
     break;
   }
 }
