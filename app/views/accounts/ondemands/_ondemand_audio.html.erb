@@ -341,9 +341,11 @@ playheadTimeListener = function ( playheadTimeEvent ) {
 
 onLoadListener = function () {
             
-            
-            //$('.gif').show();
-            //$('.png').hide(); 
+            myPlayer.play();
+            $('.gif').show();
+            $('.png').hide(); 
+            $('.play').show();
+            $('.pause').hide();
 }
 myPlayer.onLoad(onLoadListener);
 
