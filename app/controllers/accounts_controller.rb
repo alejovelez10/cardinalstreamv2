@@ -15,7 +15,7 @@ class AccountsController < ApplicationController
 
    def portal
     @account = Account.where(domain: request.subdomain).first
-    @events = @account1.events 
+    @events = @account1.events.where(state: 4).order(updated_at: :desc)
    end 
   
 
@@ -36,7 +36,8 @@ class AccountsController < ApplicationController
     puts @event
     puts Event.where(account_id: @account.id).where.not(state: 4).first
     puts "eventtttttttttttt"
-    if @event != nil
+    if @event != nil 
+
     @array = @event.slides.split(/,/)
     @count = @array.count
     render "live"
