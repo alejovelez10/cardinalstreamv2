@@ -56,6 +56,18 @@ class AccountsController < ApplicationController
 
   end  
 
+  
+  def portal_show_name
+   
+    @event = Event.where(link: params[:name]).first
+    @account = Account.find(@event.account_id)
+    @array = @event.slides.split(/,/)
+    @count = @array.count
+    @sync =  @event.sync
+    render 'portal_show'
+  end  
+
+
   def portal_show_video
    
     @event = Event.find(params[:id])

@@ -23,7 +23,7 @@ protected
             else
             	'admin'
         end
-    elsif (controller_name == 'accounts' and (action_name == "portal_show_video" || action_name == "portal_show" || action_name == "live")) 
+    elsif (controller_name == 'accounts' and (action_name == "portal_show_video" || action_name == "portal_show_name" ||  action_name == "portal_show" || action_name == "live")) 
       
       'streaming'
       elsif (controller_name == 'accounts' and ( action_name == "portal" || action_name == "live")) || (controller_name == "events" && action_name == "show")

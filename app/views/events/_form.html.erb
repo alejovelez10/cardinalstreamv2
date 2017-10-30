@@ -160,6 +160,12 @@
          <%= form.file_field :video_p, id: :video_p, class: "form form-control" %>
       </div>
    </div>
+    <div class="col-md-3" style="<%=display1%>">
+      <div class="form-group" >
+         <%= form.label "Video para campaña" %>
+         <%= form.text_field :link, id: :link, class: "form form-control" %>
+      </div>
+   </div>
   
 </div>
 <div class="row" >
@@ -196,6 +202,7 @@
             <%= contact.hidden_field :admin_user , :value => current_user.admin_user %>
             <%= contact.hidden_field :user_id ,:value =>  current_user.id %>
             <%= contact.hidden_field :account_id, :value => @account.id %>
+            <%= contact.hidden_field :ultimate_ppt, :value => 1 %>
          </div>
       </div>
       <%end%>
