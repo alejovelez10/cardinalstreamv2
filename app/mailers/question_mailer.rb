@@ -3,6 +3,6 @@ def send_question(question, email)
   @question = question
 
  
-  mail(to: email, subject: "Se ha creado una pregunta")
+  mail(to: email, subject: "Pregunta en webmaster de transmisión de Fabricato")
 end
 end

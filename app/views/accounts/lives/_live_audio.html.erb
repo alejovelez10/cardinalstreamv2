@@ -48,11 +48,19 @@
                      <%= label_tag "Email" %>
                      <%= text_field_tag :email , (current_viewer.email if event.has_register), class: "form form-control question" %>
                   </div>
+
+                       <div class="form-group">
+                     <%= label_tag "Asunto" %>
+                     <%= text_field_tag :affair,nil, class: "form form-control erase"%>
+                  </div>
+
+
                    
                                      <div class="form-group">
                      <%= label_tag "Pregunta" %>
-                     <%= text_area_tag ":description" ,nil, class: "form form-control erase question", style: "height: 100px;" %>
+                     <%= text_area_tag :description ,nil, class: "form form-control erase question", style: "height: 100px;" %>
                   </div>
+
                   <%= hidden_field_tag :account_id , event.account_id%>
                   <%= hidden_field_tag :event_id , event.id%>
                    <%= hidden_field_tag :type , "audio"%>
@@ -167,6 +175,16 @@
    <div id="playerElement" style="width:100%;height:350px;margin-top:80px;display: none""></div>
 </div>
 </div>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-104389816-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-104389816-1');
+</script>
+
 <script >
    $(document).on('turbolinks:load',function() {
    
@@ -242,6 +260,9 @@
    
       var myPlayer = WowzaPlayer.get('playerElement');
    
+
+
+
         }); 
                 
    
