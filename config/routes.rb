@@ -13,6 +13,11 @@ Rails.application.routes.draw do
   resources :viewers
   post 'create_viewer', to: "viewers#create_viewer", as: "create_viewer"
   get 'events/cardinalppt/:id/:id_event' ,to: "events#cardinalppt", as: "cardinalppt"
+
+   get 'events/cardinalmsg' ,to: "events#cardinalmsg", as: "cardinalmsg"
+
+
+
   resources :events , :only => [:index, :show, :create, :update, :edit, :destroy]
   get 'edit_more/:id/:type' , to: "events#edit" , as: "edit_more"
   get 'event_info/:id', to: "events#event_info", as: "event_info" 

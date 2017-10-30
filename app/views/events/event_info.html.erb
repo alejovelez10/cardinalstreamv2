@@ -60,8 +60,15 @@
          <%end%>
       </div>
    </div>
-   <div class="row" >
-      <%= link_to "Descargar", @event.video_p.url if @event.video_p_url%>
+   <br>
+    <div class="row" >
+   <div class="col-md-4">
+   <p>Mensage en vivo</p>
+     <%= form_tag cardinalmsg_path, method: :get, remote:true do %>
+   <%= text_field_tag :msg , nil, class:"form form-control" %><br>
+   <%= text_field_tag :id , @event.id, class:"form form-control" %><br>
+   <%= submit_tag "Enviar" , class: "btn btn-primary"%>
+<%end%> 
    </div>
 </div>
 <style>
