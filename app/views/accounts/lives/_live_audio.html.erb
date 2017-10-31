@@ -14,7 +14,14 @@
 </div>
 
 
-
+<div class="alert alert-warning alert-dismissible msg1 text-center" role="alert" style="position:absolute;z-index:10;
+    background: #26a054;
+    color: white;width:40%;margin-left:30%"><span></span> <button class = "but1 play" type="">Click aqui para iniciar Streaming <i class="fa fa-play" style = "font-size:20px;margin-left:10px" aria-hidden="true"></i></button>  
+  <strong class="text-center" style = "width: 100%"></strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
 
 
 
@@ -269,7 +276,9 @@
             $('.play').hide();
             $('.pause').show();
             $('.gif').show();
-            $('.png').hide();    
+            $('.png').hide();
+            $('.msg1').fadeOut(); 
+
             myPlayer.play()
         });
    $('.pause').click(function(){
@@ -368,6 +377,20 @@
     color: white;
     width: 45px;
     height: 45px;
+    position: relative;
+    top: -4px;
+}
+.but1
+{
+    padding-bottom: 1px;
+    margin-left: 10px;
+    border-radius: 26px;
+    border: 2px solid orange;
+    background: #565656;
+    font-size: 15px;
+    color: white;
+    width: 380px;
+    height: 46px;
     position: relative;
     top: -4px;
 }
