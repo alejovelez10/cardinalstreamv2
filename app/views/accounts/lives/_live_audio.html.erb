@@ -14,14 +14,7 @@
 </div>
 
 
-<div class="alert alert-warning alert-dismissible msg1 text-center hidden-sm hidden-xs" role="alert" style="position:absolute;z-index:10;
-    background: #26a054;
-    color: white;width:40%;margin-left:30%"><span></span> <button class = "but1 play" type="">Click aqui para iniciar Streaming <i class="fa fa-play" style = "font-size:20px;margin-left:10px" aria-hidden="true"></i></button>  
-  <strong class="text-center" style = "width: 100%"></strong>
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
+
 
 
 
@@ -144,7 +137,7 @@
             </div>-->
                <div class="roundbutton countppt"><span class="cont"><%=event.ultimate_ppt + 1%> </span> / <%=@count%></div>
                <div id="scrollbar1">
-                  <div class="scrollbar">
+                <!--  <div class="scrollbar">
                      <div class="track">
                         <div class="thumb">
                            <div class="end"></div>
@@ -163,7 +156,7 @@
                            end%>
                      </div>
                   </div>
-               </div>
+               </div>-->
             </div>
 
          </div>
@@ -188,8 +181,8 @@
 <div class="row">
    <div class="col-md-12 fixeddown">
       <div class="col-md-2 col-xs-12 col-sm-12 hidden-sm hidden-xs">
-        <p style="border-right: 1px solid gray;    margin-top: 3px;">EN VIVO<br><span style="font-size: 10px;"> <%=edate[1]%> <%=edate[0]%> de <%=edate[2].capitalize%>, <%=edate[5]%></span></p>
-
+       <!-- <p style="border-right: 1px solid gray;    margin-top: 3px;">EN VIVO<br><span style="font-size: 10px;"> <%=edate[1]%> <%=edate[0]%> de <%=edate[2].capitalize%>, <%=edate[5]%></span></p>
+-->
       </div>
       <div class="col-md-2 col-xs-12 col-sm-12 hidden-lg hidden-md">
         <p style="border-right: 1px solid gray;    margin-top: 3px;"><%= (link_to "Salir", logout_path(event.id), method: :delete, class: "viewer_salir hidden-lg hidden-md") if event.has_register %> 
@@ -208,14 +201,14 @@
       </div>
     
             <div class="col-md-10 hidden-sm hidden-xs">
-            <span style = "position:relative;font-size:14px;top:10px;margin-right:10px"> <%= "Click para descargar" if event.event_files.count != 0 && event.has_files %></span>
+           <!-- <span style = "position:relative;font-size:14px;top:10px;margin-right:10px"> <%= "Click para descargar" if event.event_files.count != 0 && event.has_files %></span>
         <% @event.event_files.each do |event|%>
         <%= link_to  event.attachment_url, class: "document" do %>
 <span style="background: #00c9ca;color:white;padding:5px"><i class="fa fa-download" aria-hidden="true"></i></span>
 <%=event.name%>
         <%end%>
         <%end%>
-
+-->
       </div>
       <div class="col-md-12 middle-div no-float" style=";bottom:0px;background:#424242;text-align:center;float:left;margin-top:5px;">
          <a class="hidden-xs hidden-sm" href="http://iptics.com.co/productos/cardinalstream/" target="_blank"><img src="../../images/logo.png"></a>
@@ -311,6 +304,15 @@
    
       var myPlayer = WowzaPlayer.get('playerElement');
    
+onLoadListener = function () {
+    $('.gif').show();
+    $('.png').hide(); 
+    $('.play').hide();
+    $('.pause').show();
+    myPlayer.play(); 
+ 
+}
+myPlayer.onLoad(onLoadListener);
 
 
 
