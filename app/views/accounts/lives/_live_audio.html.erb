@@ -44,6 +44,7 @@
                <%end%>
                  <%end%>
                <%= (link_to "Salir", logout_path(event.id), method: :delete, class: "viewer_salir") if event.has_register %>
+                <%= (link_to "Recargar", root_path, class: "viewer_salir") if event.has_register %>
              
             </div>
          </div>
@@ -173,8 +174,12 @@
 
 <div class="row">
    <div class="col-md-12 fixeddown">
-      <div class="col-md-2 col-xs-12 col-sm-12">
-        <p style="border-right: 1px solid gray;    margin-top: 3px;">EN VIVO<br><span style="font-size: 10px;"> <%=edate[1]%> <%=edate[0]%> de <%=edate[2].capitalize%>, <%=edate[5]%></span><%= (link_to "Salir", logout_path(event.id), method: :delete, class: "viewer_salir hidden-lg hidden-md") if event.has_register %></p>
+      <div class="col-md-2 col-xs-12 col-sm-12 hidden-sm hidden-xs">
+        <p style="border-right: 1px solid gray;    margin-top: 3px;">EN VIVO<br><span style="font-size: 10px;"> <%=edate[1]%> <%=edate[0]%> de <%=edate[2].capitalize%>, <%=edate[5]%></span></p>
+
+      </div>
+      <div class="col-md-2 col-xs-12 col-sm-12 hidden-lg hidden-md">
+        <p style="border-right: 1px solid gray;    margin-top: 3px;"><%= (link_to "Salir", logout_path(event.id), method: :delete, class: "viewer_salir hidden-lg hidden-md") if event.has_register %> <%= (link_to "Recargar", root_path, class: "viewer_salir") if event.has_register %></p>
 
       </div>
     
