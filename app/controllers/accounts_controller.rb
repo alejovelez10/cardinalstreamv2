@@ -66,7 +66,8 @@ class AccountsController < ApplicationController
     @array = @event.slides.split(/,/)
     @count = @array.count
     @sync =  @event.sync
-      @nav =  request.user_agent
+    @nav =  request.user_agent
+    
     a = @nav.include? "Linux"
     b =  @nav.include? "linux"
     c =  @nav.include? "LINUX" 
