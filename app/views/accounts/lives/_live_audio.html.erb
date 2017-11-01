@@ -189,10 +189,10 @@
         
         <%if event.root_event%>
 
-        <%= (link_to "Recargar", root_path, class: "viewer_salir") if event.has_register %>
+        <%= (link_to "Recargar", root_path, data: { turbolinks: false }, class: "viewer_salir") if event.has_register %>
           <%else%>
 
-          <%= (link_to "Recargar", portal_show_path(event.id), class: "viewer_salir") if event.has_register %>
+          <%= (link_to "Recargar", portal_show_path(event.id), data: { turbolinks: false }, class: "viewer_salir") if event.has_register %>
           <%end%>
 
 

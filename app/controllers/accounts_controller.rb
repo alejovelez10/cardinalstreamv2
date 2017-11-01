@@ -33,8 +33,9 @@ class AccountsController < ApplicationController
   def live
     @nav =  request.user_agent
     a = @nav.include? "ANDROID"
+    b = @nav.include? "IPHONE"
     puts a 
-       if a 
+       if a   ||  b
       @navs = true
     else
       @navs = false
@@ -65,9 +66,10 @@ class AccountsController < ApplicationController
     @nav =  request.user_agent
 
    @nav =  request.user_agent
-    a = @nav.include? "ANDROID"
+  a = @nav.include? "ANDROID"
+    b = @nav.include? "IPHONE"
     puts a 
-    if a 
+       if a   ||  b
       @navs = true
     else
       @navs = false
