@@ -34,18 +34,18 @@
 <br><br>      <%= form_tag create_viewer_path, method: :post do |f| %>
        
  <div class="form-group">
-          <%= text_field_tag :name,nil ,class: "form-control input", placeholder: "Nombre" %>
+          <%= text_field_tag :name,nil ,class: "form-control input", placeholder: "Nombre", :required => true  %>
         </div>
 
         <div class="form-group">
-          <%= email_field_tag :email,nil, class: "form-control input", placeholder: "Email" %>
+          <%= email_field_tag :email,nil, class: "form-control input", placeholder: "Email", :required => true %>
         </div>
 
 
        
 
                 <div class="form-group">
-          <%= text_field_tag :company,nil ,class: "form-control input", placeholder: "Empresa" %>
+          <%= text_field_tag :company,nil ,class: "form-control input", placeholder: "Empresa", :required => true %>
         </div>
 
         <%=hidden_field_tag :event_id, event.id %>

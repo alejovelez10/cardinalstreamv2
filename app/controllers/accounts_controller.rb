@@ -58,6 +58,17 @@ class AccountsController < ApplicationController
   end  
 
   def portal_show
+
+     @nav =  request.user_agent
+    a = @nav.upcase.include? "ANDROID"
+    b = @nav.upcase.include? "IPHONE"
+    puts a 
+    puts b
+       if   a  ||  b
+      @navs = "SI"
+    else
+      @navs = "NO"
+    end
    
     @event = Event.find(params[:id])
     @account = Account.find(@event.account_id)
@@ -66,15 +77,7 @@ class AccountsController < ApplicationController
     @sync =  @event.sync
     @nav =  request.user_agent
 
-   @nav =  request.user_agent
-  a = @nav.include? "ANDROID"
-    b = @nav.include? "IPHONE"
-    puts a 
-       if a   ||  b
-      @navs = true
-    else
-      @navs = false
-    end
+
 
   end  
 
