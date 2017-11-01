@@ -20,12 +20,13 @@
 
 
       <div class="col-md-12 blockhead ">
-         <div class="col-md-2 logo text-center">
+         <div class="col-md-2 logo ">
+
             <img src="<%=@account.logo_url%>" alt="">
+            <%= (link_to "Salir", logout_path(event.id), method: :delete, class: "viewer_salir hidden-lg hidden-md") if event.has_register %> 
          </div>
          <div class="col-md-6 name">
-            <p style="    font-size: 14px;"><%= event.name.upcase%><br><span  class="hidden-xs hidden-sm" style="font-size: 15px;"><%=edate[0]%> DE <%=edate[2]%> DE <%=edate[4]%></span><span style= "font-size:8px;">Play para Iniciar <br>
-            Si deja de escuchar recargue deslizando la pantalla hacia abajo</span></p>
+            <p style="    font-size: 16px;"><%= event.name.upcase%><br><span  class="hidden-xs hidden-sm" style="font-size: 15px;"><%=edate[0]%> DE <%=edate[2]%> DE <%=edate[4]%></span></p>
 
               <p></p>
          </div>
@@ -182,8 +183,11 @@
 -->
       </div>
       <div class="col-md-2 col-xs-12 col-sm-12 hidden-lg hidden-md">
-        <p style="border-right: 1px solid gray;    margin-top: 3px;"><%= (link_to "Salir", logout_path(event.id), method: :delete, class: "viewer_salir hidden-lg hidden-md") if event.has_register %> 
-        
+        <p style="border-right: 1px solid gray;    margin-top: 3px;">
+         <img class="gif roundgif" src="/../../images/equ.gif" alt="">
+                     <img class="png roundgif" src="/../../images/equ.png" alt="">
+                                       <button class = "but play" type=""><i class="fa fa-play" aria-hidden="true"></i></button>  
+                  <button class = " but pause" type=""><i class="fa fa-pause" aria-hidden="true"></i></button>
     
 
         </p>
@@ -482,8 +486,8 @@
  
   .viewer_salir
   {
-    color: white;
-    border: 2px solid white;
+    color: gray;
+    border: 2px solid gray;
     padding: 2px 16px;
     border-radius: 9px;
     margin-left: 10px;
