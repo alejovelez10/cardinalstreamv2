@@ -44,13 +44,7 @@
                <%end%>
                  <%end%>
                <%= (link_to "Salir", logout_path(event.id), method: :delete, class: "viewer_salir") if event.has_register %>
-                 <%if event.root_event%>
-
-        <%= (link_to "Recargar", root_path, class: "viewer_salir") if event.has_register %>
-          <%else%>
-
-          <%= (link_to "Recargar", portal_show_path(event.id), class: "viewer_salir") if event.has_register %>
-          <%end%>
+         
              
             </div>
          </div>
