@@ -15,11 +15,9 @@
     <%else%>
          <%if @event.event_type%>
 
-            <%if !@navs %>
-            <%= render "accounts/lives/live_audio", event: @event, array: @array%>
-            <%else%>
-            <%= render "accounts/lives/live_audio_movil", event: @event, array: @array%>
-            <%end%>
+           
+            <%= render "accounts/lives/live_audio", event: @event, array: @array, navs: @navs%>
+      
         <%else%>
             <%= render "accounts/lives/live_video", event: @event, array: @array%>
         <%end%>

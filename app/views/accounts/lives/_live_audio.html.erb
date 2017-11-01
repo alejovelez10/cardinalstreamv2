@@ -24,7 +24,7 @@
             <img src="<%=@account.logo_url%>" alt="">
          </div>
          <div class="col-md-6 name">
-            <p style="    font-size: 16px;"><%= event.name.upcase%><br><span  class="hidden-xs hidden-sm" style="font-size: 15px;"><%=edate[0]%> DE <%=edate[2]%> DE <%=edate[4]%></span><span class = "hidden-md hidden-lg" style= "font-size:9px;">Play para Iniciar <br>
+            <p style="    font-size: 16px;"><%=navs%><%= event.name.upcase%><br><span  class="hidden-xs hidden-sm" style="font-size: 15px;"><%=edate[0]%> DE <%=edate[2]%> DE <%=edate[4]%></span><span class = "hidden-md hidden-lg" style= "font-size:9px;">Play para Iniciar <br>
             Si deja de escuchar recargue deslizando la pantalla hacia abajo</span></p>
 
            
@@ -238,8 +238,15 @@
 <script >
    $(document).on('turbolinks:load',function() {
    
-      $('.play').hide();
-    $('.png').hide();   
+   if ("<%=navs%>" == "SI")
+    {  $('.play').hide();
+    $('.png').hide(); 
+      }
+    else
+    {
+       $('.pause').hide();
+    $('.gif').hide(); 
+    }
    $('.play').click(function(){
             $('.play').hide();
             $('.pause').show();

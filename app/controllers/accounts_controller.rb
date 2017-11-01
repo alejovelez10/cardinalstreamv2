@@ -36,9 +36,9 @@ class AccountsController < ApplicationController
     b = @nav.include? "IPHONE"
     puts a 
        if   a  ||  b
-      @navs = true
+      @navs = "SI"
     else
-      @navs = false
+      @navs = "NO"
     end
 
     @account = Account.where(domain: request.subdomain).first
