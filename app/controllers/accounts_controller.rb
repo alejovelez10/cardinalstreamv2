@@ -31,6 +31,19 @@ class AccountsController < ApplicationController
   end  
 
   def live
+    @nav =  request.user_agent
+    a = @nav.include? "Linux"
+    b =  @nav.include? "linux"
+    c =  @nav.include? "LINUX" 
+    puts a 
+    puts b
+    puts c 
+    if a || b || c 
+      @navs = "si"
+    else
+      @navs = "no"
+    end
+
     @account = Account.where(domain: request.subdomain).first
     @event = Event.where(account_id: @account.id).where(root_event: true).last
     puts @event
