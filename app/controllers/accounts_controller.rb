@@ -66,12 +66,24 @@ class AccountsController < ApplicationController
     @array = @event.slides.split(/,/)
     @count = @array.count
     @sync =  @event.sync
+      @nav =  request.user_agent
+    a = @nav.include? "Linux"
+    b =  @nav.include? "linux"
+    c =  @nav.include? "LINUX" 
+    puts a 
+    puts b
+    puts c 
+    if a || b || c 
+      @navs = "si"
+    else
+      @navs = "no"
+    end
 
   end  
 
   
   def portal_show_name
-   
+    
     @event = Event.where(link: params[:name]).first
     @account = Account.find(@event.account_id)
     @array = @event.slides.split(/,/)
