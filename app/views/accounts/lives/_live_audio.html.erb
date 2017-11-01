@@ -232,25 +232,7 @@
    
    
    
-                  $('.i<%=up%>').addClass("activeon");
-              
-              $('.pad').click(function(){
-                      $('.pad').children('img').removeClass("activeon");
-                      $(this).children('img').addClass("activeon");
-                      $('#ppts img').attr('src', $(this).children('img').attr("src"));
-   
-                  
-                  $('.cont').text($(this).children('div').text());
-                  }); 
-   
-                    $('.fullbuttonppt').click(function(){
-                      $('.backppt').toggleClass('fullsize');
-                       $('.zoom1').toggle();
-                       $('.zoom2').toggle();
-                       console.log("si");
-          
-        });
-   
+        
    
    
           }); 
@@ -263,8 +245,8 @@
 <script >
    $(document).on('turbolinks:load',function() {
    
-      $('.pause').hide();
-    $('.gif').hide();   
+      $('.play').hide();
+    $('.png').hide();   
    $('.play').click(function(){
             $('.play').hide();
             $('.pause').show();
@@ -304,15 +286,6 @@
    
       var myPlayer = WowzaPlayer.get('playerElement');
    
-onLoadListener = function () {
-    $('.gif').show();
-    $('.png').hide(); 
-    $('.play').hide();
-    $('.pause').show();
-    myPlayer.play(); 
- 
-}
-myPlayer.onLoad(onLoadListener);
 
 
 
@@ -606,7 +579,7 @@ myPlayer.onLoad(onLoadListener);
   $('.msg').fadeOut();
       
      
-}, 4000);
+}, 6000);
 
 
 

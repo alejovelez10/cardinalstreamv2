@@ -32,16 +32,12 @@ class AccountsController < ApplicationController
 
   def live
     @nav =  request.user_agent
-    a = @nav.include? "Linux"
-    b =  @nav.include? "linux"
-    c =  @nav.include? "LINUX" 
+    a = @nav.include? "ANDROID"
     puts a 
-    puts b
-    puts c 
-    if a || b || c 
-      @navs = "si"
+    if a 
+      @navs = "SI"
     else
-      @navs = "no"
+      @navs = "NO"
     end
 
     @account = Account.where(domain: request.subdomain).first
@@ -67,7 +63,7 @@ class AccountsController < ApplicationController
     @count = @array.count
     @sync =  @event.sync
     @nav =  request.user_agent
-    
+
     a = @nav.include? "Linux"
     b =  @nav.include? "linux"
     c =  @nav.include? "LINUX" 
