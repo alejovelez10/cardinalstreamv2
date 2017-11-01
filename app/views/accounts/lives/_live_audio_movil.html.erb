@@ -22,6 +22,7 @@
       <div class="col-md-12 blockhead ">
          <div class="col-md-2 logo text-center">
             <img src="<%=@account.logo_url%>" alt="">
+            <%= (link_to "Salir", logout_path(event.id), method: :delete, class: "viewer_salir hidden-lg hidden-md") if event.has_register %>
          </div>
          <div class="col-md-6 name">
             <p style="    font-size: 16px;">12222<%= event.name.upcase%><br><span  class="hidden-xs hidden-sm" style="font-size: 15px;"><%=edate[0]%> DE <%=edate[2]%> DE <%=edate[4]%></span></p>
@@ -158,16 +159,7 @@
 
       </div>
    </div>
-   <div class="row hidden-md hidden-lg">
-      
-         <div class="col-md-12 text-center" style="   margin-top:20px;">
-            
-               <img class="gif roundgif" src="/../../images/equ.gif" alt="">
-               <img class="png roundgif" src="/../../images/equ.png" alt="">
-                <button class = "but play" type=""><i class="fa fa-play" aria-hidden="true"></i></button>  
-            <button class = " but pause" type=""><i class="fa fa-pause" aria-hidden="true"></i></button>   
-            </div>
-         </div>
+
       
       
   
@@ -486,8 +478,8 @@
  
   .viewer_salir
   {
-    color: white;
-    border: 2px solid white;
+    color: gray;
+    border: 2px solid gray;
     padding: 2px 16px;
     border-radius: 9px;
     margin-left: 10px;
