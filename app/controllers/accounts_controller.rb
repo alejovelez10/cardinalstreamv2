@@ -35,7 +35,7 @@ class AccountsController < ApplicationController
     a = @nav.include? "ANDROID"
     b = @nav.include? "IPHONE"
     puts a 
-       if a   ||  b
+       if   a  ||  b
       @navs = true
     else
       @navs = false
