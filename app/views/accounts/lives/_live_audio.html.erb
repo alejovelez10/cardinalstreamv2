@@ -24,9 +24,10 @@
             <img src="<%=@account.logo_url%>" alt="">
          </div>
          <div class="col-md-6 name">
-            <p style="    font-size: 16px;"><%= event.name.upcase%><br><span  class="hidden-xs hidden-sm" style="font-size: 15px;"><%=edate[0]%> DE <%=edate[2]%> DE <%=edate[4]%></span></p>
+            <p style="    font-size: 16px;"><%= event.name.upcase%><br><span  class="hidden-xs hidden-sm" style="font-size: 15px;"><%=edate[0]%> DE <%=edate[2]%> DE <%=edate[4]%></span><span class = "hidden-md hidden-lg" style= "font-size:9px;">Play para Iniciar <br>
+            Si deja de escuchar recargue deslizando la pantalla hacia abajo</span></p>
 
-              <p></p>
+           
          </div>
          <div class="col-md-4 social hidden-sm hidden-xs">
             <div class="redessociales" style="float:right;padding:0 2em;line-height: 2em;background: none;right: -0.7em;font-size: 1.7em;padding: 0;padding-right: 1.7em;margin-bottom: -0.8em;margin-top: -0.46em;">
@@ -159,16 +160,16 @@
 
       </div>
    </div>
-   <!--<div class="row hidden-md hidden-lg">
+  <div class="row hidden-md hidden-lg">
       
-         <div class="col-md-12 text-center" style="   margin-top:20px;">
+          <!--<div class="col-md-12 text-center" style="   margin-top:20px;">
             
                <img class="gif roundgif" src="/../../images/equ.gif" alt="">
                <img class="png roundgif" src="/../../images/equ.png" alt="">
                 <button class = "but play" type=""><i class="fa fa-play" aria-hidden="true"></i></button>  
             <button class = " but pause" type=""><i class="fa fa-pause" aria-hidden="true"></i></button>   
-            </div>
-         </div>-->
+            </div>-->
+         </div>
       
       
   
@@ -386,9 +387,21 @@
   .ppt-block img {
     width: 85%;
 }
+   .name
+  {
+    height: 70px;
+    background: rgba(39, 39, 39, 0.83);
+    padding: 10px 0px 0px 20px;
 
+  }
 
 @media only screen and (max-width: 500px) {
+  .name
+  {
+    height: 100px;
+   
+
+  }
   .ppt-block img {
     width: 100%;
 }
@@ -406,6 +419,7 @@
         background-color: lightblue;
             margin-right: 0em;
     margin-left: 0em;
+        margin-bottom: 26px;
     }
     .ppt-block img {
     width: 100%;
@@ -443,13 +457,7 @@
   {
     width: 162px;
   }
-    .name
-  {
-    height: 70px;
-    background: rgba(39, 39, 39, 0.83);
-    padding: 10px 0px 0px 20px;
-
-  }
+ 
   .name p
   {
     color: white;
