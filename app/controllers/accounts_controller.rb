@@ -34,10 +34,10 @@ class AccountsController < ApplicationController
     @nav =  request.user_agent
     a = @nav.include? "ANDROID"
     puts a 
-    if a 
-      @navs = "SI"
+       if a 
+      @navs = true
     else
-      @navs = "NO"
+      @navs = false
     end
 
     @account = Account.where(domain: request.subdomain).first
@@ -64,16 +64,13 @@ class AccountsController < ApplicationController
     @sync =  @event.sync
     @nav =  request.user_agent
 
-    a = @nav.include? "Linux"
-    b =  @nav.include? "linux"
-    c =  @nav.include? "LINUX" 
+   @nav =  request.user_agent
+    a = @nav.include? "ANDROID"
     puts a 
-    puts b
-    puts c 
-    if a || b || c 
-      @navs = "si"
+    if a 
+      @navs = true
     else
-      @navs = "no"
+      @navs = false
     end
 
   end  
