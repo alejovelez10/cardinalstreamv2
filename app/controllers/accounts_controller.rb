@@ -32,9 +32,10 @@ class AccountsController < ApplicationController
 
   def live
     @nav =  request.user_agent
-    a = @nav.include? "ANDROID"
-    b = @nav.include? "IPHONE"
+    a = @nav.upcase.include? "ANDROID"
+    b = @nav.upcase.include? "IPHONE"
     puts a 
+    puts b
        if   a  ||  b
       @navs = "SI"
     else
