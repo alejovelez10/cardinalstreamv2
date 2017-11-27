@@ -180,6 +180,42 @@
    }, 3000);
    
    
+
+      var lkt = 0, upin;
+      var myPlayer = WowzaPlayer.get('playerElement');
+      //Offline.options = {checks: {xhr: {url: '/css'}}};
+      
+      Offline.on('confirmed-down', function () {
+            $('.overmssgoffline').fadeIn();
+            console.log("offfffffffffff1111111111111111");
+            myPlayer.pause();
+      });
+   
+      Offline.on('confirmed-up', function () {
+           
+            console.log("onnnnnnnnnnnnnnnnnn1111111111111111111");
+      });
+      
+      Offline.on('down', function () {
+         $('.overmssgoffline').fadeIn();
+         console.log("offffffffffff2f22222222222");
+      });
+      
+      Offline.on('up', function () {
+         myPlayer.play();
+         console.log("onnnnnnnnnnnnnnnnnn222222222222222");
+         
+      });
+      
+      
+      setInterval(function(){
+         Offline.check();
+         console.log("interval");
+     
+      }, 3000);
+
+
+   
    });
 </script>
 <style>
@@ -871,37 +907,5 @@
 
 <script>
    
-      var lkt = 0, upin;
-      var myPlayer = WowzaPlayer.get('playerElement');
-      //Offline.options = {checks: {xhr: {url: '/css'}}};
-      
-      Offline.on('confirmed-down', function () {
-            $('.overmssgoffline').fadeIn();
-            console.log("offfffffffffff1111111111111111");
-            myPlayer.pause();
-      });
-   
-      Offline.on('confirmed-up', function () {
-           
-            console.log("onnnnnnnnnnnnnnnnnn1111111111111111111");
-      });
-      
-      Offline.on('down', function () {
-         $('.overmssgoffline').fadeIn();
-         console.log("offffffffffff2f22222222222");
-      });
-      
-      Offline.on('up', function () {
-         myPlayer.play();
-         console.log("onnnnnnnnnnnnnnnnnn222222222222222");
-         
-      });
-      
-      
-      setInterval(function(){
-         Offline.check();
-         console.log("interval");
-     
-      }, 3000);
    </script>
 
