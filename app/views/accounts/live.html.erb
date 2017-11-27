@@ -1,23 +1,27 @@
-<% if @event.state == 1%>
-<% if viewer_signed_in? || !@event.has_register %>
+<% if @event.state == 1 || @event.state == 4 %>
+        <% if viewer_signed_in? || !@event.has_register %>
   
   
-<%if @event.event_type%>
+            <%if @event.event_type%>
 
-
+                    
  
-            <%= render "accounts/lives/live_audio", event: @event, array: @array, navs: @navs, nav: @nav%>
+                <%= render "accounts/lives/live_audio", event: @event, array: @array, navs: @navs, nav: @nav%>
          
 
+        
+            <%else%>
+                <%= render "accounts/lives/live_video", event: @event, array: @array%>
+            
 
-<%else%>
-<%= render "accounts/lives/live_video", event: @event, array: @array%>
-<%end%>
+            <%end%>
 
+        <%else%>
+            <%= render "login" , event: @event%>
+
+        <% end %>
 <%else%>
-<%= render "login" , event: @event%>
-<% end %>
-<%else%>
+
 <%= render "expectation" , event: @event%>
 
 <%end%>

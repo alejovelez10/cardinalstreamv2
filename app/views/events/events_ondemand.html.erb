@@ -11,10 +11,6 @@
             <%= will_paginate @events%>
          </div>
          <div class = "col-md-12 text-right">
-            <%= link_to new_event_path(0), remote: true,class: "btn btn-primary" do %>
-            <i class="fa fa-video-camera" style = "font-size:30px;" aria-hidden="true"></i>
-            Live
-            <%end%>
             <%= link_to new_event_path(4), remote: true, class: "btn btn-primary" do %>
             <i class="fa fa-hdd-o" style = "font-size:30px;" aria-hidden="true"></i>
             Ondemand

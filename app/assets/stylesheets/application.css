@@ -244,3 +244,32 @@ margin: 0px 10px;
 {
   display:inline-flex !important;
 }
+
+
+.nav-tabs>li>a {
+    margin-right: 2px;
+    line-height: 1.42857143;
+    border: 1px solid transparent;
+    border-radius: 4px 4px 0 0;
+    background: #187191;
+    color: white;
+}
+
+.btn-primary
+{
+
+     background: #187191 !important;
+    color: white !important;
+}
+
+
+.label-primary {
+        background: #187191 !important;
+      }
+
+.no-active a:hover
+{
+
+     background: #187191 !important;
+    color: white !important;
+}

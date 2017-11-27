@@ -41,6 +41,8 @@ Rails.application.routes.draw do
   get  'ppts/views/:id' , to: "events#ppts_views" , as: "ppts_views"
   post   'sinc_ppts', to: "events#sinc_ppts", as: "sinc_ppts"
   get 'admin', to: 'events#admin', as: "admin_events"
+  get 'events_live', to: 'events#events_live', as: "events_live"
+  get 'events_ondemand', to: 'events#events_ondemand', as: "events_ondemand"
   root 'events#index'
   get 'redir', to: 'home#redir', as: 'redir'
   post 'create_question', to: 'questions#create_question', as: 'create_question'

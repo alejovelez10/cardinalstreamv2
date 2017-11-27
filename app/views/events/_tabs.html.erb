@@ -1,0 +1,26 @@
+<%
+if action_name == "index" || action_name == "admin"
+  a = "active"
+  b = "no-active"
+  c = "no-active"
+elsif action_name == "events_live"
+  a = "no-active"
+  b = "active"
+  c = "no-active"
+else
+  a = "no-active"
+  b = "no-active"
+  c = "active"
+
+end %>
+
+<ul class="nav nav-tabs">
+    <li class="<%=a%>"><a href="/events">Todos los Eventos</a></li>
+    <li class="<%=b%>"><a href="/events_live">Lives</a></li>
+    <li class="<%=c%>"><a  href="/events_ondemand">Ondemands</a></li>
+
+  </ul>
+
+  <div class="tab-content">
+    
+  </div>

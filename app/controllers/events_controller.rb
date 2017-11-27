@@ -93,7 +93,14 @@ class EventsController < ApplicationController
         key = c.shuffle[0,20].join
         @event.iframe = key
         @event.save
-        format.html { redirect_to events_path, notice: 'Event was successfully created.' }
+        format.html { 
+          if @event.state == 4
+          redirect_to events_ondemand_path, notice: 'El Evento se creo correctamente'
+             else
+          redirect_to events_live_path, notice: 'El Evento se creo correctamente'
+
+             end 
+           }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }
@@ -158,7 +165,13 @@ class EventsController < ApplicationController
             puts tvisi
             `ffmpeg -i  public/uploads/event/video/#{@event.id}/default.mp4 -r 1 -ss #{tvisi} -t 1 public/uploads/event/video/#{@event.id}/screamshot.jpg` if  !@event.event_type
         end
-        format.html { redirect_to events_path, notice: 'Event was successfully updated.' }
+        format.html {   if @event.state == 4
+          redirect_to events_ondemand_path, notice: 'El Evento se edito correctamente'
+             else
+          redirect_to events_live_path, notice: 'El Evento se edito correctamente'
+
+             end 
+           }
         format.json { render :show, status: :ok, location: @event }
       else
         format.html { render :edit }
@@ -272,6 +285,17 @@ class EventsController < ApplicationController
     @event.save
     puts array
     redirect_to events_path
+  end
+
+
+  def events_live
+        @events = Event.where(admin_user: current_user.admin_user).where.not(state: 4).paginate(page: params[:page],:per_page => 10).order(created_at: :DESC)
+
+  end
+
+  def events_ondemand
+          @events = Event.where(admin_user: current_user.admin_user).where(state: 4).paginate(page: params[:page],:per_page => 10).order(created_at: :DESC)
+
   end
 
   private
