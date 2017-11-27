@@ -114,5 +114,58 @@
 
    })
 </script>
+<style href= "../../css/offline-language-spanish.css"> </style>
+<style href= "../../css/offline-theme-default.css">
+   
+</style>
+<script src = "../../javascripts/offline.js" ></script>
+<div class="overmssgoffline" style = "display:none">
+   asffds
+</div>
+<style type="text/css" media="screen">
+.overmssgoffline
+{
+   display: block;
+   padding-left: 10px;
+   background: #f5f9bb;
+   color:#2b2b2b;
+   font-size: 16px;
+}
+   
+</style>
 
-
+<script>
+   
+      var lkt = 0, upin;
+      //var myPlayer = WowzaPlayer.get('playerElement');
+      Offline.options = {checks: {xhr: {url: '/javascripts'}}};
+      
+      Offline.on('confirmed-down', function () {
+           
+            console.log("offfffffffffff1111111111111111");
+            //myPlayer.pause();
+      });
+   
+      Offline.on('confirmed-up', function () {
+            $('.overmssgoffline').fadeOut();
+            console.log("onnnnnnnnnnnnnnnnnn1111111111111111111");
+      });
+      
+      Offline.on('down', function () {
+         
+         console.log("offffffffffff2f22222222222");
+      });
+      
+      Offline.on('up', function () {
+         //myPlayer.play();
+         console.log("onnnnnnnnnnnnnnnnnn222222222222222");
+         
+      });
+      
+      
+      setInterval(function(){
+         Offline.check();
+         console.log("interval");
+     
+      }, 3000);
+   </script>
