@@ -23,10 +23,11 @@ class AccountsController < ApplicationController
    
     @event = Event.where(iframe: params[:iframe]).first
     @account = Account.find(@event.account_id)
+     if @event.has_ppts 
     @array = @event.slides.split(/,/)
     @count = @array.count
     @sync =  @event.sync
-    
+    end
 
   end  
 
