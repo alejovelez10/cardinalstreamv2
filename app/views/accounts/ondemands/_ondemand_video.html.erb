@@ -78,8 +78,9 @@
       "uiQuickRewindSeconds":"30"
       }
    );
-   
-     onLoadListener = function () {
+
+var myPlayer = WowzaPlayer.get('playerElement');
+onLoadListener = function () {
                $('.gif').hide();
     $('.png').show(); 
     $('.play').hide();
