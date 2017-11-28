@@ -40,7 +40,7 @@ var myChart = new Chart(ctx, {
 
         datasets: [{
             label: 'Vistas',
-            data: [12, 19, 3, 5, 2, 3],
+            data: [<%@events.each do |event| %>"<%=event.views%>",<%end%>],
             backgroundColor: [
                 
               <%@events.each do |event| %>'rgba(54, 162, 235, 0.5)',<%end%>
