@@ -3,13 +3,13 @@
 
 <div class="col-md-4">
 
-<div class="row" style="margin-left: 10px;
+<div class="row" style="margin-left: 10px;padding: 10px;
     background: gainsboro;">
   <div class="col-md-4 text-right">
                      <img style = "width:95px" src="https://blog.rankwatch.com/wp-content/uploads/2017/09/if_calendar-clock_299096-1.png" alt="">
                   </div>
                   <div class="col-md-8" style="color:gray">
-                  <span style="font-size:15px;font-weight: bold">Video mas visto</span><br>
+                  <span style="font-size:15px;font-weight: bold">Video mas visto</span><br><br>
                    <span style="font-size:18px;"><%=@eventm.name%> <span><br>
                    
                   
@@ -22,6 +22,13 @@
 </div>
 
 
+<div class="row" style="margin-left: 10px;">
+<div class="col-md-12" style="padding: 0px">
+    
+     <h5>EVENTOS VISTAS DE MAYOR A MENOR <%= link_to stats_csv_path(format: "csv") do%>
+        <img width="30px;" src="https://appfluence.com/productivity/wp-content/uploads/2017/04/a-csv.png" alt="">
+        <%end%>
+     </h5>
         <table class="table1">
                 <tr>
                     <th>Evento</th>
@@ -34,6 +41,10 @@
                 </tr>
                 <%end%>
          </table>
+</div>
+    
+</div>
+ 
     </div>    
 </div>
 
@@ -91,17 +102,15 @@ var myChart = new Chart(ctx, {
 .table1
 {
     width: 100%;
-margin-left: 10px;
 
-margin-top: 50px;
 
 }
 
 .table1 th {
-    background: #359bbf;
-    color: white;
+    background: gainsboro;
+    color: gray;
     padding: 5px;
-    border: 1px solid #359bbf;
+    border: 1px solid gainsboro;
 }
 .table1 td
 {
