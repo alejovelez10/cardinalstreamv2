@@ -88,6 +88,7 @@ class AccountsController < ApplicationController
     @event.update(views: views)
     @stat = Stat.new(time_stat: date, type_stat: 0, event_id: @event.id, account_id: @event.account_id , event_name: @event.name, day: date.day, month: date.month, year: date.year, hour: date.hour, minute: date.minute, second: date.second)
     @stat.save
+    puts "holaaaaaaaaaaaaaaaa"
 
 
   end  
