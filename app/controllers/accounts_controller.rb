@@ -176,3 +176,5 @@ class AccountsController < ApplicationController
       params.require(:account).permit(:domain, :logo, :admin_user, :user_id, :background_portal, :background_stream, :name,  :chat, :facebook, :twitter, :instagram, :linkedin)
     end
 end
+
+
