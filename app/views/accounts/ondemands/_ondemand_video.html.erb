@@ -79,7 +79,15 @@
       }
    );
    
-     
+     onLoadListener = function () {
+               $('.gif').hide();
+    $('.png').show(); 
+    $('.play').hide();
+    $('.pause').show();
+    myPlayer.play(); 
+ 
+}
+myPlayer.onLoad(onLoadListener);
    
    
    });
