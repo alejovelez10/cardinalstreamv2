@@ -72,9 +72,11 @@ class AccountsController < ApplicationController
    
     @event = Event.find(params[:id])
     @account = Account.find(@event.account_id)
+     if @event.has_ppts 
     @array = @event.slides.split(/,/)
     @count = @array.count
     @sync =  @event.sync
+    end
     @nav =  request.user_agent
 
 
