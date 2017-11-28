@@ -16,7 +16,7 @@
 <hr class = "hr">
 <div class="row show-user company" >
    <div class="col-md-4">
-      <%= @account1.logo? ? image_tag(@account1.logo_url) : ""  %>
+      <%= @account1.logo? ? image_tag(@account1.logo_url(:medium)) : ""  %>
       <div class="col-md-10 col-md-offset-1">
          <h2><%= @account1.name %></h2>
          <p><strong>¿Preguntas en los Eventos? </strong> <%= @account1.questions ? "Si" : "No" %></p>
