@@ -23,8 +23,10 @@ class EventsController < ApplicationController
     
     @event.update(ultimate_ppt: 0)
     @account = Account.find(@event.account_id)
+    if @event.has_ppts 
     @array = @event.slides.split(/,/)
     @count = @array.count
+    end
 
 
   end
