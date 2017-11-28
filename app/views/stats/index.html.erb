@@ -1,3 +1,27 @@
+
+<div class="row" style="    padding: 10px;">
+
+<div class="col-md-6">
+        <table class="table1">
+                <tr>
+                    <th>Evento</th>
+                    <th>Vistas</th>
+                </tr>
+                <%@events.each do |event| %>
+                <tr>
+                    <td><%=event.name%></td>
+                    <td style="text-align: center;"><%=event.views%></td>
+                </tr>
+                <%end%>
+         </table>
+    </div>    
+</div>
+
+
+
+
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.js" type="text/javascript" charset="utf-8"></script>
 
 <div class="row">
@@ -12,7 +36,7 @@ var ctx = document.getElementById("myChart");
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: [<%@events.each do |event| %>"<%=event.name%>",<%end%>],
+        labels: [<%@events.each do |event| %>"<%=event.id%>",<%end%>],
 
         datasets: [{
             label: 'Vistas',
@@ -32,10 +56,38 @@ var myChart = new Chart(ctx, {
         scales: {
             yAxes: [{
                 ticks: {
-                    beginAtZero:true
+                    beginAtZero:true,
+                    maxRotation: 90,
+                    minRotation: 90
                 }
             }]
         }
     }
 });
 </script> 
+
+
+<style>
+.table1
+{
+    width: 100%;
+
+
+}
+
+.table1 th {
+    background: #359bbf;
+    color: white;
+    padding: 5px;
+    border: 1px solid #359bbf;
+}
+.table1 td
+{
+    padding: 5px;   
+    border: 1px solid gray;  
+    border: 1px solid #cac5c5;
+    color:  gray;
+
+}
+    
+</style>
