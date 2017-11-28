@@ -15,6 +15,8 @@
 #  updated_at   :datetime         not null
 #  type_stat    :integer
 #  time_stat    :datetime
+#  minute       :integer
+#  second       :integer
 #
 
 class Stat < ApplicationRecord

@@ -10,7 +10,12 @@ class EventsController < ApplicationController
   def index
 
     @events = Event.where(admin_user: current_user.admin_user).paginate(page: params[:page],:per_page => 10).order(created_at: :DESC)
-    puts current_user.email
+    
+    respond_to do |format|
+    format.html
+    format.csv { send_data @events.to_csv }
+    format.xls  #{ send_data @events.to_csv(col_sep: "\t") }
+  end
   end
 
   def admin
@@ -308,7 +313,7 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:date_event, :name, :description, :state, :backgroud_event,:video, :has_ppts ,:ppts, :user_id, :admin_user, :account_id, :video_p, :event_type, :event_date, :delay, :remove_ppts,:link ,:remove_video, :has_register, :social, :has_files, :has_question, :ultimate_ppt ,:root_event,ask_emails_attributes: [:id, :email, :user_id,:admin_user, :event_id,:account_id,:comment, :_destroy], event_files_attributes: [:id, :attachment, :user_id,:admin_user, :event_id,:account_id,:name, :_destroy])
+      params.require(:event).permit(:date_event, :name, :description, :state, :backgroud_event,:video, :has_ppts ,:ppts, :user_id, :admin_user, :account_id, :video_p, :event_type, :event_date, :delay, :remove_ppts,:link ,:remove_video, :has_register, :social, :has_files, :has_question,:views, :ultimate_ppt ,:root_event,ask_emails_attributes: [:id, :email, :user_id,:admin_user, :event_id,:account_id,:comment, :_destroy], event_files_attributes: [:id, :attachment, :user_id,:admin_user, :event_id,:account_id,:name, :_destroy])
     end
   
 

@@ -28,6 +28,10 @@ class AccountsController < ApplicationController
     @count = @array.count
     @sync =  @event.sync
     end
+    views = @event.views != nil ? (@event.views + 1) : 1
+    @event.update(views: views)
+    @stat = Stat.new(time_stat: date, type_stat: 0, event_id: @event.id, account_id: @event.account_id , event_name: @event.name, day: date.day, month: date.month, year: date.year, hour: date.hour, minute: date.minute, second: date.second)
+    @stat.save
 
   end  
 
@@ -60,7 +64,7 @@ class AccountsController < ApplicationController
 
   def portal_show
 
-     @nav =  request.user_agent
+    @nav =  request.user_agent
     a = @nav.upcase.include? "ANDROID"
     b = @nav.upcase.include? "IPHONE"
     puts a 
@@ -73,13 +77,17 @@ class AccountsController < ApplicationController
    
     @event = Event.find(params[:id])
     @account = Account.find(@event.account_id)
-     if @event.has_ppts 
+     if @event.has_ppts && @event.slides != nil
     @array = @event.slides.split(/,/)
     @count = @array.count
     @sync =  @event.sync
     end
     @nav =  request.user_agent
-
+    date = DateTime.now
+    views = @event.views != nil ? (@event.views + 1) : 1
+    @event.update(views: views)
+    @stat = Stat.new(time_stat: date, type_stat: 0, event_id: @event.id, account_id: @event.account_id , event_name: @event.name, day: date.day, month: date.month, year: date.year, hour: date.hour, minute: date.minute, second: date.second)
+    @stat.save
 
 
   end  

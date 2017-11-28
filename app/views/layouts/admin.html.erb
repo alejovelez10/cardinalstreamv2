@@ -31,41 +31,34 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                <ul class="nav navbar-nav">
                                   <li  class="li"><%= link_to  admin_events_path,:class => "indicadores" do %>
-                           <span class="fa fa-home" style = "color:gray"></span>
-                           <span style = "color:gray!important">Inicio</span>
+                           <span class="fa fa-home" style = "color:white"></span>
+                           <span style = "color:white!important">Inicio</span>
                            <% end %></li>
-                        </li>
-                   <li class="li">
-                        </li>
-
-                         <li class="li">
-                        </li>
-
-                                <li class="li">
-                        </li>
+                     <li  class="li"><%= link_to  stats_index_path,:class => "indicadores" do %>
+                           <span class="fa fa-chart" style = "color:white"></span>
+                           <span style = "color:white!important">Estadisticas</span>
+                           <% end %></li>
 
                   
                  
-                  <li class="dropdown" >
-                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-cog color-gray icon" aria-hidden="true"></i> Configuración<span class="caret"></span></a>
-                     <ul class="dropdown-menu">
-
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">One more separated link</a></li>
-                     </ul>
-                  </li>
+                
                </ul>
                <ul class="nav navbar-nav navbar-right">
-                  <li><%= link_to  account_path(get_account),:class => "indicadores" do %>
+                 <li class="dropdown" >
+                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-cog color-white icon" aria-hidden="true"></i> Configuración<span class="caret"></span></a>
+                     <ul class="dropdown-menu">
+
+                        <li><%= link_to  account_path(get_account),:class => "indicadores" do %>
                            <span class="fa fa-sign-out" style = "color:gray"></span>
                            <span style = "color:gray!important">Ver Cuenta</span>
                            <% end %></li>
+                
+                     </ul>
+                  </li>
+                 
                   <li style = "height: 51px;margin-left: 20px;margin-right: 15px;" ></li>
                   <li class="dropdown">
-                     <a href="#" class="dropdown-toggle user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%=current_user.email  %> <span style = "color:gray" class="caret"></span></a>
+                     <a href="#" class="dropdown-toggle user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%=current_user.email  %> <span style = "color:white" class="caret"></span></a>
                       <ul class="dropdown-menu">
                         <li> <%= link_to  destroy_user_session_path, :method => :delete,:class => "indicadores" do %>
                            <span class="fa fa-sign-out" style = "color:gray"></span>
@@ -92,7 +85,7 @@
          </div>
          <!-- /.container-fluid -->
       </nav>
-
+<br>
     <%= yield %>
   </body>
 </html>

@@ -28,6 +28,8 @@
 #  has_files       :boolean
 #  has_question    :boolean
 #  video_p         :string
+#  ultimate_ppt    :integer
+#  link            :string
 #
 
 class Event < ApplicationRecord
@@ -58,5 +60,22 @@ class Event < ApplicationRecord
                 
             end  
               
-        end       
+        end  
+
+
+        def self.to_csv()
+          attributes = %w{id name stat}
+            CSV.generate(headers: true) do |csv|
+              csv <<  attributes
+              all.each do |event|
+               csv << attributes.map{ |attr| event.send(attr) }
+              end
+            end
+        end  
+
+
+          def stat
+            "#{stats.count}"
+          end   
 end
+

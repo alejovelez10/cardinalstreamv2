@@ -1,5 +1,6 @@
 class StatsController < ApplicationController
   def index
+  	@events = Event.where(admin_user: current_user.admin_user).order(views: :desc)
   end
 
   def create

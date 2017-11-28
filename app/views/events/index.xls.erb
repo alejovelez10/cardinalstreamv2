@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+   xmlns:x="urn:schemas-microsoft-com:office:excel"
+   xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+   xmlns:html="http://www.w3.org/TR/REC-html40">
+<x:ExcelWorkbook>
+    <WindowHeight>10000</WindowHeight>
+    <WindowWidth>10000</WindowWidth>
+</x:ExcelWorkbook>
+<ss:Styles>
+    <ss:Style ss:ID="Default" ss:Name="Normal">
+        <Font x:Family="Swiss" ss:Size="10" ss:Bold="0"/>
+        <ss:Alignment ss:Vertical="Bottom"/>
+    </ss:Style>
+    <ss:Style ss:ID="s22">
+        <Font x:Family="Swiss" ss:Size="12" ss:Bold="1"/>
+       
+    </ss:Style>
+</ss:Styles>
+<Worksheet ss:Name="Sheet1">
+    <ss:Table>
+            <ss:Column ss:AutoFitWidth="0" ss:Width="1300"/>
+            <ss:Column ss:AutoFitWidth="0" ss:Width="95"/>
+
+
+        <ss:Row>
+            <ss:Cell ss:StyleID="s22" ss:AutoFitWidth="0" ss:Width="1300">
+                <ss:Data ss:Type="String">Evento</ss:Data>
+            </ss:Cell>
+            <ss:Cell ss:StyleID="s22">
+                <ss:Data ss:Type="String">Vistas</ss:Data>
+            </ss:Cell>
+        </ss:Row>
+          <%@events.each do |event| %>
+        <ss:Row>
+        
+            <ss:Cell>
+                <ss:Data ss:Type="String"><%=event.name%></ss:Data>
+            </ss:Cell>
+            <ss:Cell >
+                <ss:Data ss:Type="Number"><%=event.stats.count%></ss:Data>
+            </ss:Cell>
+        
+        </ss:Row>
+          <%end%>  
+    </ss:Table>
+</Worksheet>
+</Workbook>

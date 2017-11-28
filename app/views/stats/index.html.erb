@@ -1,2 +1,41 @@
-<h1>Stats#index</h1>
-<p>Find me in app/views/stats/index.html.erb</p>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.js" type="text/javascript" charset="utf-8"></script>
+
+<div class="row">
+<div class="col-md-6">
+	<canvas id="myChart" width="400" height="200"></canvas>
+</div>
+	
+</div>
+
+<script>
+var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [<%@events.each do |event| %>"<%=event.name%>",<%end%>],
+
+        datasets: [{
+            label: 'Vistas',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                
+              <%@events.each do |event| %>'rgba(54, 162, 235, 0.5)',<%end%>
+               
+            ],
+            borderColor: [
+               <%@events.each do |event| %>'rgba(54, 162, 235, 0.8)',<%end%>
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+</script> 
