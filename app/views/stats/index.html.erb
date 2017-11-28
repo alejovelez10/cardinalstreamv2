@@ -1,7 +1,27 @@
 
 <div class="row" style="    padding: 10px;">
 
-<div class="col-md-3">
+<div class="col-md-4">
+
+<div class="row" style="margin-left: 10px;
+    background: gainsboro;">
+  <div class="col-md-4 text-right">
+                     <img style = "width:95px" src="https://blog.rankwatch.com/wp-content/uploads/2017/09/if_calendar-clock_299096-1.png" alt="">
+                  </div>
+                  <div class="col-md-8" style="color:gray">
+                  <span style="font-size:15px;font-weight: bold">Video mas visto</span><br>
+                   <span style="font-size:18px;"><%=@eventm.name%> <span><br>
+                   
+                  
+                     
+                     <span style="font-size:50px;margin-left: 20px;"><%=@eventm.views %> </span>veces<br>
+                   
+                  
+                     
+                  </div>
+</div>
+
+
         <table class="table1">
                 <tr>
                     <th>Evento</th>
@@ -71,7 +91,9 @@ var myChart = new Chart(ctx, {
 .table1
 {
     width: 100%;
+margin-left: 10px;
 
+margin-top: 50px;
 
 }
 
