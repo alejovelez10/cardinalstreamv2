@@ -19,6 +19,7 @@
 //= require jquery_nested_form
 //= require jquery.tinyscrollbar
 //= require twitter/bootstrap
+//= require turbolinks
 //= require_tree .
 
 
