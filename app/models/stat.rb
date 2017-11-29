@@ -22,4 +22,43 @@
 class Stat < ApplicationRecord
     belongs_to :event
     belongs_to :account
+
+
+
+       def self.to_csv()
+          attributes = %w{Evento Dia Mes Ano Hora Minuto Segundo Fecha_Hora}
+            CSV.generate(headers: true) do |csv|
+              csv <<  attributes
+              all.each do |stat|
+               csv << attributes.map{ |attr| stat.send(attr) }
+              end
+            end
+        end  
+        
+        def Evento
+          "#{event_name}"
+        end
+        def Dia
+          "#{day}"
+        end
+        def Mes
+          "#{month}"
+        end
+        def Ano
+          "#{year}"
+        end
+        def Hora
+          "#{hour}"
+        end
+        def Minuto
+          "#{minute}"
+        end
+        def Segundo
+          "#{second}"
+        end
+        def Fecha_Hora
+          "#{time_stat}"
+        end
+
+
 end

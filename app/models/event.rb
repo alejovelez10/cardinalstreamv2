@@ -64,7 +64,7 @@ class Event < ApplicationRecord
 
 
         def self.to_csv()
-          attributes = %w{id name views}
+          attributes = %w{name views}
             CSV.generate(headers: true) do |csv|
               csv <<  attributes
               all.each do |event|

@@ -2,7 +2,8 @@ Rails.application.routes.draw do
  
 
   get 'stats/index'
-   get 'stats/csv'
+  get 'stats/csv'
+   get 'stats/csv_all'
   get 'portal_show/stats/create/:id', to: 'stats#create', as: 'create'
 
   get 'viewer_sessions/new'

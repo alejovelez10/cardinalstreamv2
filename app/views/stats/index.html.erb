@@ -1,125 +1,104 @@
-
 <div class="row" style="    padding: 10px;">
-
-<div class="col-md-4">
-
-<div class="row" style="margin-left: 10px;padding: 10px;
-    background: gainsboro;">
-  <div class="col-md-4 text-right">
-                     <img style = "width:95px" src="https://blog.rankwatch.com/wp-content/uploads/2017/09/if_calendar-clock_299096-1.png" alt="">
-                  </div>
-                  <div class="col-md-8" style="color:gray">
-                  <span style="font-size:15px;font-weight: bold">Video mas visto</span><br><br>
-                   <span style="font-size:18px;"><%=@eventm.name%> <span><br>
-                   
-                  
-                     
-                     <span style="font-size:50px;margin-left: 20px;"><%=@eventm.views %> </span>veces<br>
-                   
-                  
-                     
-                  </div>
+   <div class="col-md-4">
+      <div class="row" style="margin-left: 10px;padding: 10px;
+         background: gainsboro;">
+         <div class="col-md-4 text-right">
+            <img style = "width:95px" src="https://blog.rankwatch.com/wp-content/uploads/2017/09/if_calendar-clock_299096-1.png" alt="">
+         </div>
+         <div class="col-md-8" style="color:gray">
+            <span style="font-size:15px;font-weight: bold">Video mas visto</span><br><br>
+            <span style="font-size:18px;"><%=@eventm.name%> <span><br>
+            <span style="font-size:50px;margin-left: 20px;"><%=@eventm.views %> </span>veces<br>
+         </div>
+      </div>
+      <div class="row" style="margin-left: 10px;">
+         <div class="col-md-12" style="padding: 0px">
+            <h5>EVENTOS VISTAS DE MAYOR A MENOR <%= link_to stats_csv_path(format: "csv") do%>
+               <img width="30px;" src="https://appfluence.com/productivity/wp-content/uploads/2017/04/a-csv.png" alt="">
+               <%end%>
+            </h5>
+            <div style = "height:200px;max-height: 200px;overflow: auto;">
+            <table class="table1">
+               <tr>
+                  <th>Evento</th>
+                  <th>Vistas</th>
+               </tr>
+               <%@events.each do |event| %>
+               <tr>
+                  <td><%=event.name%></td>
+                  <td style="text-align: center;"><%=event.views%></td>
+               </tr>
+               <%end%>
+            </table>
+            </div>
+            <h5 style="padding:5px;background:gainsboro">TOTAL DE VISTAS <%=@events.sum(:views)%></h5>
+         </div>
+      </div>
+   </div>
+   <div class="col-md-4">
+      <h5 style="margin-left: 10px;padding: 10px;
+         background: gainsboro;">DESCARGAR TODAS LAS VISTAS <%= link_to stats_csv_all_path(format: "csv") do%>
+               <img width="30px;" src="https://appfluence.com/productivity/wp-content/uploads/2017/04/a-csv.png" alt="">
+               <%end%>
+      </h5>
+   </div>
 </div>
-
-
-<div class="row" style="margin-left: 10px;">
-<div class="col-md-12" style="padding: 0px">
-    
-     <h5>EVENTOS VISTAS DE MAYOR A MENOR <%= link_to stats_csv_path(format: "csv") do%>
-        <img width="30px;" src="https://appfluence.com/productivity/wp-content/uploads/2017/04/a-csv.png" alt="">
-        <%end%>
-     </h5>
-        <table class="table1">
-                <tr>
-                    <th>Evento</th>
-                    <th>Vistas</th>
-                </tr>
-                <%@events.each do |event| %>
-                <tr>
-                    <td><%=event.name%></td>
-                    <td style="text-align: center;"><%=event.views%></td>
-                </tr>
-                <%end%>
-         </table>
-</div>
-    
-</div>
- 
-    </div>    
-</div>
-
-
-
-
-
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.js" type="text/javascript" charset="utf-8"></script>
-
 <div class="row">
-<div class="col-md-6">
-	
+   <div class="col-md-6">
+   </div>
 </div>
-	
-</div>
-
 <script>
-var ctx = document.getElementById("myChart");
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: [<%@events.each do |event| %>"<%=event.id%>",<%end%>],
-
-        datasets: [{
-            label: 'Vistas',
-            data: [<%@events.each do |event| %>"<%=event.views%>",<%end%>],
-            backgroundColor: [
-                
-              <%@events.each do |event| %>'rgba(54, 162, 235, 0.5)',<%end%>
-               
-            ],
-            borderColor: [
-               <%@events.each do |event| %>'rgba(54, 162, 235, 0.8)',<%end%>
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                   max: 5,
-                   min: 0,
-                   stepSize: 1
-                }
-            }]
-        }
-    }
-});
+   var ctx = document.getElementById("myChart");
+   var myChart = new Chart(ctx, {
+       type: 'bar',
+       data: {
+           labels: [<%@events.each do |event| %>"<%=event.id%>",<%end%>],
+   
+           datasets: [{
+               label: 'Vistas',
+               data: [<%@events.each do |event| %>"<%=event.views%>",<%end%>],
+               backgroundColor: [
+                   
+                 <%@events.each do |event| %>'rgba(54, 162, 235, 0.5)',<%end%>
+                  
+               ],
+               borderColor: [
+                  <%@events.each do |event| %>'rgba(54, 162, 235, 0.8)',<%end%>
+               ],
+               borderWidth: 1
+           }]
+       },
+       options: {
+           scales: {
+               yAxes: [{
+                   ticks: {
+                      max: 5,
+                      min: 0,
+                      stepSize: 1
+                   }
+               }]
+           }
+       }
+   });
 </script> 
-
-
 <style>
-.table1
-{
-    width: 100%;
-
-
-}
-
-.table1 th {
-    background: gainsboro;
-    color: gray;
-    padding: 5px;
-    border: 1px solid gainsboro;
-}
-.table1 td
-{
-    padding: 5px;   
-    border: 1px solid gray;  
-    border: 1px solid #cac5c5;
-    color:  gray;
-    font-size:12px;
-
-}
-    
+   .table1
+   {
+   width: 100%;
+   }
+   .table1 th {
+   background: gainsboro;
+   color: gray;
+   padding: 5px;
+   border: 1px solid gainsboro;
+   }
+   .table1 td
+   {
+   padding: 5px;   
+   border: 1px solid gray;  
+   border: 1px solid #cac5c5;
+   color:  gray;
+   font-size:12px;
+   }
 </style>
