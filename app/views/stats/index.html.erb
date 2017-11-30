@@ -11,14 +11,21 @@
             <span style="font-size:50px;margin-left: 20px;"><%=@eventm.views %> </span>veces<br>
          </div>
       </div>
-      <div class="row" style="margin-left: 10px;">
+      <div class="row" style="margin-left: 10px;margin-top: 10px;">
          <div class="col-md-12" style="padding: 0px">
-            <h5>EVENTOS VISTAS DE MAYOR A MENOR <%= link_to stats_csv_path(format: "csv") do%>
-               <img width="30px;" src="https://appfluence.com/productivity/wp-content/uploads/2017/04/a-csv.png" alt="">
-               <%end%>
-            </h5>
+          
             <div style = "height:200px;max-height: 200px;overflow: auto;">
             <table class="table1">
+             <tr>
+                  <th colspan="2" class="text-center">EVENTOS VISTAS DE MAYOR A MENOR <%= link_to stats_csv_path(format: "csv") do%>
+               <img width="30px;" src="https://appfluence.com/productivity/wp-content/uploads/2017/04/a-csv.png" alt="">
+               <%end%></th>
+                 
+               </tr>
+             <tr>
+                  <th>Totoal de Vistas</th>
+                  <th class="text-center"><%=@events.sum(:views)%></th>
+               </tr>
                <tr>
                   <th>Evento</th>
                   <th>Vistas</th>
@@ -31,13 +38,13 @@
                <%end%>
             </table>
             </div>
-            <h5 style="padding:5px;background:gainsboro">TOTAL DE VISTAS <%=@events.sum(:views)%></h5>
+           
          </div>
       </div>
    </div>
    <div class="col-md-4">
       <h5 style="margin-left: 10px;padding: 10px;
-         background: gainsboro;">DESCARGAR TODAS LAS VISTAS <%= link_to stats_csv_all_path(format: "csv") do%>
+         background: gainsboro;">DESCARGAR LISTA DE INGRESOS <%= link_to stats_csv_all_path(format: "csv") do%>
                <img width="30px;" src="https://appfluence.com/productivity/wp-content/uploads/2017/04/a-csv.png" alt="">
                <%end%>
       </h5>
