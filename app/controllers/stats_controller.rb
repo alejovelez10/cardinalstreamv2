@@ -1,4 +1,10 @@
 class StatsController < ApplicationController
+
+def import
+  Stat.import(params[:file], current_user.admin_user, current_user.admin_user )
+  redirect_to stats_path, notice: "Estadisticas Importados"
+end
+
   def index
   	@events = Event.where(admin_user: current_user.admin_user).order(views: :desc)
   	@eventm = Event.where(admin_user: current_user.admin_user).order(views: :desc).first
@@ -27,7 +33,9 @@ end
     date = DateTime.now
     views = @event.views != nil ? (@event.views + 1) : 1
     @event.update(views: views)
-    Stat.create(admin_user: @event.admin_user, time_stat: date, type_stat: 0, event_id: @event.id, account_id: @event.account_id , event_name: @event.name, day: date.day, month: date.month, year: date.year, hour: date.hour, minute: date.minute, second: date.second)
+    date1 = date.year.to_s + "-" + date.month.to_s + "-" + date.day.to_s
+    time1 = date.hour.to_s + ":" + date.minute.to_s + ":" + date.second.to_s
+    Stat.create(admin_user: @event.admin_user, time_stat: date, type_stat: 0, event_id: @event.id, account_id: @event.account_id , event_name: @event.name, day: date.day, month: date.month, year: date.year, hour: date.hour, minute: date.minute, second: date.second, state_date: date1, state_time:time1)
    puts "jajjajajaaaaaaaaaaaaaaaaajajajajaja"
   end
 

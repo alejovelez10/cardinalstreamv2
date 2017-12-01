@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
  
 
+
+
+  resources :stats, :only => [:index,:create] do
+  collection { post :import }
+
+end
   get 'stats/index'
   get 'stats/csv'
   get 'stats/csv_all'
