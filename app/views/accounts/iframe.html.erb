@@ -1,4 +1,4 @@
-<% if @event.has_ppts %>
+<% if @event.has_ppts && @event.slides != nil%>
 <%= render "accounts/iframes/iframe_ppt" , event: @event ,array: @array, sync: @sync, count: @count ,  account: @account%>
 <%else%>
 <%= render "accounts/iframes/iframe" , event: @event  ,account: @account%>

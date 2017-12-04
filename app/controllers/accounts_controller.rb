@@ -16,6 +16,11 @@ class AccountsController < ApplicationController
    def portal
     @account = Account.where(domain: request.subdomain).first
     @events = @account1.events.where(state: 4).order(updated_at: :desc)
+      if @event.has_ppts 
+    @array = @event.slides.split(/,/)
+    @count = @array.count
+    @sync =  @event.sync
+    end
    end 
   
 
@@ -28,10 +33,7 @@ class AccountsController < ApplicationController
     @count = @array.count
     @sync =  @event.sync
     end
-    views = @event.views != nil ? (@event.views + 1) : 1
-    @event.update(views: views)
-    @stat = Stat.new(admin_user: @event.admin_user, time_stat: date, type_stat: 0, event_id: @event.id, account_id: @event.account_id , event_name: @event.name, day: date.day, month: date.month, year: date.year, hour: date.hour, minute: date.minute, second: date.second)
-    @stat.save
+
 
   end  
 
@@ -93,14 +95,41 @@ class AccountsController < ApplicationController
 
   
   def portal_show_name
+     
+      a = params[:name]
+      
+      if a.include? "JGrix"
+
+        @event = Event.where(iframe: params[:name]).first
+        @account = Account.find(@event.account_id)
+        if @event.has_ppts && @event.slides != nil
+        @array = @event.slides.split(/,/)
+        @count = @array.count
+        @sync =  @event.sync
+
+      end
+
+      render 'iframe' , layout: 'iframe'
+      else
+        @event = Event.where(link: params[:name]).first
+        @account = Account.find(@event.account_id)
+        if @event.has_ppts && @event.slides != nil
+        @array = @event.slides.split(/,/)
+        @count = @array.count
+        @sync =  @event.sync
+      end
+        render 'portal_show' 
+      end  
     
-    @event = Event.where(link: params[:name]).first
-    @account = Account.find(@event.account_id)
-    @array = @event.slides.split(/,/)
-    @count = @array.count
-    @sync =  @event.sync
-    render 'portal_show'
+    
+
+
+
   end  
+
+
+
+
 
 
   def portal_show_video
