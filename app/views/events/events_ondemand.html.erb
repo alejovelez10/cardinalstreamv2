@@ -108,13 +108,11 @@
 
 <script>
    $('.modal-links').click(function(){
-      $('.iframe').val("http://" + "<%=request.subdomain%>" + ".www.localhost:3000/iframe/" + $(this).attr("id"))
+      $('.iframe').val("<iframe width='1024' height='768' src='http://<%=request.subdomain%>.aletacloud.com/" +  $(this).attr('id') + "'" + "></iframe>")
 
 
    })
 </script>
-
-
 
 
 
