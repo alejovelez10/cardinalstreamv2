@@ -5,21 +5,24 @@ def import
   redirect_to stats_path, notice: "Estadisticas Importados"
 end
 
+    
+
   def index
   	@events = Event.where(admin_user: current_user.admin_user).order(views: :desc)
   	@eventm = Event.where(admin_user: current_user.admin_user).order(views: :desc).first
+    @eventph = Stat.where(admin_user: current_user.admin_user).where(type_stat: 0).where("hour >= ? AND hour < ?", 6 , 12)
     
   end
 
    def csv
-  	@events = Event.where(admin_user: current_user.admin_user).order(views: :desc)
+  	@events = Event.where(admin_user: current_user.admin_user).where(type_stat: 0).order(views: :desc)
     respond_to do |format|
        format.csv { send_data @events.to_csv, filename: "eventos.csv" }
        format.xls  #{ send_data @events.to_csv(col_sep: "\t") }
   end
 end
   def csv_all
-  	@stats = Stat.where(admin_user: current_user.admin_user).order(time_stat: :desc)
+  	@stats = Stat.where(admin_user: current_user.admin_user).where(type_stat: 0).order(time_stat: :desc)
     respond_to do |format|
        format.csv { send_data @stats.to_csv, filename: "entradas.csv" }
        format.xls  #{ send_data @events.to_csv(col_sep: "\t") }
