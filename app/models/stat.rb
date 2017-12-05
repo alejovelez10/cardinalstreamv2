@@ -26,7 +26,7 @@ class Stat < ApplicationRecord
 
 
        def self.to_csv()
-          attributes = %w{Evento Dia Mes Ano Hora Minuto Segundo Fecha_Hora}
+          attributes = %w{Evento Dia Mes Ano Hora Fecha_Hora Navegador}
             CSV.generate(headers: true) do |csv|
               csv <<  attributes
               all.each do |stat|
@@ -50,14 +50,13 @@ class Stat < ApplicationRecord
         def Hora
           "#{hour}"
         end
-        def Minuto
-          "#{minute}"
-        end
-        def Segundo
-          "#{second}"
-        end
+    
         def Fecha_Hora
           "#{time_stat}"
+        end
+
+        def Navegador
+          "#{browser}"
         end
 
 
