@@ -17,8 +17,9 @@
 
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-             <a class="navbar-brand" style = "background:white" href="#"><p class = "logop text-center" style = "color:#187191;   font-size: 18px;font-weight: bold"><img style= "width:30px;position: relative;
-    top: -3px;left: -5px;" id="slack" src="/../../images/cardinal_solo.png"><span sytle = "">cardinal</span><span style = "font-style:italic;">stream</span></p></a>
+             <a class="navbar-brand" style = "background:white;height:70px;" href="#"><p class = "logop text-center" style = "color:#187191;   font-size: 18px;font-weight: bold"><img style= "width:30px;position: relative;
+    top: -3px;left: -5px;margin-top: 10px;
+" id="slack" src="/../../images/cardinal_solo.png"><span sytle = "">cardinal</span><span style = "font-style:italic;">stream</span></p></a>
                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                <span class="sr-only">Toggle navigation</span>
                <span class="icon-bar"></span>
@@ -31,12 +32,12 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                <ul class="nav navbar-nav">
                                   <li  class="li"><%= link_to  admin_events_path,:class => "indicadores" do %>
-                           <span class="fa fa-home" style = "color:white"></span>
-                           <span style = "color:white!important">Inicio</span>
+                           <span class="fa fa-home" style = "color:white;font-size:40px"></span>
+                         
                            <% end %></li>
                      <li  class="li"><%= link_to  stats_index_path,:class => "indicadores" do %>
-                           <span class="fa fa-chart" style = "color:white"></span>
-                           <span style = "color:white!important">Estadisticas</span>
+                          <i class="fa fa-bar-chart" style="font-size:40px;color:white;" aria-hidden="true"></i>
+                          
                            <% end %></li>
 
                   
@@ -44,7 +45,7 @@
                 
                </ul>
                <ul class="nav navbar-nav navbar-right">
-                 <li class="dropdown" >
+                 <li class="dropdown" style= "margin-top: 10px;" >
                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-cog color-white icon" aria-hidden="true"></i> Configuración<span class="caret"></span></a>
                      <ul class="dropdown-menu">
 
@@ -56,8 +57,8 @@
                      </ul>
                   </li>
                  
-                  <li style = "height: 51px;margin-left: 20px;margin-right: 15px;" ></li>
-                  <li class="dropdown">
+                  <li style = "height: 51px;margin-left: 20px;margin-right: 15px;    margin-top: 10px;" ></li>
+                  <li class="dropdown" style= "margin-top: 10px;">
                      <a href="#" class="dropdown-toggle user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%=current_user.email  %> <span style = "color:white" class="caret"></span></a>
                       <ul class="dropdown-menu">
                         <li> <%= link_to  destroy_user_session_path, :method => :delete,:class => "indicadores" do %>

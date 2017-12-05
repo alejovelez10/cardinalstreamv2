@@ -16,11 +16,7 @@ class AccountsController < ApplicationController
    def portal
     @account = Account.where(domain: request.subdomain).first
     @events = @account1.events.where(state: 4).order(updated_at: :desc)
-      if @event.has_ppts && @event.slides != nil
-    @array = @event.slides.split(/,/)
-    @count = @array.count
-    @sync =  @event.sync
-    end
+     
    end 
   
 

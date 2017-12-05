@@ -1,11 +1,17 @@
 <div class="container">
+  <div class = "row title-table">
+         <div class = "col-md-12">
+            <p style="font-size:40px;color:#187191">Eventos</p>
+         </div>
+   
+      </div>
 
    <%=render "tabs"%>
    <br>
    <div class="row" >
       <div class = "row title-table">
          <div class = "col-md-6">
-            <p>Todos los Eventos <span class="label label-primary"><%=@events.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @events, :entry_name => 'Eventos' %></span> </p>
+            <p>Todos Lives <span class="label label-primary"><%=@events.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @events, :entry_name => 'Eventos' %></span> </p>
          </div>
          <div class = "col-md-6 paginate text-left title-table1">
             <%= will_paginate @events%>

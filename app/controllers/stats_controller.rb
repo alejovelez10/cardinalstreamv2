@@ -35,7 +35,7 @@ end
     @event.update(views: views)
     date1 = date.year.to_s + "-" + date.month.to_s + "-" + date.day.to_s
     time1 = date.hour.to_s + ":" + date.minute.to_s + ":" + date.second.to_s
-    Stat.create(admin_user: @event.admin_user, time_stat: date, type_stat: 0, event_id: @event.id, account_id: @event.account_id , event_name: @event.name, day: date.day, month: date.month, year: date.year, hour: date.hour, minute: date.minute, second: date.second, state_date: date1, state_time:time1)
+    Stat.create(admin_user: @event.admin_user,browser: request.user_agent, time_stat: date, type_stat: 0, event_id: @event.id, account_id: @event.account_id , event_name: @event.name, day: date.day, month: date.month, year: date.year, hour: date.hour, minute: date.minute, second: date.second, state_date: date1, state_time:time1)
    puts "jajjajajaaaaaaaaaaaaaaaaajajajajaja"
   end
 

@@ -9,7 +9,7 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
 
-    @events = Event.where(admin_user: current_user.admin_user).paginate(page: params[:page],:per_page => 10).order(created_at: :DESC)
+    @events = Event.where(admin_user: current_user.admin_user).paginate(page: params[:page],:per_page => 30).order(created_at: :DESC)
     
     respond_to do |format|
     format.html
@@ -19,7 +19,7 @@ class EventsController < ApplicationController
   end
 
   def admin
-    @events = Event.where(admin_user: current_user.admin_user).paginate(page: params[:page],:per_page => 10).order(created_at: :DESC)
+    @events = Event.where(admin_user: current_user.admin_user).paginate(page: params[:page],:per_page => 30).order(created_at: :DESC)
   end
 
   # GET /events/1
