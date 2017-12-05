@@ -10,6 +10,9 @@ end
   	@events = Event.where(admin_user: current_user.admin_user).order(views: :desc)
   	@eventm = Event.where(admin_user: current_user.admin_user).order(views: :desc).first
     @eventph = Stat.where(admin_user: current_user.admin_user).where(type_stat: 0).where(:hours => (6..12)).count
+    @eventsh = Stat.where(admin_user: current_user.admin_user).where(type_stat: 0).where(:hours => (13..18)).count
+    @eventth = Stat.where(admin_user: current_user.admin_user).where(type_stat: 0).where(:hours => (19..24)).count
+    @eventt = @eventph + @eventsh + @eventth
 
     
   end
