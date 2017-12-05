@@ -1,5 +1,7 @@
 
-      <%= form_tag import_stats_path, multipart: true do %>
+    <div style="display: none">
+      
+        <%= form_tag import_stats_path, multipart: true do %>
   <div class = "col-md-12 text-right">
   <%= file_field_tag :file , class: 'inputfile', id: 'file' %>
   <label for="file"><i class="fa fa-upload" aria-hidden="true"></i>
@@ -9,6 +11,8 @@
 </div>
 
 <% end %>
+    </div>
+
       <div class = "row title-table">
          <div class = "col-md-12">
             <p style="font-size:40px;margin-left:30px;color:#187191"">Estadisticas</p>
