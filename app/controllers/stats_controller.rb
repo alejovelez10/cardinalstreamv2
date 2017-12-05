@@ -5,12 +5,12 @@ def import
   redirect_to stats_path, notice: "Estadisticas Importados"
 end
 
-    
-
+   
   def index
   	@events = Event.where(admin_user: current_user.admin_user).order(views: :desc)
   	@eventm = Event.where(admin_user: current_user.admin_user).order(views: :desc).first
-    @eventph = Stat.where(admin_user: current_user.admin_user).where(type_stat: 0).where("hour >= ? AND hour < ?", 6 , 12)
+    @eventph = Stat.where(admin_user: current_user.admin_user).where(type_stat: 0).where(:hour => (6..12)).count
+
     
   end
 
