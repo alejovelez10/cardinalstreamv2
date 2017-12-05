@@ -13,7 +13,7 @@ end
     @eventsh = Stat.where(admin_user: current_user.admin_user).where(type_stat: 0).where(:hours => (13..18)).count
     @eventth = Stat.where(admin_user: current_user.admin_user).where(type_stat: 0).where(:hours => (19..24)).count
     @eventch = Stat.where(admin_user: current_user.admin_user).where(type_stat: 0).where(:hours => (1..5)).count
-    @eventt = @eventph + @eventsh + @eventth + @evencth
+    @eventt = @eventph + @eventsh + @eventth + @eventch
 
     
   end
