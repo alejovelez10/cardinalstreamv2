@@ -23,7 +23,7 @@ end
   end
 
    def csv
-  	@events = Event.where(admin_user: current_user.admin_user).where(type_stat: 0).order(views: :desc)
+  	@events = Event.where(admin_user: current_user.admin_user).order(views: :desc)
     respond_to do |format|
        format.csv { send_data @events.to_csv, filename: "eventos.csv" }
        format.xls  #{ send_data @events.to_csv(col_sep: "\t") }
