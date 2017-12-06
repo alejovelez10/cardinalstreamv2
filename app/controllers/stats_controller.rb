@@ -15,8 +15,9 @@ end
     @eventch = Stat.where(admin_user: current_user.admin_user).where(type_stat: 0).where(:hours => (1..5)).count
     @eventt = @eventph + @eventsh + @eventth + @eventch
     @eventph_p = @eventt == 0 ? ((@eventph/@eventt.to_f)*100) : ((@eventph/@eventt.to_f)*100).to_i 
-
-    
+    @eventsh_p = @eventt == 0 ? ((@eventsh/@eventt.to_f)*100) : ((@eventsh/@eventt.to_f)*100).to_i 
+    @eventth_p = @eventt == 0 ? ((@eventth/@eventt.to_f)*100) : ((@eventth/@eventt.to_f)*100).to_i 
+    @eventch_p = @eventt == 0 ? ((@eventch/@eventt.to_f)*100) : ((@eventch/@eventt.to_f)*100).to_i 
 
     
   end
