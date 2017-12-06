@@ -1,9 +1,9 @@
 <div id="contact-modal" class="modal fade">
-   <div class="modal-dialog modal-lg">
+   <div class="modal-dialog modal-xs">
       <div class="modal-content">
          <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h4 class="modal-title"><%= action_name %> Evento</h4>
+            <h4 class="modal-title">Editar Cuenta</h4>
          </div>
          <div class="alert alert-danger" style="display:none">
             <ul>
@@ -67,25 +67,25 @@
                </div>
 
             </div>-->
-            
+          
              <div class="row">
-               <div class="col-md-4">
+               <div class="col-md-12">
                   <div class="form-group acc1">
                      <label class="radio-inline">
                      <%= form.check_box :has_psw, class: 'rb cksi check1' %><span style = "margin-left:10px">¿Cotraseña en el portal?</span>
                      </label>
                   </div>
                </div>
-               <div class="col-md-4">
+               <div class="col-md-12">
                   <div class="form-group acc1">
-                      <%= form.label "Contraseña del portal" %>
+                      <%= form.label "Contraseña" %>
                      <%= form.text_field :psw, id: :account_psw, class: "form form-control" %>
                      </label>
                   </div>
                </div>
             </div>
 
-
+  <br>  
             <!--<div class="row">
                <div class="col-md-4">
                   <div class="form-group acc1">
@@ -115,7 +115,7 @@
                      <%= form.file_field :background_portal, id: :account_background_portal , class: "form form-control" %>
                   </div>
                </div>-->
-               <div class="col-md-4">
+               <div class="col-md-12">
                   <div class="form-group">
                      <%= form.label "Fondo del Portal" %>
                      <%= form.file_field :background_stream, id: :account_background_stream, class: "form form-control"  %>
