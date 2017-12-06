@@ -10,7 +10,7 @@ end
   get 'stats/index'
   get 'stats/csv'
   get 'stats/csv_all'
-  get 'portal_show/create/:id', to: 'stats#create'
+  get 'portal_show/create/:id/:type', to: 'stats#create'
 
   get 'viewer_sessions/new'
 
