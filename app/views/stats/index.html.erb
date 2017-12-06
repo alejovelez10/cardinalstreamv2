@@ -76,15 +76,18 @@
              <tr>
                   <th>Total de Vistas</th>
                   <th class="text-center"><%=@events.sum(:views)%></th>
+                  <th class="text-center"><%=@events.sum(:views)%></th>
                </tr>
                <tr>
                   <th>Evento</th>
-                  <th>Vistas</th>
+                  <th class="text-center">Vistas</th>
+                   <th class="text-center">Vistas Mitad</th>
                </tr>
                <%@events.each do |event| %>
                <tr>
                   <td><%=event.name%></td>
                   <td style="text-align: center;"><%=event.views%></td>
+                    <td style="text-align: center;"><%=event.stats.where(type_stat: 1).count%></td>
                </tr>
                <%end%>
             </table>
