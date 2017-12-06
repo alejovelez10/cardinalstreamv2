@@ -19,8 +19,8 @@
       <%= @account1.logo? ? image_tag(@account1.logo_url(:medium)) : ""  %>
       <div class="col-md-10 col-md-offset-1">
          <h2><%= @account1.name %></h2>
-         <p><strong>¿Preguntas en los Eventos? </strong> <%= @account1.questions ? "Si" : "No" %></p>
-         <p><strong>¿Descargar Documentos? </strong> <%= @account1.download_docs ? "Si" : "No" %></p>
+         <p><strong>¿Contraseña en el Portal? </strong> <%= @account1.has_psw ? "Si" : "No" %></p>
+         <p><strong>Contraseña: </strong> <%= @account1.psw if @account1.psw %></p>
          
         <%= link_to 'Editar', edit_account_path(get_account),remote:true, class: "btn btn-primary" %>
          <%= link_to 'Volver', events_path, class: "btn btn-primary" %>
@@ -29,12 +29,7 @@
    <div class="col-md-8">
    
       
-      
-      <div class="col-md-6 cuadro1">
-        <p><strong>Fondo del Portal</strong></p>
-        <p><%= image_tag (@account1.background_portal_url) if @account1.background_portal_url %></p>
 
-      </div>
       <div class="col-md-6 cuadro1">
         <p><strong>Fondo de los streamings</strong></p>
         <p><%= image_tag (@account1.background_stream_url) if @account1.background_stream_url %></p>

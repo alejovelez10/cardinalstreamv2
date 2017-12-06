@@ -1,4 +1,5 @@
 
+<%if @psw || !@account.has_psw%>
 <div class="container-fluid">
   
 
@@ -49,6 +50,35 @@
   <%end%>
 </div>
 </div>
+<%else%>
+<div class="row">
+      <div class="col-md-12 blockhead ">
+       <div class="col-md-2 logo text-center">
+         <img src="<%=@account.logo_url%>" alt="">
+      </div>
+     
+         <div class="col-md-6 name">
+          <p style="font-size: 20px;">EVENTOS ONDEMAND</p>
+
+         </div>
+          <div class="col-md-4 social hidden-sm hidden-xs">
+      
+         </div>
+      </div>
+   </div>
+<div class="row">
+<br>
+ <%= flash_messages %>
+<div class="col-md-4 col-md-offset-4" style="margin-top:150px;">
+   <%= form_tag portal_login_path, method: :post do %>
+    <%= text_field_tag :cookie , nil, style: "    height: 34px;", placeholder: "Ingrese contraseña"%>
+    <%= submit_tag "Ingresar", class: "btn btn-primary"%>
+ <%end%>
+</div>
+  
+</div>
+
+<%end%>
 
 <style>
 .views-event p

@@ -7,6 +7,9 @@ end
 
    
   def index
+
+    
+
   	@events = Event.where(admin_user: current_user.admin_user).order(views: :desc)
   	@eventm = Event.where(admin_user: current_user.admin_user).order(views: :desc).first
     @eventph = Stat.where(admin_user: current_user.admin_user).where(type_stat: 0).where(:hours => (6..12)).count

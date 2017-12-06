@@ -21,7 +21,7 @@
                </ul>
             </div>
             <% end %>
-            <div class="row">
+            <!--<div class="row">
                <div class="col-md-6">
                   <div class="form-group">
                      <%= form.label "Dominio" %>
@@ -36,6 +36,7 @@
                </div>
             </div>
             <br>
+
                     <div class="row">
                <div class="col-md-6">
                   <div class="form-group">
@@ -65,8 +66,27 @@
                   </div>
                </div>
 
+            </div>-->
+            
+             <div class="row">
+               <div class="col-md-4">
+                  <div class="form-group acc1">
+                     <label class="radio-inline">
+                     <%= form.check_box :has_psw, class: 'rb cksi check1' %><span style = "margin-left:10px">¿Cotraseña en el portal?</span>
+                     </label>
+                  </div>
+               </div>
+               <div class="col-md-4">
+                  <div class="form-group acc1">
+                      <%= form.label "Contraseña del portal" %>
+                     <%= form.text_field :psw, id: :account_psw, class: "form form-control" %>
+                     </label>
+                  </div>
+               </div>
             </div>
-            <div class="row">
+
+
+            <!--<div class="row">
                <div class="col-md-4">
                   <div class="form-group acc1">
                      <label class="radio-inline">
@@ -81,9 +101,9 @@
                      </label>
                   </div>
                </div>
-            </div>
+            </div>-->
             <div class="row">
-               <div class="col-md-4">
+               <!--<div class="col-md-4">
                   <div class="form-group">
                      <%= form.label :logo %>
                      <%= form.file_field :logo, id: :account_logo, class: "form form-control"  %>
@@ -94,10 +114,10 @@
                      <%= form.label "Fondo del Home" %>
                      <%= form.file_field :background_portal, id: :account_background_portal , class: "form form-control" %>
                   </div>
-               </div>
+               </div>-->
                <div class="col-md-4">
                   <div class="form-group">
-                     <%= form.label "Fondo de Transmisión" %>
+                     <%= form.label "Fondo del Portal" %>
                      <%= form.file_field :background_stream, id: :account_background_stream, class: "form form-control"  %>
                   </div>
                </div>

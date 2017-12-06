@@ -5,7 +5,17 @@ class AccountsController < ApplicationController
  
   
   
-
+  def portal_login
+          @account = Account.where(domain: request.subdomain).first
+            
+         if params[:cookie] == @account.psw
+            cookies.permanent.signed[:portal] = @account.psw
+            redirect_to portal_path 
+        
+       else
+         redirect_to portal_path , notice: 'Contraseña incorrecta' 
+       end
+  end  
 
   # GET /accounts
   # GET /accounts.json
@@ -16,6 +26,12 @@ class AccountsController < ApplicationController
    def portal
     @account = Account.where(domain: request.subdomain).first
     @events = @account1.events.where(state: 4).order(updated_at: :desc)
+    if cookies.permanent.signed[:portal] == @account.psw 
+      @psw = true
+    else
+      @psw = false
+    end
+    
      
    end 
   
@@ -206,7 +222,7 @@ class AccountsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
-      params.require(:account).permit(:domain, :logo, :admin_user, :user_id, :background_portal, :background_stream, :name,  :chat, :facebook, :twitter, :instagram, :linkedin)
+      params.require(:account).permit(:domain, :logo, :admin_user, :user_id, :background_portal, :background_stream, :name,  :chat, :facebook, :twitter, :instagram, :linkedin,:has_psw, :psw)
     end
 end
 

@@ -11,7 +11,7 @@ end
   get 'stats/csv'
   get 'stats/csv_all'
   get 'portal_show/create/:id/:type', to: 'stats#create'
-
+  post 'portal_login', to: 'accounts#portal_login', as: "portal_login"
   get 'viewer_sessions/new'
 
   get 'login', to: 'viewer_sessions#new'
