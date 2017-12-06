@@ -95,7 +95,7 @@
    
  var myPlayer = WowzaPlayer.get('playerElement');
 
-
+var b = 1;
    playheadTimeListener = function ( playheadTimeEvent ) {
       
       
@@ -104,9 +104,10 @@
       console.log('Time second: ' + times);
       var time = parseInt(myPlayer.getDuration()/2/1000)
       console.log('duration: ' + time);
-      if (time == times)
+      if (time == times && b == 1)
       {
         console.log("holaaaaaaaaaaaasiiiiiiiiiiiiiiiiiiiiii");
+        b = 0;
       }
       // console.log('Time duration2: ' + (parseInt(myPlayer.getDuration()/2))/1000);
       
