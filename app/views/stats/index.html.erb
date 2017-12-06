@@ -23,14 +23,16 @@
 
    <div class="col-md-4">
       <div class="row" style="margin-left: 10px;padding: 10px;
-         background: gainsboro;">
-         <div class="col-md-4 text-right">
-            <img style = "width:95px" src="https://blog.rankwatch.com/wp-content/uploads/2017/09/if_calendar-clock_299096-1.png" alt="">
+         background: whitesmoke;">
+         <div class="col-md-5 text-right">
+            <img src="../../uploads/event/video/<%=@eventm.id%>/screamshot.jpg" alt="...">
+            <span style="font-size:40px;margin-left: 20px;color:gray"><i class="fa fa-eye" aria-hidden="true"></i>
+<%=@eventm.views %> </span>
          </div>
-         <div class="col-md-8" style="color:gray">
-            <span style="font-size:15px;font-weight: bold">Video mas visto</span><br><br>
+         <div class="col-md-7" style="color:gray">
+            <h4 style="color:gray">EVENTO MAS VISTO</h4>
             <span style="font-size:18px;"><%=@eventm.name%> <span><br>
-            <span style="font-size:50px;margin-left: 20px;"><%=@eventm.views %> </span>veces<br>
+            
          </div>
       </div>
       <div class="row" style="margin-left: 10px;margin-top: 10px;">
@@ -39,13 +41,13 @@
             <div style = "height:200px;max-height: 200px;overflow: auto;">
             <table class="table1">
              <tr>
-                  <th colspan="2" class="text-center">EVENTOS VISTAS DE MAYOR A MENOR <%= link_to stats_csv_path(format: "csv") do%>
+                  <th colspan="2" class="text-center" >EVENTOS VISTAS DE MAYOR A MENOR <%= link_to stats_csv_path(format: "csv") do%>
                <img width="30px;" src="https://appfluence.com/productivity/wp-content/uploads/2017/04/a-csv.png" alt="">
                <%end%></th>
                  
                </tr>
              <tr>
-                  <th>Totoal de Vistas</th>
+                  <th>Total de Vistas</th>
                   <th class="text-center"><%=@events.sum(:views)%></th>
                </tr>
                <tr>
@@ -65,14 +67,10 @@
       </div>
    </div>
    <div class="col-md-4">
-      <h5 style="margin-left: 10px;padding: 10px;
-         background: gainsboro;">DESCARGAR LISTA DE INGRESOS <%= link_to stats_csv_all_path(format: "csv") do%>
-               <img width="30px;" src="https://appfluence.com/productivity/wp-content/uploads/2017/04/a-csv.png" alt="">
-               <%end%>
-      </h5>
-
-      <div class="row">
-      <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-12" style="margin-left: 10px;padding: 10px;
+         background: whitesmoke;">
+         <h4 style="color:gray">VISTAS SEGUN HORARIOS</h4>
         <p>VISTAS ENTRE 6AM Y 12AM - <%=@eventph%></p>
         <p>VISTAS ENTRE 1PM Y 6PM - <%=@eventsh%></p>
         <p>VISTAS ENTRE 7PM Y 12PM - <%=@eventth%></p>
@@ -82,6 +80,13 @@
       </div>
         
       </div>
+      <h5 style="margin-left: 10px;padding: 10px;
+         background: whitesmoke;">DESCARGAR LISTA DE INGRESOS <%= link_to stats_csv_all_path(format: "csv") do%>
+               <img width="30px;" src="https://appfluence.com/productivity/wp-content/uploads/2017/04/a-csv.png" alt="">
+               <%end%>
+      </h5>
+
+     
    </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.js" type="text/javascript" charset="utf-8"></script>
