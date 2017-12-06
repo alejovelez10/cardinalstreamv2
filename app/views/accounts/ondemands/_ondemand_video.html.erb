@@ -94,14 +94,16 @@
    );
    
  var myPlayer = WowzaPlayer.get('playerElement');
-
+ var duracion = myPlayer.getDuration()
 
    playheadTimeListener = function ( playheadTimeEvent ) {
       
       
       console.log('Time: ' + playheadTimeEvent.time);
-       times = parseInt(playheadTimeEvent.time/1000)
-    
+      times = parseInt(playheadTimeEvent.time/1000);
+      console.log('Time second: ' + times);
+      console.log('Time duration: ' + duracion);
+      
     
    };
    
