@@ -68,7 +68,7 @@
             <div style = "height:400px;max-height: 400px;overflow: auto;">
             <table class="table1">
              <tr>
-                  <th colspan="2" class="" >EVENTOS VISTAS DE MAYOR A MENOR <%= link_to stats_csv_path(format: "csv") do%>
+                  <th colspan="3" class="" >EVENTOS VISTAS DE MAYOR A MENOR <%= link_to stats_csv_path(format: "csv") do%>
                <img width="30px;" src="https://appfluence.com/productivity/wp-content/uploads/2017/04/a-csv.png" alt="">
                <%end%></th>
                  
@@ -76,7 +76,7 @@
              <tr>
                   <th>Total de Vistas</th>
                   <th class="text-center"><%=@events.sum(:views)%></th>
-                  <th class="text-center"><%=@events.sum(:views)%></th>
+                  <th class="text-center"></th>
                </tr>
                <tr>
                   <th>Evento</th>
