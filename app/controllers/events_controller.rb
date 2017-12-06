@@ -296,12 +296,12 @@ class EventsController < ApplicationController
 
 
   def events_live
-        @events = Event.where(admin_user: current_user.admin_user).where.not(state: 4).paginate(page: params[:page],:per_page => 10).order(created_at: :DESC)
+        @events = Event.where(admin_user: current_user.admin_user).where.not(state: 4).paginate(page: params[:page],:per_page => 30).order(created_at: :DESC)
 
   end
 
   def events_ondemand
-          @events = Event.where(admin_user: current_user.admin_user).where(state: 4).paginate(page: params[:page],:per_page => 10).order(created_at: :DESC)
+          @events = Event.where(admin_user: current_user.admin_user).where(state: 4).paginate(page: params[:page],:per_page => 30).order(created_at: :DESC)
 
   end
 
