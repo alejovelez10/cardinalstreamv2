@@ -102,8 +102,12 @@
       console.log('Time: ' + playheadTimeEvent.time);
       times = parseInt(playheadTimeEvent.time/1000);
       console.log('Time second: ' + times);
-      console.log('Time duration: ' + myPlayer.getDuration()/1000);
-       console.log('Time duration2: ' + (parseInt(myPlayer.getDuration()/2)/1000));
+      var time = parseInt(myPlayer.getDuration()/2)/1000
+      if (time == times)
+      {
+        console.log("holaaaaaaaaaaaasiiiiiiiiiiiiiiiiiiiiii");
+      }
+      // console.log('Time duration2: ' + (parseInt(myPlayer.getDuration()/2))/1000);
       
     
    };
