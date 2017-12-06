@@ -93,6 +93,18 @@
       }
    );
    
+ var myPlayer = WowzaPlayer.get('playerElement');
+
+
+   playheadTimeListener = function ( playheadTimeEvent ) {
+      
+      
+      console.log('Time: ' + playheadTimeEvent.time);
+       times = parseInt(playheadTimeEvent.time/1000)
+    
+    
+   };
+   
      
    
    
