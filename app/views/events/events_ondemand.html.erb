@@ -32,7 +32,7 @@
                   <th>Nombre</th>
                   <th>Streaming</th>
                   <th>Tipo</th>
-                  <th>Principal</th>
+                  
                   <th>Video</th>
                   <th>Ppts</th>
                   <th></th>
@@ -60,12 +60,12 @@
                               <%end%>
                            </li>
                           
-                            <li><%= link_to  edit_more_path(event, "adicional"), remote:true  do%>
+                          <!--    <li><%= link_to  edit_more_path(event, "adicional"), remote:true  do%>
                               <i class="fa fa-cog fa1" aria-hidden="true"></i>
                               Configuracion adicional del evento
                               <%end%>
                            </li>
-                          <!-- <li><%= link_to  event_info_path(event) do%>
+                          <li><%= link_to  event_info_path(event) do%>
                               <i class="fa fa-pencil fa1" aria-hidden="true"></i>
                               Informacion General
                               <%end%>
@@ -85,11 +85,11 @@
                   <td><%= event.name %></td>
                   <td><%= event.state != 4 ? "Live" : "Ondemand" %></td>
                   <td style = "font-size:20px"><%= get_event_type(event.event_type).html_safe %></td>
-                  <td class=""><%= get_state(event.root_event).html_safe %></td>
+                  <!--<td class=""><%= get_state(event.root_event).html_safe %></td>-->
                   <td class=""><%= get_aov(event.video_url).html_safe  %></td>
                   <td class=""><%= get_aov(event.ppts_url).html_safe %></td>
                   <td> <%= link_to "Ver", portal_show_path( event.id), class: "btn btn-primary"%></td>
-                  <td> <%= link_to "Ver", real_time_stats_path( event.id), class: "btn btn-primary"%></td>
+                 
                </tr>
                <%end%>
             </tbody>
