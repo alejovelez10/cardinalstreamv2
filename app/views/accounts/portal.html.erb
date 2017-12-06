@@ -68,8 +68,10 @@
    </div>
 <div class="row">
 <br>
- <%= flash_messages %>
+
 <div class="col-md-4 col-md-offset-4" style="margin-top:150px;">
+ <p>Este contenido es restringido. Para ingresar escriba la contraseña a continuación:
+</p>
    <%= form_tag portal_login_path, method: :post do %>
     <%= text_field_tag :cookie , nil, style: "    height: 34px;", placeholder: "Ingrese contraseña"%>
     <%= submit_tag "Ingresar", class: "btn btn-primary"%>
