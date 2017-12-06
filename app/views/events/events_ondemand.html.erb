@@ -53,11 +53,7 @@
                               Configurar diapositivas
                               <%end%>
                            </li>
-                           <li><%= link_to  event, target: :_blank  do%>
-                              <i class="fa fa-eye fa1" aria-hidden="true"></i>
-                              Transmitir Diapositivas
-                              <%end%>
-                           </li>
+                      
                            <li><%= link_to  edit_more_path(event, "principal"), remote:true  do%>
                               <i class="fa fa-pencil fa1" aria-hidden="true"></i>
                               Editar
@@ -69,13 +65,13 @@
                               Configuracion adicional del evento
                               <%end%>
                            </li>
-                           <li><%= link_to  event_info_path(event) do%>
+                          <!-- <li><%= link_to  event_info_path(event) do%>
                               <i class="fa fa-pencil fa1" aria-hidden="true"></i>
                               Informacion General
                               <%end%>
-                           </li>
+                           </li>-->
                             <li>
-                           <a data-toggle="modal" id = "<%=event.iframe%>" class = "modal-links" href="#myModal-links"><i class="fa fa-pencil fa1" aria-hidden="true"></i>Iframe</a>
+                           <a data-toggle="modal" ids = "<%=event.id%>" id = "<%=event.iframe%>" class = "modal-links" href="#myModal-links"><i class="fa fa-pencil fa1" aria-hidden="true"></i>Iframe y link para comartir</a>
                            </li>
                            <li><%= link_to  event, method: :delete, data: { confirm: 'Are you sure?' }  do%>
                               <i class="fa fa-trash fa1" aria-hidden="true"></i>
@@ -113,7 +109,9 @@
 
 <script>
    $('.modal-links').click(function(){
-      $('.iframe').val("<iframe width='1024' height='768' src='http://<%=request.subdomain%>.aletacloud.com/" +  $(this).attr('id') + "'" + "></iframe>")
+      $('.iframe').val("<iframe width='1024' height='768' src='http://<%=request.subdomain%>.aletacloud.com/" +  $(this).attr('id') + "'" + "></iframe>");
+
+      $('.link1').val("http://<%=request.subdomain%>.aletacloud.com/portal_show/" + $(this).attr('ids'))
 
 
    })
