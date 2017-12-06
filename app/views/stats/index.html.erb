@@ -23,7 +23,8 @@
 
    <div class="col-md-5">
       <div class="row" style="margin-left: 10px;padding: 10px;
-         background: whitesmoke;">
+         background: whitesmoke;    border: 1px solid #d0d0d0;
+    border-radius: 15px;">
          <div class="col-md-12">
              <h4 style="color:gray">EVENTO MAS VISTO</h4>
          </div>
@@ -38,7 +39,22 @@
 <%=@eventm.views %> </span>
             
          </div>
+           <div class="col-md-12" >
+         <h4 style="color:gray">VISTAS SEGUN HORARIOS <img src="https://icon-icons.com/icons2/567/PNG/512/clock_icon-icons.com_54407.png" style = "width:50px;" alt=""></h4>
+        <p> ENTRE 6AM Y 12AM - <span style="font-size:20px;"> <i class="fa fa-eye" aria-hidden="true"></i> <%=@eventph%> - <%= @eventph_p%>%</span></p>
+        <p> ENTRE 1PM Y 6PM - <span style="font-size:20px;"> <i class="fa fa-eye" aria-hidden="true"></i> <%=@eventsh%> - <%= @eventsh_p%>%</span></p>
+        <p> ENTRE 7PM Y 12PM - <span style="font-size:20px;"> <i class="fa fa-eye" aria-hidden="true"></i> <%=@eventth%> - <%= @eventth_p%>%</span></p>
+        <p> ENTRE 1AM Y 6AM - <span style="font-size:20px;"> <i class="fa fa-eye" aria-hidden="true"></i> <%=@eventch%> - <%= @eventch_p%>%</span></p>
+        <p>TOTAL - <%=@eventt%></p>
+        
       </div>
+      </div>
+   <div class="row">
+    
+        
+      </div>
+   </div>
+   <div class="col-md-4">
       <div class="row" style="margin-left: 10px;margin-top: 10px;">
          <div class="col-md-12" style="padding: 0px">
           
@@ -69,21 +85,7 @@
            
          </div>
       </div>
-   </div>
-   <div class="col-md-4">
-    <div class="row">
-      <div class="col-md-12" style="margin-left: 10px;padding: 10px;
-         background: whitesmoke;">
-         <h4 style="color:gray">VISTAS SEGUN HORARIOS <img src="https://icon-icons.com/icons2/567/PNG/512/clock_icon-icons.com_54407.png" style = "width:50px;" alt=""></h4>
-        <p>VISTAS ENTRE 6AM Y 12AM - <span style="font-size:20px;"> <i class="fa fa-eye" aria-hidden="true"></i> <%=@eventph%> - <%= @eventph_p%>%</span></p>
-        <p>VISTAS ENTRE 1PM Y 6PM - <span style="font-size:20px;"> <i class="fa fa-eye" aria-hidden="true"></i> <%=@eventsh%> - <%= @eventsh_p%>%</span></p>
-        <p>VISTAS ENTRE 7PM Y 12PM - <span style="font-size:20px;"> <i class="fa fa-eye" aria-hidden="true"></i> <%=@eventth%> - <%= @eventth_p%>%</span></p>
-        <p>VISTAS ENTRE 1AM Y 6AM - <span style="font-size:20px;"> <i class="fa fa-eye" aria-hidden="true"></i> <%=@eventch%> - <%= @eventch_p%>%</span></p>
-        <p>TOTAL - <%=@eventt%></p>
-        
-      </div>
-        
-      </div>
+    
       <h5 style="margin-left: 10px;padding: 10px;
          background: whitesmoke;">DESCARGAR LISTA DE INGRESOS <%= link_to stats_csv_all_path(format: "csv") do%>
                <img width="30px;" src="https://appfluence.com/productivity/wp-content/uploads/2017/04/a-csv.png" alt="">
