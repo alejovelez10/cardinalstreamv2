@@ -27,16 +27,17 @@
 <div class="row show-user company" >
    <div class="col-md-12" style = "    padding-left: 30px;">
      
-      <div class="col-md-3">
-      <span class="span">Logo</span>
-       <%= @account1.logo? ? image_tag(@account1.logo_url(:medium)) : ""  %>
-        
-      </div>
+  
       <div class="col-md-3 ">
-      <span class="span">Nombre</span><br>
+      <span class="span">Nombre de la Empresa</span><br>
        <h2 style = "color:gray"><%= @account1.name %></h2>
   
        
+      </div>
+          <div class="col-md-4">
+      <span class="span">Logo</span>
+       <%= @account1.logo? ? image_tag(@account1.logo_url(:medium)) : ""  %>
+        
       </div>
       <div class="col-md-4">
       <span class="span">Portal de Ondemands</span><br>
