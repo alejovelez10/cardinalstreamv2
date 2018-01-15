@@ -30,6 +30,7 @@
 #  video_p         :string
 #  ultimate_ppt    :integer
 #  link            :string
+#  views           :integer
 #
 
 class Event < ApplicationRecord

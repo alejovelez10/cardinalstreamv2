@@ -17,6 +17,11 @@
 #  time_stat    :datetime
 #  minute       :integer
 #  second       :integer
+#  admin_user   :integer
+#  state_date   :date
+#  state_time   :time
+#  browser      :string
+#  hours        :integer
 #
 
 class Stat < ApplicationRecord

@@ -174,6 +174,34 @@ class AccountsController < ApplicationController
   def edit
   end
 
+
+ def change_psw
+    
+    params[:value] == "true" ? val = true : val = false 
+    Account.find(params[:id]).update(has_psw: val)
+  
+  end
+
+   def change_net
+    
+    params[:value] == "true" ? val = true : val = false 
+    Account.find(params[:id]).update(has_networks: val)
+  
+  end
+   def change_questions
+    
+    params[:value] == "true" ? val = true : val = false 
+    Account.find(params[:id]).update(questions: val)
+  
+  end
+   def change_docs
+    
+    params[:value] == "true" ? val = true : val = false 
+    Account.find(params[:id]).update(download_docs: val)
+  
+  end
+
+
   # POST /accounts
   # POST /accounts.json
   def create
@@ -222,7 +250,7 @@ class AccountsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
-      params.require(:account).permit(:domain, :logo, :admin_user, :user_id, :background_portal, :background_stream, :name,  :chat, :facebook, :twitter, :instagram, :linkedin,:has_psw, :psw)
+      params.require(:account).permit(:domain, :logo, :admin_user, :user_id, :background_portal, :background_stream, :name,  :chat, :facebook, :twitter, :instagram, :linkedin,:has_psw, :psw, :has_networks, :download_docs, :questions)
     end
 end
 

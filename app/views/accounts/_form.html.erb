@@ -1,9 +1,11 @@
-<div id="contact-modal" class="modal fade">
-   <div class="modal-dialog modal-xs">
-      <div class="modal-content">
+
+
+    <div class="container">
+       
+   
          <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h4 class="modal-title">Editar Cuenta</h4>
+            <p style="font-size:40px;color:#187191;font-weight: bold">Editar Cuenta</p>
          </div>
          <div class="alert alert-danger" style="display:none">
             <ul>
@@ -21,23 +23,76 @@
                </ul>
             </div>
             <% end %>
-            <!--<div class="row">
-               <div class="col-md-6">
-                  <div class="form-group">
+            <div class="row">
+               <!-- <div class="col-md-4">
+                 <div class="form-group">
                      <%= form.label "Dominio" %>
                      <%= form.text_field :domain, id: :account_domain, class: "form form-control" %>
                   </div>
-               </div>
-               <div class="col-md-6">
+               </div>-->
+               <div class="col-md-3">
                   <div class="form-group">
                      <%= form.label "Nombre" %>
                      <%= form.text_field :name, id: :account_name , class: "form form-control" %>
                   </div>
                </div>
+               <div class="col-md-3">
+                  <div class="form-group">
+                     <%= form.label :logo %>
+                     <%= form.file_field :logo, id: :account_logo, class: "form form-control"  %>
+                  </div>
+               </div>
+                <div class="col-md-3 text-center">
+                  <div class="form-group acc1">
+                     <label class="radio-inline">
+                     <span style = "margin-left:10px;font-weight: bold">¿Cotraseña en el portal?</span><br><%= form.check_box :has_psw, id:"toggle-one" %>
+                     </label>
+                  </div>
+               </div>
+               <div class="col-md-3">
+                  <div class="form-group acc1">
+                      <%= form.label "Definir Contraseña" %>
+                     <%= form.text_field :psw, id: :account_psw, class: "form form-control" %>
+                     </label>
+                  </div>
+               </div>
             </div>
             <br>
+            <br>
+            <hr>
 
-                    <div class="row">
+           
+             <h3 style = "color:gray">Configuracion para los Eventos  <span style="font-size:12px;">(Esta sera la configuracion por defecto en los Eventos pero en cada uno de ellos la puedes cambiar)</span> </h3><br>
+              
+           <div class="row">
+            <div class="col-md-4">
+                  <div class="form-group acc1">
+                     <label class="radio-inline">
+                     <%= form.check_box :has_networks, id:"toggle-two"%><span style = "margin-left:10px">Mostrar Redes Sociales</span>
+                     </label>
+                  </div>
+               </div>
+               <div class="col-md-4">
+                  <div class="form-group acc1">
+                     <label class="radio-inline">
+                     <%= form.check_box :questions, id:"toggle-three" %><span style = "margin-left:10px">Formulario de Preguntas</span>
+                     </label>
+                  </div>
+               </div>
+               <div class="col-md-4">
+                  <div class="form-group acc1">
+                     <label class="radio-inline">
+                     <%= form.check_box :download_docs, id:"toggle-four" %><span style = "margin-left:10px">Mostrar Descargables</span>
+                     </label>
+                  </div>
+               </div>
+               
+            </div>
+            <br>
+            <br>
+            <hr>
+            <h3 style = "color:gray">Redes Sociales por defecto</h3>
+             <div class="row">
                <div class="col-md-6">
                   <div class="form-group">
                      <%= form.label "Facebook" %>
@@ -66,68 +121,34 @@
                   </div>
                </div>
 
-            </div>-->
-          
-             <div class="row">
-               <div class="col-md-12">
-                  <div class="form-group acc1">
-                     <label class="radio-inline">
-                     <%= form.check_box :has_psw, class: 'rb cksi check1' %><span style = "margin-left:10px">¿Cotraseña en el portal?</span>
-                     </label>
-                  </div>
-               </div>
-               <div class="col-md-12">
-                  <div class="form-group acc1">
-                      <%= form.label "Contraseña" %>
-                     <%= form.text_field :psw, id: :account_psw, class: "form form-control" %>
-                     </label>
-                  </div>
-               </div>
             </div>
-
-  <br>  
-            <!--<div class="row">
-               <div class="col-md-4">
-                  <div class="form-group acc1">
-                     <label class="radio-inline">
-                     <%= form.check_box :questions, class: 'rb cksi check1' %><span style = "margin-left:10px">Formulario de Preguntas</span>
-                     </label>
-                  </div>
-               </div>
-               <div class="col-md-4">
-                  <div class="form-group acc1">
-                     <label class="radio-inline">
-                     <%= form.check_box :download_docs, class: 'rb cksi check1' %><span style = "margin-left:10px">Mostrar Descargables</span>
-                     </label>
-                  </div>
-               </div>
-            </div>-->
+            <br>
+            <br>
+            <hr>
+            <h3 style = "color:gray">Fondos</h3>
             <div class="row">
-               <!--<div class="col-md-4">
-                  <div class="form-group">
-                     <%= form.label :logo %>
-                     <%= form.file_field :logo, id: :account_logo, class: "form form-control"  %>
-                  </div>
-               </div>
+          
                <div class="col-md-4">
                   <div class="form-group">
                      <%= form.label "Fondo del Home" %>
                      <%= form.file_field :background_portal, id: :account_background_portal , class: "form form-control" %>
                   </div>
-               </div>-->
-               <div class="col-md-12">
+               </div>
+               <div class="col-md-4">
                   <div class="form-group">
                      <%= form.label "Fondo del Portal" %>
                      <%= form.file_field :background_stream, id: :account_background_stream, class: "form form-control"  %>
                   </div>
                </div>
             </div>
+            <br><br>
+
             <div class="actions">
                <%= form.submit "Guardar" , class: "btn btn-primary" %>
-               <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+              <%=link_to "Cancelar", account_path(@account.id) ,class: "btn btn-default"%>
             </div>
             <% end %>
          </div>
-      </div>
-   </div>
-</div>
+     
+
+ </div>

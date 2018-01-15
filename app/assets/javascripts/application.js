@@ -28,4 +28,36 @@ $(document).on('turbolinks:load',function() {
 
 
 
+  $(function() {
+    $('#toggle-one').bootstrapToggle({
+      on: 'Si',
+      off: 'No'
+    });
+  })
+
+  $(function() {
+    $('#toggle-two').bootstrapToggle({
+      on: 'Si',
+      off: 'No'
+    });
+  })
+
+  $(function() {
+    $('#toggle-three').bootstrapToggle({
+      on: 'Si',
+      off: 'No'
+    });
+  })
+  
+    $(function() {
+    $('#toggle-four').bootstrapToggle({
+      on: 'Si',
+      off: 'No'
+    });
+  })
+
+   $(function() {
+
+  })
+
 });

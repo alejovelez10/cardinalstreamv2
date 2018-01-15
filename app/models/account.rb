@@ -19,12 +19,15 @@
 #  instagram         :string
 #  twitter           :string
 #  linkedin          :string
+#  psw               :string
+#  has_psw           :boolean
+#  has_networks      :boolean
 #
 
 class Account < ApplicationRecord
 	has_many :events
 	has_many :stats
-	has_many :questions
+	
 	has_many :viewers
 	mount_uploader :logo, AccountLogoUploader
 	mount_uploader :background_stream, AccountBackgroundUploader

@@ -286,3 +286,21 @@ margin: 0px 10px;
 .navbar-default .navbar-nav>li>a:hover {
     color: white;
 }
+
+.btn-edit
+{
+    background: #f0ad4e;
+    color: white;
+    padding: 0px 8px;
+    font-size: 37px;
+    border-radius: 10px;
+}
+
+.btn-edit:hover
+{
+    background: #e29931;
+    color: white;
+    padding: 0px 8px;
+    font-size: 37px;
+    border-radius: 10px;
+}

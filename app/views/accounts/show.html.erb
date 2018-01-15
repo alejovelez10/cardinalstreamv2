@@ -1,6 +1,8 @@
 
-<div class="container-fluid">
-  
+
+
+<div class="container">
+
 
 <div class="row" >
    <div class="col-md-12 ">
@@ -8,33 +10,132 @@
    </div>
 
 <div class = "row title-table">
-         <div class = "col-md-12">
-            <p style="font-size:40px;margin-left:30px;color:#187191"">Configuración</p>
+         <div class = "col-md-6">
+            <p style="font-size:40px;margin-left:30px;color:#187191"">Configuración <%= link_to  edit_account_path(get_account), class: "btn-edit" do%>
+              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+              <%end%>
+            </p>
+         </div>
+          <div class = "col-md-6 text-right">
+              
+
+        
          </div>
    
       </div>
 <hr class = "hr">
 <div class="row show-user company" >
-   <div class="col-md-4" style = "    padding-left: 30px;">
-      <%= @account1.logo? ? image_tag(@account1.logo_url(:medium)) : ""  %>
-      <div class="col-md-10 col-md-offset-1">
-         <h2><%= @account1.name %></h2>
-         <p><strong>¿Contraseña en el Portal? </strong> <%= @account1.has_psw ? "Si" : "No" %></p>
-         <p><strong>Contraseña: </strong> <%= @account1.psw if @account1.psw %></p>
-         
-        <%= link_to 'Editar', edit_account_path(get_account),remote:true, class: "btn btn-primary" %>
-         <%= link_to 'Volver', events_path, class: "btn btn-primary" %>
+   <div class="col-md-12" style = "    padding-left: 30px;">
+     
+      <div class="col-md-3">
+      <span class="span">Logo</span>
+       <%= @account1.logo? ? image_tag(@account1.logo_url(:medium)) : ""  %>
+        
       </div>
-   </div>
-   <div class="col-md-8">
-   
+      <div class="col-md-3 ">
+      <span class="span">Nombre</span><br>
+       <h2 style = "color:gray"><%= @account1.name %></h2>
+  
+       
+      </div>
+      <div class="col-md-4">
+      <span class="span">Portal de Ondemands</span><br>
       
 
+
+         <p><strong>¿Contraseña en el Portal? </strong> <input type="checkbox" id="toggle-two"></p>
+         <p><strong>Contraseña: </strong> <%= @account1.psw if @account1.psw %></p>
+         
+       
+      </div>
+   </div>
+
+<div class="col-md-12">
+<br>
+          
+            <hr>
+  
+</div>
+
+<div class="col-md-12">
+<h3 style = "color:gray">Configuracion para los Eventos  <span style="font-size:12px;">(Esta sera la configuracion por defecto en los Eventos pero en cada uno de ellos la puedes cambiar)</span> </h3><br>
+   <div class="col-md-4">
+      
+
+
+         <p><strong>¿Redes sociales? </strong> <input type="checkbox" id="toggle-oneo"></p>
+        
+         
+       
+      </div>
+      <div class="col-md-4">
+      
+
+
+         <p><strong>¿Formulario de preguntas? </strong> <input type="checkbox" id="toggle-twoo"></p>
+        
+         
+       
+      </div>
+      <div class="col-md-4">
+      
+
+
+         <p><strong>¿Descargables? </strong> <input type="checkbox" id="toggle-threeo"></p>
+        
+         
+       
+      </div>
+</div>
+<div class="col-md-12">
+<br>
+          
+            <hr>
+  
+</div>
+<div class="col-md-12">
+<h3 style = "color:gray">Redes Sociales </h3><br>
+<div class="col-md-6">
+  <p><i class="fa fa-facebook-official" style = "font-size:30px;margin-right: 10px" aria-hidden="true"></i> <%= @account1.facebook%><p>
+</div>
+<div class="col-md-6">
+  <p><i class="fa fa-twitter-square" style = "font-size:30px;margin-right: 10px" aria-hidden="true"></i> <%= @account1.twitter%><p>
+</div>
+
+<div class="col-md-6">
+  <p><i class="fa fa-instagram" style = "font-size:30px;margin-right: 10px" aria-hidden="true"></i> <%= @account1.instagram%><p>
+</div>
+
+<div class="col-md-6">
+  <p><i class="fa fa-linkedin-square" style = "font-size:30px;margin-right: 10px" aria-hidden="true"></i> <%= @account1.linkedin%><p>
+</div>
+
+
+
+</div>
+<div class="col-md-12">
+<br>
+          
+            <hr>
+  
+</div>
+
+   <div class="col-md-12">
+   
+            <div class="col-md-6 cuadro1">
+        <p><strong>Fondo del Portal</strong></p>
+        <p><%= image_tag (@account1.background_portal_url) if @account1.background_portal_url %></p>
+
+      </div>
+
       <div class="col-md-6 cuadro1">
-        <p><strong>Fondo del portal</strong></p>
+    
+        <p><strong>Fondo de los Eventos</strong></p>
         <p><%= image_tag (@account1.background_stream_url) if @account1.background_stream_url %></p>
 
       </div>
+
+  
      
 
       
@@ -42,6 +143,138 @@
    </div>
 </div>
 </div>
+<script>
+  
+   $(function() {
+
+   $('#toggle-two').bootstrapToggle({
+      on: 'Si',
+      off: 'No'
+    });
+
+   $('#toggle-oneo').bootstrapToggle({
+      on: 'Si',
+      off: 'No'
+    });
+
+   $('#toggle-twoo').bootstrapToggle({
+      on: 'Si',
+      off: 'No'
+    });
+
+   $('#toggle-threeo').bootstrapToggle({
+      on: 'Si',
+      off: 'No'
+    });
+
+
+
+    if (<%=@account1.has_psw%> == true)
+    {
+       $('#toggle-two').bootstrapToggle('on')
+    }
+    else
+    {
+        $('#toggle-two').bootstrapToggle('off')
+    }
+
+
+
+       if (<%=@account1.has_networks%> == true)
+    {
+       $('#toggle-oneo').bootstrapToggle('on')
+    }
+    else
+    {
+        $('#toggle-oneo').bootstrapToggle('off')
+    }
+
+       if (<%=@account1.questions%> == true)
+    {
+       $('#toggle-twoo').bootstrapToggle('on')
+    }
+    else
+    {
+        $('#toggle-twoo').bootstrapToggle('off')
+    }
+
+       if (<%=@account1.download_docs%> == true)
+    {
+       $('#toggle-threeo').bootstrapToggle('on')
+    }
+    else
+    {
+        $('#toggle-threeo').bootstrapToggle('off')
+    }
+   
+ 
+
+
+        $('#toggle-two').change(function() {
+      if ( $(this).prop('checked') == true )
+      {
+        $.get("change_psw/true/" + <%=@account1.id%>, function(data) {
+        
+        })
+      }
+      else
+      {
+        $.get("change_psw/false/" + <%=@account1.id%>, function(data) {
+        })
+      }
+
+    })
+
+
+                $('#toggle-oneo').change(function() {
+      if ( $(this).prop('checked') == true )
+      {
+        $.get("change_net/true/" + <%=@account1.id%>, function(data) {
+        
+        })
+      }
+      else
+      {
+        $.get("change_net/false/" + <%=@account1.id%>, function(data) {
+        })
+      }
+
+    })
+
+                        $('#toggle-twoo').change(function() {
+      if ( $(this).prop('checked') == true )
+      {
+        $.get("change_questions/true/" + <%=@account1.id%>, function(data) {
+        
+        })
+      }
+      else
+      {
+        $.get("change_questions/false/" + <%=@account1.id%>, function(data) {
+        })
+      }
+
+    })
+
+                                $('#toggle-threeo').change(function() {
+      if ( $(this).prop('checked') == true )
+      {
+        $.get("change_docs/true/" + <%=@account1.id%>, function(data) {
+        
+        })
+      }
+      else
+      {
+        $.get("change_docs/false/" + <%=@account1.id%>, function(data) {
+        })
+      }
+
+    })
+  })
+
+
+</script>
+
 <style>
    .cuadro
    {
@@ -90,6 +323,13 @@
     padding-bottom: 50px
    }
 
-
+.span
+{
+      font-size: 20px;
+    color: gray;
+    display: block;
+    border-bottom: 1px solid #e2e2e2;
+    font-weight: bold;
+}
 
 </style>

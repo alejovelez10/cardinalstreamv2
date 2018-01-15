@@ -9,6 +9,10 @@
      <link href="https://fonts.googleapis.com/css?family=Days+One" rel="stylesheet">
      <style rel="stylesheet" type="text/css" href= "css/offline-language-spanish.css"> </style>
      <style rel="stylesheet" type="text/css" href= "css/offline-theme-default.css"></style>
+      
+      <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<meta name="turbolinks-cache-control" content="no-cache">
   </head>
 
   <body class = "admin">
@@ -32,15 +36,17 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                <ul class="nav navbar-nav">
                                   <li  class="li"><%= link_to  admin_events_path,:class => "indicadores" do %>
-                           <span class="fa fa-home" style = "color:white;font-size:40px"></span>
+                           <i class="fa fa-video-camera" style="font-size:40px;color:white;    padding-left: 30px;
+    padding-right: 10px;"  aria-hidden="true"></i>
                          
                            <% end %></li>
                      <li  class="li"><%= link_to  stats_index_path,:class => "indicadores" do %>
-                          <i class="fa fa-bar-chart" style="font-size:40px;color:white;" aria-hidden="true"></i>
+                          <i class="fa fa-bar-chart" style="font-size:40px;color:white;    padding-left: 10px;
+    padding-right: 10px;" aria-hidden="true"></i>
                           
                            <% end %></li>
                            <li  class="li"><%= link_to  account_path(get_account),:class => "indicadores" do %>
-                          <i class="fa fa-cog" style="font-size:40px;color:white;" aria-hidden="true"></i>
+                          <i class="fa fa-cog" style="font-size:40px;color:white;    padding-left: 10px;" aria-hidden="true"></i>
                           
                            <% end %></li>
 
