@@ -7,6 +7,12 @@ Rails.application.routes.draw do
   collection { post :import }
 
 end
+
+  get 'accounts/change_psw/:value/:id', to: "accounts#change_psw", as: "change_psw"
+  get 'accounts/change_net/:value/:id', to: "accounts#change_net", as: "change_net"
+  get 'accounts/change_questions/:value/:id', to: "accounts#change_questions", as: "change_questions"
+  get 'accounts/change_docs/:value/:id', to: "accounts#change_docs", as: "change_docs"
+
   get 'stats/index'
   get 'stats/csv'
   get 'stats/csv_all'
