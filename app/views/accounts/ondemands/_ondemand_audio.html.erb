@@ -203,7 +203,7 @@ WowzaPlayer.create('playerElement',
     "uiShowQuickRewind":true,
     "uiQuickRewindSeconds":"30" 
     }
-);
+).play();
 
 
 
@@ -357,7 +357,7 @@ onLoadListener = function () {
     $('.png').show(); 
     $('.play').hide();
     $('.pause').show();
-    myPlayer.play(); 
+   
  
 }
 myPlayer.onLoad(onLoadListener);
