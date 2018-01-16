@@ -56,6 +56,20 @@ $(document).on('turbolinks:load',function() {
     });
   })
 
+      $(function() {
+    $('#toggle-ten').bootstrapToggle({
+      on: 'Si',
+      off: 'No'
+    });
+  })
+
+            $(function() {
+    $('#toggle-eleven').bootstrapToggle({
+      on: 'Si',
+      off: 'No'
+    });
+  })
+
    $(function() {
 
   })

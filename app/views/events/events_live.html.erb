@@ -60,17 +60,13 @@
                               Transmitir Diapositivas
                               <%end%>
                            </li>
-                           <li><%= link_to  edit_more_path(event, "principal"), remote:true  do%>
+                           <li><%= link_to  edit_more_path(event, "principal")  do%>
                               <i class="fa fa-pencil fa1" aria-hidden="true"></i>
                               Editar
                               <%end%>
                            </li>
                           
-                            <li><%= link_to  edit_more_path(event, "adicional"), remote:true  do%>
-                              <i class="fa fa-pencil fa1" aria-hidden="true"></i>
-                              Configuracion adicional del evento
-                              <%end%>
-                           </li>
+                          
                            <li><%= link_to  event_info_path(event) do%>
                               <i class="fa fa-pencil fa1" aria-hidden="true"></i>
                               Informacion General
