@@ -317,7 +317,7 @@ class EventsController < ApplicationController
   "currentSize": 0,
   "segmentSchedule": "",
   "startOnKeyFrame": true,
-  "outputPath": "/home/rails/public/uploads/event/video/#{@event.id}",
+  "outputPath": "/home/rails/cardinalstreamv2/public/uploads/event/video/#{@event.id}",
   "currentFile": "",
   "saveFieldList": [
     ""
