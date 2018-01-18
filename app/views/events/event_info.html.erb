@@ -12,7 +12,7 @@
       <div class="col-md-8">
          <h3><%=@event.name%></h3>
          <h4><%=@event.description%></h4>
-         <h4><strong>Estado: <%=get_state_event(@event.state)%></strong></h4>
+         <h4><strong>Estado: <%=get_state_event(@event.state)%> <button type="" id = "record" class="btn btn-primary">Grabar</button></strong></h4>
       </div>
       <div class="col-md-12">
          <hr>
@@ -81,3 +81,15 @@
    border-right: 1px solid gray;
    }
 </style>
+
+
+<script>
+
+$('#record').click(function() {
+      
+        $.get("record_live/" + <%=@event.id%>, function(data) {
+        
+        })
+      });
+
+</script>

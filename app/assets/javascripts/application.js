@@ -35,6 +35,7 @@ $(document).on('turbolinks:load',function() {
     });
   })
 
+
   $(function() {
     $('#toggle-two').bootstrapToggle({
       on: 'Si',

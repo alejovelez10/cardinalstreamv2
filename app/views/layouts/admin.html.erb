@@ -21,9 +21,9 @@
 
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-             <a class="navbar-brand" style = "background:white;height:70px;" href="#"><p class = "logop text-center" style = "color:#187191;   font-size: 18px;font-weight: bold"><img style= "width:30px;position: relative;
+             <a class="navbar-brand" style = "background:white;height:70px;" href="#"><p class = "logop text-center" style = "color:#187191;   font-size: 20px;font-weight: bold"><img style= "width:50px;position: relative;
     top: -3px;left: -5px;margin-top: 10px;
-" id="slack" src="/../../images/cardinal_solo.png"><span sytle = "">cardinal</span><span style = "font-style:italic;">stream</span></p></a>
+" id="slack" src="/../../images/cardinal_solo.png"><span style = "font-size:25px">cardinal</span><span style = "font-style:italic;">stream</span></p></a>
                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                <span class="sr-only">Toggle navigation</span>
                <span class="icon-bar"></span>
@@ -35,18 +35,18 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                <ul class="nav navbar-nav">
-                                  <li  class="li"><%= link_to  admin_events_path,:class => "indicadores" do %>
-                           <i class="fa fa-video-camera" style="font-size:40px;color:white;    padding-left: 30px;
+                                  <li  class="li"><%= link_to  admin_events_path,:class => "indicadores", style:"padding: 24px;" do %><span style="font-size:15px">Eventos </span>
+                           <i class="fa fa-video-camera" style="font-size:20px;color:white;    padding-left: 0px;
     padding-right: 10px;"  aria-hidden="true"></i>
                          
                            <% end %></li>
-                     <li  class="li"><%= link_to  stats_index_path,:class => "indicadores" do %>
-                          <i class="fa fa-bar-chart" style="font-size:40px;color:white;    padding-left: 10px;
+                     <li  class="li"><%= link_to  stats_index_path,:class => "indicadores" , style:"padding: 24px;" do %><span style="font-size:15px">Estadisticas</span>
+                          <i class="fa fa-bar-chart" style="font-size:20px;color:white;    padding-left: 10px;
     padding-right: 10px;" aria-hidden="true"></i>
                           
                            <% end %></li>
-                           <li  class="li"><%= link_to  account_path(get_account),:class => "indicadores" do %>
-                          <i class="fa fa-cog" style="font-size:40px;color:white;    padding-left: 10px;" aria-hidden="true"></i>
+                           <li  class="li"><%= link_to  account_path(get_account),:class => "indicadores", style:"padding: 24px;" do %><span style="font-size:15px">Configuración</span>
+                          <i class="fa fa-cog" style="font-size:20px;color:white;    padding-left: 10px;" aria-hidden="true"></i>
                           
                            <% end %></li>
 
@@ -101,3 +101,10 @@
     <%= yield %>
   </body>
 </html>
+<style>
+.activemenu {
+    background: #1e253c;
+    padding: 19px;
+}
+
+</style>

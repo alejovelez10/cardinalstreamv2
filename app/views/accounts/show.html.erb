@@ -11,7 +11,7 @@
 
 <div class = "row title-table">
          <div class = "col-md-6">
-            <p style="font-size:40px;margin-left:30px;color:#187191"">Configuración <%= link_to  edit_account_path(get_account), class: "btn-edit" do%>
+            <p style="font-size:30px;margin-left:30px;color:#466a75"">Configuración <%= link_to  edit_account_path(get_account), class: "btn-edit1" do%>
               <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
               <%end%>
             </p>
@@ -30,7 +30,7 @@
   
       <div class="col-md-3 ">
       <span class="span">Nombre de la Empresa</span><br>
-       <h2 style = "color:gray"><%= @account1.name %></h2>
+       <h2 style = "color:#466a75;font-weight: bold"><%= @account1.name %></h2>
   
        
       </div>
@@ -59,7 +59,7 @@
 </div>
 
 <div class="col-md-12">
-<h3 style = "color:gray">Configuracion para los Eventos  <span style="font-size:12px;">(Esta sera la configuracion por defecto en los Eventos pero en cada uno de ellos la puedes cambiar)</span> </h3><br>
+<h3 class="span" style = "color:gray">Configuracion para los Eventos  <span style="font-size:12px;">(Esta sera la configuracion por defecto en los Eventos pero en cada uno de ellos la puedes cambiar)</span> </h3><br>
    <div class="col-md-4">
       
 
@@ -95,7 +95,7 @@
   
 </div>
 <div class="col-md-12">
-<h3 style = "color:gray">Redes Sociales </h3><br>
+<h3 class="span" style = "color:gray">Redes Sociales </h3><br>
 <div class="col-md-6">
   <p><i class="fa fa-facebook-official" style = "font-size:30px;margin-right: 10px" aria-hidden="true"></i> <%= @account1.facebook%><p>
 </div>
@@ -124,14 +124,14 @@
    <div class="col-md-12">
    
             <div class="col-md-6 cuadro1">
-        <p><strong>Fondo del Home</strong></p>
+        <p class="span">Fondo del Home</p>
         <p><%= image_tag (@account1.background_portal_url) if @account1.background_portal_url %></p>
 
       </div>
 
       <div class="col-md-6 cuadro1">
     
-        <p><strong>Fondo de Transmisión</strong></p>
+        <p class="span">Fondo de Transmisión</p>
         <p><%= image_tag (@account1.background_stream_url) if @account1.background_stream_url %></p>
 
       </div>
@@ -301,13 +301,7 @@
 
     margin-top: 10px;
    }
-   .cuadro1 p
-   {
-   color: #50aad4;
-   padding-top: 5px;
-   font-size: 30px;
   
-   }
     .fas
    {
    color:white;
@@ -324,13 +318,20 @@
     padding-bottom: 50px
    }
 
-.span
-{
-      font-size: 20px;
+.span {
+    background: #e8e8e8;
+    font-size: 20px;
     color: gray;
     display: block;
     border-bottom: 1px solid #e2e2e2;
-    font-weight: bold;
+    /* font-weight: bold; */
+    padding: 4px;
 }
-
+.btn-edit1 {
+    background: #187191;
+    color: white;
+    padding: 0px 8px;
+    font-size: 37px;
+    border-radius: 10px;
+}
 </style>

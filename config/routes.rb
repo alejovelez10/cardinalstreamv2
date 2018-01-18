@@ -13,6 +13,10 @@ end
   get 'accounts/change_questions/:value/:id', to: "accounts#change_questions", as: "change_questions"
   get 'accounts/change_docs/:value/:id', to: "accounts#change_docs", as: "change_docs"
 
+
+  get 'event_info/record_live/:id', to: "events#record_live", as: "record_live"
+
+
   get 'stats/index'
   get 'stats/csv'
   get 'stats/csv_all'

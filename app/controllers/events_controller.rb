@@ -8,8 +8,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    #@a = `curl -X GET --header 'Accept:application/json; charset=utf-8' --header 'Content-Type:application/json; charset=utf-8' http://aletacloud.com:8087/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/live/instances/_definst_/streamrecorders`
-    #@b= JSON.parse(@a)
+ 
     @events = Event.where(admin_user: current_user.admin_user).paginate(page: params[:page],:per_page => 30).order(created_at: :DESC)
     respond_to do |format|
     format.html
@@ -305,6 +304,53 @@ class EventsController < ApplicationController
 
   end
 
+  def record_live
+       @event = Event.find(params[:id])
+       puts "quierooooooooooooooooooooo grabarrrrrrrrrrrrrrr" 
+      `mkdir public/uploads/event/video/#{@event.id}`
+      @a = `curl -X POST --header 'Accept:application/json; charset=utf-8' --header 'Content-Type:application/json; charset=utf-8' http://aletacloud.com:8087/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/live/instances/_definst_/streamrecorders/fabricato -d '
+{
+  "instanceName": "",
+  "fileVersionDelegateName": "",
+  "serverName": "",
+  "recorderName": "myStream",
+  "currentSize": 0,
+  "segmentSchedule": "",
+  "startOnKeyFrame": true,
+  "outputPath": "/home/rails/public/uploads/event/video/#{@event.id}",
+  "currentFile": "",
+  "saveFieldList": [
+    ""
+  ],
+  "recordData": false,
+  "applicationName": "",
+  "moveFirstVideoFrameToZero": false,
+  "recorderErrorString": "",
+  "segmentSize": 0,
+  "defaultRecorder": false,
+  "splitOnTcDiscontinuity": false,
+  "version": "",
+  "baseFile": "",
+  "segmentDuration": 0,
+  "recordingStartTime": "",
+  "fileTemplate": "",
+  "backBufferTime": 0,
+  "segmentationType": "",
+  "currentDuration": 0,
+  "fileFormat": "",
+  "recorderState": "",
+  "option": ""
+}
+'`
+    puts @a
+    @b= JSON.parse(@a)  
+
+      
+  end  
+
+
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
@@ -320,3 +366,7 @@ class EventsController < ApplicationController
 
 
 end
+
+
+
+
