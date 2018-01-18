@@ -348,6 +348,16 @@ class EventsController < ApplicationController
       
   end  
 
+ 
+def public_live
+
+       @event = Event.find(params[:id])
+       puts "quierooooooooooooooooooooo grabarrrrrrrrrrrrrrr" 
+       @event.state = 4
+       @event.save
+      `mv public/uploads/event/video/#{@event.id}/fabricato.mp4 public/uploads/event/video/#{@event.id}/default.mp4`
+  
+end
 
 
 

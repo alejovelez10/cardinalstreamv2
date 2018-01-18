@@ -15,6 +15,7 @@ end
 
 
   get 'event_info/record_live/:id', to: "events#record_live", as: "record_live"
+  get 'event_info/public_live/:id', to: "events#public_live", as: "public_live"
 
 
   get 'stats/index'
