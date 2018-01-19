@@ -1,6 +1,14 @@
 <% edate = get_date_array(event.event_date)%>
 <div class="container-fluid">
   <div class="row">
+  <div class="alert alert-warning alert-dismissible msg text-center" role="alert" style="position:absolute;z-index:10;
+    background: #26a054;
+    color: white;display:none;width:80%;margin-left:10%">
+  <strong class="text-center" style = "width: 100%"></strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
      <div class="col-md-12 blockhead ">
          <div class="col-md-2 logo text-center">
             <img src="<%=@account.logo_url%>" alt="">
@@ -39,7 +47,7 @@
 <%if event.has_question%>
          
          <div style="margin-top:5px">
-            <div class="alert alert-info" role="alert"><img style="width: 50px;margin-right:10px" src="https://developer.ridgerun.com/wiki/images/thumb/d/df/Blue_question_mark_icon.svg.png/240px-Blue_question_mark_icon.svg.png" alt="">
+            <div class="alert alert-info alert1 alert-info1" role="alert"><img style="width: 50px;margin-right:10px" src="https://developer.ridgerun.com/wiki/images/thumb/d/df/Blue_question_mark_icon.svg.png/240px-Blue_question_mark_icon.svg.png" alt="">
   Tienes alguna duda <a class="form-toggle" role="button" data-toggle="collapse" href="" aria-expanded="false" aria-controls="collapseExample" style="background: #3163b5;margin-left:20px;
     padding: 5px 17px;
     color: white;
@@ -426,12 +434,12 @@
     margin-left: 10px;
     font-size: 16px
   }
-  .alert
+  .alert1
   {
     margin-bottom: 0px;
     margin-top: 20px;
   }
-  .alert-info {
+  .alert-info1 {
     background-color: rgba(8, 8, 8, 0.88);
     border-color: #bce8f1;
     color: white;
@@ -469,6 +477,25 @@
    
    });
    
+       var channel = pusher.subscribe('my-channel-msg');
+   channel.bind('msg', function(data) {
+    a = data.message
+    $('.msg strong').html(a);
+    $('.msg').fadeIn();
+
+ setTimeout(function(){   
+
+  $('.msg').fadeOut();
+      
+     
+}, 6000);
+
+
+
+   
+   
+   
+   });
    
    
    

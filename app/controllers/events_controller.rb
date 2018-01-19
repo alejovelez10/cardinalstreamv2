@@ -356,7 +356,12 @@ def public_live
        @event.state = 4
        @event.save
       `mv public/uploads/event/video/#{@event.id}/fabricato.mp4 public/uploads/event/video/#{@event.id}/default.mp4`
-  
+       tv = `ffprobe -v error -select_streams v:0 -show_entries stream=duration \ -of default=noprint_wrappers=1:nokey=1 public/uploads/event/video/#{@event.id}/default.mp4`
+            tvi = (tv.to_i/2)
+            puts tvi
+            tvisi =  Time.at(tvi).utc.strftime("%H:%M:%S")  
+            puts tvisi
+            `ffmpeg -i  public/uploads/event/video/#{@event.id}/default.mp4 -r 1 -ss #{tvisi} -t 1 public/uploads/event/video/#{@event.id}/screamshot.jpg` if  !@event.event_type 
 end
 
 

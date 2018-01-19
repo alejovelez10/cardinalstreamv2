@@ -12,7 +12,10 @@
       <div class="col-md-8">
          <h3><%=@event.name%></h3>
          <h4><%=@event.description%></h4>
-         <h4><strong>Estado: <%=get_state_event(@event.state)%> <button type="" id = "record" class="btn btn-danger">Grabar</button><button type="" id = "publicar" class="btn btn-primary">Grabar</button></strong></h4>
+         <h4><strong>Estado: <%=get_state_event(@event.state)%> 
+         <button style = "margin-left:10px;" type="" id = "record" class="btn btn-danger"><i class="fa fa-video-camera" style = "font-size:30px;" aria-hidden="true"></i> Grabar</button>
+         <button style = "margin-left:10px;" type="" id = "publicar" class="btn btn-primary"><i class="fa fa-cloud-upload" aria-hidden="true" style = "font-size:30px;"></i> Publicar</button>
+         </strong></h4>
       </div>
       <div class="col-md-12">
          <hr>
@@ -36,7 +39,7 @@
          <hr>
       </div>
    </div>
-   <div class="row" >
+   <div class="row" style="display: none;" >
       <div class="col-md-4">
          <h4>Redes Sociales: <span style="font-size:20px;font-weight: bold"> <%= get_ppts(@event.social)%></span></h4>
          <p style = "color:#187191;font-weight:bold">Links</p>
@@ -66,7 +69,7 @@
    <p>Mensage en vivo</p>
      <%= form_tag cardinalmsg_path, method: :get, remote:true do %>
    <%= text_field_tag :msg , nil, class:"form form-control" %><br>
-   <%= text_field_tag :id , @event.id, class:"form form-control" %><br>
+   <%= hidden_field_tag :id , @event.id%><br>
    <%= submit_tag "Enviar" , class: "btn btn-primary"%>
 <%end%> 
    </div>
