@@ -107,7 +107,9 @@
                            <div class="nextbutt">&gt;</div>
                            <div class="prevbutt">&lt;</div>
                         </div>
+                        <% if @event.ppts_url %>
                         <img class = "imagensup img-responsive" src="<%=array[0]%>" style="height: auto;">
+                        <%end%>
                      </div>
                   </div>
                </div>
@@ -135,7 +137,7 @@
                   </div>
                   <div class="viewport" style = "background:#323232">
                      <div class="overview">
-                        <% a = 1;
+                       <% if @event.ppts_url %>  <% a = 1;
                            array.each do |elemento|%>
                         <div class = "pad">
                            <div class = "numeral n<%=a%>"><%=a%></div>
@@ -143,6 +145,7 @@
                         </div>
                         <%a = a +1
                            end%>
+                           <%end%>
                      </div>
                   </div>
                </div>
