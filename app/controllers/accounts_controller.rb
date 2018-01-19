@@ -72,7 +72,8 @@ class AccountsController < ApplicationController
     @count = @array.count
     render "live"
     else
-      render "no_live" , :layout => false
+      #render "no_live" , :layout => false
+      redirect_to portal_path
     end
   end  
 
