@@ -38,8 +38,10 @@ class EventsController < ApplicationController
   def event_info
       
     @account = Account.find(@event.account_id)
-    @array = @event.slides.split(/,/)
-    @count = @array.count
+    if @event.has_ppts 
+      @array = @event.slides.split(/,/)
+      @count = @array.count
+    end
   end
 
    
