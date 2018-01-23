@@ -1,32 +1,30 @@
 <% edate = get_date_array(event.event_date)%>
 <div class="container-fluid">
-  <div class="row">
-     <div class="col-md-12 blockhead ">
+   <div class="row">
+      <div class="col-md-12 blockhead ">
          <div class="col-md-2 logo text-center">
             <img src="<%=@account.logo_url%>" alt="">
          </div>
          <div class="col-md-6 name">
-            <p style="    font-size: 16px;"><%= event.name.upcase%><br><span  class="hidden-xs hidden-sm" style="font-size: 15px;"><%=edate[0]%> DE <%=edate[2]%> DE <%=edate[4]%></span></p>
+            <p style="    font-size: 18px;"><span style="font-weight: bold"><%= event.name.upcase%></span><br><span  class="hidden-xs hidden-sm" style="font-size: 15px;"><%=edate[0]%> DE <%=edate[2]%> DE <%=edate[4]%></span></p>
          </div>
          <div class="col-md-4 social hidden-sm hidden-xs">
             <div class="redessociales" style="float:right;padding:0 2em;line-height: 2em;background: none;right: -0.7em;font-size: 1.7em;padding: 0;padding-right: 1.7em;margin-bottom: -0.8em;margin-top: -0.46em;">
-              <%if event.social%>
-
-                <%if !@account.facebook.blank?%>
+               <%if event.social%>
+               <%if !@account.facebook.blank?%>
                <a href="<%=@account.facebook%>" target="_blank"><span class="fa fa-facebook" aria-hidden="true"></span></a>
                <%end%>
                <%if !@account.twitter.blank?%>
                <a href="<%=@account.twitter%>" target="_blank"><span class="fa fa-twitter" aria-hidden="true"></span></a>
                <%end%>
-             <%if !@account.instagram.blank?%>
+               <%if !@account.instagram.blank?%>
                <a href="<%=@account.instagram%>" target="_blank"><span class="fa fa-instagram" aria-hidden="true"></span></a>
                <%end%>
-                <%if !@account.linkedin.blank?%>
+               <%if !@account.linkedin.blank?%>
                <a href="<%=@account.linkedin%>" target="_blank"><span class="fa fa-linkedin" aria-hidden="true"></span></a>
                <%end%>
-                 <%end%>
+               <%end%>
                <%= (link_to "Salir", logout_path(event.id), method: :delete, class: "viewer_salir") if event.has_register %>
-             
             </div>
          </div>
       </div>
@@ -34,54 +32,47 @@
    <div class="row">
       <div class="col-md-9">
          <div id="playerElement" style="width:100%;height:500px;margin-top:25px"%>
-
          </div>
-
       </div>
       <div class="col-md-3" >
-       <%if event.has_question%>
-         
+         <%if event.has_question%>
          <div style="margin-top:6px">
             <div class="alert alert-info" role="alert" style="text-align:center"><img style="width: 50px;" src="https://developer.ridgerun.com/wiki/images/thumb/d/df/Blue_question_mark_icon.svg.png/240px-Blue_question_mark_icon.svg.png" alt=""><br>
-  Tienes alguna duda <br><br><a class="form-toggle" role="button" data-toggle="collapse" href="" aria-expanded="false" aria-controls="collapseExample" style="background: #3163b5;
-    padding: 5px 17px;
-    color: white;
-    border-radius: 10px;">Click para preguntar</a>
-</div>
-        
-
-</a></div>
-
-
-         
-
-         <div id="collapseExample1" class="col-md-12 collapse" style= "display:none;position:relative;z-index:10;padding: 9px;background: #313030;margin-top:5px">
+               Tienes alguna duda <br><br><a class="form-toggle" role="button" data-toggle="collapse" href="" aria-expanded="false" aria-controls="collapseExample" style="background: #3163b5;
+                  padding: 5px 17px;
+                  color: white;
+                  border-radius: 10px;">Click para preguntar</a>
+            </div>
+            </a>
+         </div>
+         <div id="collapseExample1" class="col-md-11 collapse" style= "display:none;position:absolute;z-index:10;padding: 9px;background: #313030;margin-top:5px">
+          <div class="row">
             <%= form_tag create_question_path, method: :post, remote:true do%>
+          
+             
+          
             <div class="col-md-12">
                <div class="form-group">
-                  
                   <%= text_field_tag :name , nil, class: "form form-control", placeholder: "Nombre" %>
                </div>
             </div>
             <div class="col-md-12">
                <div class="form-group">
-                  
                   <%= text_field_tag :email , nil, class: "form form-control", placeholder: "Email" %>
                </div>
             </div>
             <div class="col-md-12">
                <div class="form-group">
-                 
                   <%= text_area_tag :description ,nil, class: "form form-control erase", placeholder: "Pregunta", style: "height:100px" %>
                </div>
             </div>
             <%= hidden_field_tag :account_id , event.account_id%>
             <%= hidden_field_tag :event_id , event.id%>
-             <%= hidden_field_tag :type , "video"%>
-
+            <%= hidden_field_tag :type , "video"%>
             <div class="col-md-12" >
                <%= submit_tag "Enviar", class: "btn btn-primary"%>
-               <a  class="cerrar btn btn-default" type="" >Cerrar</a>           </div>
+               <a  class="cerrar btn btn-default" type="" >Cerrar</a>           
+            </div>
             <div class="col-md-9" >
                <div class="alert alert-success" style="margin-top:5px;display:none">
                   Tu pregunsta se envio con exito.
@@ -89,29 +80,37 @@
             </div>
             <%end%>
          </div>
+          
          <%end%>
+         </div>
+         <br>
+         <div class="row" style="background: rgba(8, 8, 8, 0.88);margin-left:0px;margin-right: 0px;padding:5px">
+          <div class="col-md-12">
+          <h4 style="    color: white">Descargables</h4>
+            <% @event.event_files.each do |event|%>
+            <%= link_to "#{event.name}", event.attachment_url, class: "document"%>
+            <%end%>
+         </div>
+         </div>
+      </div>
+      
+
+
+
+   </div>
+   <div class="row">
+      <div class="col-md-12 fixeddown">
+         <%if @event.has_ppts%>
+         <div class="col-md-3">
+            <p  style="border-right: 1px solid gray;    margin-top: 3px;"><%= @event.name%><br><span style="font-size: 10px;"><%= get_date(@event.event_date)%></span></p>
+         </div>
+        
+         <%end%>
+         <div class="col-md-12 middle-div no-float" style="padding-left:0px !important;bottom:0px;background:#424242;text-align:center;float:left;margin-top:5px;">
+            <a href="http://iptics.com.co/productos/cardinalstream/" target="_blank"><img src="../../images/logo.png"></a>
+         </div>
       </div>
    </div>
-    <div class="row">
-   <div class="col-md-12 fixeddown">
-   <%if @event.has_ppts%>
-      <div class="col-md-3">
-        <p  style="border-right: 1px solid gray;    margin-top: 3px;"><%= @event.name%><br><span style="font-size: 10px;"><%= get_date(@event.event_date)%></span></p>
-
-      </div>
-            <div class="col-md-9">
-        <% @event.event_files.each do |event|%>
-        <%= link_to "#{event.name}", event.attachment_url, class: "document"%>
-        <%end%>
-
-      </div>
-      <%end%>
-      <div class="col-md-12 middle-div no-float" style="padding-left:0px !important;bottom:0px;background:#424242;text-align:center;float:left;margin-top:5px;">
-         <a href="http://iptics.com.co/productos/cardinalstream/" target="_blank"><img src="../../images/logo.png"></a>
-      </div>
-   </div>
-  
-</div>
 </div>
 <script >
    $(document).on('turbolinks:load',function() {
@@ -119,7 +118,7 @@
     $('.cerrar').click(function(){
     $('#collapseExample1').fadeOut();
    })
-
+   
       $('.form-toggle').click(function(){
     $('#collapseExample1').fadeToggle();
    })
@@ -149,7 +148,7 @@
    
           }); 
               
-
+   
    
    
    
@@ -184,21 +183,24 @@
    
 </script>
 <style>
-.document:hover
-{
-  text-decoration: none
-}
-.document 
-{
-         font-size: 12px;
-    padding: 10px;
-    border: 3px solid #2b772b;
-    background: rgba(119, 119, 119, 0.43);
-    position: relative;
-    margin-right: 10px;
-    top: 17px;
-    color: white;
-}
+   .document:hover
+   {
+   text-decoration: none
+   }
+   .document 
+   {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+   font-size: 12px;
+   padding: 10px;
+   border: 3px solid #137dbd;
+   background: rgba(119, 119, 119, 0.43);
+   
+   margin-right: 10px;
+   
+   color: white;
+   }
    .fixeddown
    {
    height: auto;
@@ -222,13 +224,13 @@
    background: #000;
    text-align: center;
    }
-  .imagchange {
-    width: 80% !important;
-    margin-left: 10%;
-}
+   .imagchange {
+   width: 80% !important;
+   margin-left: 10%;
+   }
    .mtop
    {
-    margin-top: 20px !important;
+   margin-top: 20px !important;
    }
    .activeoff
    {
@@ -271,7 +273,7 @@
    margin-left: 1em;
    margin-top: 25px;
    }
-    #ppts {
+   #ppts {
    width: 95% !important;
    margin-left: 0px;
    }
@@ -326,66 +328,63 @@
    margin-bottom: 9px;
    }
    .logo
-  {
-    height: 70px;
-    background: white;
-    padding: 0px 0px 0px 0px;
-  }
-  .logo img
-  {
-    width: 162px;
-  }
-    .name
-  {
-    height: 70px;
-    background: rgba(39, 39, 39, 0.83);
-    padding: 10px 0px 0px 20px;
-
-  }
-  .name p
-  {
-    color: white;
-  }
-     .social
-  {
-    height: 70px;
-    background: rgba(39, 39, 39, 0.83);
-    padding: 10px 0px 0px 0px; 
-  }
+   {
+   height: 70px;
+   background: white;
+   padding: 0px 0px 0px 0px;
+   }
+   .logo img
+   {
+   width: 162px;
+   }
+   .name
+   {
+   height: 70px;
+   background: rgba(39, 39, 39, 0.83);
+   padding: 10px 0px 0px 20px;
+   }
+   .name p
+   {
+   color: white;
+   }
+   .social
+   {
+   height: 70px;
+   background: rgba(39, 39, 39, 0.83);
+   padding: 10px 0px 0px 0px; 
+   }
    .blockhead
-    {
-  padding-left: 0px!important; 
-      padding: 0px;
-          
-  background: none !important;
-  }
-  .viewer_salir
-  {
-    color: white;
-    border: 2px solid white;
-    padding: 2px 16px;
-    border-radius: 9px;
-    margin-left: 10px;
-    font-size: 16px
-  }
+   {
+   padding-left: 0px!important; 
+   padding: 0px;
+   background: none !important;
+   }
+   .viewer_salir
+   {
+   color: white;
+   border: 2px solid white;
+   padding: 2px 16px;
+   border-radius: 9px;
+   margin-left: 10px;
+   font-size: 16px
+   }
    .viewer_salir:hover
-  {
-    color: white;
-    border: 2px solid white;
-    padding: 2px 16px;
-    border-radius: 9px;
-    margin-left: 10px;
-    font-size: 16px
-  }
-  .alert
-  {
-    margin-bottom: 0px;
-    margin-top: 20px;
-  }
-  .alert-info {
-    background-color: rgba(8, 8, 8, 0.88);
-    border-color: #bce8f1;
-    color: white;
-}
+   {
+   color: white;
+   border: 2px solid white;
+   padding: 2px 16px;
+   border-radius: 9px;
+   margin-left: 10px;
+   font-size: 16px
+   }
+   .alert
+   {
+   margin-bottom: 0px;
+   margin-top: 20px;
+   }
+   .alert-info {
+   background-color: rgba(8, 8, 8, 0.88);
+   border-color: #bce8f1;
+   color: white;
+   }
 </style>
-
