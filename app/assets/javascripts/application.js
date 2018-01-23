@@ -16,6 +16,7 @@
 //= require jquery-ui
 //= require underscore
 //= require gmaps/google
+//= require jquery.validate
 //= require jquery_nested_form
 //= require jquery.tinyscrollbar
 //= require twitter/bootstrap
@@ -27,6 +28,36 @@ $(document).on('turbolinks:load',function() {
 	 setTimeout(function(){ $('#scrollbar1').tinyscrollbar();}, 1000);
 
 
+  $(function() {
+    $('#toggle-ppt').bootstrapToggle({
+      on: 'Si',
+      off: 'No'
+    });
+  })
+
+  
+
+
+  $(function() {
+    $('#toggle-register').bootstrapToggle({
+      on: 'Si',
+      off: 'No'
+    });
+  })
+
+ $(function() {
+    $('#toggle-social').bootstrapToggle({
+      on: 'Si',
+      off: 'No'
+    });
+  })
+
+ $(function() {
+    $('#toggle-root').bootstrapToggle({
+      on: 'Si',
+      off: 'No'
+    });
+  })
 
   $(function() {
     $('#toggle-one').bootstrapToggle({

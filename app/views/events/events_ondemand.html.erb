@@ -1,9 +1,14 @@
 <div class="container">
      <div class = "row title-table">
-         <div class = "col-md-12">
-            <p style="font-size:40px;color:#187191">Eventos</p>
+         <div class = "col-md-6">
+            <p style="font-size:32px;color:#187191">Eventos</p>
          </div>
-   
+   <div class = "col-md-6 text-right">
+            <%= link_to new_event_path(4), remote: true, class: "btn btn-primary" do %>
+            <i class="fa fa-hdd-o" style = "font-size:30px;" aria-hidden="true"></i>
+            Ondemand
+            <%end%>
+         </div>
       </div>
    <%=render "tabs"%>
    <br>
@@ -15,12 +20,7 @@
          <div class = "col-md-6 paginate text-left title-table1">
             <%= will_paginate @events%>
          </div>
-         <div class = "col-md-12 text-right">
-            <%= link_to new_event_path(4), remote: true, class: "btn btn-primary" do %>
-            <i class="fa fa-hdd-o" style = "font-size:30px;" aria-hidden="true"></i>
-            Ondemand
-            <%end%>
-         </div>
+         
       </div>
       <hr class="hr">
       <div class = "row">

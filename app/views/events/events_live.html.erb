@@ -1,9 +1,15 @@
 <div class="container">
   <div class = "row title-table">
-         <div class = "col-md-12">
-            <p style="font-size:40px;color:#187191">Eventos</p>
+         <div class = "col-md-6">
+            <p style="font-size:32px;color:#187191">Eventos</p>
          </div>
-   
+          <div class = "col-md-6 text-right">
+            <%= link_to new_event_path(0), remote: true,class: "btn btn-primary" do %>
+            <i class="fa fa-video-camera" style = "font-size:30px;" aria-hidden="true"></i>
+            Live
+            <%end%>
+
+         </div>
       </div>
 
    <%=render "tabs"%>
@@ -11,18 +17,12 @@
    <div class="row" >
       <div class = "row title-table">
          <div class = "col-md-6">
-            <p>Eventos Lives <span class="label label-primary"><%=@events.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @events, :entry_name => 'Eventos' %></span> </p>
+            <p style="font-size: 20px;">Eventos Lives <span class="label label-primary"><%=@events.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @events, :entry_name => 'Eventos' %></span> </p>
          </div>
          <div class = "col-md-6 paginate text-left title-table1">
             <%= will_paginate @events%>
          </div>
-         <div class = "col-md-12 text-right">
-            <%= link_to new_event_path(0), remote: true,class: "btn btn-primary" do %>
-            <i class="fa fa-video-camera" style = "font-size:30px;" aria-hidden="true"></i>
-            Live
-            <%end%>
-
-         </div>
+        
       </div>
       <hr class="hr">
       <div class = "row">
@@ -35,10 +35,12 @@
                   <th>Streaming</th>
                   <th>Tipo</th>
                   
-                  <th>Video</th>
+                
                   <th>Ppts</th>
-                  <th></th>
+                  <th>Root</th>
                    <th></th>
+                 
+
             </thead>
             <tbody>
                <% @events.each do |event| %>
@@ -72,6 +74,13 @@
                               Informacion General
                               <%end%>
                            </li>
+                              <%if event.state != 4%>
+                             <li><%= link_to  real_time_stats_path( event.id), target: :_blank    do%>
+                              <i class="fa fa-bar-chart fa1" aria-hidden="true"></i>
+                              Estadisticas
+                              <%end%>
+                           </li>
+                           <%end%>
                             <li>
                            <a data-toggle="modal" id = "<%=event.iframe%>" class = "modal-links" href="#myModal-links"><i class="fa fa-pencil fa1" aria-hidden="true"></i>Iframe</a>
                            </li>
@@ -87,11 +96,13 @@
                   <td><%= event.name %></td>
                   <td><%= event.state != 4 ? "Live" : "Ondemand" %></td>
                   <td style = "font-size:20px"><%= get_event_type(event.event_type).html_safe %></td>
-                  <td class=""><%= get_state(event.root_event).html_safe %></td>
-                  <td class=""><%= get_aov(event.video_url).html_safe  %></td>
-                  <td class=""><%= get_aov(event.ppts_url).html_safe %></td>
+                   
+                 <td class=""><%= get_aov(event.ppts_url).html_safe %></td>
+                 <td class=""><%= get_state(event.root_event).html_safe %></td>
+                 
+                  
                   <td> <%= link_to "Ver", portal_show_path( event.id), class: "btn btn-primary"%></td>
-                  <td> <%= link_to "Ver", real_time_stats_path( event.id), class: "btn btn-primary"%></td>
+                 
                </tr>
                <%end%>
             </tbody>

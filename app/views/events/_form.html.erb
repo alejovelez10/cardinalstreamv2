@@ -10,7 +10,7 @@
    </ul>
 </div>
 <div class="modal-body modal-body1">
-<%= nested_form_for(@event) do |form| %>
+<%= nested_form_for(@event , :html=> {:id => 'form-event'}) do |form| %>
 <% if event.errors.any? %>
 <div id="error_explanation">
    <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
@@ -22,14 +22,17 @@
 </div>
 <% end %>
 <%if @type == "principal" || action_name == "new"%>
+
+
 <div class="row">
    <div class="col-md-12">
       <%= form.label "Fecha del Evento" %><br>
+         <%if @state == "4"%>
       <div class="form-group date_select">
          <%= form.datetime_select :event_date,{
             :start_year =>
-            Time.now.year + 1,
-            :end_year => 1900,
+            Time.now.year,
+            :end_year => 1990,
             :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre','Diciembre'],
             :use_short_month => true,
             :order => [:day, :month, :year]},
@@ -37,6 +40,20 @@
             :id => 'event_date_event' , :title => "Es un Campo Obligatorio" }
             %>
       </div>
+      <%else%>
+      <div class="form-group date_select">
+         <%= form.datetime_select :event_date,{
+            :start_year =>
+            Time.zone.now.year + 10,
+            :end_year => Time.now.year,
+            :use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre','Diciembre'],
+            :use_short_month => true,
+            :order => [:day, :month, :year]},
+            {:class => 'year form-control line1 required',
+            :id => 'event_date_event' , :title => "Es un Campo Obligatorio" }
+            %>
+      </div>
+      <%end%>
    </div>
 </div>
 <br>
@@ -44,7 +61,7 @@
    <div class="col-md-8">
       <div class="form-group">
          <%= form.label "Nombre del Evento"%>
-         <%= form.text_field :name, id: :event_name, class: "form form-control" %>
+         <%= form.text_field :name, id: :event_name, class: "required form form-control" %>
       </div>
    </div>
    <%if @state != "4" %>
@@ -88,14 +105,10 @@
       <%end%>
    </div>
    <div class="col-md-6" style = "position: relative;top: 23px;">
-      <label for="">¿Diapositivas?</label><br>
-      <label class="radio-inline">
-      <%= form.radio_button :has_ppts, true, class: 'rb dia check1' %><span style = "">Si</span>
-      </label>
-      <label class="radio-inline" style="margin-bottom:5px;">
-      <%= form.radio_button :has_ppts, false, class: 'rb nodia check1' %><span style = "">No</span>
-      </label>
-      <br>
+     <label class="radio-inline">
+                     <%= form.check_box :has_register, id:"toggle-ppt1"%><span style = "margin-left:10px">¿Diapositivas?</span>
+                     </label>
+      <br><br>
       <%= form.file_field :ppts,  class: "form-control inputfile" , id: 'file', accept: "application/pdf"%>
       <label for="file" ><i class="fa fa-desktop fa1" aria-hidden="true" style="font-size: 22px"></i>
       <span class="levidencia" style = "margin-right:10px;" >Adjuntar (.pdf) </span> <%if @event.ppts.blank?   != true %>
@@ -269,7 +282,9 @@
 <%= form.hidden_field :account_id, :value => @account.id %>
 <%= form.hidden_field :admin_user,:value => current_user.admin_user %>
 <%= form.hidden_field :user_id,:value => current_user.id %>
+ <%if @state == "4"%>
 <%= form.hidden_field :state,:value => @state %>
+<%end%>
 <%= form.hidden_field :ultimate_ppt, :value => 1 %>
 <%= form.hidden_field :views, :value => 0 %>
 
@@ -383,6 +398,29 @@
    }( document, window, 0 ));
    
 </script>
+
+
+<script>
+  $(document).ready(function () { 
+  $(function() {
+    $('#toggle-ppt1').bootstrapToggle({
+      on: 'Si',
+      off: 'No'
+    });
+  })
+    
+   $("#form-event").validate({
+    messages: {
+        "event[name]": {
+            required: "Este Campo es Obligatorio"
+        }
+    }
+}
+
+    );  
+}); 
+
+</script>
 <style>
    .inputfile {
    width: 0.1px;
@@ -471,5 +509,11 @@
    {
    border-left: 5px solid #2083de;
    border-right: 5px solid #2083de;
+   }
+   #event_name-error
+   {
+    background: #c73333;
+    padding: 5px;
+    color: white !important;
    }
 </style>

@@ -92,14 +92,10 @@
       <%end%>
    </div>
    <div class="col-md-6" style = "position: relative;top: 23px;">
-      <label for="">¿Diapositivas?</label><br>
       <label class="radio-inline">
-      <%= form.radio_button :has_ppts, true, class: 'rb dia check1' %><span style = "">Si</span>
-      </label>
-      <label class="radio-inline" style="margin-bottom:5px;">
-      <%= form.radio_button :has_ppts, false, class: 'rb nodia check1' %><span style = "">No</span>
-      </label>
-      <br>
+                     <%= form.check_box :has_register, id:"toggle-ppt"%><span style = "margin-left:10px">¿Diapositivas?</span>
+                     </label>
+      <br><br>
       <%= form.file_field :ppts,  class: "form-control inputfile" , id: 'file', accept: "application/pdf"%>
       <label for="file" ><i class="fa fa-desktop fa1" aria-hidden="true" style="font-size: 22px"></i>
       <span class="levidencia" style = "margin-right:10px;" >Adjuntar (.pdf) </span> <%if @event.ppts.blank?   != true %>
@@ -115,32 +111,20 @@
 <div class="row" style = "">
    <% @state != "4" ? display = "" : display = "display:none" %>
    <div class="col-md-3" style = "position: relative;top: 23px;">
-      <label for=""><i class="fa fa-sign-in fa1" style = "font-size:20px" aria-hidden="true"></i> ¿Registro?</label><br>
-      <label class="radio-inline">
-      <%= form.radio_button :has_register, true, class: 'rb regsi check1' %><span style = "">Si</span>
-      </label>
-      <label class="radio-inline">
-      <%= form.radio_button :has_register, false, class: 'rb regno check1' %><span style = "">No</span>
-      </label>
+  <label class="radio-inline">
+                     <%= form.check_box :has_register, id:"toggle-register"%><span style = "margin-left:10px">¿Registro?</span>
+                     </label>
    </div>
    <div class="col-md-3" style = "position: relative;top: 23px;">
-      <label for=""><i class="fa fa-sign-in fa1" style = "font-size:20px" aria-hidden="true"></i> Evento Prinpal?</label><br>
       <label class="radio-inline">
-      <%= form.radio_button :root_event, true, class: 'rb rootsi check1' %><span style = "">Si</span>
-      </label>
-      <label class="radio-inline">
-      <%= form.radio_button :root_event, false, class: 'rb rootno check1' %><span style = "">No</span>
-      </label>
+                     <%= form.check_box :root_event, id:"toggle-root"%><span style = "margin-left:10px">¿Evento Principal?</span>
+                     </label>
    </div>
  
    <div class="col-md-3" style = "position: relative;top: 23px;">
-      <label for=""><i class="fa fa-address-book-o fa1" style = "font-size:20px" aria-hidden="true"></i> ¿Redes Sociales?</label><br>
-      <label class="radio-inline">
-      <%= form.radio_button :social, true, class: 'rb redsi check1' %><span style = "">Si</span>
-      </label>
-      <label class="radio-inline">
-      <%= form.radio_button :social, false, class: 'rb redno check1' %><span style = "">No</span>
-      </label>
+       <label class="radio-inline">
+                     <%= form.check_box :social, id:"toggle-social"%><span style = "margin-left:10px">¿Redes Sociales?</span>
+                     </label>
    </div>
    
    <div class="col-md-3" style="<%=display%>">
@@ -172,12 +156,12 @@
    </div>
   
 
-   <div class="col-md-4" style="<%=display1%>">
+   <!--<div class="col-md-4" style="<%=display1%>">
       <div class="form-group" >
          <%= form.label "iframe" %>
          <%= form.text_field :iframe, id: :video_iframe, class: "form form-control" %>
       </div>
-   </div>
+   </div>-->
 
   
 </div>

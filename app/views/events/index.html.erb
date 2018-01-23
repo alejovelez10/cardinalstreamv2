@@ -1,7 +1,17 @@
 <div class="container">
    <div class = "row title-table">
-         <div class = "col-md-12">
-            <p style="font-size:40px;color:#187191">Eventos</p>
+         <div class = "col-md-6">
+            <p style="font-size:32px;color:#187191">Eventos</p>
+         </div>
+         <div class = "col-md-6 text-right">
+            <%= link_to new_event_path(0), remote: true,class: "btn btn-primary" do %>
+            <i class="fa fa-video-camera" style = "font-size:30px;" aria-hidden="true"></i>
+            Live
+            <%end%>
+            <%= link_to new_event_path(4), remote: true, class: "btn btn-primary" do %>
+            <i class="fa fa-hdd-o" style = "font-size:30px;" aria-hidden="true"></i>
+            Ondemand
+            <%end%>
          </div>
    
       </div>
@@ -15,16 +25,7 @@
          <div class = "col-md-6 paginate text-left title-table1">
             <%= will_paginate @events%>
          </div>
-         <div class = "col-md-12 text-right">
-            <%= link_to new_event_path(0), remote: true,class: "btn btn-primary" do %>
-            <i class="fa fa-video-camera" style = "font-size:30px;" aria-hidden="true"></i>
-            Live
-            <%end%>
-            <%= link_to new_event_path(4), remote: true, class: "btn btn-primary" do %>
-            <i class="fa fa-hdd-o" style = "font-size:30px;" aria-hidden="true"></i>
-            Ondemand
-            <%end%>
-         </div>
+         
       </div>
       <hr class="hr">
       <div class = "row">
@@ -37,10 +38,11 @@
                   <th>Streaming</th>
                   <th>Tipo</th>
                 
-                  <th>Video</th>
+                
                   <th>Ppts</th>
+                  <th>Root</th>
                   <th></th>
-                   <th></th>
+                 
             </thead>
             <tbody>
                <% @events.each do |event| %>
@@ -52,11 +54,11 @@
                         <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dLabel">
-                           <li><%= link_to  ppts_views_path(event), remote:true do%>
+                          <%if event.state != 4%> <li><%= link_to  ppts_views_path(event), remote:true do%>
                               <i class="fa fa-television fa1" aria-hidden="true"></i>
                               Configurar diapositivas
                               <%end%>
-                           </li>
+                           </li><%end%>
                            <%if event.state != 4%>
                            <li><%= link_to  event, target: :_blank  do%>
                               <i class="fa fa-eye fa1" aria-hidden="true"></i>
@@ -86,6 +88,14 @@
                             <li>
                            <a data-toggle="modal" ids = "<%=event.id%>" id = "<%=event.iframe%>" class = "modal-links" href="#myModal-links"><i class="fa fa-television fa1" aria-hidden="true"></i>Iframe y link para comartir</a>
                            </li>
+                           <%if event.state != 4%>
+                             <li><%= link_to  real_time_stats_path( event.id), target: :_blank    do%>
+                              <i class="fa fa-bar-chart fa1" aria-hidden="true"></i>
+                              Estadisticas
+                              <%end%>
+                           </li>
+                           <%end%>
+
                            <li><%= link_to  event, method: :delete, data: { confirm: '¿Esta seguro de eliminar?' }  do%>
                               <i class="fa fa-trash fa1" aria-hidden="true"></i>
                               Eliminar
@@ -98,11 +108,12 @@
                   <td><%= event.name %></td>
                   <td><%= event.state != 4 ? "Live" : "Ondemand" %></td>
                   <td style = "font-size:20px"><%= get_event_type(event.event_type).html_safe %></td>
-                   <!--<td class=""><%= get_state(event.root_event).html_safe %></td>-->
-                  <td class=""><%= get_aov(event.video_url).html_safe  %></td>
+                  
+                  
                   <td class=""><%= get_aov(event.ppts_url).html_safe %></td>
+                   <td class=""><%= get_state(event.root_event).html_safe %></td>
                   <td> <%= link_to "Ver", portal_show_path( event.id), data: { turbolinks: false }, class: "btn btn-primary"%></td>
-                  <%if event.state != 4%> <td> <%= link_to "Ver", real_time_stats_path( event.id), class: "btn btn-primary"%></td><%end%>
+                  
                </tr>
                <%end%>
             </tbody>
