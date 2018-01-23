@@ -58,14 +58,14 @@
 </div>
 <br>
 <div class="row">
-   <div class="col-md-8">
+   <div class="col-md-6">
       <div class="form-group">
          <%= form.label "Nombre del Evento"%>
          <%= form.text_field :name, id: :event_name, class: "required form form-control" %>
       </div>
    </div>
    <%if @state != "4" %>
-   <div class="col-md-4">
+   <div class="col-md-3">
       <div class="form-group">
          <%= form.label "Estado"%><br>
          <label class="radio-inline">
@@ -77,6 +77,12 @@
          <label class="radio-inline" style="margin-bottom:5px;">
          <%= form.radio_button :state, 4 , class: 'rb stateo check1' %><span style = "">Ondemant</span>
          </label>
+      </div>
+   </div>
+    <div class="col-md-3">
+      <div class="form-group" >
+         <%= form.label "Delay (segundos)" %>
+         <%= form.text_field :delay, :value=> 0, id: :delay, class: "required form form-control" %>
       </div>
    </div>
    <%end%>  
@@ -151,12 +157,7 @@
       </label>
    </div>
    
-   <div class="col-md-3" style="<%=display%>">
-      <div class="form-group" >
-         <%= form.label "Delay (segundos)" %>
-         <%= form.text_field :delay, id: :delay, class: "form form-control" %>
-      </div>
-   </div>
+  
 
    
 </div>
@@ -408,10 +409,13 @@
       off: 'No'
     });
   })
-    
+
    $("#form-event").validate({
     messages: {
         "event[name]": {
+            required: "Este Campo es Obligatorio"
+        },
+        "event[delay]": {
             required: "Este Campo es Obligatorio"
         }
     }
@@ -516,4 +520,10 @@
     padding: 5px;
     color: white !important;
    }
+     #delay-error
+   {
+    background: #c73333;
+    padding: 5px;
+    color: white !important;
+   } 
 </style>
