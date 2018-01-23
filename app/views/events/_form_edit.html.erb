@@ -1,14 +1,18 @@
-  <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <p style="font-size:30px;color:#187191;font-weight: bold"><%= action_type %> Evento <%= @state == "4" ? "Ondemand" : "Live" %></p>
-         </div>
-   <h4 class="modal-title"> </h4>
-</div>
+  
+
+            
+    
+
+  
+
 <div class="alert alert-danger" style="display:none">
    <ul>
    </ul>
 </div>
-<div class="modal-body modal-body1">
+<div class="row">
+<div class="col-lg-10 col-lg-offset-1" >
+  <p style="font-size:30px;color:#187191;font-weight: bold"><%= action_type %> Evento <%= @state == "4" ? "Ondemand" : "Live" %></p>
+
 <%= nested_form_for(@event) do |form| %>
 <% if event.errors.any? %>
 <div id="error_explanation">
@@ -62,7 +66,20 @@
          <%= form.text_field :name, id: :event_name, class: "form form-control" %>
       </div>
    </div>
-  
+    <%if @state != "4" %>
+   <div class="col-md-4" style="">
+      <div class="form-group" >
+         <%= form.label "Delay (segundos)" %>
+         <%= form.text_field :delay, id: :delay, class: "form form-control" %>
+      </div>
+   </div>
+   <div class="col-md-3">
+      <div class="form-group" >
+         <%= form.label "Nombre del Streaming" %>
+         <%= form.text_field :name_stream, id: :name_stream, class: "required form form-control" %>
+      </div>
+   </div>
+  <%end%>
    <div class="col-md-7">
       <div class="form-group" style="margin-bottom:0px">
          <%= form.label "Descripcion" %>
@@ -127,12 +144,7 @@
                      </label>
    </div>
    
-   <div class="col-md-3" style="<%=display%>">
-      <div class="form-group" >
-         <%= form.label "Delay (segundos)" %>
-         <%= form.text_field :delay, id: :delay, class: "form form-control" %>
-      </div>
-   </div>
+   
 
    
 </div>
@@ -283,6 +295,19 @@
 <%= form.submit "Guardar" , class: "btn btn-primary" %>
 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
 <% end %>
+
+
+</div>
+  
+</div>
+
+
+
+
+
+
+
+
 <script>
    if ("<%=action_name%>" == "edit" && <%= @event.ppts.blank?  %> != true)
    {
