@@ -40,15 +40,15 @@
       </div>
    </div>
    <div class="row">
-      <div class="col-md-5">
-         <div id="playerElement" style="width:100%;height:350px;margin-top:<%=event.has_question ? '25px' : '70px'%>">
+      <div class="col-md-6">
+         <div id="playerElement" style="width:100%;height:0;padding:0 0 56.25% 0;margin-top:<%=event.has_question ? '25px' : '70px'%>">
 
          </div>
 <%if event.has_question%>
          
          <div style="margin-top:5px">
-            <div class="alert alert-info alert1 alert-info1" role="alert"><img style="width: 50px;margin-right:10px" src="https://developer.ridgerun.com/wiki/images/thumb/d/df/Blue_question_mark_icon.svg.png/240px-Blue_question_mark_icon.svg.png" alt="">
-  Tienes alguna duda <a class="form-toggle" role="button" data-toggle="collapse" href="" aria-expanded="false" aria-controls="collapseExample" style="background: #3163b5;margin-left:20px;
+            <div class="alert alert-info alert1 alert-info1" role="alert"><img class="hidden-xs hidden-sm" style="width: 50px;margin-right:10px" src="https://developer.ridgerun.com/wiki/images/thumb/d/df/Blue_question_mark_icon.svg.png/240px-Blue_question_mark_icon.svg.png" alt="">
+  <span class="hidden-xs hidden-sm">Tienes alguna duda </span><a class="form-toggle" role="button" data-toggle="collapse" href="" aria-expanded="false" aria-controls="collapseExample" style="background: #3163b5;margin-left:20px;
     padding: 5px 17px;
     color: white;
     border-radius: 10px;">Click para preguntar</a>
@@ -96,7 +96,7 @@
          </div>
          <%end%>
       </div>
-      <div class="col-md-7">
+      <div class="col-md-6">
          <div class="backppt col-md-12 no-float">
         
             <div class="ppt-block">
@@ -155,17 +155,18 @@
    </div>
     <div class="row">
    <div class="col-md-12 fixeddown">
-      <div class="col-md-3">
+     
+      <div class="col-md-3 hidden-xs" ">
         <p  style="border-right: 1px solid gray;    margin-top: 3px;"><%= @event.name%><br><span style="font-size: 10px;"><%= get_date(@event.event_date)%></span></p>
 
       </div>
-            <div class="col-md-9">
+            <div class="col-md-9 hidden-xs">
         <% @event.event_files.each do |event|%>
         <%= link_to "#{event.name}", event.attachment_url, class: "document"%>
         <%end%>
 
       </div>
-      <div class="col-md-12 middle-div no-float" style="padding-left:0px !important;bottom:0px;background:#424242;text-align:center;float:left;margin-top:5px;">
+      <div class="col-md-12 middle-div no-float" style="padding-left:0px !important;bottom:0px;background:#424242;text-align:center;margin-top:5px;">
          <a href="http://iptics.com.co/productos/cardinalstream/" target="_blank"><img src="../../images/logo.png"></a>
       </div>
    </div>
@@ -329,7 +330,7 @@
    .ppt-block {
    margin-right: 6em;
    margin-left: 1em;
-   margin-top: 25px;
+   margin-top: 70px;
    }
     #ppts {
    width: 95% !important;
@@ -339,7 +340,7 @@
    .ppt-block{
    background-color: lightblue;
    margin-right: 0em;
-   margin-left: 0em;
+   margin-left: 0em; margin-top: 10px;
    }
    .ppt-block img {
    width: 100%;
@@ -350,10 +351,11 @@
    }
    .fixeddown
    {
-   height:28em;    
+   height:auto;    
    }
    .backppt {
-   position: relative;
+   
+    margin-bottom: 10px;
    height:auto !important;
    padding-left: 15px !important;
    }
@@ -368,6 +370,10 @@
    #playerElement 
    {
    margin-top: 0px !important;
+   }
+   .alert-info1
+   {
+    text-align: center;
    }
    }
    #playerElement img
