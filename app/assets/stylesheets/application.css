@@ -30,18 +30,18 @@
 
 .login1
     {
-      widows: 80%;
-    margin-top:10px;    
+    margin-top: 10px;
     padding-top: 50px;
     padding-bottom: 20px;
-    padding-left: 50px !important;
-    padding-right: 50px  !important;
-       background: white;
-border-top: 7px solid #159ec7;
-    border-bottom: 7px solid #159ec7;
+    padding-left: 65px !important;
+    padding-right: 65px !important;
+    background: white;
+    border-right: 7px solid #159ec7;
+    border-left: 7px solid #159ec7;
     background-color: #fff;
-
     border-radius: 4px;
+
+
       p
       {
         padding:10px;
@@ -251,20 +251,20 @@ margin: 0px 10px;
     line-height: 1.42857143;
     border: 1px solid transparent;
     border-radius: 4px 4px 0 0;
-    background: #187191;
+    background: #1c8bb3;
     color: white;
 }
 
 .btn-primary
 {
 
-     background: #187191 !important;
+     background: #1c8bb3 !important;
     color: white !important;
 }
 
 
 .label-primary {
-        background: #187191 !important;
+        background: #1c8bb3 !important;
       }
 
 .no-active a:hover
@@ -276,7 +276,7 @@ margin: 0px 10px;
 
 
 .navbar-default {
-    background-color: #187191;
+    background-color: #0f5871;
     border-color: #e7e7e7;
 }
 .navbar-default .navbar-nav>li>a {

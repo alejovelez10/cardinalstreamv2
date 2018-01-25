@@ -32,14 +32,17 @@
   
    <%if @event.has_files || @event.has_question%>
       <div class="row"  >
-      <div class="col-md-9">
+          <div class="col-md-9">
+           <div id="playerElement" style="width:100%;height:0;padding:0 0 56.25% 0;margin-top:20px"%></div>
+          </div>
       <%else%>
        <div class="row iframe-body"  >
-      <div class="col-md-12">
-      <%end%>
-         <div id="playerElement" style="width:100%;height:500px;margin-top:25px"%>
+         <div class="col-md-12">
+         <div id="playerElement" style="width:100%;height:0;padding:0 0 56.25% 0;margin-top:20px"%>
          </div>
       </div>
+   <%end%>
+         
      <%if @event.has_files || @event.has_question%>
       <div class="col-md-3" >
          <%if event.has_question%>
@@ -86,13 +89,15 @@
                </div>
             </div>
             <%end%>
-         </div>
-          
+         
+          </div>
+           </div>
          <%end%>
-         </div>
+         
+
          <br>
          <%if @event.has_files%>
-         <div class="row" style="background: rgba(8, 8, 8, 0.88);margin-left:0px;margin-right: 0px;padding:5px">
+         <div class="row descargables" style="background: rgba(8, 8, 8, 0.88);margin-left:0px;margin-right: 0px;padding:5px">
           <div class="col-md-12">
           <h4 style="    color: white">Descargables</h4>
             <% @event.event_files.each do |event|%>
@@ -102,9 +107,10 @@
          </div>
          <%end%>
       </div>
+      </div>
       <%end%>
 
-
+      
 
    </div>
    <div class="row">
@@ -115,7 +121,7 @@
          </div>
         
          <%end%>
-         <div class="col-md-12 middle-div no-float" style="padding-left:0px !important;bottom:0px;background:#424242;text-align:center;float:left;margin-top:5px;">
+         <div class="col-md-12 middle-div no-float" style="padding-left:0px !important;bottom:0px;background:#424242;text-align:center;margin-top:5px;">
             <a href="http://iptics.com.co/productos/cardinalstream/" target="_blank"><img src="../../images/logo.png"></a>
          </div>
       </div>
@@ -195,9 +201,8 @@
 .iframe-body{
     text-align: center;
     height: 100%;
-    width: 80%;
-    margin-left: 10%;
-
+    width: 70%;
+    margin-left: 15%;
     zoom: 1;
 
 }
@@ -296,6 +301,20 @@
    margin-left: 0px;
    }
    @media only screen and (max-width:992px) {
+       .iframe-body{
+       text-align: center;
+    height: 100%;
+    width: 100%;
+    margin-top: 90px;
+    margin-bottom: 90px;
+    margin-left: 0%;
+    zoom: 1;
+
+}
+.descargables
+{
+   margin-bottom:40px;
+}
    .ppt-block{
    background-color: lightblue;
    margin-right: 0em;
@@ -308,9 +327,10 @@
    width: 10em;
    height: 10em;
    }
-   .fixeddown
+    .fixeddown
    {
-   height:28em;    
+   height: auto;
+    padding-left: 0px !important;
    }
    .backppt {
    position: relative;
