@@ -51,6 +51,11 @@ class Event < ApplicationRecord
   accepts_nested_attributes_for :event_files, :allow_destroy => true
 
 
+        def self.search(search)
+                            where(['name LIKE ?', "%#{search}%"])
+            
+             
+        end
 
         def root_event_change
 
