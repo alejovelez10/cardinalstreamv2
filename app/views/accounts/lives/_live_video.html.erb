@@ -48,15 +48,8 @@
          <%if event.has_question%>
          <div style="margin-top:6px">
             <div class="alert alert-info" role="alert" style="text-align:center"><img style="width: 50px;" src="https://developer.ridgerun.com/wiki/images/thumb/d/df/Blue_question_mark_icon.svg.png/240px-Blue_question_mark_icon.svg.png" alt=""><br>
-               Tienes alguna duda <br><br><a class="form-toggle" role="button" data-toggle="collapse" href="" aria-expanded="false" aria-controls="collapseExample" style="background: #001375;
-                  padding: 5px 17px;
-                  color: white;
-                  border-radius: 10px;">Click para preguntar</a>
-            </div>
-            </a>
-         </div>
-         <div id="collapseExample1" class="col-md-11 collapse" style= "display:none;position:absolute;z-index:10;padding: 9px;background: #313030;margin-top:5px">
-          <div class="row">
+               Tienes alguna duda <br><br>
+                   <div class="row">
             <%= form_tag create_question_path, method: :post, remote:true do%>
           
              
@@ -91,6 +84,11 @@
             <%end%>
          
           </div>
+            </div>
+            </a>
+         </div>
+         <div id="collapseExample1" class="col-md-11 collapse" style= "z-index:10;padding: 9px;background: #313030;margin-top:5px">
+         
            </div>
          <%end%>
          
@@ -429,4 +427,9 @@
    border-color: #bce8f1;
    color: white;
    }
+   .btn-primary {
+    background: #001375 !important;
+    color: white !important;
+    border:1px solid blue;
+}
 </style>
