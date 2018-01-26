@@ -124,9 +124,11 @@
 <br>
 <!--<hr>-->
 <%end%><br>
-<hr>
+
 <div class="row" style = "">
    <% @state != "4" ? display = "" : display = "display:none" %>
+   <%if  @state != "4" %>
+   <hr>
    <div class="col-md-3" style = "position: relative;top: 23px;">
   <label class="radio-inline">
                      <%= form.check_box :has_register, id:"toggle-register"%><span style = "margin-left:10px">¿Registro?</span>
@@ -144,26 +146,34 @@
                      </label>
    </div>
    
-   
+   <%end%>
 
    
 </div>
-
+<br>
 <% @type == "principal" && action_name != "new" ? display1 = "" : display1 = "display:none;"  %>
 <% @state == "" ? display2 = "display:none;" : display2 = ""  %>
 <br>
 <hr>
 <div class="row">
+<%if  @state != "4" %>
    <div class="col-md-3" style="<%=display1%>">
       <div class="form-group" >
          <%= form.label "Video para campaña" %>
          <%= form.file_field :video_p, id: :video_p, class: "form form-control" %>
       </div>
    </div>
+   <%end%>
     <div class="col-md-4" style="<%=display1%>">
       <div class="form-group" >
          <%= form.label "Nombre para URL" %>
          <%= form.text_field :link, id: :link, class: "form form-control" %>
+      </div>
+   </div>
+      <div class="col-md-3" style="<%=display1%>">
+      <div class="form-group" >
+         <%= form.label "Color del Streaming" %>
+         <%= form.color_field :color, id: :color, class: "form form-control" %>
       </div>
    </div>
   
@@ -178,6 +188,7 @@
   
 </div>
 <br>
+ <%if  @state != "4" %>
 <hr>
 <div class="row" >
    <div class="col-lg-8" style ="<%=display1%> background:whitesmoke">
@@ -280,6 +291,7 @@
    </div>
   
 </div>
+<%end%>
 
 <%if action_name != "edit"%>
 <%= form.hidden_field :account_id, :value => @account.id %>

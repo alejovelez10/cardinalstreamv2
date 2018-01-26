@@ -220,7 +220,7 @@ a:focus {
     .name
   {
     height: 75px;
-    background: #003287;
+    background: <%=event.color%>;
     padding: 10px 0px 0px 20px;
 
   }
@@ -232,7 +232,7 @@ a:focus {
      .social
   {
     height: 75px;
-    background: #003287;
+    background: <%=event.color%>;
     padding: 10px 0px 0px 0px; 
   }
    .play_stop{
@@ -294,8 +294,9 @@ a:focus {
 
   }
   .btn-primary {
-    background: #003287 !important;
+    background: <%=event.color%> !important;
     color: white !important;
+    border:none !important;
 }
 </style>
 <script>
