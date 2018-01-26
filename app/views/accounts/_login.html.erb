@@ -3,21 +3,22 @@
 
 
 <% edate = get_date_array(event.event_date)%>
-<div class="container-fluid">
+<div class="container-fluid" style="font-family: 'Muli', sans-serif;">
    <div class="row">
       <div class="col-md-12 blockhead ">
          <div class="col-md-2 logo text-center">
             <img src="<%=@account.logo_url%>" alt="">
          </div>
-         <div class="col-md-6 name hidden-xs hidden-sm">
-            
-            <p style="    font-size: 20px;" >
-              
-            <%= event.name.upcase%><br><span style="font-size: 15px;"><%=edate[0]%> DE <%=edate[2]%> DE <%=edate[4]%></p>
+          <div class="col-md-6 name">
+
+            <p><span style="font-family: 'Muli', sans-serif;">STREAMING</span> <br><span style="    font-weight: bold;font-size: 30px;"><%= event.name.upcase%></span>
+            <!--<br><span style="font-size: 16px;"><%=edate[0]%> DE <%=edate[2]%> DE <%=edate[4]%></span>--></p>
          </div>
          <div class="col-md-4 hidden-xs social">
-         
-         </div>
+            <div class="redessociales" style="float:right;padding:0 2em;line-height: 2em;background: none;right: -0.7em;font-size: 1.7em;padding: 0;padding-right: 1.7em;margin-bottom: -0.8em;margin-top: -0.46em;">
+              
+              
+            </div>
       </div>
    </div>
    <div class="row">
@@ -208,7 +209,7 @@ a:focus {
 }
    .logo
   {
-    height: 70px;
+    height: 100px;
     background: white;
     padding: 0px 0px 0px 0px;
   }
@@ -218,19 +219,20 @@ a:focus {
   }
     .name
   {
-    height: 70px;
-    background: rgba(39, 39, 39, 0.83);
+    height: 100px;
+    background: #001375;
     padding: 10px 0px 0px 20px;
 
   }
   .name p
   {
     color: white;
+    font-family: 'Muli', sans-serif;
   }
      .social
   {
-    height: 70px;
-    background: rgba(39, 39, 39, 0.83);
+    height: 100px;
+    background: #001375;
     padding: 10px 0px 0px 0px; 
   }
    .play_stop{
@@ -291,6 +293,10 @@ a:focus {
     background: rgba(86, 86, 86, 0.15) !important;
 
   }
+  .btn-primary {
+    background: #001375 !important;
+    color: white !important;
+}
 </style>
 <script>
     WowzaPlayer.create('playerElement',
