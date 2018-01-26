@@ -8,7 +8,8 @@
          </div>
          <div class="col-md-6 name">
 
-            <p><span>STREAMING</span> <br><span style="font-size: 18px;"><%= event.name.upcase%></span><br><span style="font-size: 16px;"><%=edate[0]%> DE <%=edate[2]%> DE <%=edate[4]%></span></p>
+            <p><span style="font-family: 'Muli', sans-serif;">STREAMING</span> <br><span style="font-size: 30px;"><%= event.name.upcase%></span>
+            <!--<br><span style="font-size: 16px;"><%=edate[0]%> DE <%=edate[2]%> DE <%=edate[4]%></span>--></p>
          </div>
          <div class="col-md-4 hidden-xs social">
             <div class="redessociales" style="float:right;padding:0 2em;line-height: 2em;background: none;right: -0.7em;font-size: 1.7em;padding: 0;padding-right: 1.7em;margin-bottom: -0.8em;margin-top: -0.46em;">
@@ -22,21 +23,21 @@
      
       <div class="col-md-12 superppts">
         <div class="col-sm-4 col-sm-offset-4 login-expe">
-         <div class="col-md-6 text-right" style="border-right: 1px solid white;    margin-top: 53px;">
+         <div class="col-md-6 text-right" style="font-family: 'Muli', sans-serif;border-right: 1px solid white;    margin-top: 53px;">
            <h3><%=edate[2]%> <br><%=edate[5]%> </h3>
          </div>
          <div class="col-md-6" >
            <h3 style="font-size: 150px;margin-top:0px;font-family: sans-serif;"><%=edate[0]%></h3>
          </div>
          <div class="col-md-12 text-center" style="    padding: 15px 5px;
-        background: rgba(0, 0, 0, 0.63);">
+        background: rgba(0, 0, 0, 0.81)">
          <%= link_to root_path do %>
               <a  href = "http://cardinalstream.com/cardinalstream/satrack/Requerimientos Streaming.pdf" target="_blank" style="font-size:16px;color: white"><span style="padding:10px;background: #b10000; margin-right:10px">PDF</span>Descargar Requisitos</a>
               <%end%>
             </div>
 
         <div class="col-md-12 text-center" style="    padding: 15px 5px;
-     background: rgba(0, 0, 0, 0.63);margin-top:20px">
+     background: rgba(0, 0, 0, 0.81);margin-top:20px">
          <%= link_to root_path do %>
           
                <a data-toggle="modal" href="#myModal"> Video de Prueba</a>
@@ -226,18 +227,19 @@ a:focus {
     .name
   {
     height: 100px;
-    background: white;
+    background: #001375;
     padding: 10px 0px 0px 20px;
 
   }
   .name p
   {
-    color:gray;
+    color:white;
+    font-family: 'Muli', sans-serif;
   }
      .social
   {
     height: 100px;
-    background: white;
+    background: #001375;
     padding: 10px 0px 0px 0px; 
   }
    .play_stop{
@@ -270,7 +272,7 @@ a:focus {
 
   {
       
-    background: rgba(0, 0, 0, 0.41);
+    background: rgba(0, 0, 0, 0.72);
     widows: 80%;
     margin-top: 100px;
    
