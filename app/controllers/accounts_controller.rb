@@ -66,12 +66,15 @@ class AccountsController < ApplicationController
     puts @event
     puts Event.where(account_id: @account.id).where.not(state: 4).first
     puts "eventtttttttttttt"
+    
     if @event != nil
-      if @event.ppts_url != nil && @event.has_ppts 
-    @array = @event.slides.split(/,/)
-    @count = @array.count
-  end
-    render "live"
+         if @event.ppts_url != nil && @event.has_ppts 
+             @array = @event.slides.split(/,/)
+             @count = @array.count
+         end
+        
+         render "live"
+    
     else
       #render "no_live" , :layout => false
       redirect_to portal_path

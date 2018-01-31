@@ -134,11 +134,7 @@
                      <%= form.check_box :has_register, id:"toggle-register"%><span style = "margin-left:10px">¿Registro?</span>
                      </label>
    </div>
-   <div class="col-md-3" style = "position: relative;top: 23px;">
-      <label class="radio-inline">
-                     <%= form.check_box :root_event, id:"toggle-root"%><span style = "margin-left:10px">¿Evento Principal?</span>
-                     </label>
-   </div>
+   
  
    <div class="col-md-3" style = "position: relative;top: 23px;">
        <label class="radio-inline">
@@ -164,7 +160,7 @@
       </div>
    </div>
    <%end%>
-    <div class="col-md-4" style="<%=display1%>">
+    <div class="col-md-3" style="<%=display1%>">
       <div class="form-group" >
          <%= form.label "Nombre para URL" %>
          <%= form.text_field :link, id: :link, class: "form form-control" %>
@@ -176,7 +172,11 @@
          <%= form.color_field :color, id: :color, class: "form form-control" %>
       </div>
    </div>
-  
+  <div class="col-md-3" style = "position: relative;top: 23px;">
+      <label class="radio-inline">
+                     <%= form.check_box :root_event, id:"toggle-root"%><span style = "margin-left:10px">¿Evento Principal?</span>
+                     </label>
+   </div>
 
    <!--<div class="col-md-4" style="<%=display1%>">
       <div class="form-group" >

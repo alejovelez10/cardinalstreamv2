@@ -494,7 +494,7 @@ myPlayer.onPlayheadTime( playheadTimeListener );
     .name
   {
     height: 70px;
-    background: rgba(39, 39, 39, 0.83);
+    background:<%=event.color%>;
     padding: 10px 0px 0px 20px;
 
   }
@@ -505,7 +505,7 @@ myPlayer.onPlayheadTime( playheadTimeListener );
      .social
   {
     height: 70px;
-    background: rgba(39, 39, 39, 0.83);
+     background:<%=event.color%>;
     padding: 10px 0px 0px 0px; 
   }
    .play_stop{
@@ -547,6 +547,11 @@ myPlayer.onPlayheadTime( playheadTimeListener );
 }
 .hp_slide:hover {
     cursor: pointer;
+}
+ .btn-primary {
+    background: <%=event.color%> !important;
+    color: white !important;
+    border:none !important;
 }
 </style>
 

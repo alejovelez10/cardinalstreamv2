@@ -413,7 +413,7 @@
    .name
   {
     height: 70px;
-    background: rgba(39, 39, 39, 0.83);
+    background: <%=event.color%>;
     padding: 10px 0px 0px 20px;
 
   }
@@ -422,7 +422,7 @@
   .name
   {
     height: 100px;
-   
+   background: <%=event.color%>;
 
   }
   .ppt-block img {
@@ -488,7 +488,7 @@
      .social
   {
     height: 70px;
-    background: rgba(39, 39, 39, 0.83);
+    background: <%=event.color%>;
     padding: 10px 0px 0px 0px; 
   }
    .play_stop{
@@ -554,6 +554,11 @@
     {
       margin-bottom: 5px;
     }
+       .btn-primary {
+    background: <%=event.color%> !important;
+    color: white !important;
+    border:none !important;
+}
 </style>
 <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
 <script>

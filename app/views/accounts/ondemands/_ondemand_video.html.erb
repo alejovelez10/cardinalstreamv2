@@ -278,7 +278,7 @@ var b = 1;
     .name
   {
     height: 70px;
-    background: rgba(39, 39, 39, 0.83);
+     background:<%=event.color%>;
     padding: 10px 0px 0px 20px;
 
   }
@@ -289,7 +289,7 @@ var b = 1;
      .social
   {
     height: 70px;
-    background: rgba(39, 39, 39, 0.83);
+    background:<%=event.color%>;
     padding: 10px 0px 0px 0px; 
   }
    .blockhead
@@ -299,5 +299,10 @@ var b = 1;
           
   background: none !important;
   }
+   .btn-primary {
+    background: <%=event.color%> !important;
+    color: white !important;
+    border:none !important;
+}
 
 </style>

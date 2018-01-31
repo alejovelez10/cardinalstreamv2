@@ -66,7 +66,7 @@
    <br>
     <div class="row" >
    <div class="col-md-4">
-   <p>Mensage en vivo</p>
+   <p>Mensaje en vivo</p>
      <%= form_tag cardinalmsg_path, method: :get, remote:true do %>
    <%= text_field_tag :msg , nil, class:"form form-control" %><br>
    <%= hidden_field_tag :id , @event.id%><br>
