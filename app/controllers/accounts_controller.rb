@@ -2,7 +2,7 @@ class AccountsController < ApplicationController
   before_action :set_account, only: [ :edit, :update, :destroy]
   before_action :authenticate_user! , only: [:index, :edit, :update, :destroy]
   before_action :get_blog
-
+  include ApplicationHelper
   
   
   def portal_login
@@ -167,7 +167,7 @@ class AccountsController < ApplicationController
   end
 
 
-  
+
     def cardinalchat
     
 
