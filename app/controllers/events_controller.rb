@@ -275,6 +275,13 @@ class EventsController < ApplicationController
 
   end
 
+   def auth
+    
+    
+      response = pusher_client.authenticate(params[:channel_name], params[:socket_id])
+      render json: response
+    end
+
 
 
 
