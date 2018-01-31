@@ -153,6 +153,25 @@
          </div>
       </div>
    </div>
+    <div class="chat">
+     <div class="chat-body">
+            <div class="chat-msgs">
+            <% @chat.each do |chat|%>
+            <p style="padding:5px 5px 0px 5px;margin-bottom:0px"><span style="font-weight:bold;font-size:12px;">Alejandro Velez </span><span style="font-size:10px;color:gray"><%=get_date_hora(chat.created_at)%></span><br><span style="font-size:12px;"><%=chat.message%></span></p>
+            <%end%>
+            </div>
+            <br>
+           <div class="chat-form">
+                <%= form_tag cardinalchat_path, method: :post, remote:true do %>
+                <%= text_area_tag :msg , nil, class:"form form-control msg-box" %>
+                <%= hidden_field_tag :id , @event.id%><br>
+                <p class="text-right"><%= submit_tag "Enviar" , class: "btn btn-primary"%></p>
+        <%end%> 
+     </div>
+     </div>
+
+     <button type="" class="btn btn-primary btn-chat" style="width:300px">Abrir Chat</button>
+   </div>
     <div class="row">
    <div class="col-md-12 fixeddown">
      
@@ -175,6 +194,10 @@
 </div>
 <script >
    $(document).on('turbolinks:load',function() {
+
+
+  
+    
    
     $('.cerrar').click(function(){
     $('#collapseExample1').fadeOut();
@@ -218,6 +241,7 @@
    $(document).on('turbolinks:load',function() {
    
       
+
    WowzaPlayer.create('playerElement',
       {
       "license":"PLAY1-bUNUh-4hRxb-AThrj-YaHnC-KY8D3",
@@ -458,6 +482,30 @@
     color: white !important;
     border:none !important;
 }
+  .chat {
+ 
+  position: fixed;
+  bottom: 0;
+  right: 30px;
+  z-index:10;
+
+}
+.chat-body
+{
+  padding:10px;
+  height: 400px;
+  width:300px;
+  background: white; 
+  display: none;
+}
+.chat-msgs
+{
+  height: 65%;
+  border: 1px solid gray;
+  max-height: 65%;
+  overflow-y: auto;
+
+}
 </style>
 <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
 <script>
@@ -506,11 +554,34 @@
 
 
 
+
+
+
    
    
    
    });
+
+
+
+
+      var channel = pusher.subscribe('chat');
+   channel.bind('msg', function(data) {
+    a = data.message;
+
+        $('.chat-msgs').append("<p style='padding:5px;margin:0px'><span style='font-weight:bold;font-size:12px;''>Alejandro Velez </span><span style='font-size:10px;color:gray'>" + a[1] + "</span><br><span style='font-size:12px;'>"+ a[0] + "</span></p>");
+         $('.chat-msgs').scrollTop($('.chat-msgs').prop("scrollHeight"));
+          $('.msg-box').val("");
    
+     });
+
+$(document).on('turbolinks:load',function() {
    
-   
+       $('.btn-chat').click(function(){
+              $('.chat-body').fadeToggle();
+               $('.chat-msgs').scrollTop($('.chat-msgs').prop("scrollHeight"));
+
+            })
+     });
 </script>
+

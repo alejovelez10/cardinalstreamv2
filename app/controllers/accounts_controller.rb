@@ -2,7 +2,7 @@ class AccountsController < ApplicationController
   before_action :set_account, only: [ :edit, :update, :destroy]
   before_action :authenticate_user! , only: [:index, :edit, :update, :destroy]
   before_action :get_blog
- 
+  
   
   
   def portal_login
@@ -95,6 +95,7 @@ class AccountsController < ApplicationController
     end
    
     @event = Event.find(params[:id])
+    @chat = @event.chats.order(created_at: :asc)
     @account = Account.find(@event.account_id)
      if @event.has_ppts && @event.slides != nil
     @array = @event.slides.split(/,/)

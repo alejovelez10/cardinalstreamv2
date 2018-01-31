@@ -35,6 +35,7 @@
 
 class Event < ApplicationRecord
 	belongs_to :account
+  has_many :chats
   has_many :stats
   has_many :viewers
   has_many :questions

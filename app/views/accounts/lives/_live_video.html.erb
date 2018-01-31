@@ -29,96 +29,90 @@
          </div>
       </div>
    </div>
-  
    <%if @event.has_files || @event.has_question%>
-      <div class="row"  >
-          <div class="col-md-9">
-           <div id="playerElement" style="width:100%;height:0;padding:0 0 51% 0;margin-top:20px"%></div>
-          </div>
+   <div class="row"  >
+      <div class="col-md-9">
+         <div id="playerElement" style="width:100%;height:0;padding:0 0 51% 0;margin-top:20px"%></div>
+      </div>
       <%else%>
-       <div class="row iframe-body"  >
+      <div class="row iframe-body"  >
          <div class="col-md-12 player-m12">
-         <div id="playerElement" style="width:100%;height:0;padding:0 0 51% 0;margin-top:20px"%>
+            <div id="playerElement" style="width:100%;height:0;padding:0 0 51% 0;margin-top:20px"%>
+            </div>
          </div>
-      </div>
-   <%end%>
-         
-     <%if @event.has_files || @event.has_question%>
-      <div class="col-md-3" >
-         <%if event.has_question%>
-         <div style="margin-top:6px">
-            <div class="alert alert-info" role="alert" style="text-align:center"><img style="width: 50px;" src="https://developer.ridgerun.com/wiki/images/thumb/d/df/Blue_question_mark_icon.svg.png/240px-Blue_question_mark_icon.svg.png" alt=""><br>
-               Tienes alguna duda <br><br>
-                   <div class="row">
-            <%= form_tag create_question_path, method: :post, remote:true do%>
-          
-             
-          
-            <div class="col-md-12">
-               <div class="form-group">
-                  <%= text_field_tag :name , nil, class: "form form-control", placeholder: "Nombre" %>
+         <%end%>
+         <%if @event.has_files || @event.has_question%>
+         <div class="col-md-3" >
+            <%if event.has_question%>
+            <div style="margin-top:6px">
+               <div class="alert alert-info" role="alert" style="text-align:center">
+                  <img style="width: 50px;" src="https://developer.ridgerun.com/wiki/images/thumb/d/df/Blue_question_mark_icon.svg.png/240px-Blue_question_mark_icon.svg.png" alt=""><br>
+                  Tienes alguna duda <br><br>
+                  <div class="row">
+                     <%= form_tag create_question_path, method: :post, remote:true do%>
+                     <div class="col-md-12">
+                        <div class="form-group">
+                           <%= text_field_tag :name , nil, class: "form form-control", placeholder: "Nombre" %>
+                        </div>
+                     </div>
+                     <div class="col-md-12">
+                        <div class="form-group">
+                           <%= text_field_tag :email , nil, class: "form form-control", placeholder: "Email" %>
+                        </div>
+                     </div>
+                     <div class="col-md-12">
+                        <div class="form-group">
+                           <%= text_area_tag :description ,nil, class: "form form-control erase", placeholder: "Pregunta", style: "height:100px" %>
+                        </div>
+                     </div>
+                     <%= hidden_field_tag :account_id , event.account_id%>
+                     <%= hidden_field_tag :event_id , event.id%>
+                     <%= hidden_field_tag :type , "video"%>
+                     <div class="col-md-12" >
+                        <%= submit_tag "Enviar", class: "btn btn-primary"%>
+                        <a  class="cerrar btn btn-default" type="" >Cerrar</a>           
+                     </div>
+                     <div class="col-md-12" >
+                        <div class="alert alert-success" style="margin-top:5px;display:none">
+                           Tu pregunsta se envio con exito.
+                        </div>
+                     </div>
+                     <%end%>
+                  </div>
                </div>
+               </a>
             </div>
-            <div class="col-md-12">
-               <div class="form-group">
-                  <%= text_field_tag :email , nil, class: "form form-control", placeholder: "Email" %>
-               </div>
+            <div id="collapseExample1" class="col-md-11 collapse" style= "z-index:10;padding: 9px;background: #313030;margin-top:5px">
             </div>
-            <div class="col-md-12">
-               <div class="form-group">
-                  <%= text_area_tag :description ,nil, class: "form form-control erase", placeholder: "Pregunta", style: "height:100px" %>
-               </div>
-            </div>
-            <%= hidden_field_tag :account_id , event.account_id%>
-            <%= hidden_field_tag :event_id , event.id%>
-            <%= hidden_field_tag :type , "video"%>
-            <div class="col-md-12" >
-               <%= submit_tag "Enviar", class: "btn btn-primary"%>
-               <a  class="cerrar btn btn-default" type="" >Cerrar</a>           
-            </div>
-            <div class="col-md-12" >
-               <div class="alert alert-success" style="margin-top:5px;display:none">
-                  Tu pregunsta se envio con exito.
+            <%end%>
+            <br>
+            <%if @event.has_files%>
+            <div class="row descargables" style="background: rgba(8, 8, 8, 0.88);margin-left:0px;margin-right: 0px;padding:5px">
+               <div class="col-md-12">
+                  <h4 style="    color: white">Descargables</h4>
+                  <% @event.event_files.each do |event|%>
+                  <%= link_to "#{event.name}", event.attachment_url, class: "document"%>
+                  <%end%>
                </div>
             </div>
             <%end%>
-         
-          </div>
-            </div>
-            </a>
          </div>
-         <div id="collapseExample1" class="col-md-11 collapse" style= "z-index:10;padding: 9px;background: #313030;margin-top:5px">
-         
-           </div>
-         <%end%>
-         
-
-         <br>
-         <%if @event.has_files%>
-         <div class="row descargables" style="background: rgba(8, 8, 8, 0.88);margin-left:0px;margin-right: 0px;padding:5px">
-          <div class="col-md-12">
-          <h4 style="    color: white">Descargables</h4>
-            <% @event.event_files.each do |event|%>
-            <%= link_to "#{event.name}", event.attachment_url, class: "document"%>
-            <%end%>
-         </div>
-         </div>
-         <%end%>
-      </div>
       </div>
       <%end%>
-
-      
-
+   </div>
+   <div class="chat">
+     <div class="chat-body">
+        
+     </div>
+     <button type="" class="btn btn-primary btn-chat">Ver chat</button>
    </div>
    <div class="row" style="margin-left: 0px !important;
-    margin-right: 0px !important;">
+      margin-right: 0px !important;">
       <div class="col-md-12 fixeddown">
          <%if @event.has_ppts%>
          <div class="col-md-3">
             <p  style="border-right: 1px solid gray;    margin-top: 3px;"><%= @event.name%><br><span style="font-size: 10px;"><%= get_date(@event.event_date)%></span></p>
          </div>
-        
          <%end%>
          <div class="col-md-12 middle-div no-float" style="padding-left:0px !important;bottom:0px;background:#424242;text-align:center;margin-top:5px;">
             <a href="http://iptics.com.co/productos/cardinalstream/" target="_blank"><img src="../../images/logo.png"></a>
@@ -129,38 +123,44 @@
 <script >
    $(document).on('turbolinks:load',function() {
    
-    $('.cerrar').click(function(){
-    $('#collapseExample1').fadeOut();
-   })
+          $('.btn-chat').click(function(){
+              $('.chat-body').fadeToggle();
+            })
+
+              $('.cerrar').click(function(){
+              $('#collapseExample1').fadeOut();
+            })
+            
+                $('.form-toggle').click(function(){
+              $('#collapseExample1').fadeToggle();
+            })
+            
+                            $('.i1').addClass("activeon");
+                        
+                        $('.pad').click(function(){
+                                $('.pad').children('img').removeClass("activeon");
+                                $(this).children('img').addClass("activeon");
+                                $('#ppts img').attr('src', $(this).children('img').attr("src"));
+            
+                            
+                            $('.cont').text($(this).children('div').text());
+                            }); 
+            
+                              $('.fullbuttonppt').click(function(){
+                                $('.backppt').toggleClass('fullsize');
+                                $('.ppt-block').toggleClass('mtop');
+                                $('.zoom1').toggle();
+                                $('.zoom2').toggle();
+                                $('.ppt-block img').toggleClass('imagchange');
+                                console.log("si");
+                    
+                  });
    
-      $('.form-toggle').click(function(){
-    $('#collapseExample1').fadeToggle();
-   })
-   
-                  $('.i1').addClass("activeon");
-              
-              $('.pad').click(function(){
-                      $('.pad').children('img').removeClass("activeon");
-                      $(this).children('img').addClass("activeon");
-                      $('#ppts img').attr('src', $(this).children('img').attr("src"));
-   
-                  
-                  $('.cont').text($(this).children('div').text());
-                  }); 
-   
-                    $('.fullbuttonppt').click(function(){
-                      $('.backppt').toggleClass('fullsize');
-                      $('.ppt-block').toggleClass('mtop');
-                       $('.zoom1').toggle();
-                       $('.zoom2').toggle();
-                       $('.ppt-block img').toggleClass('imagchange');
-                       console.log("si");
-          
-        });
+
    
    
    
-          }); 
+}); 
               
    
    
@@ -197,30 +197,27 @@
    
 </script>
 <style>
-.iframe-body{
-    text-align: center;
-    height: 100%;
-    width: 76%;
-    margin-left: 12%;
-    zoom: 1;
-
-}
+   .iframe-body{
+   text-align: center;
+   height: 100%;
+   width: 76%;
+   margin-left: 12%;
+   zoom: 1;
+   }
    .document:hover
    {
    text-decoration: none
    }
    .document 
    {
-    display: block;
-    margin-top: 10px;
-    margin-bottom: 10px;
+   display: block;
+   margin-top: 10px;
+   margin-bottom: 10px;
    font-size: 12px;
    padding: 10px;
    border: 3px solid #137dbd;
    background: rgba(119, 119, 119, 0.43);
-   
    margin-right: 10px;
-   
    color: white;
    }
    .fixeddown
@@ -300,24 +297,23 @@
    margin-left: 0px;
    }
    @media only screen and (max-width:992px) {
-      .player-m12
-      {
-         padding-left: 0px !important;padding-right:0px !important;
-      }
-       .iframe-body{
-       text-align: center;
-    height: 100%;
-    width: 100%;
-    margin-top: 90px;
-    margin-bottom: 90px;
-    margin-left: 0%;
-    zoom: 1;
-
-}
-.descargables
-{
+   .player-m12
+   {
+   padding-left: 0px !important;padding-right:0px !important;
+   }
+   .iframe-body{
+   text-align: center;
+   height: 100%;
+   width: 100%;
+   margin-top: 90px;
+   margin-bottom: 90px;
+   margin-left: 0%;
+   zoom: 1;
+   }
+   .descargables
+   {
    margin-bottom:40px;
-}
+   }
    .ppt-block{
    background-color: lightblue;
    margin-right: 0em;
@@ -330,10 +326,10 @@
    width: 10em;
    height: 10em;
    }
-    .fixeddown
+   .fixeddown
    {
    height: auto;
-    padding-left: 0px !important;
+   padding-left: 0px !important;
    }
    .backppt {
    position: relative;
@@ -429,8 +425,22 @@
    color: white;
    }
    .btn-primary {
-    background: <%=event.color%> !important;
-    color: white !important;
-    border:none !important;
+   background: <%=event.color%> !important;
+   color: white !important;
+   border:none !important;
+   }
+  .chat {
+ 
+  position: fixed;
+  bottom: 0;
+  right: 30px;
+  z-index:10;
+}
+.chat-body
+{
+  height: 400px;
+  width:300px;
+  background: white; 
+  display: none;
 }
 </style>

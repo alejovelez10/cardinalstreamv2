@@ -33,7 +33,8 @@ end
   post 'create_viewer', to: "viewers#create_viewer", as: "create_viewer"
   get 'events/cardinalppt/:id/:id_event' ,to: "events#cardinalppt", as: "cardinalppt"
 
-   get 'events/cardinalmsg' ,to: "events#cardinalmsg", as: "cardinalmsg"
+  get 'events/cardinalmsg' ,to: "events#cardinalmsg", as: "cardinalmsg"
+  post 'events/cardinalchat' ,to: "events#cardinalchat", as: "cardinalchat"
 
 
 
