@@ -164,7 +164,7 @@
             </div>
             <br>
            <div class="chat-form">
-                <%= form_tag cardinalchat_path, method: :post, remote:true do %>
+                <%= form_tag cardinalchat_path, method: :get, remote:true do %>
                 <%= text_area_tag :msg , nil, class:"form form-control msg-box" %>
                 <%= hidden_field_tag :id , @event.id%><br>
                 <p class="text-right"><%= submit_tag "Enviar" , class: "btn btn-primary"%></p>
@@ -567,7 +567,7 @@
 
 
 
-      var channel = pusher.subscribe('chat');
+  var channel = pusher.subscribe('chat');
    channel.bind('msg', function(data) {
     a = data.message;
 
