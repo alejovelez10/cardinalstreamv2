@@ -156,6 +156,7 @@
     <div class="chat">
      <div class="chat-body">
             <div class="chat-msgs">
+        <%if @chat.count != 0%>    
             <% @chat.each do |chat|%>
             <p style="padding:5px 5px 0px 5px;margin-bottom:0px"><span style="font-weight:bold;font-size:12px;">Alejandro Velez </span><span style="font-size:10px;color:gray"><%=get_date_hora(chat.created_at)%></span><br><span style="font-size:12px;"><%=chat.message%></span></p>
             <%end%>
@@ -166,7 +167,7 @@
                 <%= text_area_tag :msg , nil, class:"form form-control msg-box" %>
                 <%= hidden_field_tag :id , @event.id%><br>
                 <p class="text-right"><%= submit_tag "Enviar" , class: "btn btn-primary"%></p>
-        <%end%> 
+        <%end%> <%end%> 
      </div>
      </div>
 
