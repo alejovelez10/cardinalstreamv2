@@ -34,7 +34,7 @@ end
   get 'events/cardinalppt/:id/:id_event' ,to: "events#cardinalppt", as: "cardinalppt"
 
   get 'events/cardinalmsg' ,to: "events#cardinalmsg", as: "cardinalmsg"
-  get 'events/cardinalchat' ,to: "events#cardinalchat", as: "cardinalchat"
+  post 'accounts/cardinalchat' ,to: "accounts#cardinalchat", as: "cardinalchat"
 
 
 
