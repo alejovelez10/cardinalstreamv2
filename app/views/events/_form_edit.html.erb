@@ -172,6 +172,18 @@
          <%= form.color_field :color, id: :color, class: "form form-control" %>
       </div>
    </div>
+     <div class="col-md-3" style="<%=display1%>">
+      <div class="form-group" >
+         <%= form.label "Color Font" %>
+         <%= form.color_field :backgroud_font, id: :backgroud_font, class: "form form-control" %>
+      </div>
+   </div>
+     <div class="col-md-3" style="<%=display1%>">
+      <div class="form-group" >
+         <%= form.label "Tamaño Font" %>
+         <%= form.number_field :font_size, id: :font_size, class: "form form-control" %>
+      </div>
+   </div>
   <div class="col-md-3" style = "position: relative;top: 23px;">
       <label class="radio-inline">
                      <%= form.check_box :root_event, id:"toggle-root"%><span style = "margin-left:10px">¿Evento Principal?</span>

@@ -14,7 +14,7 @@
             <img src="<%=@account.logo_url%>" alt="">
          </div>
          <div class="col-md-6 name">
-            <p style="    font-size: 16px;"><%= event.name.upcase%><br><span  class="hidden-xs hidden-sm" style="font-size: 15px;"><%=edate[0]%> DE <%=edate[2]%> DE <%=edate[4]%></span></p>
+            <p style="    font-size: 20px;"><%= event.name.upcase%><br><span  class="hidden-xs hidden-sm" style="font-size: 15px;"><%=edate[0]%> DE <%=edate[2]%> DE <%=edate[4]%></span></p>
          </div>
          <div class="col-md-4 social hidden-sm hidden-xs">
             <div class="redessociales" style="float:right;padding:0 2em;line-height: 2em;background: none;right: -0.7em;font-size: 1.7em;padding: 0;padding-right: 1.7em;margin-bottom: -0.8em;margin-top: -0.46em;">
@@ -127,28 +127,7 @@
               <div class="col-md-4 fa fa-search-minus fa-2x"></div>
             </div>-->
                <div class="roundbutton countppt"><span class="cont">1</span>/<%=@count%></div>
-               <div id="scrollbar1">
-                  <div class="scrollbar">
-                     <div class="track">
-                        <div class="thumb">
-                           <div class="end"></div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="viewport" style = "background:#323232">
-                     <div class="overview">
-                       <% if @event.ppts_url %>  <% a = 1;
-                           array.each do |elemento|%>
-                        <div class = "pad">
-                           <div class = "numeral n<%=a%>"><%=a%></div>
-                           <img id = "<%=a%>" class = "i<%=a%> tumb" src = "<%=elemento%>">
-                        </div>
-                        <%a = a +1
-                           end%>
-                           <%end%>
-                     </div>
-                  </div>
-               </div>
+              
             </div>
          </div>
       </div>
@@ -354,7 +333,7 @@
    margin-left: -22%;
    }
    .ppt-block {
-   margin-right: 6em;
+   margin-right: 2em;
    margin-left: 1em;
    margin-top: 70px;
    }
@@ -362,45 +341,7 @@
    width: 95% !important;
    margin-left: 0px;
    }
-   @media only screen and (max-width:992px) {
-   .ppt-block{
-   background-color: lightblue;
-   margin-right: 0em;
-   margin-left: 0em; margin-top: 10px;
-   }
-   .ppt-block img {
-   width: 100%;
-   }
-   .roundgif{
-   width: 10em;
-   height: 10em;
-   }
-   .fixeddown
-   {
-   height:auto;    
-   }
-   .backppt {
-   
-    margin-bottom: 10px;
-   height:auto !important;
-   padding-left: 15px !important;
-   }
-   .pp
-   {
-   text-align: center;
-   margin-top: 10px;
-   }
-   #ppts {
-   width: 100% !important;
-   }
-   #playerElement 
-   {
-   margin-top: 0px !important;
-   }
-   .alert-info1
-   {
-    text-align: center;
-   }
+
    }
    #playerElement img
    {
@@ -419,7 +360,7 @@
    }
    .logo
   {
-    height: 70px;
+    height: 80px;
     background: white;
     padding: 0px 0px 0px 0px;
   }
@@ -429,18 +370,18 @@
   }
     .name
   {
-    height: 70px;
+    height: 80px;
     background: <%=event.color%>;
     padding: 10px 0px 0px 20px;
-
+ 
   }
   .name p
   {
-    color: white;
+    color: <%=event.backgroud_font%>;
   }
      .social
   {
-    height: 70px;
+    height: 80px;
     background: <%=event.color%>;
     padding: 10px 0px 0px 0px; 
   }
@@ -479,15 +420,11 @@
     border-color: #bce8f1;
     color: white;
 }
-   .btn-primary {
-    background: <%=event.color%> !important;
-    color: white !important;
-    border:none !important;
-}
+
   .chat {
  
   position: fixed;
-  bottom: 0;
+  bottom: 30px;
   right: 30px;
   z-index:10;
 
@@ -507,6 +444,67 @@
   max-height: 65%;
   overflow-y: auto;
 
+}
+.right-bar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    padding: 0.8em;
+    width: 5em;
+    text-align: center;
+}
+ @media only screen and (max-width:992px) {
+   .ppt-block{
+   background-color: lightblue;
+   margin-right: 0em;
+   margin-left: 0em; margin-top: 10px;
+   }
+   .ppt-block img {
+   width: 100%;
+   }
+   .roundgif{
+   width: 10em;
+   height: 10em;
+   }
+   .fixeddown
+   {
+   height:auto;    
+   }
+   .backppt {
+   
+    margin-bottom: 10px;
+   height:auto !important;
+   padding-left: 15px !important;
+   }
+   .pp
+   {
+   text-align: center;
+   margin-top: 10px;
+   }
+   #ppts {
+   width: 100% !important;
+   }
+   #playerElement 
+   {
+   margin-top: 0px !important;
+   }
+   .alert-info1
+   {
+    text-align: center;
+   }
+     .name
+  {
+
+    margin-bottom: 10px;
+  }
+  .chat {
+ 
+  
+  bottom: 0px;
+ 
+
+}
 }
 </style>
 <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
