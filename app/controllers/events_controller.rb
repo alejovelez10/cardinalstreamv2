@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy, :event_info]
   before_action :get_blog
   before_action :authenticate_user!
-  include ApplicationHelper
+
 
 
   # GET /events
