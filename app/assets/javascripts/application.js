@@ -37,6 +37,12 @@ $(document).on('turbolinks:load',function() {
 
   
 
+  $(function() {
+    $('#toggle-chat').bootstrapToggle({
+      on: 'Si',
+      off: 'No'
+    });
+  })
 
   $(function() {
     $('#toggle-register').bootstrapToggle({

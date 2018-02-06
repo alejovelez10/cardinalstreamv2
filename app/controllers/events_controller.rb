@@ -381,7 +381,7 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:date_event, :name, :description, :state, :backgroud_event,:video, :has_ppts ,:ppts, :user_id, :admin_user, :account_id, :video_p, :event_type, :event_date, :delay, :remove_ppts,:link ,:remove_video, :name_stream, :has_register, :social,:color, :has_files, :has_question,:views,:font_size,:backgroud_font,:iframe ,:ultimate_ppt ,:root_event,ask_emails_attributes: [:id, :email, :user_id,:admin_user, :event_id,:account_id,:comment, :_destroy], event_files_attributes: [:id, :attachment, :user_id,:admin_user, :event_id,:account_id,:name, :_destroy])
+      params.require(:event).permit(:date_event, :name, :description, :state, :backgroud_event,:video, :has_ppts ,:ppts, :user_id, :admin_user, :account_id, :video_p, :event_type, :event_date, :delay, :remove_ppts,:link ,:remove_video, :name_stream, :has_register, :social,:color, :has_files,:height_banner,:has_chat, :has_question,:views,:font_size,:backgroud_font,:iframe ,:ultimate_ppt ,:root_event,ask_emails_attributes: [:id, :email, :user_id,:admin_user, :event_id,:account_id,:comment, :_destroy], event_files_attributes: [:id, :attachment, :user_id,:admin_user, :event_id,:account_id,:name, :_destroy])
     end
   
 

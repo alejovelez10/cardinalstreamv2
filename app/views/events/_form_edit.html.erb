@@ -184,6 +184,13 @@
          <%= form.number_field :font_size, id: :font_size, class: "form form-control" %>
       </div>
    </div>
+   <%if  @state != "4" %>
+      <div class="col-md-3"  style = "position: relative;top: 23px;">
+           <label class="radio-inline">
+                     <%= form.check_box :has_chat, id:"toggle-chat"%><span style = "margin-left:10px">¿Chat?</span>
+                     </label>
+   </div>
+   <%end%>
   <div class="col-md-3" style = "position: relative;top: 23px;">
       <label class="radio-inline">
                      <%= form.check_box :root_event, id:"toggle-root"%><span style = "margin-left:10px">¿Evento Principal?</span>
