@@ -247,12 +247,13 @@ margin: 0px 10px;
 
 
 .nav-tabs>li>a {
-    margin-right: 2px;
+margin-right: 2px;
     line-height: 1.42857143;
     border: 1px solid transparent;
     border-radius: 4px 4px 0 0;
-    background: #1c8bb3;
-    color: white;
+    background: #ffffff;
+    border: 1px solid #eaeaea;
+    color: #737373;
 }
 
 .btn-primary
@@ -303,4 +304,17 @@ margin: 0px 10px;
     padding: 0px 8px;
     font-size: 37px;
     border-radius: 10px;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus 
+{
+     color: #1c8bb3;
+    font-weight: bold;
+
+}
+.table>tbody>tr>td, .table>tfoot>tr>td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    border: 1px solid #ececec;
 }
