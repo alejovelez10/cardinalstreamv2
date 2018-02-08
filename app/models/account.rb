@@ -32,5 +32,6 @@ class Account < ApplicationRecord
 	mount_uploader :logo, AccountLogoUploader
 	mount_uploader :background_stream, AccountBackgroundUploader
 	mount_uploader :background_portal, BackgroundPortalUploader
+	mount_uploader :requisitos, RequisitosUploader
 
 end
