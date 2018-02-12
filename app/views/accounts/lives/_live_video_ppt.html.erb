@@ -40,7 +40,9 @@
       </div>
    </div>
    <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-6" style="
+    padding-left: 0px;
+    padding-right: 0px;">
          <div id="playerElement" style="width:100%;height:0;padding:0 0 56.25% 0;margin-top:<%=event.has_question ? '25px' : '70px'%>">
 
          </div>
@@ -147,7 +149,7 @@
                 <%= form_tag cardinalchat_path, method: :post, remote:true do %>
                 <%= text_area_tag :msg , nil, class:"form form-control msg-box" %>
                 <%= hidden_field_tag :id , @event.id%><br>
-                <p class="text-right"><%= submit_tag "Enviar" , class: "btn btn-primary"%></p>
+                <p class="text-right"><%= submit_tag "Enviar" , class: "btn btn-primary send-chat"%></p>
         <%end%> 
      </div>
      </div>
@@ -507,11 +509,21 @@
 
 }
 }
-</style>
+@media only screen and (max-width:392px) {
+   
+      #playerElement
+      {
+          
+
+      }
+
+   }
+
+}</style>
 <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
 <script>
    // Enable pusher logging - don't include this in production
-   Pusher.logToConsole = true;
+  
    
    var pusher = new Pusher('194f0bfe827f047fcf64', {
      cluster: 'us2',
@@ -572,11 +584,18 @@
 
         $('.chat-msgs').append("<p style='padding:5px;margin:0px'><span style='font-weight:bold;font-size:12px;''>Alejandro Velez </span><span style='font-size:10px;color:gray'>" + a[1] + "</span><br><span style='font-size:12px;'>"+ a[0] + "</span></p>");
          $('.chat-msgs').scrollTop($('.chat-msgs').prop("scrollHeight"));
-          $('.msg-box').val("");
-   
+ 
      });
 
 $(document).on('turbolinks:load',function() {
+
+     $('.chat-body').keypress(function (e) {
+  if (e.which == 13) {
+    $('.send-chat').click();
+    return false;  
+    
+  }
+});
    
        $('.btn-chat').click(function(){
               $('.chat-body').fadeToggle();
