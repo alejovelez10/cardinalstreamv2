@@ -261,11 +261,11 @@
   var channel = pusher.subscribe('chat');
    channel.bind('msg', function(data) {
     a = data.message;
-
-        $('.chat-msgs').append("<p style='padding:5px;margin:0px'><span style='font-weight:bold;font-size:12px;''>Alejandro Velez </span><span style='font-size:10px;color:gray'>" + a[1] + "</span><br><span style='font-size:12px;'>"+ a[0] + "</span></p>");
+if (a[2] == <%=event.id%>){ 
+        $('.chat-msgs').append("<p style='padding:5px;margin:0px'><span style='font-weight:bold;font-size:12px;''><%=current_viewer.name%> </span><span style='font-size:10px;color:gray'>" + a[1] + "</span><br><span style='font-size:12px;'>"+ a[0] + "</span></p>");
         $('.chat-msgs').scrollTop($('.chat-msgs').prop("scrollHeight"));
       
-   
+   }
      });
 
 $(document).ready(function(){
