@@ -140,7 +140,7 @@
             <div class="chat-msgs">
         <%if @chat.count != 0%>    
             <% @chat.each do |chat|%>
-            <p style="padding:5px 5px 0px 5px;margin-bottom:0px"><span style="font-weight:bold;font-size:12px;">Alejandro Velez </span><span style="font-size:10px;color:gray"><%=get_date_hora(chat.date_time)%></span><br><span style="font-size:12px;"><%=chat.message%></span></p>
+            <p style="padding:5px 5px 0px 5px;margin-bottom:0px"><span style="font-weight:bold;font-size:12px;"><%=chat.name%> </span><span style="font-size:10px;color:gray"><%=get_date_hora(chat.date_time)%></span><br><span style="font-size:12px;"><%=chat.message%></span></p>
             <%end%>
             <%end%> 
             </div>
