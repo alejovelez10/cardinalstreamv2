@@ -179,7 +179,7 @@ class AccountsController < ApplicationController
     msg = params[:msg]
     fecha = get_date_hora(Time.now)
     ar = [msg,fecha]
-    Chat.create(event_id: @event.id, message: msg)
+    Chat.create(event_id: @event.id, message: msg, name: params[:name], date_time: fecha)
     Pusher.trigger('chat', 'msg', {
     message: ar
     

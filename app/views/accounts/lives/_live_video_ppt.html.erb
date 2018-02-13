@@ -14,7 +14,7 @@
             <img src="<%=@account.logo_url%>" alt="">
          </div>
          <div class="col-md-6 name">
-            <p style="    font-size: 20px;"><%= event.name.upcase%><br><span  class="hidden-xs hidden-sm" style="font-size: 15px;"><%=edate[0]%> DE <%=edate[2]%> DE <%=edate[4]%></span></p>
+            <p style="    font-size: 20px;"><%= event.name.upcase%><%= current_viewer.id%><br><span  class="hidden-xs hidden-sm" style="font-size: 15px;"><%=edate[0]%> DE <%=edate[2]%> DE <%=edate[4]%></span></p>
          </div>
          <div class="col-md-4 social hidden-sm hidden-xs">
             <div class="redessociales" style="float:right;padding:0 2em;line-height: 2em;background: none;right: -0.7em;font-size: 1.7em;padding: 0;padding-right: 1.7em;margin-bottom: -0.8em;margin-top: -0.46em;">
@@ -140,7 +140,7 @@
             <div class="chat-msgs">
         <%if @chat.count != 0%>    
             <% @chat.each do |chat|%>
-            <p style="padding:5px 5px 0px 5px;margin-bottom:0px"><span style="font-weight:bold;font-size:12px;">Alejandro Velez </span><span style="font-size:10px;color:gray"><%=get_date_hora(chat.created_at)%></span><br><span style="font-size:12px;"><%=chat.message%></span></p>
+            <p style="padding:5px 5px 0px 5px;margin-bottom:0px"><span style="font-weight:bold;font-size:12px;">Alejandro Velez </span><span style="font-size:10px;color:gray"><%=get_date_hora(chat.date_time)%></span><br><span style="font-size:12px;"><%=chat.message%></span></p>
             <%end%>
             <%end%> 
             </div>
@@ -148,7 +148,8 @@
            <div class="chat-form">
                 <%= form_tag cardinalchat_path, method: :post, remote:true do %>
                 <%= text_area_tag :msg , nil, class:"form form-control msg-box" %>
-                <%= hidden_field_tag :id , @event.id%><br>
+                <%= hidden_field_tag :id , @event.id%>
+                <%= hidden_field_tag :name , current_viewer.name%><br>
                 <p class="text-right"><%= submit_tag "Enviar" , class: "btn btn-primary send-chat"%></p>
         <%end%> 
      </div>
@@ -582,7 +583,7 @@
    channel.bind('msg', function(data) {
     a = data.message;
 
-        $('.chat-msgs').append("<p style='padding:5px;margin:0px'><span style='font-weight:bold;font-size:12px;''>Alejandro Velez </span><span style='font-size:10px;color:gray'>" + a[1] + "</span><br><span style='font-size:12px;'>"+ a[0] + "</span></p>");
+        $('.chat-msgs').append("<p style='padding:5px;margin:0px'><span style='font-weight:bold;font-size:12px;''><%=current_viewer.name%> </span><span style='font-size:10px;color:gray'>" + a[1] + "</span><br><span style='font-size:12px;'>"+ a[0] + "</span></p>");
          $('.chat-msgs').scrollTop($('.chat-msgs').prop("scrollHeight"));
  
      });

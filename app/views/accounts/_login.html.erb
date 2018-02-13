@@ -9,12 +9,12 @@
          <div class="col-md-2 logo text-center">
             <img src="<%=@account.logo_url%>" alt="">
          </div>
-          <div class="col-md-6 name">
+          <div class="col-md-7 name">
 
-            <p><span style="font-family: 'Muli', sans-serif;">STREAMING</span> <br><span style="    font-weight: bold;font-size: 30px;"><%= event.name.upcase%></span>
+            <p><span style="font-family: 'Muli', sans-serif;">STREAMING</span> <br><span class="namep"><%= event.name.upcase%></span>
             <!--<br><span style="font-size: 16px;"><%=edate[0]%> DE <%=edate[2]%> DE <%=edate[4]%></span>--></p>
          </div>
-         <div class="col-md-4 hidden-xs social">
+         <div class="col-md-3 hidden-xs social">
             <div class="redessociales" style="float:right;padding:0 2em;line-height: 2em;background: none;right: -0.7em;font-size: 1.7em;padding: 0;padding-right: 1.7em;margin-bottom: -0.8em;margin-top: -0.46em;">
               
               
@@ -57,12 +57,11 @@
           <%= submit_tag "Ingresar" ,  class: "btn btn-primary btn-block" %>
         </div>
       <% end %>
-       <div class="col-md-12 text-center" style="    padding: 15px 5px;
-     background: rgba(0, 0, 0, 0.63);margin-top:20px">
-         <%= link_to root_path do %>
+           <div class="col-md-12 text-center" style="margin-top:20px;padding-left: 0px;padding-right:0px;">  
+       
           
-               <a data-toggle="modal" href="#myModal"> Video de Prueba</a>
-              <%end%>
+               <a data-toggle="modal" style= "display: block;padding: 12px 5px;background:<%=event.color%>;color:<%=event.backgroud_font%>" href="#myModal"> <i class="fa fa-video-camera" style = "font-size:30px;margin-right: 10px;" aria-hidden="true"></i>  Video de Prueba</a>
+       
             </div>
       
     </div>
@@ -173,6 +172,10 @@ a:focus {
    width: 150%;
    margin-left: -22%;
    }
+   .namep
+{
+      font-weight: bold;font-size: 23px;
+}
 @media only screen and (max-width: 500px) {
     .ppt-block{
         background-color: lightblue;
@@ -209,7 +212,7 @@ a:focus {
 }
    .logo
   {
-    height: 75px;
+    height: 80px;
     background: white;
     padding: 0px 0px 0px 0px;
   }
@@ -219,19 +222,20 @@ a:focus {
   }
     .name
   {
-    height: 75px;
+    height: 80px;
     background: <%=event.color%>;
     padding: 10px 0px 0px 20px;
-
+    
   }
   .name p
   {
-    color: white;
+    font-size: 15px !important;
+    color:<%=event.backgroud_font%>;
     font-family: 'Muli', sans-serif;
   }
      .social
   {
-    height: 75px;
+    height: 80px;
     background: <%=event.color%>;
     padding: 10px 0px 0px 0px; 
   }
@@ -294,9 +298,7 @@ a:focus {
 
   }
   .btn-primary {
-    background: <%=event.color%> !important;
-    color: white !important;
-    border:none !important;
+
 }
 </style>
 <script>
