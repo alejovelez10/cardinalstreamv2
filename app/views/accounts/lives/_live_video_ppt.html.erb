@@ -149,7 +149,7 @@
                 <%= form_tag cardinalchat_path, method: :post, remote:true do %>
                 <%= text_area_tag :msg , nil, class:"form form-control msg-box" %>
                 <%= hidden_field_tag :id , @event.id%>
-                <%= hidden_field_tag :name , current_viewer.name%><br>
+                <%= hidden_field_tag :name , current_viewer.name if current_viewer%><br>
                 <p class="text-right"><%= submit_tag "Enviar" , class: "btn btn-primary send-chat"%></p>
         <%end%> 
      </div>
