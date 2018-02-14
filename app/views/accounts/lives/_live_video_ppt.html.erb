@@ -1,4 +1,5 @@
 <% edate = get_date_array(event.event_date)%>
+<% up = event.ultimate_ppt + 1 %>
 <div class="container-fluid">
   <div class="row">
   <div class="alert alert-warning alert-dismissible msg text-center" role="alert" style="position:absolute;z-index:10;
@@ -110,7 +111,7 @@
                            <div class="prevbutt">&lt;</div>
                         </div>
                         <% if @event.ppts_url %>
-                        <img class = "imagensup img-responsive" src="<%=array[0]%>" style="height: auto;">
+                        <img class = "imagensup img-responsive" src="<%=array[event.ultimate_ppt]%>" style="height: auto;">
                         <%end%>
                      </div>
                   </div>
@@ -128,7 +129,7 @@
             <div class="roundbutton zoom2">
               <div class="col-md-4 fa fa-search-minus fa-2x"></div>
             </div>-->
-               <div class="roundbutton countppt"><span class="cont">1</span>/<%=@count%></div>
+               <div class="roundbutton countppt"><span class="cont"><%=event.ultimate_ppt + 1%></span>/<%=@count%></div>
               
             </div>
          </div>
