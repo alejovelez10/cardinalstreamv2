@@ -61,18 +61,29 @@ $(document).on('turbolinks:load',function() {
   var a = $(this).attr("src");
   var b = $(this).attr("id");
   var c = parseInt(b) - 1 
-
+  $(".imgp").attr("src", a);
      
-
+     setTimeout(function(){
    $.get("cardinalppt/" + c + "/" + <%=@event.id%>, function(data) {
 
    });
+      }, <%=@event.delay * 1000%>);
 
-
-        $(".imgp").attr("src", a);
+        
        
 
     });
+
+
+
+
+
+
+
+
+
+
+
 
 $(document).keydown(function(e){
     a = $(".activeon").attr("id");
@@ -89,12 +100,14 @@ $(document).keydown(function(e){
        $(d).removeClass("activeon");
        $(d).addClass("activeoff");
        $(".imgp").attr('src', img);
+
+       setTimeout(function(){
        $.get("cardinalppt/" + (b-1) + "/" + <%=@event.id%>, function(data) {
-        
+       
           
 
 });   
-        
+      }, <%=@event.delay * 1000%>);   
 
 
 
@@ -113,18 +126,16 @@ $(document).keydown(function(e){
        $(d).removeClass("activeon");
        $(d).addClass("activeoff");
        $(".imgp").attr('src', img);
-          $.get("cardinalppt/" + (b-1) + "/" + <%=@event.id%>, function(data) {
-        
-          
+         setTimeout(function(){
+              $.get("cardinalppt/" + (b-1) + "/" + <%=@event.id%>, function(data) {
+           
 
-});   
+              }); 
+              }, <%=@event.delay * 1000%>);     
         
     }
 
 });
-
-
-
 
 
 });
