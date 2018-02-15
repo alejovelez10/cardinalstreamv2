@@ -2,6 +2,14 @@
 <% edate = get_date_array(event.event_date)%>
 <div class="container-fluid">
    <div class="row">
+   <div class="alert alert-warning alert-dismissible msg text-center" role="alert" style="position:absolute;z-index:10;
+    background: #26a054;
+    color: white;display:none;width:80%;margin-left:10%">
+  <strong class="text-center" style = "width: 100%"></strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
       <div class="col-md-12 blockhead ">
          <div class="col-md-2 logo text-center">
             <img src="<%=@account.logo_url%>" alt="">
@@ -330,3 +338,26 @@ a:focus {
   }
 }
 </style>
+
+<script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+<script>
+  
+   var pusher = new Pusher('194f0bfe827f047fcf64', {
+     cluster: 'us2',
+     encrypted: true
+   });
+
+    var channel = pusher.subscribe('my-channel-msg');
+   channel.bind('msg', function(data) {
+    a = data.message
+    $('.msg strong').html(a);
+    $('.msg').fadeIn();
+
+ setTimeout(function(){   
+
+  $('.msg').fadeOut();
+      
+     
+}, 6000);
+
+</script>
