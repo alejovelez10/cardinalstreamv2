@@ -59,7 +59,7 @@
 <%if event.has_question%>
          
          <div style="margin-top:5px">
-            <div class="alert alert-info alert1 alert-info1" role="alert"><img class="hidden-xs hidden-sm" style="width: 50px;margin-right:10px" src="https://es.seaicons.com/wp-content/uploads/2016/03/question-faq-icon.png" alt="">
+            <div class="alert alert-info alert1 alert-info1" role="alert" style="margin-top:5px;"><img class="hidden-xs hidden-sm" style="width: 50px;margin-right:10px" src="https://es.seaicons.com/wp-content/uploads/2016/03/question-faq-icon.png" alt="">
   <span class="hidden-xs hidden-sm">Tienes alguna duda </span><a class="form-toggle" role="button" data-toggle="collapse" href="" aria-expanded="false" aria-controls="collapseExample" style="background: #3163b5;margin-left:20px;
     padding: 5px 17px;
     color: white;
@@ -72,7 +72,7 @@
 
          
 
-         <div id="collapseExample1" class="col-md-12 collapse" style= "display:none;position:relative;top:-90px;z-index:10;padding: 9px;background: #313030;margin-top:5px">
+         <div id="collapseExample1" class="col-md-12 collapse" style= "display:none;position:relative;top:-90px;z-index:10;padding: 9px;background: #313030;margin-top:0px">
             <%= form_tag create_question_path, method: :post, remote:true do%>
             <div class="col-md-6">
                <div class="form-group">
