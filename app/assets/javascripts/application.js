@@ -25,7 +25,7 @@
 
 
 $(document).on('turbolinks:load',function() {
-	 setTimeout(function(){ $('#scrollbar1').tinyscrollbar();}, 1000);
+	
 
 
   $(function() {
