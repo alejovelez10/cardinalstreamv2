@@ -56,7 +56,43 @@
          <div id="playerElement" style="width:100%;height:0;padding:0 0 56.25% 0;margin-top:<%=event.has_question ? '30px' : '70px'%>">
 
          </div>
-<%if event.has_question%>
+
+      </div>
+      <div class="col-md-6">
+         <div class="backppt col-md-12 no-float">
+        
+            <div class="ppt-block">
+               <div class="ppt_cont">
+                  <div class="wrapppt" style="max-width: 555.4px; height: 416.55px; background: rgb(50, 50, 50);">
+                     <div id="ppts" style="opacity: 1;">
+                        <div id="controls">
+                           <div class="nextbutt">&gt;</div>
+                           <div class="prevbutt">&lt;</div>
+                        </div>
+                        <% if @event.ppts_url %>
+                        <img class = "imagensup img-responsive" src="<%=array[event.ultimate_ppt]%>" style="height: auto;">
+                        <%end%>
+                     </div>
+                  </div>
+               </div>
+            </div>
+                 
+            <style>.wrapppt{max-width:100%!important;background:none!important;height:auto!important;}#ppts{float:none!important;margin:auto;}#scrollbar1{width:100%}</style>
+            <div class="right-bar hidden-sm hidden-xs">
+               <div class="roundbutton fullppt fullbuttonppt">
+                  <div class="col-md-4 fa fa-expand fa-2x"></div>
+               </div>
+                          <!-- class="roundbutton zoom1">
+              <div class="col-md-4 fa fa-search-plus fa-2x"></div>
+            </div>
+            <div class="roundbutton zoom2">
+              <div class="col-md-4 fa fa-search-minus fa-2x"></div>
+            </div>-->
+               <div class="roundbutton countppt"><span class="cont"><%=event.ultimate_ppt + 1%></span>/<%=@count%></div>
+              
+            </div>
+         </div>
+         <%if event.has_question%>
          
          <div style="margin-top:5px">
             <div class="alert alert-info alert1 alert-info1" role="alert" style="margin-top:5px;    padding: 10px 20px;"><img class="hidden-xs hidden-sm" style="width: 40px;margin-right:10px" src="https://es.seaicons.com/wp-content/uploads/2016/03/question-faq-icon.png" alt="">
@@ -107,41 +143,6 @@
             <%end%>
          </div>
          <%end%>
-      </div>
-      <div class="col-md-6">
-         <div class="backppt col-md-12 no-float">
-        
-            <div class="ppt-block">
-               <div class="ppt_cont">
-                  <div class="wrapppt" style="max-width: 555.4px; height: 416.55px; background: rgb(50, 50, 50);">
-                     <div id="ppts" style="opacity: 1;">
-                        <div id="controls">
-                           <div class="nextbutt">&gt;</div>
-                           <div class="prevbutt">&lt;</div>
-                        </div>
-                        <% if @event.ppts_url %>
-                        <img class = "imagensup img-responsive" src="<%=array[event.ultimate_ppt]%>" style="height: auto;">
-                        <%end%>
-                     </div>
-                  </div>
-               </div>
-            </div>
-                 
-            <style>.wrapppt{max-width:100%!important;background:none!important;height:auto!important;}#ppts{float:none!important;margin:auto;}#scrollbar1{width:100%}</style>
-            <div class="right-bar hidden-sm hidden-xs">
-               <div class="roundbutton fullppt fullbuttonppt">
-                  <div class="col-md-4 fa fa-expand fa-2x"></div>
-               </div>
-                          <!-- class="roundbutton zoom1">
-              <div class="col-md-4 fa fa-search-plus fa-2x"></div>
-            </div>
-            <div class="roundbutton zoom2">
-              <div class="col-md-4 fa fa-search-minus fa-2x"></div>
-            </div>-->
-               <div class="roundbutton countppt"><span class="cont"><%=event.ultimate_ppt + 1%></span>/<%=@count%></div>
-              
-            </div>
-         </div>
       </div>
    </div>
    <%if @event.has_chat%>
@@ -234,7 +235,8 @@
 </script>
 <script >
    $(document).on('turbolinks:load',function() {
-
+   
+  
   
 
    WowzaPlayer.create('playerElement',
@@ -242,7 +244,7 @@
       "license":"PLAY1-bUNUh-4hRxb-AThrj-YaHnC-KY8D3",
       "title":"",
       "description":"",
-      "sourceURL": "http://aletacloud.com:1935/live/<%=@event.name_stream%>/playlist.m3u8",
+      "sourceURL": "http://aletacloud.com:1935/live/<%=@event.name_stream%>_160p/playlist.m3u8",
       "autoPlay":true,
       "volume":"75",
       "mute":false,
