@@ -75,13 +75,13 @@ class EventsController < ApplicationController
             #Crea carpeta para guardar ppts
             `mkdir public/uploads/event/ppts/#{@event.id}/ppt`
             #Convierte ppts en imagenes 
-            `convert  public/uploads/event/ppts/#{@event.id}/event.pdf  public/uploads/event/ppts/#{@event.id}/ppt/ppt.png` 
+            `convert  public/uploads/event/ppts/#{@event.id}/event.pdf  public/uploads/event/ppts/#{@event.id}/ppt/ppt.jpg` 
             #Cuenta el numero de diapositivas
             file_count = Dir.glob(File.join("public/uploads/event/ppts/#{@event.id}/ppt", '**', '*')).select { |file| File.file?(file) }.count
             pptss = ""
             #Crea un string con las rutas de las imagenes y inicializa las sincronizacion en 0
             for i in 0..(file_count - 1)
-              pptss = pptss + "/uploads/event/ppts/#{@event.id}/ppt/ppt-#{i}.png,"
+              pptss = pptss + "/uploads/event/ppts/#{@event.id}/ppt/ppt-#{i}.jpg,"
               sync = sync + "0,"
             end
             @event.slides = pptss
@@ -153,11 +153,11 @@ class EventsController < ApplicationController
           sync = ""
           `rm -rf public/uploads/event/ppts/#{@event.id}/ppt`
           `mkdir public/uploads/event/ppts/#{@event.id}/ppt`
-          `convert  public/uploads/event/ppts/#{@event.id}/event.pdf  public/uploads/event/ppts/#{@event.id}/ppt/ppt.png`
+          `convert  public/uploads/event/ppts/#{@event.id}/event.pdf  public/uploads/event/ppts/#{@event.id}/ppt/ppt.jpg`
           file_count = Dir.glob(File.join("public/uploads/event/ppts/#{@event.id}/ppt", '**', '*')).select { |file| File.file?(file) }.count
           pptss = ""
           for i in 0..(file_count - 1)
-            pptss = pptss + "/uploads/event/ppts/#{@event.id}/ppt/ppt-#{i}.png,"
+            pptss = pptss + "/uploads/event/ppts/#{@event.id}/ppt/ppt-#{i}.jpg,"
             sync = sync + "0,"
           end
           @event.sync = sync
