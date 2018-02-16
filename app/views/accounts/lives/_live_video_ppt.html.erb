@@ -285,19 +285,6 @@ else
 
    
 
-      
-statsListener = function ( statsEvent ) {
-    console.log('Total bytes: ' + statsEvent.totalBytes);
-    console.log('Total dropped frames: ' + statsEvent.totalDroppedFrames);
-    console.log('Throughput: ' + statsEvent.throughput);
-    console.log('Bandwidth: ' + statsEvent.bandwidth);
-    console.log('Bitrate: ' + statsEvent.bitrate);
-    console.log('last download duration: ' + statsEvent.lastBytesDownloaded);
-    console.log('Last parse duration: ' + statsEvent.lastParseDuration);
-};
-myPlayer.onStats( statsListener );        
-
-
 
 
         }); 
