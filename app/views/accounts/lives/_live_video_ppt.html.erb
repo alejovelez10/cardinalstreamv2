@@ -42,7 +42,7 @@
    </div>
 
    <div class="row">
-      <div class="col-md-6" style="
+      <div class="col-md-5" style="
     padding-left: 0px;
     padding-right: 0px;">
           <div class="msg-inicio text-center">
@@ -60,6 +60,9 @@
 <%if event.has_question%>
          
          <div style="margin-top:5px">
+         <div class="alert alert-info alert1 alert-info1" role="alert" style="margin-top:5px;    padding: 5px 20px;">
+  <span class="hidden-xs hidden-sm" style="font-size: 10px;">Si en algún momento se para el video o se congela la imagen recarga el navegador</span>
+</div>
             <div class="alert alert-info alert1 alert-info1" role="alert" style="margin-top:5px;    padding: 10px 20px;"><img class="hidden-xs hidden-sm" style="width: 40px;margin-right:10px" src="https://es.seaicons.com/wp-content/uploads/2016/03/question-faq-icon.png" alt="">
   <span class="hidden-xs hidden-sm">¿Tienes alguna duda? </span><a class="form-toggle" role="button" data-toggle="collapse" href="" aria-expanded="false" aria-controls="collapseExample" style="background: #3163b5;margin-left:20px;
     padding: 5px 17px;
@@ -109,7 +112,7 @@
          </div>
          <%end%>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-7">
          <div class="backppt col-md-12 no-float">
         
             <div class="ppt-block">
@@ -245,13 +248,23 @@
    $(document).on('turbolinks:load',function() {
 
   
+  if ("<%=action_name%>" == "portal_show")
+{
+    stream = "http://aletacloud.com:1935/live/meals_160p/playlist.m3u8";
+}
+else
+{
+
+  stream = "http://aletacloud.com:1935/live/<%=@event.name_stream%>/playlist.m3u8";
+
+}
 
    WowzaPlayer.create('playerElement',
       {
       "license":"PLAY1-bUNUh-4hRxb-AThrj-YaHnC-KY8D3",
       "title":"",
       "description":"",
-      "sourceURL": "http://aletacloud.com:1935/live/<%=@event.name_stream%>/playlist.m3u8",
+      "sourceURL": stream,
       "autoPlay":true,
       "volume":"75",
       "mute":false,
@@ -269,6 +282,7 @@
    
    
       var myPlayer = WowzaPlayer.get('playerElement');
+
    
 
       

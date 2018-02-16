@@ -103,7 +103,6 @@ class AccountsController < ApplicationController
     @count = @array.count
     @sync =  @event.sync
     end
-    @nav =  request.user_agent
    
    
 
