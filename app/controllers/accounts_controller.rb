@@ -63,12 +63,13 @@ class AccountsController < ApplicationController
 
     @account = Account.where(domain: request.subdomain).first
     @event = Event.where(account_id: @account.id).where(root_event: true).last
-    @chat = @event.chats.order(created_at: :asc)
+    
     puts @event
     puts Event.where(account_id: @account.id).where.not(state: 4).first
     puts "eventtttttttttttt"
     
     if @event != nil
+      @chat = @event.chats.order(created_at: :asc)
          if @event.ppts_url != nil && @event.has_ppts 
              @array = @event.slides.split(/,/)
              @count = @array.count
