@@ -27,14 +27,6 @@
 $(document).on('turbolinks:load',function() {
 	
 
-
-  $(function() {
-    $('#toggle-ppt').bootstrapToggle({
-      on: 'Si',
-      off: 'No'
-    });
-  })
-
   
 
   $(function() {

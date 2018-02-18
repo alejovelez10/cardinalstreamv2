@@ -1,9 +1,4 @@
 
-  <link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
-  <script src="https://unpkg.com/video.js/dist/video.js"></script>
-  <script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js"></script>
-<script src= "https://cdnjs.cloudflare.com/ajax/libs/videojs-resolution-switcher/0.4.2/videojs-resolution-switcher.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/videojs-resolution-switcher/0.4.2/videojs-resolution-switcher.css">
 
 
 <% edate = get_date_array(event.event_date)%>
@@ -163,7 +158,11 @@
 <script >
    $(document).on('turbolinks:load',function() {
    
-       
+     
+
+
+
+
               $('.cerrar').click(function(){
               $('#collapseExample1').fadeOut();
             })
@@ -568,16 +567,14 @@ $(document).ready(function(){
 
 
 
-
 <script>
-  
+$(document).ready(function(){
     videojs('video', {
     controls: true,
     plugins: {
       videoJsResolutionSwitcher: {
-        default: 2, // Default resolution [{Number}, 'low', 'high'],
-        dynamicLabel: true,
-        ui: true 
+        default: 'high', // Default resolution [{Number}, 'low', 'high'],
+        dynamicLabel: true
       }
     }
   }, function(){
@@ -587,19 +584,13 @@ $(document).ready(function(){
       {
         src: 'http://aletacloud.com:1935/live/meals/playlist.m3u8',
         type: 'application/x-mpegURL',
-        label: 'Alta',
-       
-      },
-      {
-        src: 'http://aletacloud.com:1935/live/meals_360p/playlist.m3u8',
-        type: 'application/x-mpegURL',
-        label: 'Media',
+        label: 'HD',
        
       },
       {
         src: 'http://aletacloud.com:1935/live/meals_160p/playlist.m3u8',
         type: 'application/x-mpegURL',
-        label: 'Baja',
+        label: 'SD',
        
       }
     ])
@@ -607,4 +598,14 @@ $(document).ready(function(){
       console.info('Source changed to %s', player.src())
     })
   })
+
+  $(function() {
+    $('#toggle-ppt').bootstrapToggle({
+      on: 'Si',
+      off: 'No'
+    });
+  })
+
+});
+   
 </script>
