@@ -13,7 +13,13 @@
             <%else%>
 
                     <%if !@event.has_ppts%>
-                            <%= render "accounts/lives/live_video", event: @event, array: @array%>
+                            <%if @navs == "SI" %>    
+                                  <%= render "accounts/lives/live_video_movil", event: @event, array: @array%>
+                            <%else%>
+                                  <%= render "accounts/lives/live_video", event: @event, array: @array%>
+                            <%end%>    
+
+                           
                     <%else%>
                             <%if @navs == "SI" %>    
                                  <%= render "accounts/lives/live_video_ppt_movil", event: @event, array: @array%>
