@@ -178,7 +178,7 @@ class AccountsController < ApplicationController
  @event = Event.find(params[:id])
     if request.xhr?
       render partial: 'stats', params: @event , status: 200
-     puts "ajazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+   
     end
   end
 
