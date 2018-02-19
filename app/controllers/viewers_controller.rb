@@ -5,7 +5,7 @@ def new
 end
 
 def create_viewer
-  @viewer = Viewer.new(name: params[:name], email:params[:email], company: params[:company], event_id: params[:event_id], account_id: params[:account_id])
+  @viewer = Viewer.new(name: params[:name], email:params[:email], company: params[:company], event_id: params[:event_id], account_id: params[:account_id] , date_time: Time.now())
   @event = Event.find(params[:event_id])
   if @viewer.save
   	viewer_sign_in(@viewer)
@@ -16,6 +16,16 @@ else
   end
 end
 end
+
+def delete_viewer 
+        
+        @viewer = Viewer.find(params[:id])
+        @event_id = @viewer.event_id
+        if @viewer.destroy
+                redirect_to real_time_stats_path(@event_id)
+            end
+        
+    end
 
 private
   def user_params

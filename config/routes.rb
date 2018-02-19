@@ -17,6 +17,10 @@ end
   get 'event_info/record_live/:id', to: "events#record_live", as: "record_live"
   get 'event_info/public_live/:id', to: "events#public_live", as: "public_live"
 
+  delete 'delete_question/:id', to: "questions#delete_question", as: "delete_question"
+  delete 'delete_viewer/:id', to: "viewers#delete_viewer", as: "delete_viewer"
+  get 'real_time_stats/get_statics/:id', to: 'accounts#get_statics', as: 'get_statics'
+
 
   get 'stats/index'
   get 'stats/csv'

@@ -23,84 +23,10 @@
         	
         </div>
          </div>
-         <div class="row">
-          <div class="col-md-6 fecha-info">
-            
-         
-            <div class="col-md-12" >
-                 <h3 style="color:#00ccff;font-size: 70px;margin-top:0px;font-family: sans-serif;"><i class="fa fa-user" style="font-size: 70px;margin-right: 20px;" aria-hidden="true"></i><%=@event.viewers.count%></h3>
-            </div>
-       
-    
-        </div>
-    <div class="col-md-6 fecha-info">
-            
-         
-            <div class="col-md-12" >
-                 <h3 style="color:#00ccff;font-size: 70px;margin-top:0px;font-family: sans-serif;"><i class="fa fa-question-circle" style="font-size: 70px;margin-right: 20px;" aria-hidden="true"></i><%=@event.questions.count%></h3>
-            </div>
-       
-    
-        </div>
-             
-         </div>
-         <div class="row">
-         <div class="col-md-6">
-         <h3>Usuarios Registrados</h3>
-            
-                <table class="table">
-                    
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Email</th>
-                            <th>Empresa</th>
-                            <th>Hora de Ingreso</th>
+         <div class="stats">
+                  <%= render partial: "stats" %>
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                     <% @event.viewers.each do |viewer|%>
-                        <tr>
-                            <td><%=viewer.name%></td>
-                            <td><%=viewer.email%></td>
-                            <td><%=viewer.company%></td>
-                            <td><%=viewer.created_at%></td>    
-                        </tr>
-                    <%end%>
-                    </tbody>
-                </table>
-           
          </div>
-           <div class="col-md-6">
-              
-           <h3>Preguntas</h3>
-                <table class="table" >
-                    
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Email</th>
-                            <th>Pregunta</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                      <% @event.questions.each do |question|%>
-                        <tr>
-                            <td><%=question.name%></td>
-                            <td><%=question.email%></td>
-                            <td><%=question.description%></td>
-                        </tr>
-                       <%end%>  
-                    </tbody>
-                </table>
-            
-        
-         </div>
-             
-             
-         </div>
-
 
          
         
@@ -118,3 +44,19 @@
 	border-right: 1px solid gray;
 }
 </style>
+
+<script>
+    
+    function get_stats(){
+
+
+   
+    $.get("get_statics/" + <%=@event.id%> , function(e){
+
+        console.log("hola");
+        $('.stats').html(e)
+    })
+}
+
+    setInterval(get_stats, 10000);
+</script>
