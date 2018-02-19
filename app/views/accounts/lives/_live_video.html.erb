@@ -57,9 +57,11 @@
          <video id="video" class="video-js vjs-default-skin vjs-16-9 vjs-big-play-centered"  controls autoplay  preload="auto" width="800" height="268"
   data-setup='{}'>
   </video>
-  
+
          </div>
          <%end%>
+         <% namep = "" 
+         current_viewer ? namep = current_viewer.name : name = "" %>
          <%if @event.has_files || @event.has_question%>
          <div class="col-md-3" >
             <%if event.has_question%>
@@ -71,7 +73,7 @@
                      <%= form_tag create_question_path, method: :post, remote:true do%>
                      <div class="col-md-12">
                         <div class="form-group">
-                           <%= text_field_tag :name , nil, class: "form form-control", placeholder: "Nombre" %>
+                           <%= text_field_tag :name , namep, class: "form form-control", placeholder: "Nombre" %>
                         </div>
                      </div>
                      <div class="col-md-12">
