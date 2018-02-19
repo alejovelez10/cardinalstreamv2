@@ -78,6 +78,7 @@ class AccountsController < ApplicationController
          end
       
       if @event.state == 4 
+         @sync =  @event.sync
          render "portal_show"
        else
           render "live"
