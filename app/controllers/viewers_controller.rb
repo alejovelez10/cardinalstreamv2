@@ -5,7 +5,8 @@ def new
 end
 
 def create_viewer
-  @viewer = Viewer.new(name: params[:name], email:params[:email], company: params[:company], event_id: params[:event_id], account_id: params[:account_id] , date_time: Time.now)
+   fecha = get_date_hora(Time.now)
+  @viewer = Viewer.new(name: params[:name], email:params[:email], company: params[:company], event_id: params[:event_id], account_id: params[:account_id] , date_time: fecha)
   @event = Event.find(params[:event_id])
   if @viewer.save
   	viewer_sign_in(@viewer)
