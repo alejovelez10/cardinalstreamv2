@@ -39,14 +39,14 @@
         </div>
 
         <div class="form-group">
-          <%= email_field_tag :email,nil, class: "form-control input", placeholder: "Email", :required => true %>
+          <%= text_field_tag :email,nil, class: "form-control input", placeholder: "Cedula", :required => true %>
         </div>
 
 
        
 
                 <div class="form-group">
-          <%= text_area_tag :company,nil ,class: "form-control input", placeholder: "Empresa", :required => true %>
+          <%= text_field_tag :company,nil ,class: "form-control input", placeholder: "Ciudad", :required => true %>
         </div>
 
         <%=hidden_field_tag :event_id, event.id %>
