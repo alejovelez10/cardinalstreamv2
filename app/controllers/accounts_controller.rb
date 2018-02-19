@@ -69,13 +69,19 @@ class AccountsController < ApplicationController
     puts "eventtttttttttttt"
     
     if @event != nil
+
+      
       @chat = @event.chats.order(created_at: :asc)
          if @event.ppts_url != nil && @event.has_ppts 
              @array = @event.slides.split(/,/)
              @count = @array.count
          end
-        
-         render "live"
+      
+      if @event.state == 4 
+         render "portal_show"
+       else
+          render "live"
+       end
     
     else
       #render "no_live" , :layout => false
