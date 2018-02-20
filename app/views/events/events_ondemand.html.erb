@@ -59,9 +59,9 @@
                               Editar
                               <%end%>
                            </li>
-                           <li><%= link_to event.video_url, download: event.video_url if event.video_url  do%>
+                           <li><%= (link_to event.video_url , download: event.video_url) do%>
                               <i class="fas fa-download"></i>
-                              Descargar
+                              Descargar Video
                               <%end%>
                            </li>
                           
