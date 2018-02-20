@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+include ApplicationHelper
 	def create_question
         fecha = get_date_hora(Time.now)
       @question = Question.new(event_id: params[:event_id],account_id:params[:account_id],name:params[:name], email:params[:email],description:params[:description],affair:params[:affair], date_time: fecha )

@@ -1,5 +1,5 @@
 class ViewersController < ApplicationController
-
+include ApplicationHelper
 def new
   @viewer = Viewer.new
 end
