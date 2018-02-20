@@ -59,7 +59,7 @@
                               Editar
                               <%end%>
                            </li>
-                           <li><%= link_to  "Descargar",event.video_url,download: item.video_url.original_filename if event.video_url  do%>
+                           <li><%= link_to  "Descargar",event.video_url, download: event.video_url.original_filename if event.video_url  do%>
                               <i class="fa fa-pencil fa1" aria-hidden="true"></i>
                               Descargar
                               <%end%>
