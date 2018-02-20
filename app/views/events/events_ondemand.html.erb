@@ -59,6 +59,11 @@
                               Editar
                               <%end%>
                            </li>
+                           <li><%= link_to  event.video_url if event.video_url  do%>
+                              <i class="fa fa-pencil fa1" aria-hidden="true"></i>
+                              Descargar
+                              <%end%>
+                           </li>
                           
                           <!--    <li><%= link_to  edit_more_path(event, "adicional"), remote:true  do%>
                               <i class="fa fa-cog fa1" aria-hidden="true"></i>
@@ -70,6 +75,7 @@
                               Informacion General
                               <%end%>
                            </li>-->
+
                             <li>
                            <a data-toggle="modal" ids = "<%=event.id%>" id = "<%=event.iframe%>" class = "modal-links" href="#myModal-links"><i class="fa fa-television fa1" aria-hidden="true"></i>Iframe y link para comartir</a>
                            </li>
