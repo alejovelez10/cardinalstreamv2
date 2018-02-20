@@ -59,10 +59,10 @@
                               Editar
                               <%end%>
                            </li>
-                           <li><%= (link_to event.video_url , download: event.video_url) do %>
-                              <i class="fas fa-download"></i>
-                              Descargar Video
-                              <%end%>
+                           <li> <i class="fas fa-download"></i><%= link_to "Descargar Video", event.video_url , download: event.video_url  %>
+                              
+                              
+                         
                            </li>
                           
                           <!--    <li><%= link_to  edit_more_path(event, "adicional"), remote:true  do%>
