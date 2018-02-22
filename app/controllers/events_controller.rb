@@ -99,7 +99,7 @@ class EventsController < ApplicationController
         b = (0..9)
         c = a.to_a + b.to_a
         key = c.shuffle[0,20].join
-        @event.iframe = key
+        @event.iframe = "JGrix" + key
         @event.save
         format.html { 
           if @event.state == 4
