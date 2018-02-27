@@ -72,7 +72,7 @@ end
   post 'create_question', to: 'questions#create_question', as: 'create_question'
   get 'iframe/:iframe', to:"accounts#iframe", as: "iframe"
   get '/:name', to: "accounts#portal_show_name"
-  get 'loaderio-e981c005a93aab334cc0a60de690d44f.txt'
+  get ':8080/loaderio-e981c005a93aab334cc0a60de690d44f.txt'
   get '*path' => redirect('/portal')
 end
 
