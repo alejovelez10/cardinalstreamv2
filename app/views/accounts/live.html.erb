@@ -4,9 +4,14 @@
   
             <%if @event.event_type%>
 
+                 <%if @navs == "SI" %>    
+                                  <%= render "accounts/lives/live_audio_movil", event: @event, array: @array, navs: @navs, nav: @nav%>
+                            <%else%>
+                                   <%= render "accounts/lives/live_audio", event: @event, array: @array, navs: @navs, nav: @nav%>
+                            <%end%>     
                     
- 
-                <%= render "accounts/lives/live_audio", event: @event, array: @array, navs: @navs, nav: @nav%>
+
+              
          
 
         

@@ -22,12 +22,12 @@
       <div class="col-md-12 blockhead ">
          <div class="col-md-2 logo text-center">
             <img src="<%=@account.logo_url%>" alt="">
-            <%= (link_to "Salir", logout_path(event.id), method: :delete, class: "viewer_salir hidden-lg hidden-md") if event.has_register %>
          </div>
          <div class="col-md-6 name">
-            <p style="    font-size: 16px;">12222<%= event.name.upcase%><br><span  class="hidden-xs hidden-sm" style="font-size: 15px;"><%=edate[0]%> DE <%=edate[2]%> DE <%=edate[4]%></span></p>
-            <p><span style= "font-size:10px;">Play para Iniciarbr
+            <p style="    font-size: 16px;"><%= event.name.upcase%>aaaaaaaaaaaaaa<br><span  class="hidden-xs hidden-sm" style="font-size: 15px;"><%=edate[0]%> DE <%=edate[2]%> DE <%=edate[4]%></span><span class = "hidden-md hidden-lg" style= "font-size:9px;">Play para Iniciar <br>
             Si deja de escuchar recargue deslizando la pantalla hacia abajo</span></p>
+
+           
          </div>
          <div class="col-md-4 social hidden-sm hidden-xs">
             <div class="redessociales" style="float:right;padding:0 2em;line-height: 2em;background: none;right: -0.7em;font-size: 1.7em;padding: 0;padding-right: 1.7em;margin-bottom: -0.8em;margin-top: -0.46em;">
@@ -47,64 +47,14 @@
                <%end%>
                  <%end%>
                <%= (link_to "Salir", logout_path(event.id), method: :delete, class: "viewer_salir") if event.has_register %>
-       
+         
+             
             </div>
          </div>
       </div>
    </div>
    <div class="row">
-      <div class="col-md-2 backppt1  hidden-sm hidden-xs">
-            <br>
-              <%if event.has_question%>
-            <div class="col-md-12" style= "padding: 9px;background: #313030;padding-top: 50px;">
-            
-              <%= form_tag create_question_path, method: :post, remote:true do%>
-              <div class="roundimg"></div>
-                   <div class="form-group">
-                     <%= label_tag "Nombre" %>
-                     <%= text_field_tag :name , (current_viewer.name if event.has_register), class: "form form-control question" %>
-                  </div>
-                                     <div class="form-group">
-                     <%= label_tag "Email" %>
-                     <%= text_field_tag :email , (current_viewer.email if event.has_register), class: "form form-control question" %>
-                  </div>
-
-                       <div class="form-group">
-                     <%= label_tag "Asunto" %>
-                     <%= text_field_tag :affair,nil, class: "form form-control erase"%>
-                  </div>
-
-
-                   
-                                     <div class="form-group">
-                     <%= label_tag "Pregunta" %>
-                     <%= text_area_tag :description ,nil, class: "form form-control erase question", style: "height: 100px;" %>
-                  </div>
-
-                  <%= hidden_field_tag :account_id , event.account_id%>
-                  <%= hidden_field_tag :event_id , event.id%>
-                   <%= hidden_field_tag :type , "audio"%>
-                  <%= submit_tag "Enviar", class: "btn btn-primary btn-block"%>
-
-              <%end%>
-              
-            <div class="alert alert-success" style="margin-top:5px;display:none">
-                Tu pregunsta se envio con exito.
-            </div>
-
-            </div> <%end%>
-            <div class="col-md-12 play_stop text-center" >
-            
-                 
-                     <img class="gif roundgif" src="/../../images/equ.gif" alt="">
-                     <img class="png roundgif" src="/../../images/equ.png" alt="">
-                                       <button class = "but play" type=""><i class="fa fa-play" aria-hidden="true"></i></button>  
-                  <button class = " but pause" type=""><i class="fa fa-pause" aria-hidden="true"></i></button>  
-                 
-            
-            </div>
-         
-      </div>
+      
       <div class="col-md-10 superppts">
          <div class="backppt col-md-12 no-float">
             <div class="ppt-block">
@@ -159,29 +109,88 @@
 
       </div>
    </div>
+   <div class="col-md-12 backppt1">
+            <br>
+              <%if event.has_question%>
+            <div class="col-md-12" style= "padding: 9px;background: #313030;padding-top: 5px;">
+            
+              <%= form_tag create_question_path, method: :post, remote:true do%>
+              <div class="col-md-12 text-right">
+                 <div class="roundimg"></div>
+              </div>
+             
+                   <div class="form-group">
+                     <%= label_tag "Nombre" %>
+                     <%= text_field_tag :name , (current_viewer.name if event.has_register), class: "form form-control question" %>
+                  </div>
+                                     <div class="form-group">
+                     <%= label_tag "Email" %>
+                     <%= text_field_tag :email , (current_viewer.email if event.has_register), class: "form form-control question" %>
+                  </div>
 
+                       <div class="form-group">
+                     <%= label_tag "Asunto" %>
+                     <%= text_field_tag :affair,nil, class: "form form-control erase"%>
+                  </div>
+
+
+                   
+                                     <div class="form-group">
+                     <%= label_tag "Pregunta" %>
+                     <%= text_area_tag :description ,nil, class: "form form-control erase question", style: "height: 100px;" %>
+                  </div>
+
+                  <%= hidden_field_tag :account_id , event.account_id%>
+                  <%= hidden_field_tag :event_id , event.id%>
+                   <%= hidden_field_tag :type , "audio"%>
+                  <%= submit_tag "Enviar", class: "btn btn-primary btn-block"%>
+
+              <%end%>
+              
+            <div class="alert alert-success" style="margin-top:5px;display:none">
+                Tu pregunsta se envio con exito.
+            </div>
+
+            </div> <%end%>
+            <div class="col-md-12 play_stop text-center" >
+            
+                 
+                     <img class="gif roundgif" src="/../../images/equ.gif" alt="">
+                     <img class="png roundgif" src="/../../images/equ.png" alt="">
+                                       <button class = "but play" type=""><i class="fa fa-play" aria-hidden="true"></i></button>  
+                  <button class = " but pause" type=""><i class="fa fa-pause" aria-hidden="true"></i></button>  
+                 
+            
+            </div>
+         
+      </div>
+  </div>
+  <div class="row hidden-md hidden-lg">
+      
+          <!--<div class="col-md-12 text-center" style="   margin-top:20px;">
+            
+               <img class="gif roundgif" src="/../../images/equ.gif" alt="">
+               <img class="png roundgif" src="/../../images/equ.png" alt="">
+                <button class = "but play" type=""><i class="fa fa-play" aria-hidden="true"></i></button>  
+            <button class = " but pause" type=""><i class="fa fa-pause" aria-hidden="true"></i></button>   
+            </div>-->
+         </div>
       
       
   
 
 
-<div class="row">
+<div class="row" style=" 
+    margin-right: 0px !important;">
    <div class="col-md-12 fixeddown">
-      <div class="col-md-2 col-xs-12 col-sm-12 hidden-sm hidden-xs">
-       <!-- <p style="border-right: 1px solid gray;    margin-top: 3px;">EN VIVO<br><span style="font-size: 10px;"> <%=edate[1]%> <%=edate[0]%> de <%=edate[2].capitalize%>, <%=edate[5]%></span></p>
--->
-      </div>
-      <div class="col-md-2 col-xs-12 col-sm-12 hidden-lg hidden-md">
-        <p style="border-right: 1px solid gray;    margin-top: 3px;"><%= (link_to "Salir", logout_path(event.id), method: :delete, class: "viewer_salir hidden-lg hidden-md") if event.has_register %> 
-        
-        <%if event.root_event%>
-
-        <%= (link_to "Recargar", root_path, class: "viewer_salir") if event.has_register %>
-          <%else%>
-
-          <%= (link_to "Recargar", portal_show_path(event.id), class: "viewer_salir") if event.has_register %>
-          <%end%>
-
+ 
+      <div class="col-md-2 col-xs-12 col-sm-12 hidden-lg hidden-md text-center">
+        <p style="margin-top: 3px;">
+         <img class="gif roundgif" src="/../../images/equ.gif" alt="">
+                     <img class="png roundgif" src="/../../images/equ.png" alt="">
+                                       <button class = "but play" type=""><i class="fa fa-play" aria-hidden="true"></i></button>  
+                  <button class = " but pause" type=""><i class="fa fa-pause" aria-hidden="true"></i></button>
+    
 
         </p>
 
@@ -201,7 +210,13 @@
          <a class="hidden-xs hidden-sm" href="http://iptics.com.co/productos/cardinalstream/" target="_blank"><img src="../../images/logo.png"></a>
       </div>
    </div>
-   <div id="playerElement" style="width:100%;height:350px;margin-top:80px;display: none""></div>
+   <div style="display:none">
+     
+
+    <audio id="video" class="video-js vjs-default-skin vjs-16-9 vjs-big-play-centered"  controls autoplay  preload="auto" width="800" height="268"
+  data-setup='{}'>
+  </audio>
+   </div>
 </div>
 </div>
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -218,6 +233,22 @@
    $(document).on('turbolinks:load',function() {
    
    
+         $('.form-toggle').click(function(){
+    $('#collapseExample1').fadeToggle();
+   })
+   
+            
+              
+            
+   
+                    $('.fullbuttonppt').click(function(){
+                      $('.backppt').toggleClass('fullsize');
+                      $('.ppt-block').toggleClass('mtop');
+                       $('.zoom1').toggle();
+                       $('.zoom2').toggle();
+                       console.log("si");
+          
+        });
    
         
    
@@ -232,8 +263,13 @@
 <script >
    $(document).on('turbolinks:load',function() {
    
-      $('.pause').hide();
-    $('.gif').hide();   
+  
+     $('.pause').hide();
+    $('.gif').hide(); 
+   
+   
+
+
    $('.play').click(function(){
             $('.play').hide();
             $('.pause').show();
@@ -241,7 +277,7 @@
             $('.png').hide();
             $('.msg1').fadeOut(); 
 
-            myPlayer.play()
+            player.play()
         });
    $('.pause').click(function(){
             
@@ -249,30 +285,18 @@
             $('.pause').hide();
             $('.gif').hide();
             $('.png').show(); 
-            myPlayer.pause()
+            player.pause()
    
         });
-   WowzaPlayer.create('playerElement',
-      {
-      "license":"PLAY1-bUNUh-4hRxb-AThrj-YaHnC-KY8D3",
-      "title":"",
-      "description":"",
-      "sourceURL":"http://aletacloud.com:1935/live/<%=@event.name_stream%>/playlist.m3u8",
-      "autoPlay":false,
-      "volume":"75",
-      "mute":false,
-      "loop":false,
-      "audioOnly":false,
-      "uiShowQuickRewind":true,
-      "uiQuickRewindSeconds":"30"
-      }
-   );
-   
-   
-   
-   
-      var myPlayer = WowzaPlayer.get('playerElement');
-   
+
+
+ var player = videojs('video');
+
+player.src({
+  src: 'http://aletacloud.com:1935/live/<%=@event.name_stream%>/playlist.m3u8',
+  type: 'application/x-mpegURL'
+});
+
 
 
 
@@ -376,13 +400,26 @@
     .superppts
   {
     padding-left: 0px!important; 
+    padding-right: 0px!important; 
   }
   .ppt-block img {
     width: 85%;
 }
+   .name
+  {
+    height: 70px;
+    background: <%=event.color%>;
+    padding: 10px 0px 0px 20px;
 
+  }
 
 @media only screen and (max-width: 500px) {
+  .name
+  {
+    height: 100px;
+   background: <%=event.color%>;
+
+  }
   .ppt-block img {
     width: 100%;
 }
@@ -390,7 +427,7 @@
 
     .superppts
   {
-    padding-left:  15px !important; 
+    
   }
   .backppt {
 
@@ -400,6 +437,7 @@
         background-color: lightblue;
             margin-right: 0em;
     margin-left: 0em;
+        margin-bottom: 26px;
     }
     .ppt-block img {
     width: 100%;
@@ -437,13 +475,7 @@
   {
     width: 162px;
   }
-    .name
-  {
-    height: 70px;
-    background: rgba(39, 39, 39, 0.83);
-    padding: 10px 0px 0px 20px;
-
-  }
+ 
   .name p
   {
     color: white;
@@ -451,7 +483,7 @@
      .social
   {
     height: 70px;
-    background: rgba(39, 39, 39, 0.83);
+    background: <%=event.color%>;
     padding: 10px 0px 0px 0px; 
   }
    .play_stop{
@@ -478,8 +510,8 @@
  
   .viewer_salir
   {
-    color: gray;
-    border: 2px solid gray;
+    color: white;
+    border: 2px solid white;
     padding: 2px 16px;
     border-radius: 9px;
     margin-left: 10px;
@@ -517,6 +549,11 @@
     {
       margin-bottom: 5px;
     }
+       .btn-primary {
+    background: <%=event.color%> !important;
+    color: white !important;
+    border:none !important;
+}
 </style>
 <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
 <script>
@@ -578,3 +615,4 @@
    
    
 </script>
+

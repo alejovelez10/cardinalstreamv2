@@ -260,16 +260,10 @@
 <script >
    $(document).on('turbolinks:load',function() {
    
-   if ("<%=navs%>" == "SI")
-    {  $('.pause').hide();
-    $('.gif').hide(); 
-      }
-    else
-    {
+
        $('.play').hide();
     $('.png').hide(); 
-    }
-
+   
 
    $('.play').click(function(){
             $('.play').hide();
