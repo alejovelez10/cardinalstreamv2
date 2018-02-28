@@ -121,7 +121,17 @@ class AccountsController < ApplicationController
 
   
   def portal_show_name
-     
+      
+    @nav =  request.user_agent
+    a = @nav.upcase.include? "ANDROID"
+    b = @nav.upcase.include? "IPHONE"
+    puts a 
+    puts b
+       if   a  ||  b
+      @navs = "SI"
+    else
+      @navs = "NO"
+    end
       a = params[:name]
       
       if a.include? "JGrix"
