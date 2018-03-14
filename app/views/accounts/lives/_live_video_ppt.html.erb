@@ -271,13 +271,19 @@
       {
         src: 'http://cardinalstream.com:1935/live/<%=@event.name_stream%>/playlist.m3u8',
         type: 'application/x-mpegURL',
-        label: 'HD',
+        label: 'Alta',
+       
+      },
+      {
+        src: 'http://cardinalstream.com:1935/live/<%=@event.name_stream%>_360p/playlist.m3u8',
+        type: 'application/x-mpegURL',
+        label: 'Media',
        
       },
       {
         src: 'http://cardinalstream.com:1935/live/<%=@event.name_stream%>_160p/playlist.m3u8',
         type: 'application/x-mpegURL',
-        label: 'SD',
+        label: 'Baja',
        
       }
     ])
