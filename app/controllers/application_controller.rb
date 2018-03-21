@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-   before_action :configure_permitted_parameters, if: :devise_controller?  
+   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
 
@@ -8,13 +8,13 @@ class ApplicationController < ActionController::Base
     [:account_update,:sign_up].each do |metodo|
     devise_parameter_sanitizer.permit(metodo, keys: [:email,:is_account,:account_domain,:names,:last_names,:admin_user,:rol_id,:avatar,:state,:count,:super_admin])
     end
-  end  
+  end
 
 
 layout :layout_for_selection
 protected
   def layout_for_selection
-    if controller_name == 'sessions'  || controller_name == 'passwords' 
+    if controller_name == 'sessions'  || controller_name == 'passwords'
       'application'
     elsif controller_name == 'registrations'
 
@@ -23,22 +23,22 @@ protected
             else
             	'admin'
         end
-    elsif (controller_name == 'accounts' and (action_name == "portal_show_video" || action_name == "portal_show_name" ||  action_name == "portal_show" || action_name == "live")) 
-      
+    elsif (controller_name == 'accounts' and (action_name == "portal_show_video" || action_name == "portal_show_name" ||  action_name == "portal_show" || action_name == "live"))
+
       'streaming'
-      elsif (controller_name == 'accounts' and ( action_name == "portal" || action_name == "live")) || (controller_name == "events" && action_name == "show")
-      
+      elsif (controller_name == 'accounts' and ( action_name == "portal")) || (controller_name == "events" && action_name == "show")
+
       'portal'
 
     elsif (action_name == "iframe")
-    'iframe' 
+    'iframe'
 
      elsif (action_name == "real_time_stats")
-    'stats' 
-      
+    'stats'
+
     else
       'admin'
-  
+
     end
   end
 
@@ -81,5 +81,3 @@ private
   end
   helper_method :current_viewer
 end
-
-

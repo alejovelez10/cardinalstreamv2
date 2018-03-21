@@ -27,7 +27,7 @@
             <p style="    font-size: 16px;"><%= event.name.upcase%><br><span  class="hidden-xs hidden-sm" style="font-size: 15px;"><%=edate[0]%> DE <%=edate[2]%> DE <%=edate[4]%></span><span class = "hidden-md hidden-lg" style= "font-size:9px;">Play para Iniciar <br>
             Si deja de escuchar recargue deslizando la pantalla hacia abajo</span></p>
 
-           
+
          </div>
          <div class="col-md-4 social hidden-sm hidden-xs">
             <div class="redessociales" style="float:right;padding:0 2em;line-height: 2em;background: none;right: -0.7em;font-size: 1.7em;padding: 0;padding-right: 1.7em;margin-bottom: -0.8em;margin-top: -0.46em;">
@@ -47,8 +47,8 @@
                <%end%>
                  <%end%>
                <%= (link_to "Salir", logout_path(event.id), method: :delete, class: "viewer_salir") if event.has_register %>
-         
-             
+
+
             </div>
          </div>
       </div>
@@ -58,7 +58,7 @@
             <br>
               <%if event.has_question%>
             <div class="col-md-12" style= "padding: 9px;background: #313030;padding-top: 50px;">
-            
+
               <%= form_tag create_question_path, method: :post, remote:true do%>
               <div class="roundimg"></div>
                    <div class="form-group">
@@ -76,7 +76,7 @@
                   </div>
 
 
-                   
+
                                      <div class="form-group">
                      <%= label_tag "Pregunta" %>
                      <%= text_area_tag :description ,nil, class: "form form-control erase question", style: "height: 100px;" %>
@@ -88,23 +88,23 @@
                   <%= submit_tag "Enviar", class: "btn btn-primary btn-block"%>
 
               <%end%>
-              
+
             <div class="alert alert-success" style="margin-top:5px;display:none">
                 Tu pregunsta se envio con exito.
             </div>
 
             </div> <%end%>
             <div class="col-md-12 play_stop text-center" >
-            
-                 
+
+
                      <img class="gif roundgif" src="/../../images/equ.gif" alt="">
                      <img class="png roundgif" src="/../../images/equ.png" alt="">
-                                       <button class = "but play" type=""><i class="fa fa-play" aria-hidden="true"></i></button>  
-                  <button class = " but pause" type=""><i class="fa fa-pause" aria-hidden="true"></i></button>  
-                 
-            
+                                       <button class = "but play" type=""><i class="fa fa-play" aria-hidden="true"></i></button>
+                  <button class = " but pause" type=""><i class="fa fa-pause" aria-hidden="true"></i></button>
+
+
             </div>
-         
+
       </div>
       <div class="col-md-10 superppts">
          <div class="backppt col-md-12 no-float">
@@ -123,9 +123,7 @@
             </div>
             <style>.wrapppt{max-width:100%!important;background:none!important;height:auto!important;}#ppts{float:none!important;margin:auto;}#scrollbar1{width:100%}</style>
             <div class="right-bar hidden-sm hidden-xs">
-               <div class="roundbutton fullppt fullbuttonppt">
-                  <div class="col-md-4 fa fa-expand fa-2x"></div>
-               </div>
+            
                         <!-- class="roundbutton zoom1">
               <div class="col-md-4 fa fa-search-plus fa-2x"></div>
             </div>
@@ -161,18 +159,18 @@
       </div>
    </div>
   <div class="row hidden-md hidden-lg">
-      
+
           <!--<div class="col-md-12 text-center" style="   margin-top:20px;">
-            
+
                <img class="gif roundgif" src="/../../images/equ.gif" alt="">
                <img class="png roundgif" src="/../../images/equ.png" alt="">
-                <button class = "but play" type=""><i class="fa fa-play" aria-hidden="true"></i></button>  
-            <button class = " but pause" type=""><i class="fa fa-pause" aria-hidden="true"></i></button>   
+                <button class = "but play" type=""><i class="fa fa-play" aria-hidden="true"></i></button>
+            <button class = " but pause" type=""><i class="fa fa-pause" aria-hidden="true"></i></button>
             </div>-->
          </div>
-      
-      
-  
+
+
+
 
 
 <div class="row">
@@ -185,14 +183,14 @@
         <p style="border-right: 1px solid gray;    margin-top: 3px;">
          <img class="gif roundgif" src="/../../images/equ.gif" alt="">
                      <img class="png roundgif" src="/../../images/equ.png" alt="">
-                                       <button class = "but play" type=""><i class="fa fa-play" aria-hidden="true"></i></button>  
+                                       <button class = "but play" type=""><i class="fa fa-play" aria-hidden="true"></i></button>
                   <button class = " but pause" type=""><i class="fa fa-pause" aria-hidden="true"></i></button>
-    
+
 
         </p>
 
       </div>
-    
+
             <div class="col-md-10 hidden-sm hidden-xs">
            <!-- <span style = "position:relative;font-size:14px;top:10px;margin-right:10px"> <%= "Click para descargar" if event.event_files.count != 0 && event.has_files %></span>
         <% @event.event_files.each do |event|%>
@@ -208,7 +206,7 @@
       </div>
    </div>
    <div style="display:none">
-     
+
 
     <video id="video" class="video-js vjs-default-skin vjs-16-9 vjs-big-play-centered"  controls autoplay  preload="auto" width="800" height="268"
   data-setup='{}'>
@@ -228,60 +226,60 @@
 
 <script >
    $(document).on('turbolinks:load',function() {
-   
-   
+
+
          $('.form-toggle').click(function(){
     $('#collapseExample1').fadeToggle();
    })
-   
-            
-              
-            
-   
+
+
+
+
+
                     $('.fullbuttonppt').click(function(){
                       $('.backppt').toggleClass('fullsize');
                       $('.ppt-block').toggleClass('mtop');
                        $('.zoom1').toggle();
                        $('.zoom2').toggle();
                        console.log("si");
-          
+
         });
-   
-        
-   
-   
-          }); 
-              
-   
-   
-   
-   
+
+
+
+
+          });
+
+
+
+
+
 </script>
 <script >
    $(document).on('turbolinks:load',function() {
-   
+
 
        $('.play').hide();
-    $('.png').hide(); 
-   
+    $('.png').hide();
+
 
    $('.play').click(function(){
             $('.play').hide();
             $('.pause').show();
             $('.gif').show();
             $('.png').hide();
-            $('.msg1').fadeOut(); 
+            $('.msg1').fadeOut();
 
             player.play()
         });
    $('.pause').click(function(){
-            
+
             $('.play').show();
             $('.pause').hide();
             $('.gif').hide();
-            $('.png').show(); 
+            $('.png').show();
             player.pause()
-   
+
         });
 
 
@@ -295,9 +293,9 @@ player.src({
 
 
 
-        }); 
-                
-   
+        });
+
+
 </script>
 <style>
 .document:hover
@@ -306,7 +304,7 @@ player.src({
   color:white;
    border: 1px solid red;
 }
-.document 
+.document
 {
       font-size: 12px;
     padding: 10px;
@@ -325,7 +323,7 @@ player.src({
     background-position: center center;
     background-size: 100%;
 }
-  
+
         .fullsize
   {
       position: fixed!important;
@@ -336,7 +334,7 @@ player.src({
     z-index: 1030!important;
     background: #000;
     text-align: center;
-  
+
   }
   .activeoff
 {
@@ -394,7 +392,7 @@ player.src({
    }
     .superppts
   {
-    padding-left: 0px!important; 
+    padding-left: 0px!important;
   }
   .ppt-block img {
     width: 85%;
@@ -421,7 +419,7 @@ player.src({
 
     .superppts
   {
-    padding-left:  15px !important; 
+    padding-left:  15px !important;
   }
   .backppt {
 
@@ -448,7 +446,7 @@ player.src({
 }
 .fixeddown
 {
- height:28em;    
+ height:28em;
 }
 .pp
 {
@@ -469,7 +467,7 @@ player.src({
   {
     width: 162px;
   }
- 
+
   .name p
   {
     color: white;
@@ -478,10 +476,10 @@ player.src({
   {
     height: 70px;
     background: <%=event.color%>;
-    padding: 10px 0px 0px 0px; 
+    padding: 10px 0px 0px 0px;
   }
    .play_stop{
-    
+
     margin-top: 10px;
     right: 10px;
     left: 0px;
@@ -496,12 +494,12 @@ player.src({
    }
   .blockhead
     {
-  padding-left: 0px!important; 
+  padding-left: 0px!important;
       padding: 0px;
-          
+
   background: none !important;
   }
- 
+
   .viewer_salir
   {
     color: white;
@@ -553,37 +551,37 @@ player.src({
 <script>
    // Enable pusher logging - don't include this in production
    Pusher.logToConsole = true;
-   
+
    var pusher = new Pusher('194f0bfe827f047fcf64', {
      cluster: 'us2',
      encrypted: true
    });
-   
+
    var channel = pusher.subscribe('my-channel');
    channel.bind('my-event', function(data) {
     a = data.message
-    
- setTimeout(function(){   
+
+ setTimeout(function(){
 
     $('.img-responsive').attr("src", a[0]);
     c = ".i" + (a[1] +1)
-    $('.tumb').addClass("activeoff"); 
+    $('.tumb').addClass("activeoff");
     $('.tumb').removeClass("activeon");
     $('.cont').html(a[1] +1 );
-   
+
     $(c).addClass("activeon");
     $(c).removeClass("activeoff");
-   
-      
-     
+
+
+
 }, <%=@event.delay * 1000%>);
-      
-   
-   
-   
+
+
+
+
    });
-   
-   
+
+
 
 
     var channel = pusher.subscribe('my-channel-msg');
@@ -592,21 +590,20 @@ player.src({
     $('.msg strong').html(a);
     $('.msg').fadeIn();
 
- setTimeout(function(){   
+ setTimeout(function(){
 
   $('.msg').fadeOut();
-      
-     
+
+
 }, 6000);
 
 
 
-   
-   
-   
-   });
-   
-   
-   
-</script>
 
+
+
+   });
+
+
+
+</script>
