@@ -73,6 +73,8 @@ end
   get 'iframe/:iframe', to:"accounts#iframe", as: "iframe"
   get '/:name', to: "accounts#portal_show_name"
 
+  get 'accounts/change_view/:view', to: "accounts#change_view", as: 'change_view'
+
   get 'loaderio-3c2889274396b9886e8bef0dcc80e3df.txt', to: "accounts#loader"
   
   get '*path' => redirect('/portal')
