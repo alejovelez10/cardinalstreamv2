@@ -315,7 +315,7 @@ class EventsController < ApplicationController
        @event = Event.find(params[:id])
        puts "quierooooooooooooooooooooo grabarrrrrrrrrrrrrrr"
       `mkdir public/uploads/event/video/#{@event.id}`
-      @a = `curl -X POST --header 'Accept:application/json; charset=utf-8' --header 'Content-Type:application/json; charset=utf-8' http://aletacloud.com:8087/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/live/instances/_definst_/streamrecorders/laumayer -d '
+      @a = `curl -X POST --header 'Accept:application/json; charset=utf-8' --header 'Content-Type:application/json; charset=utf-8' http://aletacloud.com:8087/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/live/instances/_definst_/streamrecorders/#{@event.name_stream} -d '
 {
   "instanceName": "",
   "fileVersionDelegateName": "",
