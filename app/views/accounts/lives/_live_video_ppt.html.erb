@@ -170,13 +170,17 @@
     <div class="row">
    <div class="col-md-12 fixeddown">
 
- <div class="col-md-2 hidden-xs" >
-        <p  style="border-right: 1px solid gray;    margin-top: 3px;">Descargables</span></p>
+ <div class="col-md-1 hidden-xs" >
+        <p  style="border-right: 1px solid gray;    margin-top: 3px;">Documentos <br>Descargables</span></p>
 
       </div>
-            <div class="col-md-10 hidden-xs">
+            <div class="col-md-12 hidden-xs">
         <% @event.event_files.each do |event|%>
-        <%= link_to "#{event.name}", event.attachment_url, class: "document"%>
+        <%= link_to , event.attachment_url, class: "document" do%>
+         <i class="fa fa-download" style="color:white"></i>
+        <%=event.name%>  
+         <%end%>
+
         <%end%>
 
       </div>
