@@ -3,19 +3,19 @@ class AccountsController < ApplicationController
   before_action :authenticate_user! , only: [:index, :edit, :update, :destroy]
   before_action :get_blog
   include ApplicationHelper
-  
-  
+
+
   def portal_login
           @account = Account.where(domain: request.subdomain).first
-            
+
          if params[:cookie] == @account.psw
             cookies.permanent.signed[:portal] = @account.psw
-            redirect_to portal_path 
-        
+            redirect_to portal_path
+
        else
-         redirect_to portal_path , notice: 'Contraseña incorrecta' 
+         redirect_to portal_path , notice: 'Contraseña incorrecta'
        end
-  end  
+  end
 
   # GET /accounts
   # GET /accounts.json
@@ -26,34 +26,34 @@ class AccountsController < ApplicationController
    def portal
     @account = Account.where(domain: request.subdomain).first
     @events = @account1.events.where(state: 4).order(updated_at: :desc).search(params[:search])
-    if cookies.permanent.signed[:portal] == @account.psw 
+    if cookies.permanent.signed[:portal] == @account.psw
       @psw = true
     else
       @psw = false
     end
-    
-     
-   end 
-  
+
+
+   end
+
 
    def iframe
-   
+
     @event = Event.where(iframe: params[:iframe]).first
     @account = Account.find(@event.account_id)
-     if @event.has_ppts 
+     if @event.has_ppts
     @array = @event.slides.split(/,/)
     @count = @array.count
     @sync =  @event.sync
     end
 
 
-  end  
+  end
 
   def live
     @nav =  request.user_agent
     a = @nav.upcase.include? "ANDROID"
     b = @nav.upcase.include? "IPHONE"
-    puts a 
+    puts a
     puts b
        if   a  ||  b
       @navs = "SI"
@@ -63,46 +63,46 @@ class AccountsController < ApplicationController
 
     @account = Account.where(domain: request.subdomain).first
     @event = Event.where(account_id: @account.id).where(root_event: true).last
-    
+
     puts @event
     puts Event.where(account_id: @account.id).where.not(state: 4).first
     puts "eventtttttttttttt"
-    
+
     if @event != nil
 
-      
+
       @chat = @event.chats.order(created_at: :asc)
-         if @event.ppts_url != nil && @event.has_ppts 
+         if @event.ppts_url != nil && @event.has_ppts
              @array = @event.slides.split(/,/)
              @count = @array.count
          end
-      
-      if @event.state == 4 
+
+      if @event.state == 4
          @sync =  @event.sync
          render "portal_show"
        else
           render "live"
        end
-    
+
     else
       #render "no_live" , :layout => false
       redirect_to portal_path
     end
-  end  
+  end
 
   def portal_show
 
     @nav =  request.user_agent
     a = @nav.upcase.include? "ANDROID"
     b = @nav.upcase.include? "IPHONE"
-    puts a 
+    puts a
     puts b
        if   a  ||  b
       @navs = "SI"
     else
       @navs = "NO"
     end
-   
+
     @event = Event.find(params[:id])
     @chat = @event.chats.order(created_at: :asc)
     @account = Account.find(@event.account_id)
@@ -111,21 +111,21 @@ class AccountsController < ApplicationController
     @count = @array.count
     @sync =  @event.sync
     end
-   
-   
-
-
-  end  
 
 
 
-  
+
+  end
+
+
+
+
   def portal_show_name
-      
+
     @nav =  request.user_agent
     a = @nav.upcase.include? "ANDROID"
     b = @nav.upcase.include? "IPHONE"
-    puts a 
+    puts a
     puts b
        if   a  ||  b
       @navs = "SI"
@@ -133,7 +133,7 @@ class AccountsController < ApplicationController
       @navs = "NO"
     end
       a = params[:name]
-      
+
       if a.include? "JGrix"
 
         @event = Event.where(iframe: params[:name]).first
@@ -154,14 +154,14 @@ class AccountsController < ApplicationController
         @count = @array.count
         @sync =  @event.sync
       end
-        render 'portal_show' 
-      end  
-    
-    
+        render 'portal_show'
+      end
 
 
 
-  end  
+
+
+  end
 
 
 
@@ -169,26 +169,26 @@ class AccountsController < ApplicationController
 
 
   def portal_show_video
-   
+
     @event = Event.find(params[:id])
     @account = Account.find(@event.account_id)
     @array = @event.slides.split(/,/)
     @count = @array.count
     @sync =  @event.sync
 
-  end  
+  end
 
   def real_time_stats
-    
+
     @event = Event.find(params[:id])
   end
-    
+
 
   def get_statics
  @event = Event.find(params[:id])
     if request.xhr?
       render partial: 'stats', params: @event , status: 200
-   
+
     end
   end
 
@@ -197,20 +197,20 @@ class AccountsController < ApplicationController
 
 
     def cardinalchat
-    
+
 
 
     @event = Event.find(params[:id])
-    
 
-    #arr = ["","https://farm5.staticflickr.com/4422/35665918493_1bde9dc8ed_b.jpg","https://farm5.staticflickr.com/4339/36474195705_74101edf7d_b.jpg","https://farm5.staticflickr.com/4424/35638778924_92f9d5e21d_b.jpg","https://farm5.staticflickr.com/4436/35639073234_326b80c92b_b.jpg","https://farm5.staticflickr.com/4362/36428484286_f22c9b770f_b.jpg","https://farm5.staticflickr.com/4382/35639127524_41193dbf80_b.jpg","https://farm5.staticflickr.com/4387/35666322323_b9b87e24b6_b.jpg","https://farm5.staticflickr.com/4345/36077419920_812fb91c10_b.jpg","https://farm5.staticflickr.com/4422/36077427050_b84bdf266c_b.jpg","https://farm5.staticflickr.com/4373/36474594225_fa08c3da0f_b.jpg","https://farm5.staticflickr.com/4386/36077439470_936283a0d5_b.jpg","https://farm5.staticflickr.com/4376/35639159574_567c80ed97_b.jpg","https://farm5.staticflickr.com/4337/35639163614_63ce4b90eb_b.jpg","https://farm5.staticflickr.com/4426/36474617395_e85421f18d_b.jpg","https://farm5.staticflickr.com/4434/36474626855_781d8f96b8_b.jpg","https://farm5.staticflickr.com/4406/36337236581_a91d5cd6b2_b.jpg","https://farm5.staticflickr.com/4353/36337242161_c9c07bc770_b.jpg","https://farm5.staticflickr.com/4355/35639211214_ec8b8dc215_b.jpg"]  
+
+    #arr = ["","https://farm5.staticflickr.com/4422/35665918493_1bde9dc8ed_b.jpg","https://farm5.staticflickr.com/4339/36474195705_74101edf7d_b.jpg","https://farm5.staticflickr.com/4424/35638778924_92f9d5e21d_b.jpg","https://farm5.staticflickr.com/4436/35639073234_326b80c92b_b.jpg","https://farm5.staticflickr.com/4362/36428484286_f22c9b770f_b.jpg","https://farm5.staticflickr.com/4382/35639127524_41193dbf80_b.jpg","https://farm5.staticflickr.com/4387/35666322323_b9b87e24b6_b.jpg","https://farm5.staticflickr.com/4345/36077419920_812fb91c10_b.jpg","https://farm5.staticflickr.com/4422/36077427050_b84bdf266c_b.jpg","https://farm5.staticflickr.com/4373/36474594225_fa08c3da0f_b.jpg","https://farm5.staticflickr.com/4386/36077439470_936283a0d5_b.jpg","https://farm5.staticflickr.com/4376/35639159574_567c80ed97_b.jpg","https://farm5.staticflickr.com/4337/35639163614_63ce4b90eb_b.jpg","https://farm5.staticflickr.com/4426/36474617395_e85421f18d_b.jpg","https://farm5.staticflickr.com/4434/36474626855_781d8f96b8_b.jpg","https://farm5.staticflickr.com/4406/36337236581_a91d5cd6b2_b.jpg","https://farm5.staticflickr.com/4353/36337242161_c9c07bc770_b.jpg","https://farm5.staticflickr.com/4355/35639211214_ec8b8dc215_b.jpg"]
     msg = params[:msg]
     fecha = get_date_hora(Time.now)
     ar = [msg,fecha,@event.id,params[:name]]
     Chat.create(event_id: @event.id, message: msg, name: params[:name], date_time: fecha)
     Pusher.trigger('chat', 'msg', {
     message: ar
-    
+
 
 
     });
@@ -236,44 +236,44 @@ class AccountsController < ApplicationController
 
 
  def change_psw
-    
-    params[:value] == "true" ? val = true : val = false 
+
+    params[:value] == "true" ? val = true : val = false
     Account.find(params[:id]).update(has_psw: val)
-  
+
   end
 
    def change_net
-    
-    params[:value] == "true" ? val = true : val = false 
+
+    params[:value] == "true" ? val = true : val = false
     Account.find(params[:id]).update(has_networks: val)
-  
+
   end
    def change_questions
-    
-    params[:value] == "true" ? val = true : val = false 
+
+    params[:value] == "true" ? val = true : val = false
     Account.find(params[:id]).update(questions: val)
-  
+
   end
    def change_docs
-    
-    params[:value] == "true" ? val = true : val = false 
+
+    params[:value] == "true" ? val = true : val = false
     Account.find(params[:id]).update(download_docs: val)
-  
+
   end
 
 
   def change_view
-    
 
 
-  
-    
 
-    #arr = ["","https://farm5.staticflickr.com/4422/35665918493_1bde9dc8ed_b.jpg","https://farm5.staticflickr.com/4339/36474195705_74101edf7d_b.jpg","https://farm5.staticflickr.com/4424/35638778924_92f9d5e21d_b.jpg","https://farm5.staticflickr.com/4436/35639073234_326b80c92b_b.jpg","https://farm5.staticflickr.com/4362/36428484286_f22c9b770f_b.jpg","https://farm5.staticflickr.com/4382/35639127524_41193dbf80_b.jpg","https://farm5.staticflickr.com/4387/35666322323_b9b87e24b6_b.jpg","https://farm5.staticflickr.com/4345/36077419920_812fb91c10_b.jpg","https://farm5.staticflickr.com/4422/36077427050_b84bdf266c_b.jpg","https://farm5.staticflickr.com/4373/36474594225_fa08c3da0f_b.jpg","https://farm5.staticflickr.com/4386/36077439470_936283a0d5_b.jpg","https://farm5.staticflickr.com/4376/35639159574_567c80ed97_b.jpg","https://farm5.staticflickr.com/4337/35639163614_63ce4b90eb_b.jpg","https://farm5.staticflickr.com/4426/36474617395_e85421f18d_b.jpg","https://farm5.staticflickr.com/4434/36474626855_781d8f96b8_b.jpg","https://farm5.staticflickr.com/4406/36337236581_a91d5cd6b2_b.jpg","https://farm5.staticflickr.com/4353/36337242161_c9c07bc770_b.jpg","https://farm5.staticflickr.com/4355/35639211214_ec8b8dc215_b.jpg"]  
+
+
+
+    #arr = ["","https://farm5.staticflickr.com/4422/35665918493_1bde9dc8ed_b.jpg","https://farm5.staticflickr.com/4339/36474195705_74101edf7d_b.jpg","https://farm5.staticflickr.com/4424/35638778924_92f9d5e21d_b.jpg","https://farm5.staticflickr.com/4436/35639073234_326b80c92b_b.jpg","https://farm5.staticflickr.com/4362/36428484286_f22c9b770f_b.jpg","https://farm5.staticflickr.com/4382/35639127524_41193dbf80_b.jpg","https://farm5.staticflickr.com/4387/35666322323_b9b87e24b6_b.jpg","https://farm5.staticflickr.com/4345/36077419920_812fb91c10_b.jpg","https://farm5.staticflickr.com/4422/36077427050_b84bdf266c_b.jpg","https://farm5.staticflickr.com/4373/36474594225_fa08c3da0f_b.jpg","https://farm5.staticflickr.com/4386/36077439470_936283a0d5_b.jpg","https://farm5.staticflickr.com/4376/35639159574_567c80ed97_b.jpg","https://farm5.staticflickr.com/4337/35639163614_63ce4b90eb_b.jpg","https://farm5.staticflickr.com/4426/36474617395_e85421f18d_b.jpg","https://farm5.staticflickr.com/4434/36474626855_781d8f96b8_b.jpg","https://farm5.staticflickr.com/4406/36337236581_a91d5cd6b2_b.jpg","https://farm5.staticflickr.com/4353/36337242161_c9c07bc770_b.jpg","https://farm5.staticflickr.com/4355/35639211214_ec8b8dc215_b.jpg"]
     view = params[:view]
     Pusher.trigger('view', 'msg', {
     message: view
-    
+
 
 
     })
@@ -281,9 +281,9 @@ class AccountsController < ApplicationController
 
   end
 
- 
 
- 
+
+
 
   # POST /accounts
   # POST /accounts.json
@@ -327,7 +327,7 @@ class AccountsController < ApplicationController
 
    def loader
     redirect_to "http://cardinalstream.com/loaderio-3c2889274396b9886e8bef0dcc80e3df.txt"
-     
+
    end
 
 
@@ -342,5 +342,3 @@ class AccountsController < ApplicationController
       params.require(:account).permit(:domain, :logo, :admin_user, :user_id, :background_portal, :background_stream, :name,  :chat, :facebook, :twitter,:requisitos, :instagram, :linkedin,:has_psw, :psw, :has_networks, :download_docs, :questions)
     end
 end
-
-
