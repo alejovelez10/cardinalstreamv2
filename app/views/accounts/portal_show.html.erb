@@ -15,8 +15,14 @@
     <%else%>
          <%if @event.event_type%>
 
+         <%if @navs == "SI" %>
+                          <%= render "accounts/lives/live_audio_movil", event: @event, array: @array, nav: @navs%>
+                    <%else%>
+                           <%= render "accounts/lives/live_audio", event: @event, array: @array, nav: @navsv%>
+                    <%end%>
 
-            <%= render "accounts/lives/live_audio_movil", event: @event, array: @array, navs: @navs%>
+
+          
 
         <%else%>
            <%if !@event.has_ppts%>
