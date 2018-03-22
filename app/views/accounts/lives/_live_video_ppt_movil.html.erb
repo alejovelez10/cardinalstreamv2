@@ -35,7 +35,7 @@
                <%end%>
                  <%end%>
                <%= (link_to "Salir", logout_path(event.id), method: :delete, class: "viewer_salir") if event.has_register %>
-             
+
             </div>
          </div>
       </div>
@@ -48,7 +48,7 @@
                 <span style="    background: <%=event.color%>;
     color: <%=event.backgroud_font%>;
     padding: 5px;
-    
+
     position: relative;
     top: 25px;
     border-radius: 3px;">Has Click en  el Player para iniciar el Streaming</span>
@@ -64,7 +64,7 @@
     padding-left: 0px !important;
     padding-right: 0px !important;">
          <div class="backppt col-md-12 no-float">
-        
+
             <div class="ppt-block">
                <div class="ppt_cont">
                   <div class="wrapppt" style="max-width: 555.4px; height: 416.55px; background: rgb(50, 50, 50);">
@@ -80,7 +80,7 @@
                   </div>
                </div>
             </div>
-                 
+
             <style>.wrapppt{max-width:100%!important;background:none!important;height:auto!important;}#ppts{float:none!important;margin:auto;}#scrollbar1{width:100%}</style>
             <div class="right-bar hidden-sm hidden-xs">
                <div class="roundbutton fullppt fullbuttonppt">
@@ -93,11 +93,11 @@
               <div class="col-md-4 fa fa-search-minus fa-2x"></div>
             </div>-->
                <div class="roundbutton countppt"><span class="cont"><%=event.ultimate_ppt + 1%></span>/<%=@count%></div>
-              
+
             </div>
          </div>
          <%if event.has_question%>
-         
+
          <div style="margin-top:0px;margin-bottom:30px;">
             <div class="alert alert-info alert1 alert-info1" role="alert" style="margin-top:5px;    padding: 10px 20px;"><img class="hidden-xs hidden-sm" style="width: 40px;margin-right:10px" src="https://es.seaicons.com/wp-content/uploads/2016/03/question-faq-icon.png" alt="">
   <span class="hidden-xs hidden-sm">¿Tienes alguna duda? </span><a class="form-toggle" role="button" data-toggle="collapse" href="" aria-expanded="false" aria-controls="collapseExample" style="background: #3163b5;margin-left:20px;
@@ -105,30 +105,30 @@
     color: white;
     border-radius: 10px;">Click para preguntar</a>
 </div>
-        
+
 
 </a></div>
 
 
-         
+
 
          <div id="collapseExample1" class="col-md-12 collapse" style= "display:none;position:relative;top:-90px;z-index:10;padding: 9px;background: #313030;margin-top:0px">
             <%= form_tag create_question_path, method: :post, remote:true do%>
             <div class="col-md-6">
                <div class="form-group">
-                  
+
                   <%= text_field_tag :name , nil, class: "form form-control", placeholder: "Nombre" %>
                </div>
             </div>
             <div class="col-md-6">
                <div class="form-group">
-                  
+
                   <%= text_field_tag :email , nil, class: "form form-control", placeholder: "Email" %>
                </div>
             </div>
             <div class="col-md-12">
                <div class="form-group">
-                 
+
                   <%= text_area_tag :description ,nil, class: "form form-control erase", placeholder: "Pregunta" %>
                </div>
             </div>
@@ -153,11 +153,11 @@
     <div class="chat">
      <div class="chat-body">
             <div class="chat-msgs">
-        <%if @chat.count != 0%>    
+        <%if @chat.count != 0%>
             <% @chat.each do |chat|%>
             <p style="padding:5px 5px 0px 5px;margin-bottom:0px"><span style="font-weight:bold;font-size:12px;"><%=chat.name%> </span><span style="font-size:10px;color:gray"><%=get_date_hora(chat.date_time)%></span><br><span style="font-size:12px;"><%=chat.message%></span></p>
             <%end%>
-            <%end%> 
+            <%end%>
             </div>
             <br>
            <div class="chat-form">
@@ -166,7 +166,7 @@
                 <%= hidden_field_tag :id , @event.id%>
                 <%= hidden_field_tag :name , current_viewer.name if current_viewer%><br>
                 <p class="text-right"><%= submit_tag "Enviar" , class: "btn btn-primary send-chat"%></p>
-        <%end%> 
+        <%end%>
      </div>
      </div>
 
@@ -174,22 +174,19 @@
    </div><%end%>
     <div class="row" style="margin-left: 0px !important;margin-right: 0px !important;">
    <div class="col-md-12 fixeddown">
-     
-    <!--  <div class="col-md-3 hidden-xs" ">
+
+  <div class="col-md-3 hidden-xs" >
         <p  style="border-right: 1px solid gray;    margin-top: 3px;"><%= @event.name%><br><span style="font-size: 10px;"><%= get_date(@event.event_date)%></span></p>
 
       </div>
             <div class="col-md-9 hidden-xs">
-        <% @event.event_files.each do |event|%>
-        <%= link_to "#{event.name}", event.attachment_url, class: "document"%>
-        <%end%>
 
-      </div>-->
+      </div>
       <div class="col-md-12 middle-div no-float" style="padding-left:0px !important;bottom:0px;background:#424242;text-align:center;margin-top:5px;">
          <a href="http://iptics.com.co/productos/cardinalstream/" target="_blank"><img src="../../images/logo.png"></a>
       </div>
    </div>
-  
+
 </div>
 </div>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-104389816-1"></script>
@@ -204,9 +201,9 @@
    $(document).on('turbolinks:load',function() {
 
 
-  
-    
-   
+
+
+
     $('.cerrar').click(function(){
     $('#collapseExample1').fadeOut();
    })
@@ -214,18 +211,18 @@
       $('.form-toggle').click(function(){
     $('#collapseExample1').fadeToggle();
    })
-   
+
                   $('.i1').addClass("activeon");
-              
+
               $('.pad').click(function(){
                       $('.pad').children('img').removeClass("activeon");
                       $(this).children('img').addClass("activeon");
                       $('#ppts img').attr('src', $(this).children('img').attr("src"));
-   
-                  
+
+
                   $('.cont').text($(this).children('div').text());
-                  }); 
-   
+                  });
+
                     $('.fullbuttonppt').click(function(){
                       $('.backppt').toggleClass('fullsize');
                       $('.ppt-block').toggleClass('mtop');
@@ -233,20 +230,20 @@
                        $('.zoom2').toggle();
                        $('.ppt-block img').toggleClass('imagchange');
                        console.log("si");
-          
-        });
-   
-   
-   
-          }); 
-              
 
-   
-   
-   
+        });
+
+
+
+          });
+
+
+
+
+
 </script>
 <script>
- 
+
 var player = videojs('video');
 
 player.src({
@@ -262,7 +259,7 @@ player.src({
 {
   text-decoration: none
 }
-.document 
+.document
 {
          font-size: 12px;
     padding: 10px;
@@ -381,7 +378,7 @@ player.src({
     height: 80px;
     background: <%=event.color%>;
     padding: 10px 0px 0px 20px;
- 
+
   }
   .name p
   {
@@ -391,13 +388,13 @@ player.src({
   {
     height: 80px;
     background: <%=event.color%>;
-    padding: 10px 0px 0px 0px; 
+    padding: 10px 0px 0px 0px;
   }
    .blockhead
     {
-  padding-left: 0px!important; 
+  padding-left: 0px!important;
       padding: 0px;
-          
+
   background: none !important;
   }
   .viewer_salir
@@ -430,7 +427,7 @@ player.src({
 }
 
   .chat {
- 
+
   position: fixed;
   bottom: 30px;
   right: 30px;
@@ -442,7 +439,7 @@ player.src({
   padding:10px;
   height: 400px;
   width:300px;
-  background: white; 
+  background: white;
   display: none;
 }
 .chat-msgs
@@ -477,10 +474,10 @@ player.src({
    }
    .fixeddown
    {
-   height:auto;    
+   height:auto;
    }
    .backppt {
-   
+
     margin-bottom: 5px;
    height:auto !important;
    padding-left: 15px !important;
@@ -493,7 +490,7 @@ player.src({
    #ppts {
    width: 100% !important;
    }
-   #playerElement 
+   #playerElement
    {
    margin-top: 0px !important;
    }
@@ -513,10 +510,10 @@ player.src({
     font-size: 12px !important;
   }
   .chat {
- 
-  
+
+
   bottom: 0px;
- 
+
 
 }
 .msg-inicio span
@@ -527,10 +524,10 @@ player.src({
 }
 }
 @media only screen and (max-width:392px) {
-   
+
       #playerElement
       {
-          
+
 
       }
 
@@ -540,46 +537,46 @@ player.src({
 <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
 <script>
    // Enable pusher logging - don't include this in production
-  
-   
+
+
    var pusher = new Pusher('194f0bfe827f047fcf64', {
      cluster: 'us2',
      encrypted: true
    });
-   
+
    var channel = pusher.subscribe('my-channel');
    channel.bind('my-event', function(data) {
     a = data.message
-   
-   
+
+
       setTimeout(function(){
        console.log(data.message);
     $('.img-responsive').attr("src", a[0]);
     c = ".i" + (a[1] +1)
-    $('.tumb').addClass("activeoff"); 
+    $('.tumb').addClass("activeoff");
     $('.tumb').removeClass("activeon");
-   
+
     $(c).addClass("activeon");
     $(c).removeClass("activeoff");
-   
+
        }, 0);
-     
-   
-   
-   
+
+
+
+
    });
-   
+
       /* var channel = pusher.subscribe('my-channel-msg');
    channel.bind('msg', function(data) {
     a = data.message
     $('.msg strong').html(a);
     $('.msg').fadeIn();
 
- setTimeout(function(){   
+ setTimeout(function(){
 
   $('.msg').fadeOut();
-      
-     
+
+
 }, 6000);
 
 
@@ -587,9 +584,9 @@ player.src({
 
 
 
-   
-   
-   
+
+
+
    });*/
 
 
@@ -598,11 +595,11 @@ player.src({
   var channel = pusher.subscribe('chat');
    channel.bind('msg', function(data) {
     a = data.message;
-       if (a[2] == <%=event.id%>){ 
+       if (a[2] == <%=event.id%>){
         $('.chat-msgs').append("<p style='padding:5px;margin:0px'><span style='font-weight:bold;font-size:12px;''>" + a[3] + "</span><span style='font-size:10px;color:gray'>" + a[1] + "</span><br><span style='font-size:12px;'>"+ a[0] + "</span></p>");
          $('.chat-msgs').scrollTop($('.chat-msgs').prop("scrollHeight"));
        }
- 
+
      });
 
 $(document).on('turbolinks:load',function() {
@@ -610,11 +607,11 @@ $(document).on('turbolinks:load',function() {
      $('.chat-body').keypress(function (e) {
   if (e.which == 13) {
     $('.send-chat').click();
-    return false;  
-    
+    return false;
+
   }
 });
-   
+
        $('.btn-chat').click(function(){
               $('.chat-body').fadeToggle();
                $('.chat-msgs').scrollTop($('.chat-msgs').prop("scrollHeight"));
@@ -622,4 +619,3 @@ $(document).on('turbolinks:load',function() {
             })
      });
 </script>
-
