@@ -362,7 +362,7 @@ def public_live
        puts "quierooooooooooooooooooooo grabarrrrrrrrrrrrrrr"
        @event.state = 4
        @event.save
-      `mv public/uploads/event/video/#{@event.id}/fabricato.mp4 public/uploads/event/video/#{@event.id}/default.mp4`
+      `mv public/uploads/event/video/#{@event.id}/#{@event.name_stream}.mp4 public/uploads/event/video/#{@event.id}/default.mp4`
        tv = `ffprobe -v error -select_streams v:0 -show_entries stream=duration \ -of default=noprint_wrappers=1:nokey=1 public/uploads/event/video/#{@event.id}/default.mp4`
             tvi = (tv.to_i/2)
             puts tvi
