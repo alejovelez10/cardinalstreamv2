@@ -51,10 +51,7 @@
          <video id="video" class="video-js vjs-default-skin vjs-16-9 vjs-big-play-centered"  controls autoplay  preload="auto" width="800" height="268"
   data-setup='{}'>
   </video></div>
-   <div style="margin-top:5px">
-         <div class="alert alert-info alert1 alert-info1" role="alert" style="margin-top:5px;    padding: 5px 20px;">
-  <span class="hidden-xs hidden-sm" style="font-size: 10px;">Si en algún momento se para el video o se congela la imagen recarga el navegador</span>
-</div></div>
+
 <%if event.has_question%>
 
          <div style="margin-top:5px">
@@ -68,11 +65,26 @@
 
 
 </a></div>
+<%if event.has_files%>
+<div style="margin-top:5px">
+
+   <div class="alert alert-info alert1 alert-info1" role="alert" style="margin-top:5px;    padding: 20px 20px;">
+     <% @event.event_files.each do |event|%>
+     <%= link_to  event.attachment_url, class: "document" do%>
+      <i class="fa fa-download" style="color:white"></i>
+     <%=event.name%>
+      <%end%>
+
+     <%end%>
+</div>
+
+
+</a></div><%end%>
 
 
 
 
-         <div id="collapseExample1" class="col-md-12 collapse" style= "display:none;position:relative;top:-90px;z-index:10;padding: 9px;background: #313030;margin-top:0px">
+         <div id="collapseExample1" class="col-md-12 collapse" style= "display:none;position:relative;top:-130px;z-index:10;padding: 9px;background: #313030;margin-top:0px">
             <%= form_tag create_question_path, method: :post, remote:true do%>
             <div class="col-md-6">
                <div class="form-group">
@@ -170,11 +182,11 @@
     <div class="row">
    <div class="col-md-12 fixeddown">
 
- <div class="col-md-1 hidden-xs" >
+ <!--<div class="col-md-2 hidden-xs" >
         <p  style="border-right: 1px solid gray;    margin-top: 3px;">Documentos <br>Descargables</span></p>
 
       </div>
-            <div class="col-md-12 hidden-xs">
+            <div class="col-md-11 hidden-xs">
         <% @event.event_files.each do |event|%>
         <%= link_to  event.attachment_url, class: "document" do%>
          <i class="fa fa-download" style="color:white"></i>
@@ -183,7 +195,7 @@
 
         <%end%>
 
-      </div>
+      </div>-->
       <div class="col-md-12 middle-div no-float" style="padding-left:0px !important;bottom:0px;background:#424242;text-align:center;margin-top:5px;">
          <a href="http://iptics.com.co/productos/cardinalstream/" target="_blank"><img  src="../../images/logo.png"></a>
       </div>
@@ -320,9 +332,9 @@ player.src({
     padding: 10px;
     border: 3px solid <%=event.color%>;
     background: rgba(119, 119, 119, 0.43);
-    position: relative;
+
     margin-right: 10px;
-    top: 17px;
+
     color: white;
 }
    .fixeddown
