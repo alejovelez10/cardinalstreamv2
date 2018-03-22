@@ -6,7 +6,7 @@
        <div class="col-md-2 logo text-center">
          <img src="<%=@account.logo_url%>" alt="">
       </div>
-     
+
          <div class="col-md-6 name">
            <p style="    font-size: 16px;"><%= event.name.upcase%> <span style="font-size:12px;color:white;margin-left:50px;"> <%= link_to "Volver a listado", portal_path, style: "color:white" %></span><br><span  class="hidden-xs hidden-sm" style="font-size: 15px;"><%=edate[0]%> DE <%=edate[2]%> DE <%=edate[4]%></span></p>
 
@@ -30,7 +30,7 @@
                <%end%>
                  <%end%>
                <%= (link_to "Salir", logout_path(event.id), method: :delete, class: "viewer_salir") if event.has_register %>
-             
+
             </div>
          </div>
       </div>
@@ -38,9 +38,9 @@
 	<div class="row">
 
         <div class="col-md-2 backppt1 idden-sm hidden-xs">
- 
+
         	<div id="playerElement" style="width:220px; height:80px; padding:0;display: none"></div>
-                    
+
 
 
         </div>
@@ -62,13 +62,13 @@
 						</div>-->
 						<div class="roundbutton countppt"><span class="cont">1</span>/<%=count%></div>
 										<div id="scrollbar1">
-            <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+
             <div class="viewport" style = "background:#323232">
                  <div class="overview">
 
                    <% a = 1;
                     array.each do |elemento|%>
-				     
+
 					  <div class = "pad">
 					<div class = "numeral n<%=a%>"><%=a%></div>
                     <img id = "<%=a%>" class = "i<%=a%> tumb" src = "<%=elemento%>">
@@ -78,26 +78,26 @@
                 </div>
             </div>
         </div>
-					
+
 				</div>
 
 				</div>
     	</div>
 
     </div>
-    	
+
        <div class="row">
    <div class="col-md-12 fixeddown">
       <div class="col-md-2">
         <div class="col-md-12 play_stop text-center" >
-            
-                 
+
+
                      <img class="gif roundgif" src="/../../images/equ.gif" alt="">
                      <img class="png roundgif" src="/../../images/equ.png" alt="" >
-                                       <button class = "but play" type=""><i class="fa fa-play" aria-hidden="true"></i></button>  
-                  <button class = " but pause" type=""><i class="fa fa-pause" aria-hidden="true"></i></button>  
-                 
-            
+                                       <button class = "but play" type=""><i class="fa fa-play" aria-hidden="true"></i></button>
+                  <button class = " but pause" type=""><i class="fa fa-pause" aria-hidden="true"></i></button>
+
+
             </div>
 
       </div>
@@ -109,61 +109,61 @@
 </div>
 <div ><span class= "hms" >00:00:00</span> / <span class= "hms-duration" >00:00:00</span>  </div>
             </div>
-      
-        
+
+
 
       </div>
       <div class="col-md-12 middle-div no-float" style=";bottom:0px;background:#424242;text-align:center;float:left;margin-top:5px;">
          <a href="http://iptics.com.co/productos/cardinalstream/" target="_blank"><img src="../../images/logo.png"></a>
       </div>
    </div>
-  
-</div>
 
 </div>
 
+</div>
 
 
-         
+
+
 
 
 <script >
-$.get("create/" + <%=@event.id%> + "/0" , function(data) 
+$.get("create/" + <%=@event.id%> + "/0" , function(data)
                 {
 
-               
 
 
-                });  
- 
+
+                });
+
 
  $(document).on('turbolinks:load',function() {
 
 
- 
+
 				$('.i1').addClass("activeon");
-			
+
 			$('.pad').click(function(){
 					$('.pad').children('img').removeClass("activeon");
                     $(this).children('img').addClass("activeon");
 					$('#ppts img').attr('src', $(this).children('img').attr("src"));
 
-				
+
                 $('.cont').text($(this).children('div').text());
-				});	
+				});
 
                   $('.fullbuttonppt').click(function(){
                     $('.backppt').toggleClass('fullsize');
                      $('.zoom1').toggle();
                      $('.zoom2').toggle();
                      console.log("si");
-        
+
       });
 
 
 
-        }); 
-            
+        });
+
 
 
 
@@ -174,7 +174,7 @@ $.get("create/" + <%=@event.id%> + "/0" , function(data)
  $(document).on('turbolinks:load',function() {
 
     $('.pause').hide();
-    $('.gif').hide();  
+    $('.gif').hide();
  $('.play').click(function(){
             $('.play').hide();
             $('.pause').show();
@@ -183,12 +183,12 @@ $.get("create/" + <%=@event.id%> + "/0" , function(data)
  $('.pause').click(function(){
               $('.play').show();
              $('.pause').hide();
-            
-            
+
+
             myPlayer.pause()
 
         });
-    
+
 WowzaPlayer.create('playerElement',
     {
     "license":"PLAY1-bUNUh-4hRxb-AThrj-YaHnC-KY8D3",
@@ -201,7 +201,7 @@ WowzaPlayer.create('playerElement',
     "loop":false,
     "audioOnly":true,
     "uiShowQuickRewind":true,
-    "uiQuickRewindSeconds":"30" 
+    "uiQuickRewindSeconds":"30"
     }
 ).play();
 
@@ -215,10 +215,10 @@ WowzaPlayer.create('playerElement',
 errorListener = function ( errorEvent ) {
     console.log('Message: hoolaaaaaaaaaaaaaaaaaaa ' + errorEvent.error);
     $('.gif').hide();
-    $('.png').show(); 
+    $('.png').show();
     $('.play').show();
     $('.pause').hide();
-    
+
 };
 
     var array = "<%=sync%>".split(",");
@@ -247,8 +247,8 @@ $(".hp_slide").mouseup(function(e){
         b = "#" + pos;
         a = $(b).attr("src");
         $('.imagensup').attr("src", a);
-        $('.tumb').addClass("activeoff"); 
-        $('.tumb').removeClass("activeon"); 
+        $('.tumb').addClass("activeoff");
+        $('.tumb').removeClass("activeon");
         $(b).addClass("activeon");
         $('.cont').html(pos);
     break;
@@ -261,8 +261,8 @@ $(".hp_slide").mouseup(function(e){
         b = "#" + pos;
         a = $(b).attr("src");
         $('.imagensup').attr("src", a);
-        $('.tumb').addClass("activeoff"); 
-        $('.tumb').removeClass("activeon"); 
+        $('.tumb').addClass("activeoff");
+        $('.tumb').removeClass("activeon");
         $(b).addClass("activeon");
          $('.cont').html(pos);
     break;
@@ -275,14 +275,14 @@ $(".hp_slide").mouseup(function(e){
         b = "#" + pos;
         a = $(b).attr("src");
         $('.imagensup').attr("src", a);
-        $('.tumb').addClass("activeoff"); 
-        $('.tumb').removeClass("activeon"); 
+        $('.tumb').addClass("activeoff");
+        $('.tumb').removeClass("activeon");
         $(b).addClass("activeon");
          $('.cont').html(pos);
     break;
   }
 }
-   
+
 
    });
 
@@ -302,15 +302,15 @@ function msToTime(duration) {
     seconds = (seconds < 10) ? "0" + seconds : seconds;
 
     return hours + ":" + minutes + ":" + seconds;
-    
+
 }
 
 
 
 
 playheadTimeListener = function ( playheadTimeEvent ) {
-    myPlayer.onError( errorListener );  
-    
+    myPlayer.onError( errorListener );
+
     console.log('Time: ' + playheadTimeEvent.time);
       var currentTime = playheadTimeEvent.time;
      var duration = myPlayer.getDuration();
@@ -325,24 +325,24 @@ playheadTimeListener = function ( playheadTimeEvent ) {
     console.log(array)
      stimes = times.toString();
     if (array.indexOf(stimes) != -1 && array.indexOf(stimes) > 0 )
-    {   
+    {
 
         pos = array.indexOf(stimes)  + 1;
         console.log(pos + "aaaaa");
         b = "#" + pos;
         a = $(b).attr("src");
         $('.imagensup').attr("src", a);
-        $('.tumb').addClass("activeoff"); 
-        $('.tumb').removeClass("activeon"); 
+        $('.tumb').addClass("activeoff");
+        $('.tumb').removeClass("activeon");
         $(b).addClass("activeon");
         $('.cont').html(pos);
 
     }
     $('h1').html(times)
-  
+
   if ((duration == (currentTime + 1)) || (duration == (currentTime - 1)) || (duration == (currentTime )) && duration != 0) {
     $('.gif').hide();
-    $('.png').show(); 
+    $('.png').show();
     $('.play').show();
     $('.pause').hide();
     console.log("final")
@@ -354,11 +354,11 @@ playheadTimeListener = function ( playheadTimeEvent ) {
 
 onLoadListener = function () {
                $('.gif').hide();
-    $('.png').show(); 
+    $('.png').show();
     $('.play').hide();
     $('.pause').show();
-   
- 
+
+
 }
 myPlayer.onLoad(onLoadListener);
 
@@ -369,11 +369,11 @@ if (stateChangedEvent.currentState == WowzaPlayer.State.PLAYING) {
 console.log('Playing');
 
             $('.gif').show();
-            $('.png').hide();    
+            $('.png').hide();
 } else if (stateChangedEvent.currentState == WowzaPlayer.State.PAUSED) {
 
             $('.gif').hide();
-            $('.png').show(); 
+            $('.png').show();
 console.log('Paused');
 }
 }
@@ -389,6 +389,12 @@ myPlayer.onPlayheadTime( playheadTimeListener );
 });
 </script>
 <style>
+#scrollbar1 .viewport {
+    width: calc(110% - 15px);
+    height: 350px;
+    overflow: auto;
+    position: relative;
+}
 .logoblock {
     background: #fff;
     height: 7em;
@@ -397,7 +403,7 @@ myPlayer.onPlayheadTime( playheadTimeListener );
     background-position: center center;
     background-size: 100%;
 }
-	
+
         .fullsize
   {
       position: fixed!important;
@@ -408,7 +414,7 @@ myPlayer.onPlayheadTime( playheadTimeListener );
     z-index: 1030!important;
     background: #000;
     text-align: center;
-  
+
   }
   .activeoff
 {
@@ -469,7 +475,7 @@ myPlayer.onPlayheadTime( playheadTimeListener );
 }
 .fixeddown
 {
- height:28em;    
+ height:28em;
 }
 .pp
 {
@@ -506,15 +512,15 @@ myPlayer.onPlayheadTime( playheadTimeListener );
   {
     height: 70px;
      background:<%=event.color%>;
-    padding: 10px 0px 0px 0px; 
+    padding: 10px 0px 0px 0px;
   }
    .play_stop{
-    
+
     margin-top: 10px;
     right: 10px;
     left: 0px;
     padding-top: 10px;
- 
+
    }
    .backppt1 {
    position: relative;
@@ -523,14 +529,14 @@ myPlayer.onPlayheadTime( playheadTimeListener );
    }
   .blockhead
     {
-  padding-left: 0px!important; 
+  padding-left: 0px!important;
       padding: 0px;
-          
+
   background: none !important;
   }
   .superppts
   {
-    padding-left: 0px!important; 
+    padding-left: 0px!important;
   }
 
   .hp_slide{
@@ -538,7 +544,7 @@ myPlayer.onPlayheadTime( playheadTimeListener );
     width: 100%;
     top: 0px;
     background: #676767;
-   
+
 }
 .hp_range{
     width:0;
@@ -554,5 +560,3 @@ myPlayer.onPlayheadTime( playheadTimeListener );
     border:none !important;
 }
 </style>
-
-
