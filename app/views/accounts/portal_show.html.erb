@@ -16,11 +16,13 @@
          <%if @event.event_type%>
 
 
-         <%if @navs == "SI" %>
-               <%= render "accounts/lives/live_video_movil", event: @event, array: @array%>
-         <%else%>
-               <%= render "accounts/lives/live_video", event: @event, array: @array%>
-         <%end%>    
+                  <%if @navs == "SI" %>
+                        <%= render "accounts/lives/live_audio_movil", event: @event, array: @array, navs: @navs%>
+                  <%else%>
+                          <%= render "accounts/lives/live_audio", event: @event, array: @array, navs: @navs%>
+                  <%end%>
+
+
 
         <%else%>
            <%if !@event.has_ppts%>
