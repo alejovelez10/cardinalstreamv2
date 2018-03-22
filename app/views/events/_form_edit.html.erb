@@ -1,9 +1,9 @@
-  
 
-            
-    
 
-  
+
+
+
+
 
 <div class="alert alert-danger" style="display:none">
    <ul>
@@ -56,7 +56,7 @@
          </label>
       </div>
    </div>
-   <%end%>  
+   <%end%>
 </div>
 <br>
 <div class="row">
@@ -88,7 +88,7 @@
    </div>
    <div class="col-md-12">
    <hr>
-     
+
    </div>
    <div class="col-md-6" style = "position: relative;top: 23px;">
       <label for="">Tipo</label><br>
@@ -103,7 +103,7 @@
       <%= form.file_field :video,  class: "form-control inputfilev" , id: 'file1', accept: "video/mp4"%>
       <label for="file1" ><i class="fa fa-video-camera fa1" aria-hidden="true" style="font-size: 20px;margin-right:0px;" > /</i> <i class="fa fa-volume-up fa1" aria-hidden="true" style="font-size: 22px" ></i>
       <span class="levidenciav" style = "margin-right:10px;">Adjuntar(.mp4-h264) </span> <%if @event.video.blank?   != true %>
-      <br><%= form.check_box :remove_video %> 
+      <br><%= form.check_box :remove_video %>
       <%= form.label "Eliminar", style: "color:red!important" %></label>
       <%end%>
       <%end%>
@@ -116,7 +116,7 @@
       <%= form.file_field :ppts,  class: "form-control inputfile" , id: 'file', accept: "application/pdf"%>
       <label for="file" ><i class="fa fa-desktop fa1" aria-hidden="true" style="font-size: 22px"></i>
       <span class="levidencia" style = "margin-right:10px;" >Adjuntar (.pdf) </span> <%if @event.ppts.blank?   != true %>
-      <br><%= form.check_box :remove_ppts %> 
+      <br><%= form.check_box :remove_ppts %>
       <%= form.label "Eliminar", style: "color:red!important" %></label>
       <%end%>
    </div>
@@ -134,17 +134,17 @@
                      <%= form.check_box :has_register, id:"toggle-register"%><span style = "margin-left:10px">¿Registro?</span>
                      </label>
    </div>
-   
- 
+
+
    <div class="col-md-3" style = "position: relative;top: 23px;">
        <label class="radio-inline">
                      <%= form.check_box :social, id:"toggle-social"%><span style = "margin-left:10px">¿Redes Sociales?</span>
                      </label>
    </div>
-   
+
    <%end%>
 
-   
+
 </div>
 <br>
 <% @type == "principal" && action_name != "new" ? display1 = "" : display1 = "display:none;"  %>
@@ -178,12 +178,12 @@
          <%= form.color_field :backgroud_font, id: :backgroud_font, class: "form form-control" %>
       </div>
    </div>
-     <div class="col-md-3" style="<%=display1%>">
+     <!--<div class="col-md-3" style="<%=display1%>">
       <div class="form-group" >
          <%= form.label "Tamaño Font" %>
          <%= form.number_field :font_size, id: :font_size, class: "form form-control" %>
       </div>
-   </div>
+   </div>-->
    <%if  @state != "4" %>
       <div class="col-md-3"  style = "position: relative;top: 23px;">
            <label class="radio-inline">
@@ -204,7 +204,7 @@
       </div>
    </div>
 
-  
+
 </div>
 <br>
  <%if  @state != "4" %>
@@ -212,7 +212,7 @@
 <div class="row" >
    <div class="col-lg-8" style ="<%=display1%> background:whitesmoke">
 
-    
+
       <br>
 
        <div class="form-group acc1">
@@ -223,7 +223,7 @@
 
 
       <br>
-     
+
 
       <%= form.fields_for :event_files do |contact|  %>
       <div class="clearfix" style="margin-bottom: 30px;">
@@ -236,10 +236,10 @@
                   position: relative;
                   left: -18px;" class="fa fa-trash" aria-hidden="true"></i>
                <% end %>
-           
+
          </div>
             <div class="col-md-5 pdd" style="text-align: left" >
-               
+
                <%= contact.label "Nombre" %>
                <%= contact.text_field :name, :class => 'form-control' %>
             </div>
@@ -250,7 +250,7 @@
             <%= contact.hidden_field :admin_user , :value => current_user.admin_user %>
             <%= contact.hidden_field :user_id ,:value =>  current_user.id %>
             <%= contact.hidden_field :account_id, :value => @account.id %>
-            
+
          </div>
       </div>
       <%end%>
@@ -263,7 +263,7 @@
        <hr><br>
    </div>
 
-   
+
    <div class="col-lg-8" style="<%=display1%> <%=display2%> background:whitesmoke">
 
 
@@ -274,7 +274,7 @@
                      </label>
                        </div>
 <br><br>
-    
+
       <%= form.fields_for :ask_emails do |contact|  %>
       <div class="clearfix" style="margin-bottom: 30px;">
          <div class="col-md-12" >
@@ -286,10 +286,10 @@
                   position: relative;
                   left: -18px;" class="fa fa-trash" aria-hidden="true"></i>
                <% end %>
-               
+
             </div>
             <div class="col-md-5 pdd" style="text-align: left" >
-            
+
                <%= contact.label "Email"  %>
                <%= contact.text_field :email, :class => 'form-control' %>
             </div>
@@ -302,13 +302,13 @@
             <%= contact.hidden_field :account_id, :value => @account.id %>
          </div>
       </div> <%end%>
-      
+
       <div class="col-md-12" style="    text-align: right;
          margin-bottom: 25px;">
          <%= form.link_to_add "Agregar Destinatario de preguntas", :ask_emails, :class => 'btn btn-primary top10'  %>
       </div>
    </div>
-  
+
 </div>
 <%end%>
 
@@ -329,7 +329,7 @@
 
 
 </div>
-  
+
 </div>
 
 
@@ -343,14 +343,14 @@
    if ("<%=action_name%>" == "edit" && <%= @event.ppts.blank?  %> != true)
    {
    $('.levidencia').html(" <%=@event.ppts.file.filename if @event.ppts.file %> ")
-   
+
    }
     if ("<%=action_name%>" == "edit" && <%= @event.video.blank?  %> != true)
    {
    $('.levidenciav').html(" <%=@event.video.file.filename if @event.video.file %> ")
-   
+
    }
-   
+
     if ("<%=action_name%>" != "edit")
    {
    $('.cksi').prop('checked', true);
@@ -372,17 +372,17 @@
     {
       $('.statec').prop('checked', true);
     }
-   
+
    $('.docsi').prop('checked', false);
    $('.docno').prop('checked', true);
    $('.regsi').prop('checked', false);
    $('.regno').prop('checked', true);
    }
-   
-   
-   
+
+
+
    'use strict';
-   
+
    ;( function ( document, window, index )
    {
      var inputs = document.querySelectorAll( '.inputfile' );
@@ -390,7 +390,7 @@
      {
        var label  = input.nextElementSibling,
          labelVal = label.innerHTML;
-   
+
        input.addEventListener( 'change', function( e )
        {
          var fileName = '';
@@ -398,22 +398,22 @@
            fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
          else
            fileName = e.target.value.split( '\\' ).pop();
-   
+
          if( fileName )
            label.querySelector( 'span' ).innerHTML = fileName;
          else
            label.innerHTML = labelVal;
        });
-   
+
        // Firefox bug fix
        input.addEventListener( 'focus', function(){ input.classList.add( 'has-focus' ); });
        input.addEventListener( 'blur', function(){ input.classList.remove( 'has-focus' ); });
      });
    }( document, window, 0 ));
-   
-      
+
+
       'use strict';
-   
+
    ;( function ( document, window, index )
    {
      var inputs = document.querySelectorAll( '.inputfilev' );
@@ -421,7 +421,7 @@
      {
        var label  = input.nextElementSibling,
          labelVal = label.innerHTML;
-   
+
        input.addEventListener( 'change', function( e )
        {
          var fileName = '';
@@ -429,19 +429,19 @@
            fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
          else
            fileName = e.target.value.split( '\\' ).pop();
-   
+
          if( fileName )
            label.querySelector( 'span' ).innerHTML = fileName;
          else
            label.innerHTML = labelVal;
        });
-   
+
        // Firefox bug fix
        input.addEventListener( 'focus', function(){ input.classList.add( 'has-focus' ); });
        input.addEventListener( 'blur', function(){ input.classList.remove( 'has-focus' ); });
      });
    }( document, window, 0 ));
-   
+
 </script>
 <style>
    .inputfile {
