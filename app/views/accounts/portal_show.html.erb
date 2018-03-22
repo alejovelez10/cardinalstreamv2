@@ -1,7 +1,7 @@
 <% if @event.state == 1 || @event.state == 4 %>
 
     <% if viewer_signed_in? || !@event.has_register%>
-  
+
     <%if @event.state == 4%>
         <%if @event.event_type%>
             <%= render "accounts/ondemands/ondemand_audio", event: @event, array: @array, count: @count, sync: @sync%>
@@ -15,27 +15,31 @@
     <%else%>
          <%if @event.event_type%>
 
-           
-            <%= render "accounts/lives/live_audio", event: @event, array: @array, navs: @navs%>
-      
+
+         <%if @navs == "SI" %>
+               <%= render "accounts/lives/live_video_movil", event: @event, array: @array%>
+         <%else%>
+               <%= render "accounts/lives/live_video", event: @event, array: @array%>
+         <%end%>    
+
         <%else%>
            <%if !@event.has_ppts%>
-                            <%if @navs == "SI" %>    
+                            <%if @navs == "SI" %>
                                   <%= render "accounts/lives/live_video_movil", event: @event, array: @array%>
                             <%else%>
                                   <%= render "accounts/lives/live_video", event: @event, array: @array%>
-                            <%end%>    
+                            <%end%>
 
-                           
+
                     <%else%>
-                            <%if @navs == "SI" %>    
+                            <%if @navs == "SI" %>
                                  <%= render "accounts/lives/live_video_ppt_movil", event: @event, array: @array%>
                             <%else%>
                                  <%= render "accounts/lives/live_video_ppt", event: @event, array: @array%>
-                            <%end%>    
+                            <%end%>
                     <%end%>
         <%end%>
-    <%end%>    
+    <%end%>
 
     <%else%>
         <%= render "login" , event: @event%>
