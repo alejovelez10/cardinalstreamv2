@@ -8,7 +8,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
- 
+
     @events = Event.where(admin_user: current_user.admin_user).paginate(page: params[:page],:per_page => 30).order(created_at: :DESC)
     respond_to do |format|
     format.html
@@ -24,10 +24,10 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    
+
     @event.update(ultimate_ppt: 0)
     @account = Account.find(@event.account_id)
-    if @event.has_ppts 
+    if @event.has_ppts
     @array = @event.slides.split(/,/)
     @count = @array.count
     end
@@ -36,15 +36,15 @@ class EventsController < ApplicationController
   end
 
   def event_info
-      
+
     @account = Account.find(@event.account_id)
-    if @event.has_ppts 
+    if @event.has_ppts
       @array = @event.slides.split(/,/)
       @count = @array.count
     end
   end
 
-   
+
 
 
   # GET /events/new
@@ -59,8 +59,8 @@ class EventsController < ApplicationController
     @account = Account.where(admin_user: current_user.admin_user).first
     @state = @event.state.to_s
     @type = params[:type]
-    
-      
+
+
   end
 
   # POST /events
@@ -74,8 +74,8 @@ class EventsController < ApplicationController
             #@event.has_ppts = true
             #Crea carpeta para guardar ppts
             `mkdir public/uploads/event/ppts/#{@event.id}/ppt`
-            #Convierte ppts en imagenes 
-            `convert  public/uploads/event/ppts/#{@event.id}/event.pdf  public/uploads/event/ppts/#{@event.id}/ppt/ppt.jpg` 
+            #Convierte ppts en imagenes
+            `convert  public/uploads/event/ppts/#{@event.id}/event.pdf  public/uploads/event/ppts/#{@event.id}/ppt/ppt.jpg`
             #Cuenta el numero de diapositivas
             file_count = Dir.glob(File.join("public/uploads/event/ppts/#{@event.id}/ppt", '**', '*')).select { |file| File.file?(file) }.count
             pptss = ""
@@ -91,7 +91,7 @@ class EventsController < ApplicationController
             tv = `ffprobe -v error -select_streams v:0 -show_entries stream=duration \ -of default=noprint_wrappers=1:nokey=1 public/uploads/event/video/#{@event.id}/default.mp4`
             tvi = (tv.to_i/2)
             puts tvi
-            tvisi =  Time.at(tvi).utc.strftime("%H:%M:%S")  
+            tvisi =  Time.at(tvi).utc.strftime("%H:%M:%S")
             puts tvisi
             `ffmpeg -i  public/uploads/event/video/#{@event.id}/default.mp4 -r 1 -ss #{tvisi} -t 1 public/uploads/event/video/#{@event.id}/screamshot.jpg` if  !@event.event_type
         end
@@ -101,13 +101,13 @@ class EventsController < ApplicationController
         key = c.shuffle[0,20].join
         @event.iframe = "JGrix" + key
         @event.save
-        format.html { 
+        format.html {
           if @event.state == 4
           redirect_to events_ondemand_path, notice: 'El Evento se creo correctamente'
              else
           redirect_to events_live_path, notice: 'El Evento se creo correctamente'
 
-             end 
+             end
            }
         format.json { render :show, status: :created, location: @event }
       else
@@ -117,7 +117,7 @@ class EventsController < ApplicationController
     end
   end
 
-        
+
 
 
 
@@ -127,25 +127,25 @@ class EventsController < ApplicationController
     respond_to do |format|
       hasppts = !event_params["ppts"].blank?
       hasvideo = !event_params["video"].blank?
-      
+
 
 
 
       if @event.update(event_params)
         #Elimina el folder con las ppt para luego volver a crearlos
 
-      
-      if event_params["remove_ppts"] == 1 
+
+      if event_params["remove_ppts"] == 1
        `rm -rf public/uploads/event/ppts/#{@event.id}/ppt`
         @event.remove_ppts!
         @event.save
-      end 
-      
+      end
+
        if event_params["remove_video"] == 1
         `rm public/uploads/event/video/#{@event.id}/screamshot.jpg`
         @event.remove_video!
         @event.save
-       end   
+       end
 
 
         if hasppts && !params[:remove_ppts]
@@ -169,7 +169,7 @@ class EventsController < ApplicationController
             tv = `ffprobe -v error -select_streams v:0 -show_entries stream=duration \ -of default=noprint_wrappers=1:nokey=1 public/uploads/event/video/#{@event.id}/default.mp4`
             tvi = (tv.to_i/2)
             puts tvi
-            tvisi =  Time.at(tvi).utc.strftime("%H:%M:%S")  
+            tvisi =  Time.at(tvi).utc.strftime("%H:%M:%S")
             puts tvisi
             `ffmpeg -i  public/uploads/event/video/#{@event.id}/default.mp4 -r 1 -ss #{tvisi} -t 1 public/uploads/event/video/#{@event.id}/screamshot.jpg` if  !@event.event_type
         end
@@ -178,7 +178,7 @@ class EventsController < ApplicationController
              else
           redirect_to events_live_path, notice: 'El Evento se edito correctamente'
 
-             end 
+             end
            }
         format.json { render :show, status: :ok, location: @event }
       else
@@ -207,7 +207,7 @@ class EventsController < ApplicationController
 
 
   def cardinalppt
-    
+
 
 
     @event = Event.find(params[:id_event])
@@ -216,7 +216,7 @@ class EventsController < ApplicationController
     @array = @event.slides.split(/,/)
     @count = @array.count
 
-    #arr = ["","https://farm5.staticflickr.com/4422/35665918493_1bde9dc8ed_b.jpg","https://farm5.staticflickr.com/4339/36474195705_74101edf7d_b.jpg","https://farm5.staticflickr.com/4424/35638778924_92f9d5e21d_b.jpg","https://farm5.staticflickr.com/4436/35639073234_326b80c92b_b.jpg","https://farm5.staticflickr.com/4362/36428484286_f22c9b770f_b.jpg","https://farm5.staticflickr.com/4382/35639127524_41193dbf80_b.jpg","https://farm5.staticflickr.com/4387/35666322323_b9b87e24b6_b.jpg","https://farm5.staticflickr.com/4345/36077419920_812fb91c10_b.jpg","https://farm5.staticflickr.com/4422/36077427050_b84bdf266c_b.jpg","https://farm5.staticflickr.com/4373/36474594225_fa08c3da0f_b.jpg","https://farm5.staticflickr.com/4386/36077439470_936283a0d5_b.jpg","https://farm5.staticflickr.com/4376/35639159574_567c80ed97_b.jpg","https://farm5.staticflickr.com/4337/35639163614_63ce4b90eb_b.jpg","https://farm5.staticflickr.com/4426/36474617395_e85421f18d_b.jpg","https://farm5.staticflickr.com/4434/36474626855_781d8f96b8_b.jpg","https://farm5.staticflickr.com/4406/36337236581_a91d5cd6b2_b.jpg","https://farm5.staticflickr.com/4353/36337242161_c9c07bc770_b.jpg","https://farm5.staticflickr.com/4355/35639211214_ec8b8dc215_b.jpg"]  
+    #arr = ["","https://farm5.staticflickr.com/4422/35665918493_1bde9dc8ed_b.jpg","https://farm5.staticflickr.com/4339/36474195705_74101edf7d_b.jpg","https://farm5.staticflickr.com/4424/35638778924_92f9d5e21d_b.jpg","https://farm5.staticflickr.com/4436/35639073234_326b80c92b_b.jpg","https://farm5.staticflickr.com/4362/36428484286_f22c9b770f_b.jpg","https://farm5.staticflickr.com/4382/35639127524_41193dbf80_b.jpg","https://farm5.staticflickr.com/4387/35666322323_b9b87e24b6_b.jpg","https://farm5.staticflickr.com/4345/36077419920_812fb91c10_b.jpg","https://farm5.staticflickr.com/4422/36077427050_b84bdf266c_b.jpg","https://farm5.staticflickr.com/4373/36474594225_fa08c3da0f_b.jpg","https://farm5.staticflickr.com/4386/36077439470_936283a0d5_b.jpg","https://farm5.staticflickr.com/4376/35639159574_567c80ed97_b.jpg","https://farm5.staticflickr.com/4337/35639163614_63ce4b90eb_b.jpg","https://farm5.staticflickr.com/4426/36474617395_e85421f18d_b.jpg","https://farm5.staticflickr.com/4434/36474626855_781d8f96b8_b.jpg","https://farm5.staticflickr.com/4406/36337236581_a91d5cd6b2_b.jpg","https://farm5.staticflickr.com/4353/36337242161_c9c07bc770_b.jpg","https://farm5.staticflickr.com/4355/35639211214_ec8b8dc215_b.jpg"]
     b = params[:id]
     c = b.to_i
     a = @array[c]
@@ -224,7 +224,7 @@ class EventsController < ApplicationController
     puts params[:id]
     Pusher.trigger('my-channel', 'my-event', {
     message: ar
-    
+
 
 
     })
@@ -233,19 +233,19 @@ class EventsController < ApplicationController
   end
 
   def cardinalmsg
-    
+
 
 
     @event = Event.find(params[:id])
-    
 
-    #arr = ["","https://farm5.staticflickr.com/4422/35665918493_1bde9dc8ed_b.jpg","https://farm5.staticflickr.com/4339/36474195705_74101edf7d_b.jpg","https://farm5.staticflickr.com/4424/35638778924_92f9d5e21d_b.jpg","https://farm5.staticflickr.com/4436/35639073234_326b80c92b_b.jpg","https://farm5.staticflickr.com/4362/36428484286_f22c9b770f_b.jpg","https://farm5.staticflickr.com/4382/35639127524_41193dbf80_b.jpg","https://farm5.staticflickr.com/4387/35666322323_b9b87e24b6_b.jpg","https://farm5.staticflickr.com/4345/36077419920_812fb91c10_b.jpg","https://farm5.staticflickr.com/4422/36077427050_b84bdf266c_b.jpg","https://farm5.staticflickr.com/4373/36474594225_fa08c3da0f_b.jpg","https://farm5.staticflickr.com/4386/36077439470_936283a0d5_b.jpg","https://farm5.staticflickr.com/4376/35639159574_567c80ed97_b.jpg","https://farm5.staticflickr.com/4337/35639163614_63ce4b90eb_b.jpg","https://farm5.staticflickr.com/4426/36474617395_e85421f18d_b.jpg","https://farm5.staticflickr.com/4434/36474626855_781d8f96b8_b.jpg","https://farm5.staticflickr.com/4406/36337236581_a91d5cd6b2_b.jpg","https://farm5.staticflickr.com/4353/36337242161_c9c07bc770_b.jpg","https://farm5.staticflickr.com/4355/35639211214_ec8b8dc215_b.jpg"]  
+
+    #arr = ["","https://farm5.staticflickr.com/4422/35665918493_1bde9dc8ed_b.jpg","https://farm5.staticflickr.com/4339/36474195705_74101edf7d_b.jpg","https://farm5.staticflickr.com/4424/35638778924_92f9d5e21d_b.jpg","https://farm5.staticflickr.com/4436/35639073234_326b80c92b_b.jpg","https://farm5.staticflickr.com/4362/36428484286_f22c9b770f_b.jpg","https://farm5.staticflickr.com/4382/35639127524_41193dbf80_b.jpg","https://farm5.staticflickr.com/4387/35666322323_b9b87e24b6_b.jpg","https://farm5.staticflickr.com/4345/36077419920_812fb91c10_b.jpg","https://farm5.staticflickr.com/4422/36077427050_b84bdf266c_b.jpg","https://farm5.staticflickr.com/4373/36474594225_fa08c3da0f_b.jpg","https://farm5.staticflickr.com/4386/36077439470_936283a0d5_b.jpg","https://farm5.staticflickr.com/4376/35639159574_567c80ed97_b.jpg","https://farm5.staticflickr.com/4337/35639163614_63ce4b90eb_b.jpg","https://farm5.staticflickr.com/4426/36474617395_e85421f18d_b.jpg","https://farm5.staticflickr.com/4434/36474626855_781d8f96b8_b.jpg","https://farm5.staticflickr.com/4406/36337236581_a91d5cd6b2_b.jpg","https://farm5.staticflickr.com/4353/36337242161_c9c07bc770_b.jpg","https://farm5.staticflickr.com/4355/35639211214_ec8b8dc215_b.jpg"]
     @msg = params[:msg]
     puts @msg
     puts params[:id]
     Pusher.trigger('my-channel-msg', 'msg', {
     message: @msg
-    
+
 
 
     })
@@ -253,7 +253,7 @@ class EventsController < ApplicationController
 
   end
 
- 
+
 
 
 
@@ -269,14 +269,14 @@ class EventsController < ApplicationController
     @minutos = Array.new
     @segundos = Array.new
     for i in 0..(@count - 1)
-      
+
       hms =  Time.at(@sync[i].to_i).utc.strftime("%H:%M:%S")
       arrays = hms.split(/:/)
       @horas[i] = arrays[0]
       @minutos[i] = arrays[1]
       @segundos[i] = arrays[2]
 
-    
+
     end
     @id = params[:id]
   end
@@ -287,7 +287,7 @@ class EventsController < ApplicationController
     pptss = ""
     a = params[:count].to_i
     for i in 0..(a-1)
-     b = "#{params[:Hora_ids][i]}:#{params[:Minuto_ids][i]}:#{params[:Segundo_ids][i]}" 
+     b = "#{params[:Hora_ids][i]}:#{params[:Minuto_ids][i]}:#{params[:Segundo_ids][i]}"
      puts b
      c =  b.split(':').map { |a| a.to_i }.inject(0) { |a, b| a * 60 + b}
      pptss = pptss + c.to_s + ","
@@ -313,9 +313,9 @@ class EventsController < ApplicationController
 
   def record_live
        @event = Event.find(params[:id])
-       puts "quierooooooooooooooooooooo grabarrrrrrrrrrrrrrr" 
+       puts "quierooooooooooooooooooooo grabarrrrrrrrrrrrrrr"
       `mkdir public/uploads/event/video/#{@event.id}`
-      @a = `curl -X POST --header 'Accept:application/json; charset=utf-8' --header 'Content-Type:application/json; charset=utf-8' http://aletacloud.com:8087/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/live/instances/_definst_/streamrecorders/fabricato -d '
+      @a = `curl -X POST --header 'Accept:application/json; charset=utf-8' --header 'Content-Type:application/json; charset=utf-8' http://aletacloud.com:8087/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/live/instances/_definst_/streamrecorders/laumayer -d '
 {
   "instanceName": "",
   "fileVersionDelegateName": "",
@@ -350,25 +350,25 @@ class EventsController < ApplicationController
 }
 '`
     puts @a
-    @b= JSON.parse(@a)  
+    @b= JSON.parse(@a)
 
-      
-  end  
 
- 
+  end
+
+
 def public_live
 
        @event = Event.find(params[:id])
-       puts "quierooooooooooooooooooooo grabarrrrrrrrrrrrrrr" 
+       puts "quierooooooooooooooooooooo grabarrrrrrrrrrrrrrr"
        @event.state = 4
        @event.save
       `mv public/uploads/event/video/#{@event.id}/fabricato.mp4 public/uploads/event/video/#{@event.id}/default.mp4`
        tv = `ffprobe -v error -select_streams v:0 -show_entries stream=duration \ -of default=noprint_wrappers=1:nokey=1 public/uploads/event/video/#{@event.id}/default.mp4`
             tvi = (tv.to_i/2)
             puts tvi
-            tvisi =  Time.at(tvi).utc.strftime("%H:%M:%S")  
+            tvisi =  Time.at(tvi).utc.strftime("%H:%M:%S")
             puts tvisi
-            `ffmpeg -i  public/uploads/event/video/#{@event.id}/default.mp4 -r 1 -ss #{tvisi} -t 1 public/uploads/event/video/#{@event.id}/screamshot.jpg` if  !@event.event_type 
+            `ffmpeg -i  public/uploads/event/video/#{@event.id}/default.mp4 -r 1 -ss #{tvisi} -t 1 public/uploads/event/video/#{@event.id}/screamshot.jpg` if  !@event.event_type
 end
 
 
@@ -383,12 +383,8 @@ end
     def event_params
       params.require(:event).permit(:date_event, :name, :description, :state, :backgroud_event,:video, :has_ppts ,:ppts, :user_id, :admin_user, :account_id, :video_p, :event_type, :event_date, :delay, :remove_ppts,:link ,:remove_video, :name_stream, :has_register, :social,:color, :has_files,:height_banner,:has_chat, :has_question,:views,:font_size,:backgroud_font,:iframe ,:ultimate_ppt ,:root_event,ask_emails_attributes: [:id, :email, :user_id,:admin_user, :event_id,:account_id,:comment, :_destroy], event_files_attributes: [:id, :attachment, :user_id,:admin_user, :event_id,:account_id,:name, :_destroy])
     end
-  
+
 
 
 
 end
-
-
-
-
