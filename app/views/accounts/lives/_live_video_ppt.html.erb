@@ -176,9 +176,9 @@
       </div>
             <div class="col-md-12 hidden-xs">
         <% @event.event_files.each do |event|%>
-        <%= link_to , event.attachment_url, class: "document" do%>
+        <%= link_to  event.attachment_url, class: "document" do%>
          <i class="fa fa-download" style="color:white"></i>
-        <%=event.name%>  
+        <%=event.name%>
          <%end%>
 
         <%end%>
