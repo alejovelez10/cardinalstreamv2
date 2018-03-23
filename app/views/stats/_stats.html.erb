@@ -1,6 +1,6 @@
 
     <div style="display: none">
-      
+
         <%= form_tag import_stats_path, multipart: true do %>
   <div class = "col-md-12 text-right">
   <%= file_field_tag :file , class: 'inputfile', id: 'file' %>
@@ -15,96 +15,150 @@
 
       <div class = "row title-table">
          <div class = "col-md-12">
-            <p style="font-size:40px;margin-left:30px;color:#187191"">Estadisticas</p>
+            <p style="font-size:40px;margin-left:30px;color:#187191">Estadisticas</p>
          </div>
-   
+
       </div>
 <div class="row" style="    padding: 10px;">
 
-   <div class="col-md-5">
+   <div class="col-md-10">
       <div class="row" style="margin-left: 10px;padding: 10px;
-         background: whitesmoke;    border: 1px solid #d0d0d0;
-    border-radius: 15px;">
+      ;    border: 1px solid #d0d0d0;">
          <div class="col-md-12">
-             <h4 style="color:gray">EVENTO MAS VISTO</h4>
+             <h4  style="    font-size: 21px;
+   color: #23708b;
+   font-weight: bold;">EVENTO MAS VISTO</h4>
          </div>
          <div class="col-md-5 text-right">
             <img style = "width:180px;" src="../../uploads/event/video/<%=@eventm.id%>/screamshot.jpg" alt="...">
-            
+
          </div>
          <div class="col-md-7" style="color:gray">
-          
+
             <span style="font-size:20px;"><%=@eventm.name%> <span><br>
             <span style="font-size:30px;color:gray"><i class="fa fa-eye" aria-hidden="true"></i>
 <%=@eventm.views %> </span>
-            
+
          </div></div>
          <br>
-         <div class="row" style="margin-left: 10px;padding: 10px;
-         background: whitesmoke;    border: 1px solid #d0d0d0;
-    border-radius: 15px;">
-         <div class="col-md-12">
-         <hr>
-           
-         </div>
-           <div class="col-md-12" >
-         <h4 style="color:gray">VISTAS SEGUN HORARIOS <img src="https://icon-icons.com/icons2/567/PNG/512/clock_icon-icons.com_54407.png" style = "width:50px;" alt=""></h4>
-        <p> ENTRE 6AM Y 12AM - <span style="font-size:20px;"> <i class="fa fa-eye" aria-hidden="true"></i> <%=@eventph%> - <%= @eventph_p%>%</span></p>
-        <p> ENTRE 1PM Y 6PM - <span style="font-size:20px;"> <i class="fa fa-eye" aria-hidden="true"></i> <%=@eventsh%> - <%= @eventsh_p%>%</span></p>
-        <p> ENTRE 7PM Y 12PM - <span style="font-size:20px;"> <i class="fa fa-eye" aria-hidden="true"></i> <%=@eventth%> - <%= @eventth_p%>%</span></p>
-        <p> ENTRE 1AM Y 6AM - <span style="font-size:20px;"> <i class="fa fa-eye" aria-hidden="true"></i> <%=@eventch%> - <%= @eventch_p%>%</span></p>
-       
-        
-      </div>
-      </div>
-   <div class="row">
-    
-        
-      </div>
+
+
    </div>
-   <div class="col-md-5">
+   <div class="col-md-12">
       <div class="row" style="margin-left: 10px;">
-         <div class="col-md-12" style="    background: whitesmoke;
+         <div class="col-md-6" style=";
     padding: 10px;
-    border: 1px solid #d0d0d0;
-    border-radius: 15px;">
-          
-            <div style = "height:400px;max-height: 400px;overflow: auto;">
-            <table class="table1">
-             <tr>
-                  <th colspan="3" class="" >EVENTOS VISTAS DE MAYOR A MENOR <%= link_to stats_csv_path(format: "csv") do%>
-               <img width="30px;" src="https://appfluence.com/productivity/wp-content/uploads/2017/04/a-csv.png" alt="">
-               <%end%></th>
-                 
-               </tr>
-             <tr>
-                  <th>Total de Vistas</th>
-                  <th class="text-center"><%=@events.sum(:views)%></th>
-                  <th class="text-center"></th>
-               </tr>
+    border: 1px solid #d0d0d0;">
+
+            <div style = "height:350px;max-height: 350px;overflow: auto;">
+
+              <p style="    font-size: 21px;
+    color: #23708b;
+    font-weight: bold;">EVENTOS VISTAS DE MAYOR A MENOR <%= link_to stats_csv_path(format: "csv") do%>
+           <img width="30px;" src="https://appfluence.com/productivity/wp-content/uploads/2017/04/a-csv.png" alt="">
+           <%end%></p>
+            <table class="table1 table-striped">
+
+
                <tr>
+                 <th >Id</th>
                   <th>Evento</th>
                   <th class="text-center">Vistas</th>
                    <th class="text-center">Vistas Mitad</th>
                </tr>
                <%@events.each do |event| %>
                <tr>
+                 <td><%=event.id%></td>
                   <td><%=event.name%></td>
                   <td style="text-align: center;"><%=event.views%></td>
                     <td style="text-align: center;"><%=event.stats.where(type_stat: 1).count%></td>
                </tr>
                <%end%>
+               <tr>
+                    <th colspan="2" style="text-align: right;">Total de Vistas</th>
+                    <th class="text-center"><%=@events.sum(:views)%></th>
+                    <th class="text-center"></th>
+                 </tr>
             </table>
             </div>
-           
+
+         </div>
+         <div class="col-md-6">
+           <canvas id="myChart" width="400" height="250"></canvas>
          </div>
       </div>
-    
-      
 
-     
+
+
+
    </div>
-   <div class="col-md-2">
+
+ <div class="col-md-12">
+  <hr>
+ </div>
+   <div class="col-md-12">
+      <div class="row" style="margin-left: 10px;">
+         <div class="col-md-6" style=";
+    padding: 10px;
+    border: 1px solid #d0d0d0;">
+
+            <div style = "height:250px;max-height: 400px;overflow: auto;">
+
+              <p style="    font-size: 21px;
+    color: #23708b;
+    font-weight: bold;">VISTAS SEGUN HORARIOS<%= link_to stats_csv_path(format: "csv") do%>
+          <!-- <img width="30px;" src="https://appfluence.com/productivity/wp-content/uploads/2017/04/a-csv.png" alt="">-->
+           <%end%></p>
+            <table class="table1 table-striped">
+
+
+               <tr>
+                  <th>Horario</th>
+                  <th class="text-center">Vistas</th>
+                   <th class="text-center">Porcentaje</th>
+               </tr>
+
+               <tr>
+
+                  <td style="text-align: center;">ENTRE 6AM Y 12AM </td>
+                    <td style="text-align: center;"><%=@eventph%></td>
+                      <td style="text-align: center;"> <%= @eventph_p%></td>
+               </tr>
+               <tr>
+
+                  <td style="text-align: center;">ENTRE 1PM Y 6PM </td>
+                    <td style="text-align: center;"><%=@eventsh%></td>
+                      <td style="text-align: center;"><%= @eventsh_p%></td>
+               </tr>
+               <tr>
+
+                  <td style="text-align: center;">ENTRE 7PM Y 12PM </td>
+                    <td style="text-align: center;"><%=@eventth%></td>
+                      <td style="text-align: center;"> <%= @eventth_p%></td>
+               </tr>
+               <tr>
+
+                  <td style="text-align: center;"> ENTRE 1AM Y 6AM </td>
+                    <td style="text-align: center;"><%=@eventch%></td>
+                      <td style="text-align: center;"> <%= @eventch_p%></td>
+               </tr>
+
+
+            </table>
+            </div>
+
+         </div>
+         <div class="col-md-6">
+           <canvas id="myChart1" width="400" height="200"></canvas>
+         </div>
+      </div>
+
+
+
+
+   </div>
+
+   <div class="col-md-12">
      <h5 style="margin-left: 10px;padding: 10px;
          background: whitesmoke;border: 1px solid #d0d0d0;
     border-radius: 15px;">DESCARGAR LISTA DE INGRESOS <%= link_to stats_csv_all_path(format: "csv") do%>
@@ -124,14 +178,14 @@
        type: 'bar',
        data: {
            labels: [<%@events.each do |event| %>"<%=event.id%>",<%end%>],
-   
+
            datasets: [{
                label: 'Vistas',
                data: [<%@events.each do |event| %>"<%=event.views%>",<%end%>],
                backgroundColor: [
-                   
+
                  <%@events.each do |event| %>'rgba(54, 162, 235, 0.5)',<%end%>
-                  
+
                ],
                borderColor: [
                   <%@events.each do |event| %>'rgba(54, 162, 235, 0.8)',<%end%>
@@ -151,23 +205,57 @@
            }
        }
    });
-</script> 
+</script>
+<script>
+   var ctx = document.getElementById("myChart1");
+   var myChart = new Chart(ctx, {
+       type: 'bar',
+       data: {
+           labels: ["ENTRE 6AM Y 12AM", "ENTRE 1PM Y 6PM","ENTRE 7PM Y 12PM", "ENTRE 1AM Y 6AM"],
+
+           datasets: [{
+               label: 'Vistas',
+               data: [<%=@eventph%>,<%=@eventsh%>,<%=@eventth%>,<%=@eventch%>],
+               backgroundColor: [
+
+                 <%@events.each do |event| %>'rgba(54, 162, 235, 0.5)',<%end%>
+
+               ],
+               borderColor: [
+                  <%@events.each do |event| %>'rgba(54, 162, 235, 0.8)',<%end%>
+               ],
+               borderWidth: 1
+           }]
+       },
+       options: {
+           scales: {
+               yAxes: [{
+                   ticks: {
+                      max: 100,
+                      min: 0,
+                      stepSize: 10
+                   }
+               }]
+           }
+       }
+   });
+</script>
 <style>
    .table1
    {
    width: 100%;
    }
    .table1 th {
-   background: whitesmoke;
-   color: gray;
+   background: #23708b;
+   color: white;
        font-size: 18px;
    padding: 5px;
    border: 1px solid whitesmoke;
    }
    .table1 td
    {
-   padding: 5px;   
- 
+   padding: 5px;
+
    border-bottom:  1px solid #cac5c5;
    color:  gray;
    font-size:12px;
