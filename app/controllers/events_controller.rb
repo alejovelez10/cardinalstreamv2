@@ -404,6 +404,7 @@ def public_live
             tvisi =  Time.at(tvi).utc.strftime("%H:%M:%S")
             puts tvisi
             `ffmpeg -i  public/uploads/event/video/#{@event.id}/default.mp4 -r 1 -ss #{tvisi} -t 1 public/uploads/event/video/#{@event.id}/screamshot.jpg` if  !@event.event_type
+      redirect_to portal_show_path(@event.id) 
 end
 
 def stop_record_live

@@ -134,7 +134,7 @@ $('#record').click(function() {
 $('#publicar').click(function() {
 
         $.get("public_live/" + <%=@event.id%>, function(data) {
-
+              window.location.href = "/portal_show/<%=@event.id%>";
         })
       });
 $('#stop_record').click(function() {
