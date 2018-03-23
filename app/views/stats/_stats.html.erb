@@ -15,13 +15,13 @@
 
       <div class = "row title-table">
          <div class = "col-md-12">
-            <p style="font-size:40px;margin-left:30px;color:#187191">Estadisticas</p>
+            <p style="font-size:35px;margin-left:30px;color:#187191;border-bottom: 1px solid #dddddd;" >Estadisticas On Demands</p>
          </div>
 
       </div>
 <div class="row" style="    padding: 10px;">
 
-   <div class="col-md-10">
+<!--  <div class="col-md-10">
       <div class="row" style="margin-left: 10px;padding: 10px;
       ;    border: 1px solid #d0d0d0;">
          <div class="col-md-12">
@@ -43,7 +43,7 @@
          <br>
 
 
-   </div>
+   </div>-->
    <div class="col-md-12">
       <div class="row" style="margin-left: 10px;">
          <div class="col-md-6" style=";
@@ -55,7 +55,7 @@
               <p style="    font-size: 21px;
     color: #23708b;
     font-weight: bold;">EVENTOS VISTAS DE MAYOR A MENOR <%= link_to stats_csv_path(format: "csv") do%>
-           <img width="30px;" src="https://appfluence.com/productivity/wp-content/uploads/2017/04/a-csv.png" alt="">
+           <img width="40px;" src="data:image/png;base64,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" alt="">
            <%end%></p>
             <table class="table1 table-striped">
 
