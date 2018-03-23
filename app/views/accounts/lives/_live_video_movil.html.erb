@@ -113,7 +113,10 @@
                <div class="col-md-12">
                   <h4 style="    color: white">Descargables</h4>
                   <% @event.event_files.each do |event|%>
-                  <%= link_to "#{event.name}", event.attachment_url, class: "document"%>
+                  <%= link_to  event.attachment_url, class: "document" , target: "_blank" do%>
+               <i class="fa fa-download" style="color:white"></i>
+              <%=event.name%>
+               <%end%>
                   <%end%>
                </div>
             </div>
@@ -294,15 +297,14 @@ $(document).ready(function(){
    }
    .document 
    {
-   display: block;
-   margin-top: 10px;
-   margin-bottom: 10px;
-   font-size: 12px;
-   padding: 10px;
-   border: 3px solid #137dbd;
-   background: rgba(119, 119, 119, 0.43);
-   margin-right: 10px;
-   color: white;
+  font-size: 12px;
+    padding: 10px;
+    border: 3px solid <%=event.color%>;
+    background: rgba(119, 119, 119, 0.43);
+
+    margin-right: 10px;
+
+    color: white;
    }
    .fixeddown
    {

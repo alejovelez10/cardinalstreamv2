@@ -103,7 +103,14 @@
    </div>
    <br>
     <div class="row" >
-
+    <div class="col-md-4">
+      <div class="alert alert-info alert_record" style="display:none">
+        
+      </style> 
+          <strong><span class="record_flag"></span></strong> 
+        </div>
+    </div>
+        
 </div>
 
 <div class="row" style="display:none">
@@ -130,7 +137,8 @@
 $('#record').click(function() {
 
         $.get("record_live/" + <%=@event.id%>, function(data) {
-
+            $('.record_flag').html("Has iniciado la grabacion del Evento");
+            $('.alert_record').show();
         })
       });
 
@@ -138,12 +146,15 @@ $('#publicar').click(function() {
 
         $.get("public_live/" + <%=@event.id%>, function(data) {
               window.location.href = "/portal_show/<%=@event.id%>";
+
         })
       });
 $('#stop_record').click(function() {
 
               $.get("stop_record_live/" + <%=@event.id%>, function(data) {
                 console.log(data)
+                $('.record_flag').html("Has terminado la grabacion del Evento ");
+            $('.alert_record').show();
 
               })
             });

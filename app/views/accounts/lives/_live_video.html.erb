@@ -113,7 +113,10 @@
                <div class="col-md-12">
                   <h4 style="    color: white">Descargables</h4>
                   <% @event.event_files.each do |event|%>
-                  <%= link_to "#{event.name}", event.attachment_url, class: "document"%>
+                   <%= link_to  event.attachment_url, class: "document" , target: "_blank" do%>
+               <i class="fa fa-download" style="color:white"></i>
+              <%=event.name%>
+               <%end%>
                   <%end%>
                </div>
             </div>
@@ -537,8 +540,8 @@ $(document).ready(function(){
  .chat {
  
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  bottom: 20px;
+  right: 10px;
   z-index:10;
 
 }
