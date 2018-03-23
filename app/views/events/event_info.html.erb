@@ -12,9 +12,12 @@
       <div class="col-md-8">
          <h3><%=@event.name%></h3>
          <h4><%=@event.description%></h4>
-         <h4><strong>Estado: <%=get_state_event(@event.state)%>
+         
+          <div class="alert alert-info">
+          <strong>Estado: </strong> <span class="estado"> <%=get_state_event(@event.state)%></span>
+        </div>
 
-         </strong></h4>
+        </h4>
       </div>
       <div class="col-md-12">
          <hr>
@@ -47,7 +50,7 @@
      </div>
 
      <div class="col-md-4 cuadro">
-     <p style="text-align: center; font-size: 25px;font-weight: bold; color: #1c8bb3;">Mensaje en vivo</p>
+     <p style="text-align: center; font-size: 25px;font-weight: bold; color: #1c8bb3;">MENSAJE EN VIVO</p>
        <%= form_tag cardinalmsg_path, method: :get, remote:true do %>
      <%= text_area_tag :msg , nil, class:"form form-control" %><br>
      <%= hidden_field_tag :id , @event.id%>
@@ -147,19 +150,19 @@ $('#stop_record').click(function() {
 $('#camp').click(function() {
 
               $.get("cardinal_state/camp/" + <%=@event.id%>, function(data) {
-
+                    $('.estado').html("Campaña de espectativa");
               })
             });
 $('#prox').click(function() {
 
                     $.get("cardinal_state/prox/" + <%=@event.id%>, function(data) {
-
+                            $('.estado').html("Proximo a Iniciar");
                     })
                   });
 $('#live').click(function() {
 
-                          $.get("cardinal_state/live/" + <%=@event.id%>, function(data) {
-
+                          $.get("cardinal_state/live/" + <%=@event.id%>,   function(data) {
+                                    $('.estado').html("En vivo");
                           })
                         });
 
