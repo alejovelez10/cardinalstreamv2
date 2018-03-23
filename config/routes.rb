@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
- 
+
 
 
 
@@ -16,6 +16,7 @@ end
 
   get 'event_info/record_live/:id', to: "events#record_live", as: "record_live"
   get 'event_info/public_live/:id', to: "events#public_live", as: "public_live"
+  get 'event_info/stop_record_live/:id', to: "events#stop_record_live", as: "stop_record_live"
 
   delete 'delete_question/:id', to: "questions#delete_question", as: "delete_question"
   delete 'delete_viewer/:id', to: "viewers#delete_viewer", as: "delete_viewer"
@@ -32,19 +33,21 @@ end
   get 'login', to: 'viewer_sessions#new'
   post 'login', to: 'viewers_sessions#create'
   delete 'logout/:event_id', to: 'viewer_sessions#destroy', as: "logout"
-  
+
   resources :viewers
   post 'create_viewer', to: "viewers#create_viewer", as: "create_viewer"
   get 'events/cardinalppt/:id/:id_event' ,to: "events#cardinalppt", as: "cardinalppt"
 
   get 'events/cardinalmsg' ,to: "events#cardinalmsg", as: "cardinalmsg"
+
+    get 'event_info/cardinal_state/:state/:id' ,to: "events#cardinal_state", as: "cardinal_state"
   post 'accounts/cardinalchat' ,to: "accounts#cardinalchat", as: "cardinalchat"
 
 
 
   resources :events , :only => [:index, :show, :create, :update, :edit, :destroy]
   get 'edit_more/:id/:type' , to: "events#edit" , as: "edit_more"
-  get 'event_info/:id', to: "events#event_info", as: "event_info" 
+  get 'event_info/:id', to: "events#event_info", as: "event_info"
 
   get 'new/:state' , to: "events#new" , as: "new_event"
   get 'home', to: 'home#index', as: "home"
@@ -56,7 +59,7 @@ end
   match '/', to: 'accounts#live', constraints: { subdomain: /.+/ }, via: [:get]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  
+
   get 'portal', to:"accounts#portal", as: "portal"
   get 'real_time_stats/:id', to:"accounts#real_time_stats", as: "real_time_stats"
   get 'portal_show/:id', to:"accounts#portal_show", as: "portal_show"
@@ -76,8 +79,6 @@ end
   get 'accounts/change_view/:view', to: "accounts#change_view", as: 'change_view'
 
   get 'loaderio-3c2889274396b9886e8bef0dcc80e3df.txt', to: "accounts#loader"
-  
+
   get '*path' => redirect('/portal')
 end
-
-
