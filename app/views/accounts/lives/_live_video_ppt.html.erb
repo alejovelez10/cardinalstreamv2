@@ -65,21 +65,7 @@
 
 
 </a></div>
-<%if event.has_files%>
-<div style="margin-top:5px">
 
-   <div class="alert alert-info alert1 alert-info1" role="alert" style="margin-top:5px;    padding: 20px 20px;">
-     <% @event.event_files.each do |event|%>
-     <%= link_to  event.attachment_url, class: "document" do%>
-      <i class="fa fa-download" style="color:white"></i>
-     <%=event.name%>
-      <%end%>
-
-
-</div>
-
-
-</a></div> <%end%>
 
 
 
@@ -119,6 +105,22 @@
             <%end%>
          </div>
          <%end%>
+
+         <%if event.has_files%>
+         <div style="margin-top:5px">
+
+            <div class="alert alert-info alert1 alert-info1" role="alert" style="margin-top:5px;    padding: 20px 20px;">
+              <% @event.event_files.each do |event|%>
+              <%= link_to  event.attachment_url, class: "document" do%>
+               <i class="fa fa-download" style="color:white"></i>
+              <%=event.name%>
+               <%end%> <%end%>
+
+
+         </div>
+
+
+         </a></div> <%end%>
       </div>
       <div class="col-md-6">
          <div class="backppt col-md-12 no-float">
@@ -660,7 +662,7 @@ player.src({
 
    });
 
-     /*   var channel = pusher.subscribe('my-channel-msg');
+    var channel = pusher.subscribe('my-channel-msg');
    channel.bind('msg', function(data) {
     a = data.message
     $('.msg strong').html(a);
@@ -681,7 +683,7 @@ player.src({
 
 
 
-   });*/
+   });
 
 
 

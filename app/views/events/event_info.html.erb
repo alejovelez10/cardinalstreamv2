@@ -12,16 +12,51 @@
       <div class="col-md-8">
          <h3><%=@event.name%></h3>
          <h4><%=@event.description%></h4>
-         <h4><strong>Estado: <%=get_state_event(@event.state)%> 
-         <button style = "margin-left:10px;" type="" id = "record" class="btn btn-danger"><i class="fa fa-video-camera" style = "font-size:30px;" aria-hidden="true"></i> Grabar</button>
-         <button style = "margin-left:10px;" type="" id = "publicar" class="btn btn-primary"><i class="fa fa-cloud-upload" aria-hidden="true" style = "font-size:30px;"></i> Publicar</button>
+         <h4><strong>Estado: <%=get_state_event(@event.state)%>
+
          </strong></h4>
       </div>
       <div class="col-md-12">
          <hr>
       </div>
    </div>
-   <div class="row" >
+   <div class="row">
+     <div class="col-md-4 cuadro">
+       <p style="text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    color: #1c8bb3;
+">GRABACION</p><br>
+       <p style="text-align:center">
+         <button style = "margin-left:10px;width:150px;" type="" id = "record" class="btn btn-default"><span class="glyphicon glyphicon-play" aria-hidden="true" style = "font-size:30px;color:darkgreen"></span> <br>Iniciar</button>
+         <button style = "margin-left:10px;width:150px;" type="" id = "stop" class="btn btn-default"><span class="glyphicon glyphicon-stop" aria-hidden="true" style = "font-size:30px;color:red"></span> <br>Terminar</button> <br><br>
+      </p>
+      <p style="text-align:center">
+       <button style = "margin-left:10px;width:150px;" type="" id = "publicar" class="btn btn-default"><i class="fa fa-cloud-upload" aria-hidden="true" style = "font-size:30px;"></i><br> Publicar</button>
+      </p>
+     </div>
+
+     <div class="col-md-4 cuadro">
+       <p style="text-align: center; font-size: 25px;font-weight: bold; color: #1c8bb3;">ESTADO DEL STREAMING</p><br>
+       <p style="text-align:center">
+         <button style = "margin-left:10px;width:150px;" type="" id = "camp" class="btn btn-default"><span class="glyphicon glyphicon-bullhorn" aria-hidden="true" style = "font-size:30px;"></span> <br>Campaña</button>
+        <button style = "margin-left:10px;width:150px;" type="" id = "prox" class="btn btn-default"><span class="glyphicon glyphicon-time" aria-hidden="true" style = "font-size:30px;"></span> <br>Proximo a Iniciar</button><br><br>
+         <button style = "margin-left:10px;width:150px;" type="" id = "live" class="btn btn-default"><span class="glyphicon glyphicon-facetime-video" aria-hidden="true" style = "font-size:30px;"></span> <br>En vivo</button>
+      </p>
+
+     </div>
+
+     <div class="col-md-4 cuadro">
+     <p style="text-align: center; font-size: 25px;font-weight: bold; color: #1c8bb3;">Mensaje en vivo</p>
+       <%= form_tag cardinalmsg_path, method: :get, remote:true do %>
+     <%= text_area_tag :msg , nil, class:"form form-control" %><br>
+     <%= hidden_field_tag :id , @event.id%>
+     <%= submit_tag "Enviar" , class: "btn btn-primary btn-block"%>
+  <%end%>
+     </div>
+   </div>
+
+   <div class="row" style="display:none" >
       <div class="col-md-3">
          <h4>Tipo: <%= get_event_type_s(@event.event_type)%> <%= get_event_type(@event.event_type).html_safe%></h4>
       </div>
@@ -65,29 +100,22 @@
    </div>
    <br>
     <div class="row" >
-   <div class="col-md-4">
-   <p>Mensaje en vivo</p>
-     <%= form_tag cardinalmsg_path, method: :get, remote:true do %>
-   <%= text_field_tag :msg , nil, class:"form form-control" %><br>
-   <%= hidden_field_tag :id , @event.id%><br>
-   <%= submit_tag "Enviar" , class: "btn btn-primary"%>
-<%end%> 
-   </div>
+
 </div>
 
-<div class="row">
+<div class="row" style="display:none">
 
    <%=link_to "Ambos", change_view_path("ambos"), remote: true%>
    <%=link_to "Video", change_view_path("video"),remote: true%>
    <%=link_to "PPT", change_view_path("ppt"),remote: true%>
-   
+
 </div>
 <style>
    .event-info
    {
    color:gray;
    }
-   .fecha-info  
+   .fecha-info
    {
    border-right: 1px solid gray;
    }
@@ -97,17 +125,55 @@
 <script>
 
 $('#record').click(function() {
-      
+
         $.get("record_live/" + <%=@event.id%>, function(data) {
-        
+
         })
       });
 
 $('#publicar').click(function() {
-      
+
         $.get("public_live/" + <%=@event.id%>, function(data) {
-        
+
         })
       });
+$('#stop_record').click(function() {
+
+              $.get("stop_record_live/" + <%=@event.id%>, function(data) {
+
+              })
+            });
+$('#camp').click(function() {
+
+              $.get("cardinal_state/camp/" + <%=@event.id%>, function(data) {
+
+              })
+            });
+$('#prox').click(function() {
+
+                    $.get("cardinal_state/prox/" + <%=@event.id%>, function(data) {
+
+                    })
+                  });
+$('#live').click(function() {
+
+                          $.get("cardinal_state/live/" + <%=@event.id%>, function(data) {
+
+                          })
+                        });
 
 </script>
+<style media="screen">
+.btn-success {
+  color: #fff;
+  background-color: #2b9e65;
+  border-color: #1b911b;
+}
+.cuadro
+{
+background: #f4f4f4;
+border: 1px solid #83d0f6;
+padding: 20px;
+height: 260px;
+}
+</style>

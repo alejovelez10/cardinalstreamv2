@@ -21,27 +21,27 @@
          </div>
          <div class="col-md-3 hidden-xs social">
             <div class="redessociales" style="float:right;padding:0 2em;line-height: 2em;background: none;right: -0.7em;font-size: 1.7em;padding: 0;padding-right: 1.7em;margin-bottom: -0.8em;margin-top: -0.46em;">
-              
-              
+
+
             </div>
          </div>
       </div>
    </div>
    <div class="row">
-     
+
       <div class="col-md-12 superppts">
         <div class="col-sm-12 col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 login-expe">
-         
+
          <div class="row exp-in">
-           
-         
+
+
                 <div class="hidden-xs hiddde-sm col-md-6 text-right" style="font-family: 'Muli', sans-serif;border-right: 1px solid white;    margin-top: 53px;">
                   <h3><%=edate[2]%> <br><%=edate[5]%> </h3>
                 </div>
                 <div class="hidden-xs hiddde-sm col-md-6" >
                   <h3 style="font-size: 150px;margin-top:0px;font-family: sans-serif;"><%=edate[0]%></h3>
                 </div>
-                
+
 
                 <div class="col-md-12 text-center hidden-lg hidden-md">
                   <h3 style="margin-top:0px"><span style="font-size:120px;"><%=edate[0]%></span> <br><%=edate[2]%> <br><%=edate[5]%> </h3>
@@ -71,21 +71,21 @@
               <%end%>
             </div>
 
-        <div class="col-md-12 text-center" style="margin-top:20px;padding-left: 0px;padding-right:0px;">  
-       
-          
+        <div class="col-md-12 text-center" style="margin-top:20px;padding-left: 0px;padding-right:0px;">
+
+
                <a data-toggle="modal" style= "display: block;padding: 12px 5px;background:<%=event.color%>;color:<%=event.backgroud_font%>" href="#myModal"> <i class="fa fa-video-camera" style = "font-size:30px;margin-right: 10px;" aria-hidden="true"></i>  Video de Prueba</a>
-       
+
             </div>
-      
-        
-      
+
+
+
     </div>
       </div>
    </div>
 
       <%= render "video_prueba", event: @event%>
-      
+
 
 
 
@@ -100,18 +100,18 @@
 <div class="row">
    <div class="col-md-12 fixeddown">
       <div class="col-md-3">
-        
+
 
       </div>
             <div class="col-md-9">
-        
+
 
       </div>
       <div class="col-md-12 middle-div" style=";bottom:0px;background:#424242;text-align:center;margin-top:5px;">
          <a href="#" target="_blank"><img src="../../images/logo.png"></a>
       </div>
    </div>
-  
+
 </div>
 </div>
 
@@ -145,7 +145,7 @@ a:hover
 a{
   color:white;
 }
-a:focus { 
+a:focus {
 
     text-decoration:none!important;
   color:white;
@@ -161,7 +161,7 @@ a:focus {
     background-position: center center;
     background-size: 100%;
 }
-  
+
         .fullsize
   {
       position: fixed!important;
@@ -172,7 +172,7 @@ a:focus {
     z-index: 1030!important;
     background: #000;
     text-align: center;
-  
+
   }
   .activeoff
 {
@@ -219,12 +219,12 @@ a:focus {
   {
     height: 80px;
     background: white;
-    padding: 0px 0px 0px 0px; 
+    padding: 0px 0px 0px 0px;
   }
   .logo img
   {
        width: 162px;
-        
+
   }
     .name
   {
@@ -242,7 +242,7 @@ a:focus {
   {
     height: 80px;
     background: <%=event.color%>;
-    padding: 10px 0px 0px 0px; 
+    padding: 10px 0px 0px 0px;
   }
    .play_stop{
     position: absolute;
@@ -260,25 +260,25 @@ a:focus {
    }
   .blockhead
     {
-  padding-left: 0px!important; 
+  padding-left: 0px!important;
       padding: 0px;
-          
+
   background: none !important;
   }
   .superppts
   {
-    padding-left: 0px!important; 
+    padding-left: 0px!important;
     padding-right: 0px!important;
   }
 
   .login-expe
 
   {
-      
+
     background: rgba(0, 0, 0, 0.72);
     widows: 80%;
     margin-top: 100px;
-   
+
     padding-bottom: 20px;
     padding-left: 50px !important;
     padding-right: 50px !important;
@@ -296,7 +296,7 @@ a:focus {
    .login-expe input
 
   {
-    
+
 
   }
 
@@ -342,10 +342,10 @@ a:focus {
   .login-expe
 
   {
-      
-    
+
+
     margin-top: 0px;
-   
+
     padding-bottom: 20px;
     padding-left: 0px ;
     padding-right: 0px ;
@@ -366,34 +366,42 @@ a:focus {
 
 <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
 <script>
-  
+
    var pusher = new Pusher('194f0bfe827f047fcf64', {
      cluster: 'us2',
      encrypted: true
    });
 
-    var channel = pusher.subscribe('my-channel-msg');
+    var channel = pusher.subscribe('my-channel-state');
    channel.bind('msg', function(data) {
     a = data.message
-
-           if (a == 2)
+ console.log(a + "ssssssssssssssssss")
+           if (a == "live")
            {
                   $('.live-in').show();
                   $('.live-prox').hide();
                   $('.exp-in').hide();
             }
-            else if (a == 1)
+            else if (a == "prox")
             {
-                  
+
                   $('.live-prox').show();
                   $('.live-in').hide();
                   $('.exp-in').hide();
 
-            }     
+            }
+            else
+            {
 
-           
+                  $('.live-prox').hide();
+                  $('.live-in').hide();
+                  $('.exp-in').show();
 
-           
+            }
+
+
+
+
 
    });
 
