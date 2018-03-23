@@ -140,6 +140,7 @@ $('#publicar').click(function() {
 $('#stop_record').click(function() {
 
               $.get("stop_record_live/" + <%=@event.id%>, function(data) {
+                console.log(data)
 
               })
             });
