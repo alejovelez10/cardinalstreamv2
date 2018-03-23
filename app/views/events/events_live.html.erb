@@ -71,13 +71,13 @@
                           
                            <li><%= link_to  event_info_path(event) do%>
                               <i class="fa fa-pencil fa1" aria-hidden="true"></i>
-                              Informacion General
+                              Administrar Evento
                               <%end%>
                            </li>
                               <%if event.state != 4%>
                              <li><%= link_to  real_time_stats_path( event.id), target: :_blank    do%>
                               <i class="fa fa-bar-chart fa1" aria-hidden="true"></i>
-                              Estadisticas
+                              Informacion del Evento
                               <%end%>
                            </li>
                            <%end%>
