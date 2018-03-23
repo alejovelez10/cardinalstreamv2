@@ -409,7 +409,7 @@ end
 def stop_record_live
 @event = Event.find(params[:id])
 puts = @event
-@a =  `curl -X PUT --header 'Accept:application/json; charset=utf-8' --header 'Content-Type:application/json; charset=utf-8' http://cardinalstream.com:8087/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/live/instances/_definst_/streamrecorders/#{@event.name_stream}/actions/splitRecording`
+@a =  `curl -X PUT --header 'Accept:application/json; charset=utf-8' --header 'Content-Type:application/json; charset=utf-8' http://cardinalstream.com:8087/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/live/instances/_definst_/streamrecorders/#{@event.name_stream}/actions/stopRecording`
 puts @a
 end
 
