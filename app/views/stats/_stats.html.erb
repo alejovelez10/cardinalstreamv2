@@ -64,20 +64,20 @@
                  <th >Id</th>
                   <th>Evento</th>
                   <th class="text-center">Vistas</th>
-                   <th class="text-center">Vistas Mitad</th>
+                  
                </tr>
                <%@events.each do |event| %>
                <tr>
                  <td><%=event.id%></td>
                   <td><%=event.name%></td>
                   <td style="text-align: center;"><%=event.views%></td>
-                    <td style="text-align: center;"><%=event.stats.where(type_stat: 1).count%></td>
+                    <!--<td style="text-align: center;"><%=event.stats.where(type_stat: 1).count%></td>-->
                </tr>
                <%end%>
                <tr>
                     <th colspan="2" style="text-align: right;">Total de Vistas</th>
                     <th class="text-center"><%=@events.sum(:views)%></th>
-                    <th class="text-center"></th>
+                    
                  </tr>
             </table>
             </div>
