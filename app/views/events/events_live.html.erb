@@ -121,9 +121,9 @@
 </style>
 
 <script>
-   $('.modal-links').click(function(){
-      $('.iframe').val("http://" + "<%=request.subdomain%>" + ".www.localhost:3000/iframe/" + $(this).attr("id"))
+      $('.modal-links').click(function(){
+      $('.iframe').val("<iframe width='1024' height='768' src='http://<%=request.subdomain%>.cardinalstream.com/" +  $(this).attr('id') + "'" + "></iframe>")
 
-
+      $('.link1').val("http://<%=request.subdomain%>.cardinalstream.com/portal_show/" + $(this).attr('ids'))
    })
 </script>
