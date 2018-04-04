@@ -8,4 +8,11 @@ class RegistrationsController < Devise::RegistrationsController
 
   end
 
+  def after_update_path_for(resource)
+
+
+   admin_events_url
+
+  end
+
 end

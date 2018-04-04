@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
 
 
+  resources :rols
   resources :stats, :only => [:index,:create] do
   collection { post :import }
 
@@ -53,6 +54,16 @@ end
   get 'home', to: 'home#index', as: "home"
   resources :accounts
   devise_for :users, controllers: { registrations: "registrations" }
+  
+  devise_scope :user do 
+    get "users/index", to: "users/views#index", as: "users_index"
+    get '/users/new', to: 'users/views#new_user', as: "new_user"
+    post "create_user", to: "users/views#create_user", as: "create_user"
+    get '/users/:id/edit', to: 'users/views#edit_user', as: "edit_user"
+    post "/users/update_user/edit", to: "users/views#update_user", as: "update_user"
+    delete "delete_user/:id", to: "users/views#delete_user", as: "delete_user"
+
+  end
 
   #match '/', to: 'accounts#index', constraints: { subdomain: 'www' }, via: [:get, :post, :put, :patch, :delete]
   #match '/', to: 'accounts#show', constraints: { subdomain: /.+/ }, via: [:get, :post, :put, :patch, :delete]

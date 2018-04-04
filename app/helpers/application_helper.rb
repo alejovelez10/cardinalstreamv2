@@ -1,6 +1,13 @@
 module ApplicationHelper
 
 
+
+def has_configuracion
+      
+   return (current_user.rol.admin_config  || current_user.rol.admin_users || current_user.rol.rol)
+
+end
+
 def action_type
     
    if action_name == "new" 

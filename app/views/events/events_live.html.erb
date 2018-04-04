@@ -4,11 +4,12 @@
             <p style="font-size:32px;color:#187191">Eventos</p>
          </div>
           <div class = "col-md-6 text-right">
+           <%if current_user.rol.create_event  %>
             <%= link_to new_event_path(0), remote: true,class: "btn btn-primary" do %>
             <i class="fa fa-video-camera" style = "font-size:30px;" aria-hidden="true"></i>
             Live
             <%end%>
-
+  <%end%>
          </div>
       </div>
 
@@ -62,12 +63,13 @@
                               Transmitir Diapositivas
                               <%end%>
                            </li>
+                            <%if current_user.rol.edit_event  %>
                            <li><%= link_to  edit_more_path(event, "principal")  do%>
                               <i class="fa fa-pencil fa1" aria-hidden="true"></i>
                               Editar
                               <%end%>
                            </li>
-                          
+                          <%end%>
                           
                            <li><%= link_to  event_info_path(event) do%>
                               <i class="fa fa-pencil fa1" aria-hidden="true"></i>
@@ -84,11 +86,13 @@
                             <li>
                            <a data-toggle="modal" id = "<%=event.iframe%>" class = "modal-links" href="#myModal-links"><i class="fa fa-pencil fa1" aria-hidden="true"></i>Iframe</a>
                            </li>
+                            <%if current_user.rol.delete_event  %>
                            <li><%= link_to  event, method: :delete, data: { confirm: '¿Esta seguro de eliminar?' }  do%>
                               <i class="fa fa-trash fa1" aria-hidden="true"></i>
                               Eliminar
                               <%end%>
                            </li>
+                           <%end%>
                         </ul>
                      </div>
                   </td>

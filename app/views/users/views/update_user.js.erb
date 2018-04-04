@@ -1,0 +1,13 @@
+<% if @user.errors.blank? %>
+  $('#contact-modal').modal('hide');
+ 
+ $('.alert').remove();
+<% else %>
+$(".alert").css("display", "block");
+  // TODO: show the errors in the UI
+  $('.alert').empty('<p></p>');
+  <% @user.errors.full_messages.each do |msg| %>
+          $('.alert').append('<p><%=msg%></p>');
+        <% end %>
+  
+<% end %>
