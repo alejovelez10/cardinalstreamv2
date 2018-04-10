@@ -1,0 +1,121 @@
+<% edate = get_date_array(@event.event_date)%>
+<div class="container event-info">
+   <div class="row" >
+      
+   </div>
+   <div class="row" >
+   <div class="col-md-12" style="margin-bottom: 10px;">
+      <h3 style="color: #777171;
+    font-weight: 800;"><%=@event.name%> <br><span style="font-size:16px;"><%=edate[0]%> <%=edate[2]%> <%=edate[5]%></span>  <br> <span class="estado" style="font-size:12px;"> <%=@event.description%></span>
+     </h3>
+     
+     </div>
+     
+          <div class="col-md-4 cuadro text-center">
+    
+   <%if !@event.event_type%>
+      <img src="../../uploads/event/video/<%=@event.id%>/screamshot.jpg" style = "width:300px" alt="...">
+    <%else%>
+      <img src="../../images/audio.jpg" style = "width:300px" alt="...">
+    <%end%> 
+     </div>
+      <div class="col-md-8">
+      
+
+         
+        
+         
+         
+            
+            <div class="row">
+              <div class="col-md-6 text-center" style="margin-bottom:  10px;">
+                  <div class="alert alert-warning">
+                      <strong><span class="glyphicon glyphicon-eye-open" aria-hidden="true" style = "font-size:30px;margin-right: 10px"> </span><span style="font-size:20px"><%= @event.views%>  visualizaciones </span></strong> 
+                   </div>
+              </div>
+             </div>
+           <div class="row">
+              <div class="col-md-4" style="margin-bottom:  10px;">
+                  <div class="alert alert-info">
+                      <strong><span class="glyphicon glyphicon-tags" aria-hidden="true" style = "font-size:20px;"> </span> Estado: </strong> <span class="estado"> <%=get_state_event(@event.state)%></span>
+                   </div>
+              </div>
+              <div class="col-md-4" style="margin-bottom:  10px;">
+                  <div class="alert alert-info">
+                      <strong><span class="glyphicon glyphicon-pushpin" aria-hidden="true" style = "font-size:20px;"> </span> Evento Principal: </strong> <span class="estado" style="font-size:20px"> <%=get_state(@event.root_event).html_safe%></span>
+                   </div>
+              </div>
+              <div class="col-md-4" style="margin-bottom:  10px;">
+                  <div class="alert alert-info">
+                      <strong><i  style="font-size:20px" class="fa fa-television"></i> ¿Diapositivas?: </strong> <span class="estado" style="font-size:20px"> <%=get_state(@event.has_ppts).html_safe%></span>
+                   </div>
+              </div>
+
+               <div class="col-md-12" style="margin-bottom:  10px;">
+                  <div class="alert alert-info">
+                      <strong><i  style="font-size:20px" class="fa fa-television"></i> Iframe: </strong> <span class="estado iframe_span" style="font-size:12px"></span>
+                   </div>
+              </div>
+
+               <div class="col-md-12" style="margin-bottom:  10px;">
+                  <div class="alert alert-info">
+                     <strong><span class="glyphicon glyphicon-link" aria-hidden="true" style = "font-size:20px;"> </span>  Link para compartir: </strong> <span class="estado link_span" style="font-size:12px"></span>
+                   </div>
+              </div>
+           </div>  
+
+
+      </div>
+      
+      <div class="col-md-12">
+         <hr>
+      </div>
+   </div>
+
+   </div>
+   
+<style>
+   .event-info
+   {
+   color:gray;
+   }
+   .fecha-info
+   {
+   border-right: 1px solid gray;
+   }
+</style>
+
+
+<style media="screen">
+.btn-success {
+  color: #fff;
+  background-color: #2b9e65;
+  border-color: #1b911b;
+}
+.cuadro
+{
+background: #f4f4f4;
+border: 1px solid #83d0f6;
+padding: 20px;
+height: 260px;
+}
+.alert-success {
+    background: white;
+    margin-bottom: 0px !important;
+   
+}
+.alert-info {
+
+    margin-bottom: 0px !important;
+   
+}
+</style>
+
+
+<script>
+   
+      $('.iframe_span').text("<iframe width='1024' height='768' src='http://<%=request.subdomain%>.cardinalstream.com/" +  "<%=@event.iframe%>" + "'" + "></iframe>")
+
+      $('.link_span').html("http://<%=request.subdomain%>.cardinalstream.com/portal_show/" + "<%=@event.id%>" )
+ 
+</script>

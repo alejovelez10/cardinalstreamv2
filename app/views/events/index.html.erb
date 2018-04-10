@@ -56,7 +56,7 @@
                         <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dLabel">
-                          <%if event.state != 4%> <li><%= link_to  ppts_views_path(event), remote:true do%>
+                          <%if event.state == 4%> <li><%= link_to  ppts_views_path(event), remote:true do%>
                               <i class="fa fa-television fa1" aria-hidden="true"></i>
                               Configurar diapositivas
                               <%end%>
@@ -82,13 +82,13 @@
                               <%end%>
                            </li>-->
                            
-                            <%if event.state != 4%>
+                            
                            <li><%= link_to  event_info_path(event) do%>
                               <i class="fa fa-pencil fa1" aria-hidden="true"></i>
-                              Administrar Evento
+                              Ver Evento
                               <%end%>
                            </li>
-                            <%end%>
+                           
                             <li>
                            <a data-toggle="modal" ids = "<%=event.id%>" id = "<%=event.iframe%>" class = "modal-links" href="#myModal-links"><i class="fa fa-television fa1" aria-hidden="true"></i>Iframe y link para comartir</a>
                            </li>
