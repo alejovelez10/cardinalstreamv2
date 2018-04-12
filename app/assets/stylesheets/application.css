@@ -16,7 +16,7 @@
  */
  body
  {
-   font-family: 'Poppins' , sans-serif !important;
+   
  }
 .application
 {
@@ -102,8 +102,8 @@ p
 
 .tr-table
 {
-background: #f2f2f2;
-    color: #7a7a7a;
+background:#0f99cb;
+    color: white;
     font-weight:bold;
 
     }
@@ -268,17 +268,39 @@ margin-right: 2px;
         background: #1c8bb3 !important;
       }
 
-.no-active a:hover
+.no-active:hover, .active:hover
 {
 
-     background: #187191 !important;
+     background: #333333 !important;
     color: white !important;
+
 }
 
 
+
+.no-active 
+{
+  color:white;
+  background: #0f99cb;
+    border-bottom: 2px solid #30638f;
+    border-radius: 3px;
+    font-family: 'Days One', sans-serif !important;
+
+}
+.active 
+{
+  color:white;
+  background: #333333;
+    border-bottom: 2px solid #30638f;
+    border-radius: 3px;
+    font-family: 'Days One', sans-serif !important;
+
+}
+
 .navbar-default {
-    background-color: #1c8bb3;
+    background-color: #333333;;
     border-color: #e7e7e7;
+    font-family: 'Days One', sans-serif !important;
 }
 .navbar-default .navbar-nav>li>a {
     color: white;
@@ -316,5 +338,6 @@ margin-right: 2px;
     line-height: 1.42857143;
     vertical-align: top;
     border-top: 1px solid #ddd;
-    border: 1px solid #ececec;
+    font-size: 12px;
+    /*border: 1px solid #ececec;*/
 }

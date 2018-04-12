@@ -5,11 +5,11 @@
          </div>
          <div class = "col-md-6 text-right">
            <%if current_user.rol.create_event  %>
-            <%= link_to new_event_path(0), remote: true,class: "btn btn-primary" do %>
+            <%= link_to new_event_path(0), remote: true,class: "btn no-active" do %>
             <i class="fa fa-video-camera" style = "font-size:30px;" aria-hidden="true"></i>
             Live
             <%end%>
-            <%= link_to new_event_path(4), remote: true, class: "btn btn-primary" do %>
+            <%= link_to new_event_path(4), remote: true, class: "btn no-active" do %>
             <i class="fa fa-hdd-o" style = "font-size:30px;" aria-hidden="true"></i>
             Ondemand
             <%end%>
@@ -31,7 +31,7 @@
       </div>
       <hr class="hr">
       <div class = "row">
-         <table class="table">
+         <table class="table table-striped">
             <thead>
                <tr class = "tr-table">
                   <th>Opciones</th>
@@ -83,9 +83,15 @@
                            </li>-->
                            
                             
-                           <li><%= link_to  event_info_path(event) do%>
-                              <i class="fa fa-pencil fa1" aria-hidden="true"></i>
+                           <li><%= link_to  event_info_path(event), target: :_blank   do%>
+                              <%if event.state == 4%>
+                              <i class="fa fa-eye fa1"></i>
+
                               Ver Evento
+                              <%else%>
+                              <i class="fa fa-address-card fa1"></i>
+                              Administrar Evento
+                              <%end%>
                               <%end%>
                            </li>
                            
@@ -95,7 +101,7 @@
                            <%if event.state != 4%>
                              <li><%= link_to  real_time_stats_path( event.id), target: :_blank    do%>
                               <i class="fa fa-bar-chart fa1" aria-hidden="true"></i>
-                              Informacion del Evento
+                              Datos y Estadisticas
                               <%end%>
                            </li>
                            <%end%>

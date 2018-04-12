@@ -1,0 +1,2 @@
+class LiveStat < ApplicationRecord
+end
