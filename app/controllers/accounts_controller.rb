@@ -6,7 +6,7 @@ class AccountsController < ApplicationController
 
 
   def portal_login
-          @account = Account.where(domain: request.subdomain).first
+         
 
          if params[:cookie] == @account.psw
             cookies.permanent.signed[:portal] = @account.psw

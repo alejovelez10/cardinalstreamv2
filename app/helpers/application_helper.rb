@@ -37,6 +37,12 @@ def get_account
     
 end
 
+def get_accountc
+
+    return Account.where(admin_user: current_user.admin_user).first
+    
+end
+
 def get_aov(x)
  puts x.nil?
  puts x
