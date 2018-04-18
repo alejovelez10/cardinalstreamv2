@@ -27,21 +27,23 @@
       </div>
       <hr class="hr">
       <div class = "row">
-         <table class="table">
+         <table class="table  table-striped">
             <thead>
                <tr class = "tr-table">
-                  <th>Opciones</th>
-                  <th>Fecha del Evento</th>
-                  <th>Nombre</th>
-                  <th>Streaming</th>
-                  <th>Tipo</th>
+                  <th>ACCIONES</th>
+                 <th>FECHA DEL EVENTO</th>
+                  <th>NOMBRE</th>
+                  <th>STREAMING</th>
+                  <th>TIPO</th>
                   
                 
-                  <th>Ppts</th>
-                  <th>Root</th>
-                   <th></th>
+                            
+                  <th>PPTS</th>
+                  <th>ROOT</th>
+                  <th></th>
                  
 
+                 
             </thead>
             <tbody>
                <% @events.each do |event| %>
@@ -96,9 +98,9 @@
                         </ul>
                      </div>
                   </td>
-                  <td ><%= get_date(event.event_date) %></td>
-                  <td><%= event.name %></td>
-                  <td><%= event.state != 4 ? "Live" : "Ondemand" %></td>
+                 <td class="text-center"><i class="fa fa-calendar" style="font-size:20px"></i><br><%= get_date(event.event_date) %></td>
+                  <td><%= event.name.upcase %></td>
+                  <td><%= event.state != 4 ? "LIVE" : "ONDEMAND" %></td>
                   <td style = "font-size:20px"><%= get_event_type(event.event_type).html_safe %></td>
                    
                  <td class=""><%= get_aov(event.ppts_url).html_safe %></td>

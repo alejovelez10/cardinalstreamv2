@@ -15,8 +15,22 @@
            
             <h3><%=@event.name%></h3>
             <h4><%=edate[0]%> de <%=edate[2]%> de <%=edate[4]%>, <%=edate[5]%> <%=@usuarios_conectados%></h4> 
+            
+              
+                      <!--<strong><i  style="font-size:20px" class="fa fa-television"></i> Iframe: </strong> <span class="estado iframe_span" style="font-size:12px"></span>
+                  
+            
 
-        	 
+            <hr>
+                     <strong><span class="glyphicon glyphicon-link" aria-hidden="true" style = "font-size:20px;"> </span>  Link para compartir: </strong> <span class="estado link_span" style="font-size:12px"></span>-->
+                 
+       
+
+        </div>
+        </div>
+         <div class="row" >
+        <div class="col-md-6">
+               <canvas id="myChart" width="400" height="150"></canvas>
         </div>
 
         <div class="col-md-12">
@@ -57,7 +71,81 @@
         console.log("hola");
         $('.stats').html(e)
     })
+
+    $.get("get_users_conenected/" + <%=@event.id%> , function(data){
+
+        console.log(data);
+        
+    })
+
+
 }
 
-    setInterval(get_stats, 10000);
+    
+
+
+
+
+
+    setInterval(get_stats, 15000);
+</script>
+
+
+<script>
+   
+      $('.iframe_span').text("<iframe width='1024' height='768' src='http://<%=request.subdomain%>.cardinalstream.com/" +  "<%=@event.iframe%>" + "'" + "></iframe>")
+
+      $('.link_span').html("http://<%=request.subdomain%>.cardinalstream.com/portal_show/" + "<%=@event.id%>" )
+ 
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.js" type="text/javascript" charset="utf-8"></script>
+<script>
+var ctx = document.getElementById("myChart").getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: [<%@event.live_stats.each do |event| %>"<%=event.state_time.to_s(:time)%>",<%end%>],
+        datasets: [{
+            label: '# of Votes',
+            data: [<%@event.live_stats.each do |event| %>"<%=event.type_stat%>",<%end%>],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                     max: 30,
+                      min: 0,
+                      stepSize: 5
+                }
+            }],
+              xAxes: [{
+  ticks: {
+    autoSkip: true,
+    maxTicksLimit: 10,
+    stepSize: .2
+  }
+}]
+
+        }
+    }
+});
 </script>

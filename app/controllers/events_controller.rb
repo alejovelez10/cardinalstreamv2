@@ -24,7 +24,7 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-
+     @chat = @event.chats.order(created_at: :asc)
     @event.update(ultimate_ppt: 0)
     @account = Account.find(@event.account_id)
     if @event.has_ppts
@@ -36,7 +36,7 @@ class EventsController < ApplicationController
   end
 
   def event_info
-    
+   
     @account = Account.find(@event.account_id)
     if @event.has_ppts
       @array = @event.slides.split(/,/)

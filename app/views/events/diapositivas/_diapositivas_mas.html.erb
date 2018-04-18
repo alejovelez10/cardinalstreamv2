@@ -1,0 +1,390 @@
+
+
+
+<div class = "row">
+<div class="col-md-3" style="padding: 0px;background:white">
+
+  <div class="col-md-12" style="border-bottom: 1px solid #e2e2e2;margin-bottom:10px;">
+  <p style="text-align:center">
+         <button style = ";width:40%;background:#6bba8c;color:white" type="" id = "record" class="btn btn-default"><span class="glyphicon glyphicon-play" aria-hidden="true" style = "font-size:20px;color:white"></span> Grabar</button>
+         <button style = "width:40%;background:#891b1b;color:white" type="" id = "stop_record" class="btn btn-default"><span class="glyphicon glyphicon-stop" aria-hidden="true" style = "font-size:20px;color:white"></span> Terminar</button><br>
+      </p>
+      <p style="text-align:center">
+       <button style = "width:150px;background:#2ab1e0;color:white" type="" id = "publicar" class="btn btn-default"><i class="fa fa-cloud-upload" aria-hidden="true" style = "font-size:20px;"></i> Publicar</button>
+      </p>
+    
+  </div>
+
+       
+    
+ <div class="col-md-12 cuadro1">
+ <p style="text-align: center; font-size: 15px;font-weight: bold; color: #1c8bb3;"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuKSUfj9_pynl3dmyX5XrcFpkAPi4RPMfuNDOitQ_BVnUTEvzviA" style="width:70px;" alt=""></p>
+      <div class="chat">
+        <div class="chat-form" style="padding:10px;">
+                      <%= form_tag cardinalchat_path, method: :post, remote:true do %>
+                      <%= hidden_field_tag :id , @event.id%>
+                      <%= hidden_field_tag :name , "#{current_user.names } - Admin" %>
+                      <div class="row">
+
+                          <div class="col-md-8" style="padding-left: 0px !important;padding-right: 0px !important">
+                                 <%= text_area_tag :msg , nil, class:"form form-control msg-box" , style: "border: 1px solid #e6e6e6 !important;border-radius: 2px !important;margin-bottom:5px;" %>
+                          </div>
+                           <div class="col-md-4">
+                                <%= submit_tag "Enviar" , class: "btn btn-primary send-chat" do %>
+                                  
+                                <%end%>
+                          </div>
+                        
+                      </div>
+                     
+                     
+                  
+              <%end%>
+          </div>
+     <div class="chat-body">
+            <div class="chat-msgs">
+                <%if @chat.count != 0%>
+                    <% @chat.each do |chat|%>
+                    <p style="padding:5px 5px 0px 5px;margin-bottom:0px;
+    border-bottom: 1px solid #e6e6e6;"><span style="font-weight:bold;font-size:12px;    color: #1c8bb3;"><%=chat.name%> </span><span style="font-size:10px;color:gray"><%=get_date_hora(chat.date_time)%></span><br><span style="font-size:12px;"><%=chat.message%></span></p>
+                    <%end%>
+                    <%end%>
+                </div>
+                    <br>
+              
+     </div>
+
+   
+   </div>
+
+</div>
+ 
+
+</div>
+
+
+
+
+
+
+
+
+<div class = "col-md-7 text-center">
+<br>
+
+
+<img class = "imgp" style = "width:95%;background: white" src = "<%=@array[0]%>"/>
+</div>
+<div class="col-md-2">
+  <div id="scrollbar1">
+            
+            <div class="viewport" style = "background:#323232">
+                 <div class="overview">
+
+                   <% a = 1;
+                    @array.each do |elemento|%>
+             
+            <div class = "pad">
+          <div class = "numeral n<%=a%>"><%=a%></div>
+                    <img id = "<%=a%>" class = "imagen img<%=a%>" src = "<%=elemento%>">
+                    
+          </div>
+          <%a = a +1
+          end%>
+                </div>
+            </div>
+        </div>
+</div>
+</div>
+
+<style>
+body
+{
+  background: #484848;
+}
+.active
+{border: 7px solid #d85252;
+
+}
+.inactive
+{border:none;
+} 
+.num
+{
+         position: absolute;
+    /* top: 30px; */
+    z-index: 1;
+    font-size: 20px;
+    margin-left: 7px;
+    color: #868080;
+    width: 26px;
+    background: #e2e2e6;
+}
+
+</style>
+<script>
+$(document).on('turbolinks:load',function() {
+  $(".imagen").click(function(){
+  var a = $(this).attr("src");
+  var b = $(this).attr("id");
+  var c = parseInt(b) - 1 
+  $(".imgp").attr("src", a);
+     
+     setTimeout(function(){
+   $.get("cardinalppt/" + c + "/" + <%=@event.id%>, function(data) {
+
+   });
+      }, <%=@event.delay * 1000%>);
+
+        
+       
+
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+$(document).keydown(function(e){
+    a = $(".activeon").attr("id");
+    b = parseInt(a) - 1;
+    if (e.keyCode == 37  && b > 0 ) { 
+       
+       
+       
+       c = "#" + b;
+       d = "#" + a;  
+       img = $(c).attr("src");
+       $(c).addClass("activeon");
+       $(c).removeClass("activeoff");
+       $(d).removeClass("activeon");
+       $(d).addClass("activeoff");
+       $(".imgp").attr('src', img);
+
+       setTimeout(function(){
+       $.get("cardinalppt/" + (b-2) + "/" + <%=@event.id%>, function(data) {
+       
+          
+
+});   
+      }, <%=@event.delay * 1000%>);   
+
+
+
+    }
+    a = $(".activeon").attr("id");
+    b = parseInt(a) + 1;
+    if (e.keyCode == 39  && (b -1) < <%=@count%> ) { 
+       a = $(".activeon").attr("id");
+       
+       b = parseInt(a) + 1;
+       c = "#" + b;
+       d = "#" + a;  
+       img = $(c).attr("src");
+       $(c).addClass("activeon");
+       $(c).removeClass("activeoff");
+       $(d).removeClass("activeon");
+       $(d).addClass("activeoff");
+       $(".imgp").attr('src', img);
+         setTimeout(function(){
+              $.get("cardinalppt/" + (b-1) + "/" + <%=@event.id%>, function(data) {
+           
+
+              }); 
+              }, <%=@event.delay * 1000%>);     
+        
+    }
+
+});
+
+
+});
+</script>
+
+<style>
+.col-md-1
+{
+ margin-right:10px;
+}
+.col-md-1 img
+{
+ width:110px;
+}
+</style>
+
+<script >
+$(document).on('turbolinks:load',function() {
+ 
+        $('.img1').addClass("activeon")
+      $('.pad').click(function(){
+          $('.pad').children('img').removeClass("activeon");
+          
+          $(this).children('img').addClass("activeon");
+         
+          $('#ppts img').attr('src', $(this).children('img').attr("src"));
+
+        
+                $('.cont').text($(this).children('div').text());
+        }); 
+
+
+            
+});
+</script>
+
+<style>
+.overview .pad {
+    position: relative;
+    margin-bottom: 1px;
+    display: inline-block;
+    width: 48%;
+}
+#scrollbar1 img {
+    width: 100%;
+    background: #fff;
+    border: none;
+    opacity: 0.3;
+  }
+
+  #scrollbar1 .viewport {
+    width: calc(100% - 15px);
+    height: 600px;
+    overflow: auto;
+    position: relative;
+}
+#scrollbar1 {
+    width: 100%;
+    margin: 20px 0 10px;
+}
+#scrollbar1 .scrollbar {
+    background: #e9e9e9 url(/../../images/bg-scrollbar-track-y.png) no-repeat 0 0;
+}
+
+.row {
+    margin-left:0px !important; 
+    margin-right:0px !important;
+}
+.activeoff
+{
+  border: none !important;
+  opacity: 0.3 !important;
+}
+.activeon
+{
+  border:2px solid red !important;
+  opacity: 1 !important;
+}
+.numeral {
+    font-size: 13px;
+    font-family: Arial;
+    padding: 30% 3px;
+    position: absolute;
+    top: 0px;
+    right: -1px;
+    background: rgba(0,0,0,1);
+    line-height: 4px;
+    color: #ddd;
+    text-align: center;
+    width: 24px;
+
+}
+.cuadro
+{
+    background: white;
+    border: 1px solid #83d0f6;
+    padding: 5px 10px;
+    border: 2px solid #1c8bb3;
+}
+.cuadro1
+{
+background: white;
+padding: 5px 0px;
+
+  
+}
+
+
+ 
+.chat-body
+{
+     padding: 10px 0px 0px 10px;
+  height: 300px;
+  border-top: 1px solid #d7d7d7;
+  background: white;
+  }
+.chat-msgs
+{
+  height: 100%;
+  
+  max-height: 100%;
+  overflow-y: auto;
+
+}
+.max-height
+{
+
+}
+</style>
+
+
+<script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+<script>
+   // Enable pusher logging - don't include this in production
+
+
+   var pusher = new Pusher('194f0bfe827f047fcf64', {
+     cluster: 'us2',
+     encrypted: true
+   });
+
+
+
+
+  var channel = pusher.subscribe('chat');
+   channel.bind('msg', function(data) {
+    a = data.message;
+       if (a[2] == <%=@event.id%>){
+        $('.chat-msgs').append("<p style='padding:5px;margin:0px;border-bottom: 1px solid #e6e6e6'><span style='font-weight:bold;font-size:12px;    color: #1c8bb3;''>" + a[3] + "</span> <span style='font-size:10px;color:gray'>" + a[1] + "</span><br><span style='font-size:12px;'>"+ a[0] + "</span></p>");
+         $('.chat-msgs').scrollTop($('.chat-msgs').prop("scrollHeight"));
+       }
+
+     });
+
+
+
+   var channel = pusher.subscribe('view');
+   channel.bind('msg', function(data) {
+    a = data.message;
+
+          console.log(a);
+
+     });
+
+
+$(document).on('turbolinks:load',function() {
+ $('.chat-msgs').scrollTop($('.chat-msgs').prop("scrollHeight"));
+     $('.msg-box').keypress(function (e) {
+      console.log("asdasfdas")
+  if (e.which == 13) {
+    $('.send-chat').click();
+    return false;
+
+  }
+});
+
+       
+     });
+
+
+
+a = $('body').height() + 20;
+console.log(a )
+$('.col-md-3').css('height', a + "px");
+</script>

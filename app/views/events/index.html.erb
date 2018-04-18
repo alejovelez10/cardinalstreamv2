@@ -5,11 +5,11 @@
          </div>
          <div class = "col-md-6 text-right">
            <%if current_user.rol.create_event  %>
-            <%= link_to new_event_path(0), remote: true,class: "btn no-active" do %>
+            <%= link_to new_event_path(0),class: "btn no-active" do %>
             <i class="fa fa-video-camera" style = "font-size:30px;" aria-hidden="true"></i>
             Live
             <%end%>
-            <%= link_to new_event_path(4), remote: true, class: "btn no-active" do %>
+            <%= link_to new_event_path(4), class: "btn no-active" do %>
             <i class="fa fa-hdd-o" style = "font-size:30px;" aria-hidden="true"></i>
             Ondemand
             <%end%>
@@ -31,18 +31,19 @@
       </div>
       <hr class="hr">
       <div class = "row">
+
          <table class="table table-striped">
             <thead>
                <tr class = "tr-table">
-                  <th>Opciones</th>
-                  <th>Fecha del Evento</th>
-                  <th>Nombre</th>
-                  <th>Streaming</th>
-                  <th>Tipo</th>
+                  <th>ACCIONES</th>
+                  <th>FECHA DEL EVENTO</th>
+                  <th>NOMBRE</th>
+                  <th>STREAMING</th>
+                  <th>TIPO</th>
                 
                 
-                  <th>Ppts</th>
-                  <th>Root</th>
+                  <th>PPTS</th>
+                  <th>ROOT</th>
                   <th></th>
                  
             </thead>
@@ -56,7 +57,7 @@
                         <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dLabel">
-                          <%if event.state == 4%> <li><%= link_to  ppts_views_path(event), remote:true do%>
+                          <%if event.state == 4 %> <li><%= link_to  ppts_views_path(event), remote:true do%>
                               <i class="fa fa-television fa1" aria-hidden="true"></i>
                               Configurar diapositivas
                               <%end%>
@@ -115,9 +116,9 @@
                         </ul>
                      </div>
                   </td>
-                  <td ><%= get_date(event.event_date) %></td>
-                  <td><%= event.name %></td>
-                  <td><%= event.state != 4 ? "Live" : "Ondemand" %></td>
+                  <td class="text-center"><i class="fa fa-calendar" style="font-size:20px"></i><br><%= get_date(event.event_date) %></td>
+                  <td><%= event.name.upcase %></td>
+                  <td><%= (event.state != 4 ? "Live" : "Ondemand").upcase %></td>
                   <td style = "font-size:20px"><%= get_event_type(event.event_type).html_safe %></td>
                   
                   

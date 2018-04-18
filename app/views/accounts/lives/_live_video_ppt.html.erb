@@ -161,6 +161,7 @@
    <%if @event.has_chat%>
     <div class="chat">
      <div class="chat-body">
+     <p style="text-align: center; font-size: 15px;font-weight: bold; color: #1c8bb3;"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuKSUfj9_pynl3dmyX5XrcFpkAPi4RPMfuNDOitQ_BVnUTEvzviA" style="width:50px;" alt=""></p>
             <div class="chat-msgs">
         <%if @chat.count != 0%>
             <% @chat.each do |chat|%>
@@ -515,7 +516,7 @@ player.src({
 }
 .chat-msgs
 {
-  height: 65%;
+  height: 50%;
   border: 1px solid gray;
   max-height: 65%;
   overflow-y: auto;
@@ -714,12 +715,18 @@ player.src({
 $(document).on('turbolinks:load',function() {
 
      $('.chat-body').keypress(function (e) {
-  if (e.which == 13) {
-    $('.send-chat').click();
-    return false;
+       console.log("asdasfdas")
+          if (e.which == 13) {
 
-  }
+            $('.send-chat').click();
+            return false;
+
+          }
 });
+
+
+
+
 
        $('.btn-chat').click(function(){
               $('.chat-body').fadeToggle();

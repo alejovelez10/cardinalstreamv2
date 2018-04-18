@@ -1,5 +1,7 @@
-<h1>New Event</h1>
 
-<%= render 'form', event: @event %>
 
-<%= link_to 'Back', events_path %>
+<%if @state == "0" %>
+<%= render 'events/forms/form_create_live', event: @event %>
+<%else%>
+<%= render 'events/forms/form_create_ondemand', event: @event %>
+<%end%>

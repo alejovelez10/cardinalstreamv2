@@ -31,6 +31,12 @@
 #  ultimate_ppt    :integer
 #  link            :string
 #  views           :integer
+#  name_stream     :string
+#  color           :string
+#  font_size       :integer
+#  backgroud_font  :string
+#  has_chat        :boolean
+#  height_banner   :integer
 #
 
 class Event < ApplicationRecord
@@ -39,6 +45,7 @@ class Event < ApplicationRecord
   has_many :stats
   has_many :viewers
   has_many :questions
+  has_many :live_stats
 	mount_uploader :ppts, PpptUploader
 	mount_uploader :video, VideoUploader
   mount_uploader :video_p, VideopEventUploader

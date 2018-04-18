@@ -1,5 +1,6 @@
 
-
-<%= render 'form_edit', event: @event %>
-
-
+<%if @event.state == 4 %>
+<%= render 'events/forms/form_edit_ondemand', event: @event %>
+<%else%>
+<%= render 'events/forms/form_edit_live', event: @event %>
+<%end%>

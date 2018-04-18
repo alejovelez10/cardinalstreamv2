@@ -22,6 +22,7 @@ end
   delete 'delete_question/:id', to: "questions#delete_question", as: "delete_question"
   delete 'delete_viewer/:id', to: "viewers#delete_viewer", as: "delete_viewer"
   get 'real_time_stats/get_statics/:id', to: 'accounts#get_statics', as: 'get_statics'
+  get 'real_time_stats/get_users_conenected/:id', to: 'accounts#get_users_conenected', as: 'get_users_conenected'
 
 
   get 'stats/index'

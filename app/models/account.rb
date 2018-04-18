@@ -22,6 +22,7 @@
 #  psw               :string
 #  has_psw           :boolean
 #  has_networks      :boolean
+#  requisitos        :string
 #
 
 class Account < ApplicationRecord

@@ -13,6 +13,7 @@
 #  company    :string
 #  event_id   :integer
 #  account_id :integer
+#  date_time  :datetime
 #
 
 class Viewer < ApplicationRecord

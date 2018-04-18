@@ -11,6 +11,7 @@
 #  affair      :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  date_time   :datetime
 #
 
 class Question < ApplicationRecord
