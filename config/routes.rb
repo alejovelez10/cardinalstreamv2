@@ -42,7 +42,7 @@ end
 
   get 'events/cardinalmsg' ,to: "events#cardinalmsg", as: "cardinalmsg"
 
-    get 'event_info/cardinal_state/:state/:id' ,to: "events#cardinal_state", as: "cardinal_state"
+  get 'events/cardinal_state/:state/:id' ,to: "events#cardinal_state", as: "cardinal_state"
   post 'accounts/cardinalchat' ,to: "accounts#cardinalchat", as: "cardinalchat"
 
 
