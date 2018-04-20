@@ -15,9 +15,9 @@ end
   get 'accounts/change_docs/:value/:id', to: "accounts#change_docs", as: "change_docs"
 
 
-  get 'event_info/record_live/:id', to: "events#record_live", as: "record_live"
-  get 'event_info/public_live/:id', to: "events#public_live", as: "public_live"
-  get 'event_info/stop_record_live/:id', to: "events#stop_record_live", as: "stop_record_live"
+  get 'events/record_live/:id', to: "events#record_live", as: "record_live"
+  get 'events/public_live/:id', to: "events#public_live", as: "public_live"
+  get 'events/stop_record_live/:id', to: "events#stop_record_live", as: "stop_record_live"
   
   post 'create_file', to: 'events#create_file', as: 'create_file'
 
