@@ -11,6 +11,39 @@
 <div class = "row">
 <div class="col-md-3" style="padding: 0px;background:white">
 
+
+
+<div class="row">
+  
+<div class="col-md-12">
+  
+
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">Camara</h4>
+         </div>
+         <div class="modal-body">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="col-md-12 well text-center">
+                     <video id="video" width="140" height="180" autoplay></video>
+                     <canvas id="canvas" width="340" height="380" class="hide"></canvas>
+                  </div>
+                  <div class="text-center">
+                     <a class="btn btn-primary" id="snap" data-dismiss="modal"  data-type='1'>Tomar Foto</a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+  </div>
+</div>
+
+
+
 <a class="btn btn-primary btn-block" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
   <i class="fa fa-laptop"></i> CONTROLES
 </a>
@@ -582,4 +615,81 @@ $('#live').click(function() {
                           })
                         });
 
+</script>
+
+
+<script>
+  
+
+   
+   
+    var localstream;
+     var canvas   = document.getElementById("canvas");
+     var context  = canvas.getContext("2d");
+     var video    = document.getElementById("video");
+     var videoObj = { "video": true };
+    
+     // for checking of camera and getting the stream.
+     var loadChecking = function(){
+       console.log("Video capture: ");
+       if(navigator.getUserMedia) {
+         navigator.getUserMedia(videoObj, function(stream) {
+           stream.getTracks()[0].stop();
+           console.log("Video capture1: ");
+         }, errBack);
+       } else if(navigator.webkitGetUserMedia) {
+         navigator.webkitGetUserMedia(videoObj, function(stream){
+           stream.getTracks()[0].stop();
+           console.log("Video capture2: ");
+         }, errBack);
+       }
+       else if(navigator.mediaDevices.getUserMedia) {
+         navigator.mediaDevices.getUserMedia(videoObj, function(stream){
+           stream.getTracks()[0].stop();
+           console.log("Video capture3: ");
+         }, errBack);
+       }
+     };
+    
+     // error handling.
+     var errBack  = function(error) {
+       $('.camBtn').hide(); // in case camera does not exists. hide the button.
+       console.log("Video capture error: ", error.code);
+     };
+    
+     // initiate function to detect.
+     loadChecking();
+   
+   // Load streaming once the modal opens.
+  $(document).ready( function (e) {
+           console.log("Video capture8: ");
+     var button = $(e.relatedTarget);
+     $("#snap").data('type', button.data('type'));
+     // Put video listeners into place
+   if(navigator.webkitGetUserMedia) { // WebKit-prefixed
+       navigator.webkitGetUserMedia(videoObj, function(stream){
+         console.log("Video capture5: ");
+         video.src   = window.URL.createObjectURL(stream);
+         localstream = stream;
+         video.play();
+         console.log("aquiiiiiiii")
+       }, errBack);
+     }
+     else if(navigator.mediaDevices.getUserMedia) { // Firefox-prefixed
+       navigator.mediaDevices.getUserMedia(videoObj, function(stream){
+         console.log("Video capture6: ");
+         video.src   = window.URL.createObjectURL(stream);
+         localstream = stream;
+         video.play();
+         console.log("aquiiiiiiii")
+       }, errBack);
+     }
+     console.log("camera on");
+   }).on('hide.bs.modal', function(e){
+     video.pause();
+     video.src = '';
+     if(localstream)
+       localstream.getTracks()[0].stop();
+     console.log('camera off');
+   });
 </script>
