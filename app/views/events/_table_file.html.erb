@@ -1,0 +1,24 @@
+         <table class="table">
+                    
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Archivo</th>
+                            
+
+                        </tr>
+                    </thead>
+                    <tbody style="max-height: 200px; height: 200px;overflow: auto;">
+                     <% @event.event_files.order(created_at: :desc).each do |viewer|%>
+                        <tr>
+                            <td><%=viewer.name%></td>
+                            <td><%= link_to "Descargar", viewer.attachment_url%></td>
+                           
+                            <!--<td> <%= link_to  delete_viewer_path(viewer.id), method: :delete, data: { confirm: '¿Esta seguro de eliminar?' }  do%>
+                              <i class="fa fa-trash fa1" aria-hidden="true"></i>
+                            
+                              <%end%></td>-->   
+                        </tr>
+                    <%end%>
+                    </tbody>
+                </table>

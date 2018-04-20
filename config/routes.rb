@@ -18,10 +18,14 @@ end
   get 'event_info/record_live/:id', to: "events#record_live", as: "record_live"
   get 'event_info/public_live/:id', to: "events#public_live", as: "public_live"
   get 'event_info/stop_record_live/:id', to: "events#stop_record_live", as: "stop_record_live"
+  
+  post 'create_file', to: 'events#create_file', as: 'create_file'
+
 
   delete 'delete_question/:id', to: "questions#delete_question", as: "delete_question"
   delete 'delete_viewer/:id', to: "viewers#delete_viewer", as: "delete_viewer"
   get 'real_time_stats/get_statics/:id', to: 'accounts#get_statics', as: 'get_statics'
+  get 'events/get_event_statics/:id', to: 'events#get_event_statics', as: 'get_event_statics'
   get 'real_time_stats/get_users_conenected/:id', to: 'accounts#get_users_conenected', as: 'get_users_conenected'
 
 

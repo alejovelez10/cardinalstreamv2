@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy, :event_info]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :event_info,:create_file]
   before_action :get_blog
   before_action :authenticate_user!
 
@@ -415,6 +415,27 @@ puts @a
 end
 
 
+def create_file
+ 
+  @event = Event.find(params[:id])
+  @event_file = EventFile.create(user_id:@event.user_id, admin_user:@event.admin_user, event_id:@event.id, name: params[:name] , attachment: params[:attachment])
+  
+  
+  Pusher.trigger('file', 'file_msg', {
+    message: @event_file
+
+    });
+  
+end
+
+
+ def get_event_statics
+     @event = Event.find(params[:id])
+    if request.xhr?
+      render partial: 'stats', params: @event , status: 200
+
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

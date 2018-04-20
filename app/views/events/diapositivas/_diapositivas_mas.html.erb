@@ -13,36 +13,21 @@
 
 
 
-<div class="row">
-  
-<div class="col-md-12">
   
 
-      <div class="modal-content">
-         <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-            </button>
-            <h4 class="modal-title" id="myModalLabel">Camara</h4>
-         </div>
-         <div class="modal-body">
+    
             <div class="row">
                <div class="col-md-12">
                   <div class="col-md-12 well text-center">
-                     <video id="video" width="140" height="180" autoplay></video>
-                     <canvas id="canvas" width="340" height="380" class="hide"></canvas>
+                     <video id="video" width="80%" height="100" autoplay></video>
+                     <canvas id="canvas" width="80%" height="100" class="hide"></canvas>
                   </div>
-                  <div class="text-center">
-                     <a class="btn btn-primary" id="snap" data-dismiss="modal"  data-type='1'>Tomar Foto</a>
-                  </div>
+                 
                </div>
             </div>
-         </div>
-      </div>
-  </div>
-</div>
-
-
+     
+ 
+<br>
 
 <a class="btn btn-primary btn-block" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
   <i class="fa fa-laptop"></i> CONTROLES
@@ -83,9 +68,21 @@
      <div class="row">
                 
  <div class="col-md-12 cuadro1">
- <p style="text-align: center; font-size: 15px;font-weight: bold; color: #1c8bb3;"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuKSUfj9_pynl3dmyX5XrcFpkAPi4RPMfuNDOitQ_BVnUTEvzviA" style="width:70px;" alt=""></p>
+ <p style="text-align: center; font-size: 15px;font-weight: bold; color: #1c8bb3;"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuKSUfj9_pynl3dmyX5XrcFpkAPi4RPMfuNDOitQ_BVnUTEvzviA" style="width:30px;" alt=""></p>
       <div class="chat">
-        <div class="chat-form" style="padding:10px;">
+          <div class="chat-body">
+            <div class="chat-msgs">
+                <%if @chat.count != 0%>
+                    <% @chat.each do |chat|%>
+                    <p style="padding:5px 5px 0px 5px;margin-bottom:0px;
+    border-bottom: 1px solid #e6e6e6;"><span style="font-weight:bold;font-size:12px;    color: #1c8bb3;"><%=chat.name%> </span><span style="font-size:10px;color:gray"><%=get_date_hora(chat.date_time)%></span><br><span style="font-size:12px;"><%=chat.message%></span></p>
+                    <%end%>
+                    <%end%>
+                </div>
+                    <br>
+              
+     </div>
+        <div class="chat-form" style="padding:20px;">
                       <%= form_tag cardinalchat_path, method: :post, remote:true do %>
                       <%= hidden_field_tag :id , @event.id%>
                       <%= hidden_field_tag :name , "#{current_user.names } - Admin" %>
@@ -106,18 +103,7 @@
                   
               <%end%>
           </div>
-     <div class="chat-body">
-            <div class="chat-msgs">
-                <%if @chat.count != 0%>
-                    <% @chat.each do |chat|%>
-                    <p style="padding:5px 5px 0px 5px;margin-bottom:0px;
-    border-bottom: 1px solid #e6e6e6;"><span style="font-weight:bold;font-size:12px;    color: #1c8bb3;"><%=chat.name%> </span><span style="font-size:10px;color:gray"><%=get_date_hora(chat.date_time)%></span><br><span style="font-size:12px;"><%=chat.message%></span></p>
-                    <%end%>
-                    <%end%>
-                </div>
-                    <br>
-              
-     </div>
+ 
 
    
    </div>
@@ -404,7 +390,7 @@ padding: 5px 0px;
 .chat-body
 {
      padding: 10px 0px 0px 10px;
-  height: 300px;
+  height: 170px;
   border-top: 1px solid #d7d7d7;
   background: white;
   }
@@ -517,6 +503,8 @@ else
 
 $(document).on('turbolinks:load',function() {
  $('.chat-msgs').scrollTop($('.chat-msgs').prop("scrollHeight"));
+
+
      $('.msg-box').keypress(function (e) {
       console.log("asdasfdas")
   if (e.which == 13) {

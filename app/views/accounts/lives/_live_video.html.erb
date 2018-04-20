@@ -65,9 +65,9 @@
          <%if @event.has_files || @event.has_question%>
          <div class="col-md-3" >
             <%if event.has_question%>
-            <div style="margin-top:6px">
-               <div class="alert alert-info" role="alert" style="text-align:center">
-                  <img style="width: 50px;" src="https://es.seaicons.com/wp-content/uploads/2016/03/question-faq-icon.png" alt=""><br>
+            <div style="margin-top:3px">
+               <div class="alert alert-info" role="alert" style="text-align:center;margin-top:10px">
+                  <img style="width: 30px;" src="https://es.seaicons.com/wp-content/uploads/2016/03/question-faq-icon.png" alt=""><br>
                   Tienes alguna duda <br><br>
                   <div class="row">
                      <%= form_tag create_question_path, method: :post, remote:true do%>
@@ -83,7 +83,7 @@
                      </div>
                      <div class="col-md-12">
                         <div class="form-group">
-                           <%= text_area_tag :description ,nil, class: "form form-control erase", placeholder: "Pregunta", style: "height:100px" %>
+                           <%= text_area_tag :description ,nil, class: "form form-control erase", placeholder: "Pregunta", style: "height:50px" %>
                         </div>
                      </div>
                      <%= hidden_field_tag :account_id , event.account_id%>
@@ -109,15 +109,18 @@
             <%end%>
             <br>
             <%if @event.has_files%>
-            <div class="row descargables" style="background: rgba(8, 8, 8, 0.88);margin-left:0px;margin-right: 0px;padding:5px">
+            <div class="row descargables" style="background: rgba(8, 8, 8, 0.88);margin-left:0px;margin-right: 0px;padding:5px;height:220px;">
                <div class="col-md-12">
                   <h4 style="    color: white">Descargables</h4>
-                  <% @event.event_files.each do |event|%>
+                  <div class="doc" style="max-height: 170px; height: 170px;overflow: auto;">
+                   <% @event.event_files.order(created_at: :desc).each do |event|%>
                    <%= link_to  event.attachment_url, class: "document" , target: "_blank" do%>
-               <i class="fa fa-download" style="color:white"></i>
-              <%=event.name%>
+                   <i class="fa fa-download" style="color:white"></i>
+                  <%=event.name%>
                <%end%>
                   <%end%>
+                  </div>
+                  
                </div>
             </div>
             <%end%>
@@ -127,7 +130,9 @@
    </div>
      <%if @event.has_chat%>
     <div class="chat">
+
      <div class="chat-body">
+       <p style="text-align: center; font-size: 15px;font-weight: bold; color: #1c8bb3;"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuKSUfj9_pynl3dmyX5XrcFpkAPi4RPMfuNDOitQ_BVnUTEvzviA" style="width:50px;" alt=""></p>
             <div class="chat-msgs">
         <%if @chat.count != 0%>    
             <% @chat.each do |chat|%>
@@ -241,16 +246,26 @@
       
      
 }, 6000);
-
-
-
-
-
-
-   
+  
    
    
    });
+
+
+
+
+ var channel = pusher.subscribe('file');
+   channel.bind('file_msg', function(data) {
+    a = data.message;
+    if (data.message.event_id == <%=event.id%>){
+             $('.doc').prepend('<a class="document" target="_blank" href="'+ data.message.attachment.url + '"><i class="fa fa-download" style="color:white"></i> '+ data.message.name +'</a>')
+          }
+       });
+
+
+
+
+
 
 
 
@@ -541,7 +556,7 @@ $(document).ready(function(){
  .chat {
  
   position: fixed;
-  bottom: 20px;
+  bottom: 10px;
   right: 10px;
   z-index:10;
 
@@ -556,9 +571,9 @@ $(document).ready(function(){
 }
 .chat-msgs
 {
-  height: 65%;
+  height: 52%;
   border: 1px solid gray;
-  max-height: 65%;
+  max-height: 52%;
   overflow-y: auto;
 
 }

@@ -1,0 +1,47 @@
+
+         <div class="row">
+         <br>
+         <div class="col-md-12">
+          <p class="btn-primary btn-block text-center">
+         <i class="fa fa-user"></i> USUARIOS REGISTRADOS
+      </p>
+            <div class="row" style="max-height: 300px; height: 200px;overflow: auto;">
+             <% @event.viewers.order(date_time: :desc).each do |viewer|%>
+              <div class="col-md-12" style="background: #e2e2e2;margin-bottom: 5px;">
+                 <span style="font-size: 12px;margin-right: 5px;""><%=viewer.name%></span><span style="font-size:9px;color:#a2a2a2;"><%=viewer.date_time%></span><br>
+                  <!--<span><%=viewer.email%></span>-->
+                   <span style="font-size: 10px;color:#a2a2a2;"><%=viewer.company%></span>
+                    
+              </div>
+
+               <%end%>
+            </div>
+              
+           
+         </div>
+           <div class="col-md-12">
+              
+          <p class="btn-primary btn-block text-center">
+         <i class="fa fa-question"></i> PREGUNTAS
+      </p>
+
+      <div class="row" style="max-height: 300px; height: 200px;overflow: auto;">
+              <% @event.questions.order(date_time: :desc).each do |question|%>
+              <div class="col-md-12" style="font-size: 12px;background: #e2e2e2;margin-bottom: 5px;">
+                 <span><%=question.name%></span><br>
+         
+                   <span>¿<%=question.description%>?</span>
+                    <%= link_to  delete_question_path(question.id), method: :delete, data: { confirm: '¿Esta seguro de eliminar?' }  do%>
+                              <i class="fa fa-trash fa1" aria-hidden="true"></i>
+                              
+                              <%end%>
+              </div>
+
+               <%end%>
+            </div>
+             
+        
+         </div>
+             
+             
+         </div>
