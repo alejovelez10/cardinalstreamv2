@@ -3,11 +3,12 @@
          <br>
          <div class="col-md-12">
           <p class="btn-primary btn-block text-center">
-         <i class="fa fa-user"></i> USUARIOS REGISTRADOS
+         <i class="fa fa-user"></i> USUARIOS REGISTRADOS <span class="count"><%=@event.viewers.count%></span>
       </p>
+      <%if @event.has_register%>
             <div class="row" style="max-height: 300px; height: 200px;overflow: auto;">
              <% @event.viewers.order(date_time: :desc).each do |viewer|%>
-              <div class="col-md-12" style="background: #e2e2e2;margin-bottom: 5px;">
+              <div class="col-md-12" style="background: #f4f4f4;border-bottom: 2px solid #ddd;">
                  <span style="font-size: 12px;margin-right: 5px;""><%=viewer.name%></span><span style="font-size:9px;color:#a2a2a2;"><%=viewer.date_time%></span><br>
                   <!--<span><%=viewer.email%></span>-->
                    <span style="font-size: 10px;color:#a2a2a2;"><%=viewer.company%></span>
@@ -16,18 +17,25 @@
 
                <%end%>
             </div>
+             <%else%>
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="mensaje_acceso">SIN REGISTRO</h2>
+                </div>
+            </div>
+            <%end%>
               
            
          </div>
            <div class="col-md-12">
               
           <p class="btn-primary btn-block text-center">
-         <i class="fa fa-question"></i> PREGUNTAS
+         <i class="fa fa-question"></i> PREGUNTAS <span class="count"><%=@event.questions.count%></span>
       </p>
-
+ <%if @event.has_question%>
       <div class="row" style="max-height: 300px; height: 200px;overflow: auto;">
               <% @event.questions.order(date_time: :desc).each do |question|%>
-              <div class="col-md-12" style="font-size: 12px;background: #e2e2e2;margin-bottom: 5px;">
+              <div class="col-md-12" style="font-size: 12px;background: #f4f4f4;border-bottom: 2px solid #ddd;">
                  <span><%=question.name%></span><br>
          
                    <span>¿<%=question.description%>?</span>
@@ -39,6 +47,13 @@
 
                <%end%>
             </div>
+               <%else%>
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="mensaje_acceso">SIN PREGUNTAS</h2>
+                </div>
+            </div>
+            <%end%>
              
         
          </div>

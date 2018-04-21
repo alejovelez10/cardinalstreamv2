@@ -55,23 +55,18 @@
                         <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dLabel">
-                           <li><%= link_to  ppts_views_path(event), remote:true do%>
-                              <i class="fa fa-television fa1" aria-hidden="true"></i>
-                              Configurar diapositivas
-                              <%end%>
-                           </li>
                            <li><%= link_to  event, target: :_blank  do%>
                               <i class="fa fa-eye fa1" aria-hidden="true"></i>
                               Transmitir Diapositivas
                               <%end%>
                            </li>
-                            <%if current_user.rol.edit_event  %>
+                         <%if current_user.rol.edit_event  %>
                            <li><%= link_to  edit_more_path(event, "principal")  do%>
                               <i class="fa fa-pencil fa1" aria-hidden="true"></i>
                               Editar
                               <%end%>
                            </li>
-                          <%end%>
+                           <%end%>
                           
                            <li><%= link_to  event_info_path(event) do%>
                               <i class="fa fa-pencil fa1" aria-hidden="true"></i>

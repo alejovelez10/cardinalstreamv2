@@ -195,21 +195,6 @@ class AccountsController < ApplicationController
     end
   end
 
-  def get_users_conenected  
-    @event = Event.find(params[:id])
-       
-    @a =  `curl -X GET --header 'Accept:application/json; charset=utf-8' --header 'Content-Type:application/json; charset=utf-8' http://cardinalstream.com:8087/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/live/instances/_definst_/incomingstreams/#{@event.name_stream}/monitoring/current`
-    puts @a
-    @response =  JSON.parse(@a)
-    @usuarios_conectados = @response["totalConnections"]
-    date = DateTime.now
-    date1 = date.year.to_s + "-" + date.month.to_s + "-" + date.day.to_s
-    time1 = date.hour.to_s + ":" + date.minute.to_s + ":" + date.second.to_s
-    #LiveStat.create(event_id: @event.id,event_name: @event.name, time_stat: date, type_stat: @usuarios_conectados, day: date.day, month: date.month, year: date.year, hour: date.hour, state_date: date1, state_time: time1)
-    render plain:  @usuarios_conectados
-
-
-  end
 
 
 

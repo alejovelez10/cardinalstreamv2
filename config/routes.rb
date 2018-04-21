@@ -15,9 +15,9 @@ end
   get 'accounts/change_docs/:value/:id', to: "accounts#change_docs", as: "change_docs"
 
 
-  get 'events/record_live/:id', to: "events#record_live", as: "record_live"
-  get 'events/public_live/:id', to: "events#public_live", as: "public_live"
-  get 'events/stop_record_live/:id', to: "events#stop_record_live", as: "stop_record_live"
+  get 'show_admin/record_live/:id', to: "events#record_live", as: "record_live"
+  get 'show_admin/public_live/:id', to: "events#public_live", as: "public_live"
+  get 'show_admin/stop_record_live/:id', to: "events#stop_record_live", as: "stop_record_live"
   
   post 'create_file', to: 'events#create_file', as: 'create_file'
 
@@ -25,8 +25,8 @@ end
   delete 'delete_question/:id', to: "questions#delete_question", as: "delete_question"
   delete 'delete_viewer/:id', to: "viewers#delete_viewer", as: "delete_viewer"
   get 'real_time_stats/get_statics/:id', to: 'accounts#get_statics', as: 'get_statics'
-  get 'events/get_event_statics/:id', to: 'events#get_event_statics', as: 'get_event_statics'
-  get 'real_time_stats/get_users_conenected/:id', to: 'accounts#get_users_conenected', as: 'get_users_conenected'
+  get 'show_admin/get_event_statics/:id', to: 'events#get_event_statics', as: 'get_event_statics'
+  get 'show_admin/get_users_conenected/:id', to: 'events#get_users_conenected', as: 'get_users_conenected'
 
 
   get 'stats/index'
@@ -44,9 +44,9 @@ end
   post 'create_viewer', to: "viewers#create_viewer", as: "create_viewer"
   get 'events/cardinalppt/:id/:id_event' ,to: "events#cardinalppt", as: "cardinalppt"
 
-  get 'events/cardinalmsg' ,to: "events#cardinalmsg", as: "cardinalmsg"
+  get 'show_admin/cardinalmsg' ,to: "events#cardinalmsg", as: "cardinalmsg"
 
-  get 'events/cardinal_state/:state/:id' ,to: "events#cardinal_state", as: "cardinal_state"
+  get 'show_admin/cardinal_state/:state/:id' ,to: "events#cardinal_state", as: "cardinal_state"
   post 'accounts/cardinalchat' ,to: "accounts#cardinalchat", as: "cardinalchat"
 
 
@@ -54,6 +54,11 @@ end
   resources :events , :only => [:index, :show, :create, :update, :edit, :destroy]
   get 'edit_more/:id/:type' , to: "events#edit" , as: "edit_more"
   get 'event_info/:id', to: "events#event_info", as: "event_info"
+
+  get 'show_admin/:id', to: "events#show_admin", as: "show_admin"
+  
+
+
 
   get 'new/:state' , to: "events#new" , as: "new_event"
   get 'home', to: 'home#index', as: "home"

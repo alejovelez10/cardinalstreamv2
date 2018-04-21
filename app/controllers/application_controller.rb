@@ -26,7 +26,7 @@ protected
     elsif (controller_name == 'accounts' and (action_name == "portal_show_video" || action_name == "portal_show_name" ||  action_name == "portal_show" || action_name == "live"))
 
       'streaming'
-      elsif (controller_name == 'accounts' and ( action_name == "portal")) || (controller_name == "events" && action_name == "show")
+      elsif (controller_name == 'accounts' and ( action_name == "portal")) || (controller_name == "events" && (action_name == "show" || action_name == "show_admin"))
 
       'portal'
 

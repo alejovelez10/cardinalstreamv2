@@ -4,31 +4,32 @@
             <p style="font-size:32px;color:#187191">Eventos</p>
          </div>
          <div class = "col-md-6 text-right">
-           <%if current_user.rol.create_event  %>
-            <%= link_to new_event_path(0),class: "btn no-active" do %>
+           <%if current_user.rol.create_event && current_user.rol.admin_live %>
+            <%= link_to new_event_path(0),class: "btn btn-primary" do %>
             <i class="fa fa-video-camera" style = "font-size:30px;" aria-hidden="true"></i>
             Live
             <%end%>
-            <%= link_to new_event_path(4), class: "btn no-active" do %>
-            <i class="fa fa-hdd-o" style = "font-size:30px;" aria-hidden="true"></i>
-            Ondemand
-            <%end%>
+           
            <%end%> 
          </div>
    
       </div>
    <%=render "tabs"%>
    <br>
+
+
    <div class="row" >
       <div class = "row title-table">
          <div class = "col-md-6">
-            <p>Todos los Eventos <span class="label label-primary"><%=@events.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @events, :entry_name => 'Eventos' %></span> </p>
+            <p>Eventos Live <span class="label label-primary"><%=@events.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @events, :entry_name => 'Eventos' %></span> </p>
          </div>
          <div class = "col-md-6 paginate text-left title-table1">
             <%= will_paginate @events%>
          </div>
          
       </div>
+
+       <%if current_user.rol.admin_live %>
       <hr class="hr">
       <div class = "row">
 
@@ -57,44 +58,46 @@
                         <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dLabel">
-                          <%if event.state == 4 %> <li><%= link_to  ppts_views_path(event), remote:true do%>
-                              <i class="fa fa-television fa1" aria-hidden="true"></i>
-                              Configurar diapositivas
-                              <%end%>
-                           </li><%end%>
-                           <%if event.state != 4%>
-                           <li><%= link_to  event, target: :_blank  do%>
-                              <i class="fa fa-eye fa1" aria-hidden="true"></i>
-                              Transmitir Diapositivas
-                              <%end%>
-                           </li>
-                           <%end%>
-                           <%if current_user.rol.edit_event  %>
+                          
+                                 <%if current_user.rol.edit_event  %>
                            <li><%= link_to  edit_more_path(event, "principal")  do%>
                               <i class="fa fa-pencil fa1" aria-hidden="true"></i>
                               Editar
                               <%end%>
                            </li>
                            <%end%>
+                           
+                           <li><%= link_to  event, target: :_blank  do%>
+                              <i class="fa fa-eye fa1" aria-hidden="true"></i>
+                              Transmitir Diapositivas
+                              <%end%>
+                           </li>
+
+
+                            <li><%= link_to  show_admin_path(event.id), target: :_blank  do%>
+                               <i class="fa fa-address-card fa1"></i>
+                              Administrar Evento
+                       
+                              <%end%>
+                           </li>
+                     
+                      
                           
                          <!--    <li><%= link_to  edit_more_path(event, "adicional"), remote:true  do%>
                               <i class="fa fa-cog fa1" aria-hidden="true"></i>
                               Configuracion adicional del evento
                               <%end%>
-                           </li>-->
+                           </li>
                            
                             
                            <li><%= link_to  event_info_path(event), target: :_blank   do%>
-                              <%if event.state == 4%>
-                              <i class="fa fa-eye fa1"></i>
-
-                              Ver Evento
-                              <%else%>
+                            
+                             
                               <i class="fa fa-address-card fa1"></i>
                               Administrar Evento
+                       
                               <%end%>
-                              <%end%>
-                           </li>
+                           </li>-->
                            
                             <li>
                            <a data-toggle="modal" ids = "<%=event.id%>" id = "<%=event.iframe%>" class = "modal-links" href="#myModal-links"><i class="fa fa-television fa1" aria-hidden="true"></i>Iframe y link para comartir</a>
@@ -131,7 +134,18 @@
             </tbody>
          </table>
       </div>
+  
+   <%else%>
+   <div class="row">
+         <div class="col-md-8 col-md-offset-2">
+               <h2 class="mensaje_acceso">¡ NO TIENES ACCESO A ESTA INFORMACION !</h2>
+         </div>   
    </div>
+      
+   
+
+   <%end%>
+    </div>
 </div>
 
 
@@ -142,6 +156,13 @@
    margin-bottom: 10px;
    margin-right: 10px;
    font-size: 15px;  
+   }
+   .mensaje_acceso
+   {
+    background: #e0e0e0;
+    padding: 40px;
+    color: gray;
+    border-radius: 7px;
    }
 </style>
 <script>

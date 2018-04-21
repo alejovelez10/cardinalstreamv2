@@ -1,4 +1,4 @@
-         <table class="table">
+         <table class="table" >
                     
                     <thead>
                         <tr>
@@ -8,11 +8,14 @@
 
                         </tr>
                     </thead>
-                    <tbody style="max-height: 200px; height: 200px;overflow: auto;">
+                    <tbody >
                      <% @event.event_files.order(created_at: :desc).each do |viewer|%>
                         <tr>
-                            <td><%=viewer.name%></td>
-                            <td><%= link_to "Descargar", viewer.attachment_url%></td>
+                            <td style="padding: 10px;background: #f4f4f4;border-bottom: 2px solid #ddd;"><%=viewer.name%></td>
+                            <td style="padding: 10px;background: #f4f4f4;border-bottom: 2px solid #ddd;"><%= link_to viewer.attachment_url do%>
+                                 <i class="fa fa-download" style="font-size: 20px"></i>
+                              <%end%>
+                            </td>
                            
                             <!--<td> <%= link_to  delete_viewer_path(viewer.id), method: :delete, data: { confirm: '¿Esta seguro de eliminar?' }  do%>
                               <i class="fa fa-trash fa1" aria-hidden="true"></i>

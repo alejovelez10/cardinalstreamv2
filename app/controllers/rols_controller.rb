@@ -71,6 +71,6 @@ class RolsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rol_params
-      params.require(:rol).permit(:user_id, :admin_user, :name, :description, :create_event, :edit_event, :delete_event, :admin_event, :admin_stats, :admin_config, :admin_users, :rol)
+      params.require(:rol).permit(:user_id, :admin_user, :name, :description, :create_event, :edit_event, :delete_event, :admin_event, :admin_stats, :admin_config, :admin_users, :rol, :admin_ondemand, :admin_live)
     end
 end

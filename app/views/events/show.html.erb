@@ -1,13 +1,3 @@
-<%if @event.has_chat &&  @event.has_ppts%>
-
-    <%=render 'events/diapositivas/diapositivas_mas' %>
-
-<%elsif @event.has_chat &&  !@event.has_ppts%>
-
-          <%=render 'events/diapositivas/diapositivas_no' %>
-
-<%else%>
 
     <%=render 'events/diapositivas/diapositivas_solo' %>
 
-<%end%>

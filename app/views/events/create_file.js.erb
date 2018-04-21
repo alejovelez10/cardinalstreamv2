@@ -2,3 +2,6 @@ console.log("hola")
 $('.table_file').html($('<%= j render "table_file", event: @event%>'))
 $('.file_file').val(null);
 $('.name_file').val(null);
+a = $('.file_count').html();
+$('.file_count').html(parseInt(a) + 1);
+

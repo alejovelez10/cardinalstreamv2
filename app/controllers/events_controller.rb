@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy, :event_info,:create_file]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :event_info,:create_file, :show_admin]
   before_action :get_blog
   before_action :authenticate_user!
 
@@ -9,7 +9,7 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     
-    @events = Event.where(admin_user: current_user.admin_user).paginate(page: params[:page],:per_page => 30).order(created_at: :DESC)
+    @events = Event.where(admin_user: current_user.admin_user).where.not(state: 4).paginate(page: params[:page],:per_page => 30).order(created_at: :DESC)
     respond_to do |format|
     format.html
     format.csv { send_data @events.to_csv }
@@ -32,11 +32,23 @@ class EventsController < ApplicationController
     @count = @array.count
     end
 
+  end
+    
+  def show_admin
+      @chat = @event.chats.order(created_at: :asc)
+      @event.update(ultimate_ppt: 0)
+      @account = Account.find(@event.account_id)
+      if @event.has_ppts
+      @array = @event.slides.split(/,/)
+      @count = @array.count
+  end
+
+
 
   end
 
   def event_info
-   
+    @chat = @event.chats.order(created_at: :asc)
     @account = Account.find(@event.account_id)
     if @event.has_ppts
       @array = @event.slides.split(/,/)
@@ -435,6 +447,26 @@ end
       render partial: 'stats', params: @event , status: 200
 
     end
+  end
+
+
+
+
+  def get_users_conenected  
+    @event = Event.find(params[:id])
+       
+    @a =  `curl -X GET --header 'Accept:application/json; charset=utf-8' --header 'Content-Type:application/json; charset=utf-8' http://cardinalstream.com:8087/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/live/instances/_definst_/incomingstreams/#{@event.name_stream}/monitoring/current`
+    puts @a
+    @response =  JSON.parse(@a)
+    @usuarios_conectados = @response["totalConnections"]
+    date = DateTime.now
+    date1 = date.year.to_s + "-" + date.month.to_s + "-" + date.day.to_s
+    time1 = date.hour.to_s + ":" + date.minute.to_s + ":" + date.second.to_s
+    LiveStat.create(event_id: @event.id,event_name: @event.name, time_stat: date, type_stat: @usuarios_conectados, day: date.day, month: date.month, year: date.year, hour: date.hour, state_date: date1, state_time: time1)
+    
+    render partial: "stats_chart" , params: @event , status:200
+
+
   end
 
   private

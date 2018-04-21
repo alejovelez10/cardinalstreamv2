@@ -4,7 +4,7 @@
             <p style="font-size:32px;color:#187191">Eventos</p>
          </div>
    <div class = "col-md-6 text-right">
-        <%if current_user.rol.create_event  %>
+        <%if current_user.rol.create_event && current_user.rol.admin_ondemand%>
             <%= link_to new_event_path(4), remote: true, class: "btn btn-primary" do %>
             <i class="fa fa-hdd-o" style = "font-size:30px;" aria-hidden="true"></i>
             Ondemand
@@ -24,6 +24,7 @@
          </div>
          
       </div>
+          <%if current_user.rol.admin_ondemand %>
       <hr class="hr">
       <div class = "row">
          <table class="table  table-striped">
@@ -47,7 +48,7 @@
                <% @events.each do |event| %>
                <tr>
                   <td>
-                     <div class=".dropdown-menu-left">
+                     <div class="dropdown">
                         <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-bars" aria-hidden="true"></i>
                         <span class="caret"></span>
@@ -76,6 +77,15 @@
                               Informacion General
                               <%end%>
                            </li>-->
+                            <li><%= link_to  event_info_path(event), target: :_blank   do%>
+                            
+                              <i class="fa fa-eye fa1"></i>
+
+                              Ver Evento
+                                                          
+                              <%end%>
+                  
+                           </li>
                             <li>
                            <a data-toggle="modal" ids = "<%=event.id%>" id = "<%=event.iframe%>" class = "modal-links" href="#myModal-links"><i class="fa fa-television fa1" aria-hidden="true"></i>Iframe y link para comartir</a>
                            </li>
@@ -104,6 +114,16 @@
             </tbody>
          </table>
       </div>
+         <%else%>
+             <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                  <h2 class="mensaje_acceso">¡ NO TIENES ACCESO A ESTA INFORMACION !</h2>
+               </div>   
+            </div>
+      
+   
+
+      <%end%>
    </div>
 </div>
 <%= render "links"%>
@@ -113,6 +133,13 @@
    margin-bottom: 10px;
    margin-right: 10px;
    font-size: 15px;  
+   }
+      .mensaje_acceso
+   {
+    background: #e0e0e0;
+    padding: 40px;
+    color: gray;
+    border-radius: 7px;
    }
 </style>
 

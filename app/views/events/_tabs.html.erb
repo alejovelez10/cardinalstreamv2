@@ -3,10 +3,6 @@ if action_name == "index" || action_name == "admin"
   a = "active"
   b = "no-active"
   c = "no-active"
-elsif action_name == "events_live"
-  a = "no-active"
-  b = "active"
-  c = "no-active"
 else
   a = "no-active"
   b = "no-active"
@@ -15,9 +11,9 @@ else
 end %>
 
 <ul class="nav nav_a">
-    <li class=""><a class="<%=a%>" href="/events">Todos los Eventos</a></li>
-    <li class=""><a class="<%=b%>" href="/events_live">Lives</a></li>
-    <li class=""><a  class="<%=c%>" href="/events_ondemand">On Demands</a></li>
+    <li class=""><a class="<%=a%>" style = "width:115px" href="/events">Lives</a></li>
+  
+    <li class=""><a  class="<%=c%>" style = "width:115px" href="/events_ondemand">On Demands</a></li>
 
   </ul>
 

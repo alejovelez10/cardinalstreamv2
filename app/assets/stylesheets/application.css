@@ -280,20 +280,21 @@ margin-right: 2px;
 
 .no-active 
 {
-  color:white;
-  background: #0f99cb;
+
+
+   color:white;
+  background: #0d3d4d;
     border-bottom: 2px solid #30638f;
     border-radius: 3px;
-   
 
 }
 .active 
 {
   color:white;
-  background: #0d3d4d;
+  background: #0f99cb;
     border-bottom: 2px solid #30638f;
     border-radius: 3px;
- 
+   
 
 }
 

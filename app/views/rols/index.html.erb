@@ -18,7 +18,7 @@
                <tr class = "tr-table">
                   <th ></th>
                   <th ></th>
-                  <th colspan="4" class="text-center" style="border-left:1px solid gray;border-right :1px solid gray">Evento</th>
+                  <th colspan="6" class="text-center" style="border-left:1px solid gray;border-right :1px solid gray">Evento</th>
                   <th colspan="4" class="text-center" style="border-right:1px solid gray">Administracion</th>
                   <th ></th>
                </tr>
@@ -28,7 +28,9 @@
                   <th style="border-left:1px solid gray">Crear</th>
                   <th >Editar</th>
                   <th>Eliminar</th>
-                  <th style="border-right:1px solid gray">Administrar</th>
+                  <th>Administrar</th>
+                  <th>Lives</th>
+                  <th style="border-right:1px solid gray">Ondemands</th>
                   <th>Estadisticas</th>
                   <th>Cuenta</th>
                   <th>Usuarios</th>
@@ -45,6 +47,8 @@
                   <td><%= get_state(rol.edit_event).html_safe %></td>
                   <td><%= get_state(rol.delete_event).html_safe %></td>
                   <td><%= get_state(rol.admin_event).html_safe %></td>
+                  <td><%= get_state(rol.admin_live).html_safe %></td>
+                  <td><%= get_state(rol.admin_ondemand).html_safe %></td>
                   <td><%= get_state(rol.admin_stats).html_safe %></td>
                   <td><%= get_state(rol.admin_config).html_safe %></td>
                   <td><%= get_state(rol.admin_users).html_safe %></td>

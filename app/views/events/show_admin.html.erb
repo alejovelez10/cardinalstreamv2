@@ -1,0 +1,615 @@
+<div class="row">
+   <div class="col-md-12" style="background: #eaeaea;
+      padding: 10px;background:#373737;">
+      <p style="margin:0px;color:white"><%=@event.name.upcase%> 
+         <span class="estado live"> <%=get_state_event(@event.state)%></span>
+      </p>
+   </div>
+</div>
+<div class = "row">
+   <div class="col-md-3 col-completa" style="    height: 587px;
+      padding: 0px 10px;
+      background: white;
+      border-right: 2px solid #dddddd;">
+      <br>
+      <div class="row">
+         <div class="col-md-12">
+            <div class="col-md-12 well text-center">
+               <video id="video" width="80%" height="100" autoplay></video>
+               <canvas id="canvas" width="80%" height="100" class="hide"></canvas>
+            </div>
+         </div>
+      </div>
+      <br>
+      <p class="btn-primary btn-block text-center">
+         <i class="fa fa-laptop"></i> CONTROLES
+      </p>
+      <div class="row">
+         <div class="col-md-12" style="border-bottom: 1px solid #e2e2e2;margin-bottom:10px;padding: 0px;">
+            <br>
+            <p style="text-align:center">
+               <button style = "width:48%;background:#2ab1e0;color:white" type="" id = "camp" class="btn btn-default btn-white"><span class="glyphicon glyphicon-bullhorn" aria-hidden="true" style = "font-size:20px;color:white"></span> Campaña</button>
+               <button style = "width:48%;background:#2ab1e0;color:white" type="" id = "prox" class="btn btn-default btn-white"><span class="glyphicon glyphicon-time" aria-hidden="true" style = "font-size:20px "></span> Proximo a Iniciar</button><br>
+               <button style = "width:50%;background:#2ab1e0;color:white;margin-top:10px" type="" id = "live" class="btn btn-default btn-white"><span class="glyphicon glyphicon-facetime-video" aria-hidden="true" style = "font-size:20px"></span> En vivo</button>
+            </p>
+            <hr>
+            <p style="text-align:center">
+               <button style = ";width:48%;background:#6bba8c;color:white" type="" id = "record" class="btn btn-default"><span class="glyphicon glyphicon-play" aria-hidden="true" style = "font-size:20px;color:white"></span> Grabar</button>
+               <button style = "width:48%;background:#891b1b;color:white" type="" id = "stop_record" class="btn btn-default"><span class="glyphicon glyphicon-stop" aria-hidden="true" style = "font-size:20px;color:white"></span> Terminar</button><br>
+            </p>
+            <p style="text-align:center">
+               <button style = "width:150px;background:#2ab1e0;color:white" type="" id = "publicar" class="btn btn-default"><i class="fa fa-cloud-upload" aria-hidden="true" style = "font-size:20px;"></i> Publicar</button>
+            </p>
+         </div>
+      </div>
+      <p class="btn-primary btn-block text-center">
+         <i class="fa fa-comment"></i> MENSAGES EN VIVO
+      </p>
+      <div class="row">
+         <%= form_tag cardinalmsg_path, method: :get, remote:true do %>
+         <%= text_area_tag :msg , nil, class:"form form-control" %><br>
+         <%= hidden_field_tag :id , @event.id%>
+         <p style="text-align:right"><%= submit_tag "Enviar" , class: "btn btn-primary"%></p>
+         <%end%>
+      </div>
+   </div>
+   <div class="col-md-3 col-completa" style="padding-left:0px !important;background:white;border-right:1px solid rgb(221, 221, 221);">
+      <div class="stats">
+         <%= render partial: "stats" %>
+           
+      </div>
+      <div class="row">
+      </div>
+   </div>
+   <div class="col-md-3 col-completa" style="background:white;border-right:1px solid rgb(221, 221, 221);">
+        <br> <p class="btn-primary btn-block text-center">
+              <i class="fa fa-file"></i> ADJUNTOS <span class="count file_count"><%=@event.event_files.count%></span>
+            </p>
+            <%if @event.has_files%>
+         <div class="row" style="">
+         <br>
+              <div class="col-md-12">
+                
+     <%= form_tag create_file_path, method: :post, remote:true, enctype: "multipart/form-data" do %>
+         <%= text_field_tag :name , nil, class:"form form-control name_file" %><br>
+         <%= file_field_tag :attachment, class:"form form-control file_file" %>
+         <%= hidden_field_tag :id , @event.id%>
+         <br>
+         <p style="text-align:right"><%= submit_tag "Subir" , class: "btn btn-primary"%></p>
+         <%end%>
+                  <div class="table_file" style="max-height: 350px; height: 350px;overflow: auto;">
+                    
+                  
+                    <%= render "table_file"%>
+                  
+                  </div>
+                </div>
+                </div>
+                <%else%>
+                    <div class="row">
+                <div class="col-md-12">
+                    <h2 class="mensaje_acceso">SIN ADJUNTOS</h2>
+                </div>
+            </div>
+            <%end%>
+   </div>
+
+   <div class="col-md-3 col-completa" style="background:white;">
+     <br>
+      <p class="btn-primary btn-block text-center">
+         <i class="fa fa-comment"></i> CHAT
+      </p>
+       <%if @event.has_chat%>
+      <div class="row">
+             
+         <div class="col-md-12 cuadro1">
+            <p style="text-align: center; font-size: 15px;font-weight: bold; color: #1c8bb3;"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuKSUfj9_pynl3dmyX5XrcFpkAPi4RPMfuNDOitQ_BVnUTEvzviA" style="width:70px;" alt=""></p>
+           
+            <div class="chat">
+               <div class="chat-body">
+                  <div class="chat-msgs">
+                     <%if @chat.count != 0%>
+                     <% @chat.each do |chat|%>
+                     <p style="padding:5px 5px 0px 5px;margin-bottom:0px;
+                        border-bottom: 2px solid #ddd;background: #f4f4f4;"><span style="font-weight:bold;font-size:12px;    color: #1c8bb3;"><%=chat.name%> </span><span style="font-size:10px;color:gray"><%=get_date_hora(chat.date_time)%></span><br><span style="font-size:12px;"><%=chat.message%></span></p>
+                     <%end%>
+                     <%end%>
+                  </div>
+                  <br>
+               </div>
+               <div class="chat-form" style="padding:20px;">
+                  <%= form_tag cardinalchat_path, method: :post, remote:true do %>
+                  <%= hidden_field_tag :id , @event.id%>
+                  <%= hidden_field_tag :name , "#{current_user.names } - Admin" %>
+                  <div class="row">
+                     <div class="col-md-8" style="padding-left: 0px !important;padding-right: 0px !important">
+                        <%= text_area_tag :msg , nil, class:"form form-control msg-box" , style: "border: 1px solid #e6e6e6 !important;border-radius: 2px !important;margin-bottom:5px;" %>
+                     </div>
+                     <div class="col-md-4">
+                        <%= submit_tag "Enviar" , class: "btn btn-primary send-chat" do %>
+                        <%end%>
+                     </div>
+                  </div>
+                  <%end%>
+               </div>
+            </div>
+           
+         </div>
+      </div>
+       <%else%>
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="mensaje_acceso"> SIN <br>CHAT</h2>
+                </div>
+            </div>
+            <%end%>
+   </div>
+</div>
+
+<div class="row" style="background:white">
+<hr>
+      <div class="col-md-6 chart" style="height:300px;">
+               
+
+               <%= render "stats_chart"%>
+        </div>
+  
+</div>
+<style>
+   body
+   {
+   background: #484848;
+   }
+   .active
+   {border: 7px solid #d85252;
+   }
+   .inactive
+   {border:none;
+   } 
+   .num
+   {
+   position: absolute;
+   /* top: 30px; */
+   z-index: 1;
+   font-size: 20px;
+   margin-left: 7px;
+   color: #868080;
+   width: 26px;
+   background: #e2e2e6;
+   }
+    .mensaje_acceso
+   {
+    background: #e0e0e0;
+    padding: 40px;
+    color: gray;
+    border-radius: 7px;
+    text-align: center
+   }
+</style>
+<style>
+   .col-md-1
+   {
+   margin-right:10px;
+   }
+   .col-md-1 img
+   {
+   width:110px;
+   }
+</style>
+<script >
+   $(document).on('turbolinks:load',function() {
+    
+           $('.img1').addClass("activeon")
+          $('.pad').click(function(){
+             $('.pad').children('img').removeClass("activeon");
+             
+             $(this).children('img').addClass("activeon");
+            
+             $('#ppts img').attr('src', $(this).children('img').attr("src"));
+   
+           
+                   $('.cont').text($(this).children('div').text());
+           }); 
+   
+   
+               
+   });
+</script>
+<style>
+   .overview .pad {
+   position: relative;
+   margin-bottom: 1px;
+   display: inline-block;
+   width: 48%;
+   }
+   #scrollbar1 img {
+   width: 100%;
+   background: #fff;
+   border: none;
+   opacity: 0.3;
+   }
+   #scrollbar1 .viewport {
+   width: calc(100% - 15px);
+   height: 600px;
+   overflow: auto;
+   position: relative;
+   }
+   #scrollbar1 {
+   width: 100%;
+   margin: 20px 0 10px;
+   }
+   #scrollbar1 .scrollbar {
+   background: #e9e9e9 url(/../../images/bg-scrollbar-track-y.png) no-repeat 0 0;
+   }
+   .row {
+   margin-left:0px !important; 
+   margin-right:0px !important;
+   }
+   .activeoff
+   {
+   border: none !important;
+   opacity: 0.3 !important;
+   }
+   .activeon
+   {
+   border:2px solid red !important;
+   opacity: 1 !important;
+   }
+   .numeral {
+   font-size: 13px;
+   font-family: Arial;
+   padding: 30% 3px;
+   position: absolute;
+   top: 0px;
+   right: -1px;
+   background: rgba(0,0,0,1);
+   line-height: 4px;
+   color: #ddd;
+   text-align: center;
+   width: 24px;
+   }
+   .cuadro
+   {
+   background: white;
+   border: 1px solid #83d0f6;
+   padding: 5px 10px;
+   border: 2px solid #1c8bb3;
+   }
+   .cuadro1
+   {
+   background: white;
+   padding: 5px 0px;
+   }
+   .chat-body
+   {
+   padding: 10px 0px 0px 10px;
+   height: 300px;
+   border-top: 1px solid #d7d7d7;
+   background: white;
+   }
+   .chat-msgs
+   {
+   height: 100%;
+   max-height: 100%;
+   overflow-y: auto;
+   }
+   .max-height
+   {
+   }
+   .btn-block
+   {
+   border-radius: 0px !important;
+   padding: 5px 0px;
+   border-bottom: 2px solid #18678d;
+   margin-bottom: 8px;
+   font-size: 15px;
+   }
+   .well {
+   margin-bottom: 0px !important;
+   padding: 0px !important;
+   }
+   .btn-white
+   {
+   background: #ffffff !important;
+   color: #939393 !important;
+   }
+   .btn-white span
+   {
+   color: gray !important;
+   }
+   .btn
+   {
+   font-size: 12px;
+   }
+   #collapseExample2 form
+   {
+   padding: 15px !important;
+   }
+   .live
+   {
+   padding: 10px;
+   background: #21a04f;
+   color: white;
+   margin-left: 16px;
+   border-radius: 6px;
+   }
+   .nolive
+   {
+   padding: 10px;
+   background: #2c6587;
+   color: white;
+   margin-left: 16px;
+   border-radius: 6px;
+   }
+   .count
+   {
+    background: white;
+    color: #1c8bb3;
+    padding: 4px 8px;
+    border-radius: 15px;
+   }
+   .btn-block {
+    border-radius: 0px !important;
+    padding: 5px 0px;
+    border-bottom: 3px solid #4696bc;
+    margin-bottom: 8px;
+    font-size: 15px;
+}
+.btn-primary {
+    background: #373737 !important;
+    color: white !important;
+}
+</style>
+<script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+<script>
+   // Enable pusher logging - don't include this in production
+   
+   
+   if ("<%=@event.state%>" == 4)
+   {    
+     $('.estado').html("CAMPAÑA DE ESPECTATIVA"); 
+     $('.estado').addClass("nolive");
+     $('.estado').removeClass("live");
+   }
+   else
+   {
+     $('.estado').html("EN VIVO"); 
+     $('.estado').removeClass("nolive");
+     $('.estado').addClass("live");
+   }
+   
+   
+   var pusher = new Pusher('194f0bfe827f047fcf64', {
+     cluster: 'us2',
+     encrypted: true
+   });
+   
+   
+   
+   
+   var channel = pusher.subscribe('chat');
+   channel.bind('msg', function(data) {
+    a = data.message;
+       if (a[2] == <%=@event.id%>){
+        $('.chat-msgs').append("<p style='background: #f4f4f4;padding:5px;margin:0px;border-bottom: 2px solid #ddd;'><span style='font-weight:bold;font-size:12px;    color: #1c8bb3;''>" + a[3] + "</span> <span style='font-size:10px;color:gray'>" + a[1] + "</span><br><span style='font-size:12px;'>"+ a[0] + "</span></p>");
+         $('.chat-msgs').scrollTop($('.chat-msgs').prop("scrollHeight"));
+       }
+   
+     });
+   
+   
+   
+   var channel = pusher.subscribe('view');
+   channel.bind('msg', function(data) {
+    a = data.message;
+   
+          console.log(a);
+   
+     });
+   
+   
+   $(document).on('turbolinks:load',function() {
+   $('.chat-msgs').scrollTop($('.chat-msgs').prop("scrollHeight"));
+   
+   
+     $('.msg-box').keypress(function (e) {
+      console.log("asdasfdas")
+   if (e.which == 13) {
+    $('.send-chat').click();
+    return false;
+   
+   }
+   });
+   
+       
+     });
+   
+   
+   
+   a = $('body').height() -40;
+   console.log(a )
+   $('.col-completa').css('height',  "600px");
+   
+</script>
+<script>
+   $('#record').click(function() {
+   
+           
+             var choice = confirm("¿Esta seguro de iniciar grabacion");
+   
+       if (choice) {
+           $.get("record_live/" + <%=@event.id%>, function(data) {
+               $('.record_flag').html("Has iniciado la grabacion del Evento");
+               $('.alert_record').show();
+           })
+   
+       }
+   
+   
+   
+   
+   
+   
+         });
+   
+   $('#publicar').click(function() {
+   
+      var choice = confirm("¿Esta seguro de publicar el evento?");
+   
+       if (choice) {
+           $.get("public_live/" + <%=@event.id%>, function(data) {
+                 window.location.href = "/portal_show/<%=@event.id%>";
+   
+           })
+         }
+         });
+   
+   
+   $('#stop_record').click(function() {
+   
+   
+    var choice = confirm("¿Esta seguro de detenet la grabacion");
+   
+       if (choice) {
+                 $.get("stop_record_live/" + <%=@event.id%>, function(data) {
+                   console.log(data)
+                   $('.record_flag').html("Has terminado la grabacion del Evento ");
+               $('.alert_record').show();
+   
+                 })
+                 }
+               });
+   
+   $('#camp').click(function() {
+   
+                 $.get("cardinal_state/camp/" + <%=@event.id%>, function(data) {
+                       $('.estado').html("CAMPAÑA DE ESPECTATIVA");
+                       $('.estado').addClass("nolive");
+                       $('.estado').removeClass("live");
+                 })
+               });
+   $('#prox').click(function() {
+   
+                       $.get("cardinal_state/prox/" + <%=@event.id%>, function(data) {
+                               $('.estado').html("PROXIMO A INICIAR");
+                               $('.estado').addClass("nolive");
+                               $('.estado').removeClass("live");
+                       })
+                     });
+   $('#live').click(function() {
+   
+                             $.get("cardinal_state/live/" + <%=@event.id%>,   function(data) {
+                                       $('.estado').html("LIVE");
+                                       $('.estado').removeClass("nolive");
+                                       $('.estado').addClass("live");
+                             })
+                           });
+   
+</script>
+<script>
+   var localstream;
+    var canvas   = document.getElementById("canvas");
+    var context  = canvas.getContext("2d");
+    var video    = document.getElementById("video");
+    var videoObj = { "video": true };
+   
+    // for checking of camera and getting the stream.
+    var loadChecking = function(){
+      console.log("Video capture: ");
+      if(navigator.getUserMedia) {
+        navigator.getUserMedia(videoObj, function(stream) {
+          stream.getTracks()[0].stop();
+          console.log("Video capture1: ");
+        }, errBack);
+      } else if(navigator.webkitGetUserMedia) {
+        navigator.webkitGetUserMedia(videoObj, function(stream){
+          stream.getTracks()[0].stop();
+          console.log("Video capture2: ");
+        }, errBack);
+      }
+      else if(navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia(videoObj, function(stream){
+          stream.getTracks()[0].stop();
+          console.log("Video capture3: ");
+        }, errBack);
+      }
+    };
+   
+    // error handling.
+    var errBack  = function(error) {
+      $('.camBtn').hide(); // in case camera does not exists. hide the button.
+      console.log("Video capture error: ", error.code);
+    };
+   
+    // initiate function to detect.
+    loadChecking();
+   
+   // Load streaming once the modal opens.
+   $(document).ready( function (e) {
+          console.log("Video capture8: ");
+    var button = $(e.relatedTarget);
+    $("#snap").data('type', button.data('type'));
+    // Put video listeners into place
+   if(navigator.webkitGetUserMedia) { // WebKit-prefixed
+      navigator.webkitGetUserMedia(videoObj, function(stream){
+        console.log("Video capture5: ");
+        video.src   = window.URL.createObjectURL(stream);
+        localstream = stream;
+        video.play();
+        console.log("aquiiiiiiii")
+      }, errBack);
+    }
+    else if(navigator.mediaDevices.getUserMedia) { // Firefox-prefixed
+      navigator.mediaDevices.getUserMedia(videoObj, function(stream){
+        console.log("Video capture6: ");
+        video.src   = window.URL.createObjectURL(stream);
+        localstream = stream;
+        video.play();
+        console.log("aquiiiiiiii")
+      }, errBack);
+    }
+    console.log("camera on");
+   }).on('hide.bs.modal', function(e){
+    video.pause();
+    video.src = '';
+    if(localstream)
+      localstream.getTracks()[0].stop();
+    console.log('camera off');
+   });
+</script>
+
+
+<script>
+  
+     function get_stats(){
+
+
+   
+    $.get("get_event_statics/" + <%=@event.id%> , function(e){
+
+        console.log("hola");
+        $('.stats').html(e)
+    })
+
+     $.get("get_users_conenected/" + <%=@event.id%> , function(data){
+        
+        $('.chart').html(data)
+        console.log(data);
+        
+    })
+ 
+
+
+}
+
+    
+
+
+
+
+
+    setInterval(get_stats, 15000);
+</script>
+
+
+
