@@ -365,7 +365,7 @@
    // Enable pusher logging - don't include this in production
    
    
-   if ("<%=@event.state%>" == 4)
+   if ("<%=@event.state%>" == 0)
    {    
      $('.estado').html("CAMPAÑA DE ESPECTATIVA"); 
      $('.estado').addClass("nolive");
@@ -594,7 +594,7 @@
      $.get("get_users_conenected/" + <%=@event.id%> , function(data){
         
         $('.chart').html(data)
-        console.log(data);
+      
         
     })
  

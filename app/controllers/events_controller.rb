@@ -462,8 +462,9 @@ end
     date = DateTime.now
     date1 = date.year.to_s + "-" + date.month.to_s + "-" + date.day.to_s
     time1 = date.hour.to_s + ":" + date.minute.to_s + ":" + date.second.to_s
-    LiveStat.create(event_id: @event.id,event_name: @event.name, time_stat: date, type_stat: @usuarios_conectados, day: date.day, month: date.month, year: date.year, hour: date.hour, state_date: date1, state_time: time1)
-    
+    if @event.state == 1
+      LiveStat.create(event_id: @event.id,event_name: @event.name, time_stat: date, type_stat: @usuarios_conectados, day: date.day, month: date.month, year: date.year, hour: date.hour, state_date: date1, state_time: time1)
+    end
     render partial: "stats_chart" , params: @event , status:200
 
 
