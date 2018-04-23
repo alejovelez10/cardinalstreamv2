@@ -109,7 +109,7 @@
          <%if event.has_files%>
          <div style="margin-top:5px">
 
-            <div class="alert alert-info alert1 alert-info1" role="alert" style="margin-top:5px;    padding: 20px 20px;">
+            <div class="alert alert-info alert1 alert-info1 doc" role="alert" style="margin-top:5px;    padding: 20px 20px;">
               <% @event.event_files.each do |event|%>
               <%= link_to  event.attachment_url, class: "document" , target: "_blank" do%>
                <i class="fa fa-download" style="color:white"></i>
@@ -681,14 +681,18 @@ player.src({
 
 
 
-
-
-
-
-
    });
 
 
+
+ var channel = pusher.subscribe('file');
+   channel.bind('file_msg', function(data) {
+    a = data.message;
+    console.log("hola");
+    if (data.message.event_id == <%=event.id%>){
+             $('.doc').prepend('<a class="document" target="_blank" href="'+ data.message.attachment.url + '"><i class="fa fa-download" style="color:white"></i> '+ data.message.name +'</a>')
+          }
+       });
 
 
   var channel = pusher.subscribe('chat');

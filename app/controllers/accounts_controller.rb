@@ -148,6 +148,7 @@ class AccountsController < ApplicationController
       render 'iframe' , layout: 'iframe'
       else
         @event = Event.where(link: params[:name]).first
+        @chat = @event.chats.order(created_at: :asc)
         @account = Account.find(@event.account_id)
         if @event.has_ppts && @event.slides != nil
         @array = @event.slides.split(/,/)

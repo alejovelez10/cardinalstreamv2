@@ -117,7 +117,7 @@ class EventsController < ApplicationController
           if @event.state == 4
           redirect_to events_ondemand_path, notice: 'El Evento se creo correctamente'
              else
-          redirect_to events_live_path, notice: 'El Evento se creo correctamente'
+          redirect_to events_path, notice: 'El Evento se creo correctamente'
 
              end
            }
@@ -188,7 +188,7 @@ class EventsController < ApplicationController
         format.html {   if @event.state == 4
           redirect_to events_ondemand_path, notice: 'El Evento se edito correctamente'
              else
-          redirect_to events_live_path, notice: 'El Evento se edito correctamente'
+          redirect_to events_path, notice: 'El Evento se edito correctamente'
 
              end
            }
