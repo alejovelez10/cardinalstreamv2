@@ -30,7 +30,7 @@ protected
 
       'portal'
 
-    elsif (action_name == "iframe" || controller_name = "calculator")
+    elsif (action_name == "iframe" )
     'iframe'
 
      elsif (action_name == "real_time_stats")

@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
 
 
+  get 'calculator/index'
+
   resources :rols
   resources :stats, :only => [:index,:create] do
   collection { post :import }
