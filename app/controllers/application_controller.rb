@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 layout :layout_for_selection
 protected
   def layout_for_selection
-    if controller_name == 'sessions'  || controller_name == 'passwords'
+    if controller_name == 'sessions'  || controller_name == 'passwords' 
       'application'
     elsif controller_name == 'registrations'
 
@@ -30,7 +30,7 @@ protected
 
       'portal'
 
-    elsif (action_name == "iframe")
+    elsif (action_name == "iframe" || controller_name = "calculator")
     'iframe'
 
      elsif (action_name == "real_time_stats")
