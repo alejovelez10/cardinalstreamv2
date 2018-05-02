@@ -63,11 +63,11 @@
         $('.stats').html(e)
     })
 
-    $.get("get_users_conenected/" + <%=@event.id%> , function(data){
+  /*  $.get("get_users_conenected/" + <%=@event.id%> , function(data){
 
         console.log(data);
         
-    })
+    })*/
 
 
 }
@@ -92,7 +92,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.js" type="text/javascript" charset="utf-8"></script>
 <script>
-var ctx = document.getElementById("myChart").getContext('2d');
+/*var ctx = document.getElementById("myChart").getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'line',
     data: {
@@ -138,5 +138,5 @@ var myChart = new Chart(ctx, {
 
         }
     }
-});
+});*/
 </script>

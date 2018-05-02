@@ -182,7 +182,7 @@ class AccountsController < ApplicationController
   def real_time_stats
     @event = Event.find(params[:id])
     @a =  `curl -X GET --header 'Accept:application/json; charset=utf-8' --header 'Content-Type:application/json; charset=utf-8' http://cardinalstream.com:8087/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/live/instances/_definst_/incomingstreams/#{@event.name_stream}/monitoring/current`
-    puts @a
+    #puts @a
     @response =  JSON.parse(@a)
     @usuarios_conectados = @response["totalConnections"]
   end
