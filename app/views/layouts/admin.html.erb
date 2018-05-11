@@ -81,7 +81,12 @@
                      </ul>
                      </li>-->
                   <li style = "height: 51px;margin-left: 20px;margin-right: 15px;    margin-top: 10px;" ></li>
-                  <li><%=image_tag get_accountc.logo_url, style:"width:160px;height:70px;"  if get_accountc.logo  %></li>
+                     <%if get_accountc.logo_url%>
+                  <li><%=image_tag get_accountc.logo_url, style:"width:160px;height:70px;" %></li>
+                      <%else%>
+                  <li></li>
+
+                      <%end%>  
                   <li class="dropdown" style= "margin-top: 10px;">
                      <a href="#" class="dropdown-toggle user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%=current_user.email  %> <span style = "color:white" class="caret"></span></a>
                      <ul class="dropdown-menu">
