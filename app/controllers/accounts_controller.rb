@@ -63,7 +63,7 @@ class AccountsController < ApplicationController
 
     @account = Account.where(domain: request.subdomain).first
     @event = Event.where(account_id: @account.id).where(root_event: true).last
-    @chat = @event.chats.order(created_at: :asc)
+    @chat = @event.chats.order(created_at: :asc) if @event
     puts @event
     puts Event.where(account_id: @account.id).where.not(state: 4).first
     puts "eventtttttttttttt"

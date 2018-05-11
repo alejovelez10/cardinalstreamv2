@@ -4,7 +4,8 @@
             <p style="font-size:32px;color:#187191">Eventos</p>
          </div>
          <div class = "col-md-6 text-right">
-           <%if current_user.rol.create_event && current_user.rol.admin_live %>
+          
+           <%if current_user.rol.create_event && current_user.rol.admin_live  %>
             <%= link_to new_event_path(0),class: "btn btn-primary" do %>
             <i class="fa fa-video-camera" style = "font-size:30px;" aria-hidden="true"></i>
             Live
