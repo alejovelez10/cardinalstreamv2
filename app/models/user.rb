@@ -44,9 +44,18 @@ class User < ApplicationRecord
               self.admin_user = self.id
               self.count = 1
               Account.create(domain: self.account_domain, admin_user: self.id, user_id: self.id)
-              
-                
+              Rol.create(admin_user: self.id, user_id: self.id, name: "Administrador", create_event:true,edit_event:true,delete_event:true,admin_event:true, admin_stats:true,admin_config:true,admin_users:true, default:true , rol:true,admin_ondemand:true,admin_live:true)
+              self.rol_id =  Rol.where(admin_user: self.id).where(name: "Administrador").last.id
+              save  
             end  
               
-        end       
+        end   
+
+
+
+
+
 end
+
+
+

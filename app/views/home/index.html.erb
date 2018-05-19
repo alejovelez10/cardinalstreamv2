@@ -1,47 +1,138 @@
-<div class="container">
-   <div class="row">
-      <div class="col-md-4 col-md-offset-2 login1" style="margin-top:100px;padding-top: 20px;">
-         <p class = "logop text-center" style = "color:#187191;   font-size: 25px;font-weight: bold"><img style= "width:40px;position: relative;
-            top: -3px;left: -5px;" id="slack" src="/../../images/cardinal_solo.png"></p>
-         <h4>!Bienvenido a CardinalStream!</h4>
-         <h5>Para iniciar ingresa el subdominio</h5>
-         <%= "<h3>¡ Lo sentimos #{@domain} no esta disponible ! </h3> ".html_safe if @error%>
-         <br>
-         <p style="margin:0px"> Quedara asi (subdominio.cardinalstream.com)</p>
-         <%= form_tag redir_path, method: :get do %>
-         <%= text_field_tag "domain", nil,class: "form form-control domain" %>
-         <br>
-         <%= submit_tag "Crear" , class: "btn btn-primary btn-block"%>
-         <br>
-         <% end %>
-      </div>
-      <div class="col-md-6 hidden-xs hidden-sm" >
-         <img style = "margin-top: 25%;" src="/../../images/info_admin.png" alt="">
-      </div>
+<div class="container content">
+   <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+      <!-- Indicators --> 
+      <ol class="carousel-indicators">
+         <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+         <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+         <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+      </ol>
+      <!-- Wrapper for slides --> 
+      <div class="carousel-inner">
+         <div class="item active">
+            <div class="row">
+               <div class="col-xs-12">
+                  <div class="thumbnail adjust1">
+               
+                     <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="caption">
+                           <p class="text-info lead adjust2" style="color:white">TE ESTAS PERDIENDO</p>
+                           <p style="color:#28b6ff"> <i class="fa fa-video-camera" style = "font-size:30px;margin-right:  10px;" aria-hidden="true"></i> EN VIVO</p>
+                           <blockquote class="adjust2">
+                              <p style="color:white;font-size:25px">PRESENTACION DE RESULTADOS DE FABRICATO DEL TERCER TRIMESTRE 2018</p>
+                              <small><cite title="Source Title" style="font-size: 20px;"></i>Fabricato</cite></small> 
+                              <br>
+                              <button type="" class="btn btn-primary">IR AL EVENTO</button>
+                           </blockquote>
+
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+             <div class="item">
+            <div class="row">
+               <div class="col-xs-12">
+                  <div class="thumbnail adjust1">
+               
+                     <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="caption">
+                           <p class="text-info lead adjust2" style="color:white">TE ESTAS PERDIENDO</p>
+                           <p style="color:#28b6ff"> <i class="fa fa-video-camera" style = "font-size:30px;margin-right:  10px;" aria-hidden="true"></i> EN VIVO</p>
+                           <blockquote class="adjust2">
+                              <p style="color:white;font-size:25px">CLASE DE MATEMATICAS 2018</p>
+                              <small><cite title="Source Title" style="font-size: 20px;"></i>Fabricato</cite></small> 
+                              <br>
+                              <button type="" class="btn btn-primary">IR AL EVENTO</button>
+                           </blockquote>
+
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!--<div class="item">
+            <div class="row">
+               <div class="col-xs-12">
+                  <div class="thumbnail adjust1">
+                     <div class="col-md-12 col-sm-12 col-xs-12">    
+                        <div class="caption">
+                           <p class="text-info lead adjust2">I can't wait to test this out.</p>
+                           <p><span class="glyphicon glyphicon-thumbs-up"></span> This is a testimonial window. Feedback of user can be displayed here.</p>
+                           <blockquote class="adjust2">
+                              <p>Abhijit Goswami</p>
+                              <small><cite title="Source Title"><i class="glyphicon glyphicon-globe"></i> www.example2.com</cite></small> 
+                           </blockquote>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="item">
+            <div class="row">
+               <div class="col-xs-12">
+                  <div class="thumbnail adjust1">
+                      <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="caption">
+                           <p class="text-info lead adjust2">I can't wait to test this out.</p>
+                           <p><span class="glyphicon glyphicon-thumbs-up"></span> This is a testimonial window. Feedback of user can be displayed here.</p>
+                           <blockquote class="adjust2">
+                              <p>Abhijit Goswami</p>
+                              <small><cite title="Source Title"><i class="glyphicon glyphicon-globe"></i> www.example3.com</cite></small> 
+                           </blockquote>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>-->
+      <!-- Controls --> <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left"></span> </a> <a class="right carousel-control" href="#carousel-example-generic" data-slide="next"> <span class="glyphicon glyphicon-chevron-right"></span> </a> 
    </div>
 </div>
+</div>
+
+
+
+
+
+
 <style>
-   .login1 h4
-   {       text-align: center;color:#187191;
-   font-weight: bold;
+  .carousel-indicators .active{ background: #31708f; } .content{ margin-top:20px; } 
+  .adjust1{
+   float:left; width:100%; margin-bottom:0;height: 350px;
    }
-   .login1 h5
-   {
-   text-align: center;color:gray
-   }
-   .login1 h3
-   {
-   text-align: center;
-   color:red;
-   }
+  .adjust2{ margin:0; } .carousel-indicators li{ border :1px solid #ccc; } .carousel-control{ color:#31708f; width:5%; } .carousel-control:hover, .carousel-control:focus{ color:#31708f; } .carousel-control.left, .carousel-control.right { background-image: none; } .media-object{ margin:auto; margin-top:15%; } @media screen and (max-width: 768px) { .media-object{ margin-top:0; } }
+
+  .active
+  {
+    background: none !important;
+  }
+  
+  .thumbnail .caption {
+    padding: 50px;
+    
+}
+  .thumbnail {
+     
+     border: none;
+     background-color: rgba(26, 26, 26, 0);
+    
+}
+.thumbnail:hover {
+
+     background-color: rgba(26, 26, 26, 1);
+    
+}
+.adjust1:hover{
+
+   background-color: rgba(26, 26, 26, 1);
+ }
+
+ .hoever {
+{ 
+   background-color: blue !important;
+}
 </style>
-<script>
-   $(document).on('turbolinks:load',function() {
-   $( ".domain" ).keyup(function() {
-         a = $(this).val().toLowerCase() 
-         $(this).val(a)
-   });
-   
-   });
-   
-</script>

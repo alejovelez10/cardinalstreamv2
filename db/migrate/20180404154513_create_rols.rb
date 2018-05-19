@@ -17,3 +17,5 @@ class CreateRols < ActiveRecord::Migration[5.1]
     end
   end
 end
+
+Rol.create(admin_user:0 , name: "Administrador", create_event:true, edit_event:true, delete_event:true, admin_event:true,admin_stats:true,admin_config:true, admin_user:true, admin_ondemand: true, admin_live:true)

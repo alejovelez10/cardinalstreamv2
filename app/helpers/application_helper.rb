@@ -26,7 +26,13 @@ end
 
 def portal_background
 
-    return Account.where(domain: request.subdomain).first.background_stream_url
+    return Account.where(domain: request.subdomain).first.background_portal_url
+    
+end
+
+def portal_logo
+
+    return Account.where(domain: request.subdomain).first.logo_url
     
 end
 

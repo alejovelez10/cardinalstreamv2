@@ -10,14 +10,17 @@
       </div>
      
          <div class="col-md-6 name">
-          <p style="font-size: 20px;">EVENTOS ONDEMAND</p>
-
-         </div>
+           
+           <%= link_to "INICIO", home_path, data: { turbolinks: false } %>
+            <%= link_to "TRANSMISIONES EN VIVO", home_path %>
+            <%= link_to "GALERIA DE VIDEOS", home_path, class: "btn btn-primary" %>
+            
+        </div>
           <div class="col-md-4 social hidden-sm hidden-xs">
            <%= form_tag portal_path, :method => 'get'  do %>
               <%= text_field_tag :search, params[:search], style: "height: 33px;
     border-radius: 5px;color:gray"%>
-          <%= submit_tag "Buscar", class: "btn btn-primary",:name => nil  %>
+          <%= submit_tag "Buscar", class: "btn btn-primary",:name => nil   %>
         <% end %>
          </div>
       </div>
@@ -145,7 +148,14 @@ font-size: 14px;
     height: 50px;
     overflow: hidden;
   }
-    
+  
+  a
+   {
+    color: #8b8b8b;
+    text-decoration: none;
+    padding: 20px;
+    font-weight: bold;
+}
 </style>
 
 

@@ -64,6 +64,8 @@ end
 
   get 'new/:state' , to: "events#new" , as: "new_event"
   get 'home', to: 'home#index', as: "home"
+  get 'cuenta', to: 'home#cuenta', as: "cuenta"
+
   resources :accounts
   devise_for :users, controllers: { registrations: "registrations" }
   
@@ -84,6 +86,9 @@ end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   get 'portal', to:"accounts#portal", as: "portal"
+
+
+
   get 'real_time_stats/:id', to:"accounts#real_time_stats", as: "real_time_stats"
   get 'portal_show/:id', to:"accounts#portal_show", as: "portal_show"
   get 'show_video/:id', to:"accounts#portal_show_video", as: "portal_show_video"

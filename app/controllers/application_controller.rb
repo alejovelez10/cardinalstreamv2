@@ -14,11 +14,14 @@ class ApplicationController < ActionController::Base
 layout :layout_for_selection
 protected
   def layout_for_selection
+
     if controller_name == 'sessions'  || controller_name == 'passwords' 
+  
       'application'
     elsif controller_name == 'registrations'
 
         if action_name == "new" || action_name == "create"
+         
             'application'
             else
             	'admin'
@@ -26,15 +29,21 @@ protected
     elsif (controller_name == 'accounts' and (action_name == "portal_show_video" || action_name == "portal_show_name" ||  action_name == "portal_show" || action_name == "live"))
 
       'streaming'
+      
       elsif (controller_name == 'accounts' and ( action_name == "portal")) || (controller_name == "events" && (action_name == "show" || action_name == "show_admin"))
 
       'portal'
-
-    elsif (action_name == "iframe" )
+      
+     elsif (action_name == "iframe" )
     'iframe'
-
+    
      elsif (action_name == "real_time_stats")
     'stats'
+    
+     elsif (controller_name == "home" && action_name == "index")
+        
+ 
+        'home'
 
     else
       'admin'
@@ -52,7 +61,7 @@ protected
       @account1 = account.first
 
     elsif request.subdomain != 'www'
-      redirect_to home_url(subdomain: '')
+      redirect_to cuenta_url(subdomain: '')
 
     end
   end

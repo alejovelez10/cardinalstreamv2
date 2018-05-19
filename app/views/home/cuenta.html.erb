@@ -1,0 +1,47 @@
+<div class="container">
+   <div class="row">
+      <div class="col-md-4 col-md-offset-2 login1" style="margin-top:100px;padding-top: 20px;">
+         <p class = "logop text-center" style = "color:#187191;   font-size: 25px;font-weight: bold"><img style= "width:40px;position: relative;
+            top: -3px;left: -5px;" id="slack" src="/../../images/cardinal_solo.png"></p>
+         <h4>!Bienvenido a CardinalStream!</h4>
+         <h5>Para iniciar ingresa el subdominio</h5>
+         <%= "<h3>¡ Lo sentimos #{@domain} no esta disponible ! </h3> ".html_safe if @error%>
+         <br>
+         <p style="margin:0px"> Quedara asi (subdominio.cardinalstream.com)</p>
+         <%= form_tag redir_path, method: :get do %>
+         <%= text_field_tag "domain", nil,class: "form form-control domain" %>
+         <br>
+         <%= submit_tag "Crear" , class: "btn btn-primary btn-block"%>
+         <br>
+         <% end %>
+      </div>
+      <div class="col-md-6 hidden-xs hidden-sm" >
+         <img style = "margin-top: 25%;" src="/../../images/info_admin.png" alt="">
+      </div>
+   </div>
+</div>
+<style>
+   .login1 h4
+   {       text-align: center;color:#187191;
+   font-weight: bold;
+   }
+   .login1 h5
+   {
+   text-align: center;color:gray
+   }
+   .login1 h3
+   {
+   text-align: center;
+   color:red;
+   }
+</style>
+<script>
+   $(document).on('turbolinks:load',function() {
+   $( ".domain" ).keyup(function() {
+         a = $(this).val().toLowerCase() 
+         $(this).val(a)
+   });
+   
+   });
+   
+</script>
