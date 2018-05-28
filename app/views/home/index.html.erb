@@ -1,4 +1,10 @@
+
 <div class="container content">
+
+
+
+
+<%if @events_plc != 0 %>
    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
       <!-- Indicators --> 
       <ol class="carousel-indicators">
@@ -18,10 +24,10 @@
                            <p class="text-info lead adjust2" style="color:white">TE ESTAS PERDIENDO</p>
                            <p style="color:#28b6ff"> <i class="fa fa-video-camera" style = "font-size:30px;margin-right:  10px;" aria-hidden="true"></i> EN VIVO</p>
                            <blockquote class="adjust2">
-                              <p style="color:white;font-size:25px">PRESENTACION DE RESULTADOS DE FABRICATO DEL TERCER TRIMESTRE 2018</p>
-                              <small><cite title="Source Title" style="font-size: 20px;"></i>Fabricato</cite></small> 
+                              <p style="color:white;font-size:25px"><%=@events_first.name.upcase%></p>
+                              <small><cite title="Source Title" style="font-size: 20px;"></i><%=@account1.name%></cite></small> 
                               <br>
-                              <button type="" class="btn btn-primary">IR AL EVENTO</button>
+                              <a href="/<%=@events_first.link%>" target="_blank" class="btn btn-primary">IR AL EVENTO</a>
                            </blockquote>
 
                         </div>
@@ -30,6 +36,7 @@
                </div>
             </div>
          </div>
+         <%@events_seconds.each do |event| %>
              <div class="item">
             <div class="row">
                <div class="col-xs-12">
@@ -40,10 +47,10 @@
                            <p class="text-info lead adjust2" style="color:white">TE ESTAS PERDIENDO</p>
                            <p style="color:#28b6ff"> <i class="fa fa-video-camera" style = "font-size:30px;margin-right:  10px;" aria-hidden="true"></i> EN VIVO</p>
                            <blockquote class="adjust2">
-                              <p style="color:white;font-size:25px">CLASE DE MATEMATICAS 2018</p>
-                              <small><cite title="Source Title" style="font-size: 20px;"></i>Fabricato</cite></small> 
+                              <p style="color:white;font-size:25px"><%=event.name.upcase%></p>
+                              <small><cite title="Source Title" style="font-size: 20px;"></i><%=@account1.name%></cite></small> 
                               <br>
-                              <button type="" class="btn btn-primary">IR AL EVENTO</button>
+                              <a href="/<%=event.link%>" target="_blank" class="btn btn-primary">IR AL EVENTO</a>
                            </blockquote>
 
                         </div>
@@ -52,6 +59,7 @@
                </div>
             </div>
          </div>
+         <%end%>
          <!--<div class="item">
             <div class="row">
                <div class="col-xs-12">
@@ -91,8 +99,108 @@
       </div>-->
       <!-- Controls --> <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left"></span> </a> <a class="right carousel-control" href="#carousel-example-generic" data-slide="next"> <span class="glyphicon glyphicon-chevron-right"></span> </a> 
    </div>
+   <%else%>
+   <div class="row" style="height: 380px">
+
+      <div class="col-md-12">
+             <h1 style="text-align: center;margin-top: 110px;color: #e8e8e8;">EN EL MOMENTO NO HAY EVENTOS PROGRAMADOS <br> <span style="font-size:20px">PUEDES VER LA GALERIA DE VIDEOS</span><br> <br><a href="/portal" target="_blank" class="btn btn-primary">IR A GALERIA</a></h1>
+
+      </div>
+     
+   </div>
+     
+   <%end%>
 </div>
+
+
+
+   
+ <%if @events_plc != 0 %>
+   
+
+   <div style="width:90%;margin-left: 5%;">
+        
+       
+    <div class="row" style="
+    margin-top: 70px;">
+            <div class="col-md-12 text-center">
+                  <p><span style="padding: 10px;
+                text-align: center;
+                background: #0081ff;
+                color: white;
+                width: 400px;
+                padding: 5px 50px 20px 50px;
+                margin: 0px;">ULTIMOS EVENTOS</span></p>
+            </div>
+     </div>  
+   
+  
+
+  <div class="row" style="border-left: 10px solid #0081ff;
+    border-right: 10px solid #0081ff;">
+   
+       
+     
+      <div class="row" style="background: #f6f6f6;border-left: 10px solid #0081ff;
+    border-right: 10px solid #0081ff;"">
+        
+        
+          
+        
+        <div class="col-md-6" style="padding:20px;">
+            <div class="col-md-3 text-center">
+                <p style="padding:10px; border:2px solid gray;color:#353535;font-weight:bold">TUE <br> Junio 2</p>
+            </div>
+            <div class="col-sm-9">
+              <p><span style="color:#353535;font-weight: bold;font-style: italic">Presentacion de Resultados Fabricato</span> <br> <span style="font-style:none !important">Viernes 13 de junio de 2018</span></p>
+            </div>
+         </div>
+
+        <div class="col-md-6" style="padding:20px;">
+            <div class="col-md-3 text-center">
+                <p style="padding:10px; border:2px solid gray;color:#353535;font-weight:bold">TUE <br> Junio 2</p>
+            </div>
+            <div class="col-sm-9">
+              <p><span style="color:#353535;font-weight: bold;font-style: italic">Presentacion de Resultados Fabricato</span> <br> <span style="font-style:none !important">Viernes 13 de junio de 2018</span></p>
+            </div>
+         </div>
+
+        </div>
+
+        <div class="row" style="background: #f6f6f6;border-left: 10px solid #0081ff;
+    border-right: 10px solid #0081ff;">
+               
+           <div class="col-md-6" style="padding:20px;">
+                <div class="col-md-3 text-center">
+                    <p style="padding:10px; border:2px solid gray;color:#353535;font-weight:bold">TUE <br> Junio 2</p>
+                </div>
+                <div class="col-sm-9">
+                  <p><span style="color:#353535;font-weight: bold;font-style: italic">Presentacion de Resultados Fabricato</span> <br> <span style="font-style:none !important">Viernes 13 de junio de 2018</span></p>
+                </div>
+            </div>
+
+            <div class="col-md-6" style="padding:20px;">
+                <div class="col-md-3 text-center">
+                    <p style="padding:10px; border:2px solid gray;color:#353535;font-weight:bold">TUE <br> Junio 2</p>
+                </div>
+                <div class="col-sm-9">
+                  <p><span style="color:#353535;font-weight: bold;font-style: italic">Presentacion de Resultados Fabricato</span> <br> <span style="font-style:none !important">Viernes 13 de junio de 2018</span></p>
+                </div>
+            </div>
+
+        </div>
+        
+</div>  
+
+<%end%>
+     </div>
+   
+
+
+
+
 </div>
+
 
 
 
@@ -100,6 +208,13 @@
 
 
 <style>
+
+
+.col-md-11, .col-md-1,.col-md-2,.col-md-10 
+{
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+}
   .carousel-indicators .active{ background: #31708f; } .content{ margin-top:20px; } 
   .adjust1{
    float:left; width:100%; margin-bottom:0;height: 350px;

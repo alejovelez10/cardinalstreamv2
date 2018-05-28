@@ -32,5 +32,39 @@
   <body class= "portal" >
 
     <%= yield %>
+
+
+      <footer style="">
+        <div class="row" style="padding: 50px;
+    background: #e6e6e6;
+    position: fixed;
+    width: 100%;
+    bottom: 0px;">
+
+        <div class="col-md-4 text-center">
+            
+            <p style="font-style: italic;font-size:16px;font-weight: bold"> <span style="    padding: 20px;
+    margin-right: 10px;
+    border-radius: 50%;
+    border: 2px solid gray;
+    font-size: 33px;"><%=@events_o.count < 9 ? "0" : ""  %><%=@events_o.count%></span> Transmisiones</p>
+        </div>
+        <div class="col-md-4 text-center">
+               <p style="font-style: italic;font-size:16px;font-weight: bold"> <span style="    padding: 20px;
+    margin-right: 10px;
+    border-radius: 50%;
+    border: 2px solid gray;
+    font-size: 33px;"><%=@events_o.count < 9 ? "0" : ""  %><%=@events_o.count%></span> Conectados</p>
+        </div>
+        <div class="col-md-4 text-center">
+             <p style="font-style: italic;font-size:16px;font-weight: bold"> <span style="    padding: 20px;
+    margin-right: 10px;
+    border-radius: 50%;
+    border: 2px solid gray;
+    font-size: 33px;"><%=@events_o.count < 9 ? "0" : ""  %><%=@events_o.count%></span> Videos</p>
+        </div>  
+    </div>        
+
+      </footer>
   </body>
 </html>

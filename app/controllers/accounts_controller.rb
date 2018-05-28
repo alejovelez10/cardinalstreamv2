@@ -25,6 +25,7 @@ class AccountsController < ApplicationController
 
    def portal
     @account = Account.where(domain: request.subdomain).first
+    @events_o = @account1.events.where(state: 4)
     @events = @account1.events.where(state: 4).order(updated_at: :desc).search(params[:search])
     if cookies.permanent.signed[:portal] == @account.psw
       @psw = true
