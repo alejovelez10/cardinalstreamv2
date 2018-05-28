@@ -21,7 +21,7 @@
                
                      <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="caption">
-                           <p class="text-info lead adjust2" style="color:white">TE ESTAS PERDIENDO</p>
+                           <p class="text-info lead adjust2" style="color:white">TE ESTAS PERDIENDO 1</p>
                            <p style="color:#28b6ff"> <i class="fa fa-video-camera" style = "font-size:30px;margin-right:  10px;" aria-hidden="true"></i> EN VIVO</p>
                            <blockquote class="adjust2">
                               <p style="color:white;font-size:25px"><%=@events_first.name.upcase%></p>
@@ -44,13 +44,13 @@
                
                      <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="caption">
-                           <p class="text-info lead adjust2" style="color:white">TE ESTAS PERDIENDO</p>
+                           <p class="text-info lead adjust2" style="color:white">TE ESTAS PERDIENDO 2</p>
                            <p style="color:#28b6ff"> <i class="fa fa-video-camera" style = "font-size:30px;margin-right:  10px;" aria-hidden="true"></i> EN VIVO</p>
                            <blockquote class="adjust2">
                               <p style="color:white;font-size:25px"><%=event.name.upcase%></p>
                               <small><cite title="Source Title" style="font-size: 20px;"></i><%=@account1.name%></cite></small> 
                               <br>
-                              <a href="/<%=event.link%>" target="_blank" class="btn btn-primary">IR AL EVENTO</a>
+                              <a href="/<%=event.link%>" target="_blank" class="btn btn-primary">IR AL EVENTO <%=event.admin_user%> <%=event.account.name%> <%=event.account.domain%></a>
                            </blockquote>
 
                         </div>
