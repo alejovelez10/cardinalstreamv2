@@ -26,7 +26,7 @@
       </div>
    </div>
 <br><br>
-<div class="row eventos">
+<div class="row eventos" style="<%= 'margin-bottom: 300px' if @events.count < 0%>">
 <%@events.each do |event|%>
   <div class="col-sm-6 col-md-3">
     <div class="thumbnail">
