@@ -8,7 +8,7 @@ class HomeController < ApplicationController
    @events_plc = @account1.events.where(state: 1).or(@account1.events.where(state: 0)).count
    @events_pl = @account1.events.where(state: 1).or(@account1.events.where(state: 0))
    @events_first = @account1.events.where(state: 1).or(@account1.events.where(state: 0)).order(event_date: :asc).order(state: :desc).first
-   @events_seconds = @account1.events.where(state: 1).or(@account1.events.where(state: 0)).where("id != ?", @events_first.id).order(event_date: :asc).order(state: :desc)
+   @events_seconds = @account1.events.where(state: 1).or(@account1.events.where(state: 0)).where("id != ?", @events_first.id).order(event_date: :asc).order(state: :desc) if @events_first != nil
 end
 
   def cuenta
