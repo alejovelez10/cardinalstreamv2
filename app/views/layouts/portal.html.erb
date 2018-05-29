@@ -33,7 +33,7 @@
 
     <%= yield %>
 
-
+<%if action_name != "show" %>
       <footer style="">
         <div class="row" style="padding: 50px;
     background: #e6e6e6;">
@@ -63,5 +63,6 @@
     </div>        
 
       </footer>
+      <%end%>
   </body>
 </html>
