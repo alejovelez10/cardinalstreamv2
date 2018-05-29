@@ -30,6 +30,12 @@ def portal_background
     
 end
 
+def streaming_background
+
+    return Account.where(domain: request.subdomain).first.background_stream_url
+    
+end
+
 def portal_logo
 
     return Account.where(domain: request.subdomain).first.logo_url
