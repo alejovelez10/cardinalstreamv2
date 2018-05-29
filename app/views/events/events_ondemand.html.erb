@@ -5,9 +5,9 @@
          </div>
    <div class = "col-md-6 text-right">
         <%if current_user.rol.create_event && current_user.rol.admin_ondemand%>
-            <%= link_to new_event_path(4), remote: true, class: "btn btn-primary" do %>
-            <i class="fa fa-hdd-o" style = "font-size:30px;" aria-hidden="true"></i>
-            Ondemand
+            <%= link_to new_event_path(1),class: "btn btn-primary" do %>
+            <i class="fa fa-video-camera" style = "font-size:30px;" aria-hidden="true"></i>
+            On Demand
             <%end%>
             <%end%>
          </div>

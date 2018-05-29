@@ -94,7 +94,7 @@
          <hr>
         <br>
         
-         <div class="col-md-3" style = "position: relative;top: 23px;">
+         <div class="col-md-3" style = "position: relative;top: 23px;display:none">
             <label class="radio-inline">
             <%= form.check_box :root_event, id:"toggle-root"%><span style = "margin-left:10px">¿Evento Principal?</span>
             </label>
@@ -110,13 +110,13 @@
          <div class="col-md-3" style="">
             <div class="form-group" >
                <%= form.label "Color del Streaming" %>
-               <%= form.color_field :color, id: :color, class: "form form-control" %>
+               <%= form.color_field :color, :value => "#187191", id: :color, class: "form form-control" %>
             </div>
          </div>
          <div class="col-md-3" style="">
             <div class="form-group" >
                <%= form.label "Color Font" %>
-               <%= form.color_field :backgroud_font, id: :backgroud_font, class: "form form-control" %>
+               <%= form.color_field :backgroud_font, :value => "#ffffff",  id: :backgroud_font, class: "form form-control" %>
             </div>
          </div>
         </div>
