@@ -43,7 +43,7 @@ class EventsController < ApplicationController
       @count = @array.count
   end
 
-
+render :layout => "admin_event"
 
   end
 
