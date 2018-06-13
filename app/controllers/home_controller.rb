@@ -12,6 +12,8 @@ class HomeController < ApplicationController
 end
 
   def cuenta
+
+    render layout: "application"
       
   end
 
