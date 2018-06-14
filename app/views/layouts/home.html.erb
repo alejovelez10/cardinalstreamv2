@@ -66,10 +66,9 @@
                  <li class="dropdown"  >
                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style=""> TRANSMISIONES EN VIVO <span class="caret"></span></a>
                      <ul class="dropdown-menu">
-                       <li>Transmision 1</li>
-                       <li>Transmision 2</li>
-                       <li>Transmision 3</li>
-                       <li>Transmision 4</li>
+                     <%@events_l.each do |event|%>
+                       <li style="width: 330px;padding: 10px;font-size: 11px;"><%=event.name%></li>
+                      <%end%>
                      </ul>
                   </li>
                    <li><%= link_to "GALERIA DE VIDEOS", portal_path %></li>

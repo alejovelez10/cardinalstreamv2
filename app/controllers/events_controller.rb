@@ -147,16 +147,18 @@ render :layout => "admin_event"
         #Elimina el folder con las ppt para luego volver a crearlos
 
 
-      if event_params["remove_ppts"] == 1
+      if event_params["remove_ppts"] == "1"
        `rm -rf public/uploads/event/ppts/#{@event.id}/ppt`
         @event.remove_ppts!
         @event.save
       end
-
-       if event_params["remove_video"] == 1
+       puts event_params["remove_video"]
+       puts "removeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+       if event_params["remove_video"] == "1"
         `rm public/uploads/event/video/#{@event.id}/screamshot.jpg`
         @event.remove_video!
         @event.save
+        puts "yyyyyyyyyyremoveeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
        end
 
 
