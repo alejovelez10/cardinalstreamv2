@@ -180,6 +180,7 @@ render :layout => "admin_event"
         end
         if hasvideo && !params[:remove_video]
           puts "entreeeeeeeeeeeeeeeeeeeeeeeeee"
+            `rm public/uploads/event/video/#{@event.id}/screamshot.jpg`
             tv = `ffprobe -v error -select_streams v:0 -show_entries stream=duration \ -of default=noprint_wrappers=1:nokey=1 public/uploads/event/video/#{@event.id}/default.mp4`
             tvi = (tv.to_i/2)
             puts tvi
