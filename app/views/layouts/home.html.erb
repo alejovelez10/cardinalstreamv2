@@ -57,8 +57,8 @@
                       <%else%>
                   <li></li>
 
-                      <%end%>  
-                  
+             
+                  <%end%>  
                </ul>
                <ul class="nav navbar-nav navbar-right" style="margin-top: 20px;">
                  <li><%= link_to "HOME", home_path %></li>
@@ -66,8 +66,12 @@
                  <li class="dropdown"  >
                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style=""> TRANSMISIONES EN VIVO <span class="caret"></span></a>
                      <ul class="dropdown-menu">
+                     <% if @events_l.count != 0%>
                      <%@events_l.each do |event|%>
                        <li style="width: 330px;padding: 10px;font-size: 11px;"><%=event.name%></li>
+                      <%end%>
+                      <%else%>
+                      <li style="width: 330px;padding: 10px;font-size: 11px;">NO HAY TRANSMISIONES EN VIVO</li>
                       <%end%>
                      </ul>
                   </li>

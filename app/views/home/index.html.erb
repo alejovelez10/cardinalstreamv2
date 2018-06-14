@@ -22,12 +22,12 @@
                      <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="caption">
                            <p class="text-info lead adjust2" style="color:white"><%=@events_first.state == 1 ? "TE ESTAS PERDIENDO" : "PROXIMAMENTE"%> </p>
-                           <p style="color:#28b6ff"> <i class="fa fa-video-camera" style = "font-size:30px;margin-right:  10px;" aria-hidden="true"></i><%=@events_first.state == 1 ? "EN VIVO" : "EN CAMPAÑA DE ESPECTATIVA"%></p>
+                           <p style="color:<%=@account1.color_one%>"> <i class="fa fa-video-camera" style = "font-size:30px;margin-right:  10px;" aria-hidden="true"></i><%=@events_first.state == 1 ? "EN VIVO" : "EN CAMPAÑA DE ESPECTATIVA"%></p>
                            <blockquote class="adjust2">
                               <p style="color:white;font-size:25px"><%=@events_first.name.upcase%> <br> <%= get_date(@events_first.event_date) if @events_first.state != 1%></p>
                               <small><cite title="Source Title" style="font-size: 20px;"></i><%=@account1.name%></cite></small> 
                               <br>
-                              <a href="/<%=@events_first.link%>" target="_blank" class="btn btn-primary">IR AL EVENTO</a>
+                              <a href="/<%=@events_first.link%>" style = "background:<%=@account1.color_one%> !important;border:1px solid <%=@account1.color_one%>" target="_blank" class="btn btn-primary">IR AL EVENTO</a>
                            </blockquote>
 
                         </div>
@@ -45,12 +45,12 @@
                      <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="caption">
                            <p class="text-info lead adjust2" style="color:white"><%=event.state == 1 ? "TE ESTAS PERDIENDO" : "PROXIMAMENTE"%></p>
-                           <p style="color:#28b6ff"> <i class="fa fa-video-camera" style = "font-size:30px;margin-right:  10px;" aria-hidden="true"></i><%=event.state == 1 ? "EN VIVO" : "EN CAMPAÑA DE ESPECTATIVA"%></p>
+                           <p style="color:<%=@account1.color_one%>"> <i class="fa fa-video-camera" style = "font-size:30px;margin-right:  10px;" aria-hidden="true"></i><%=event.state == 1 ? "EN VIVO" : "EN CAMPAÑA DE ESPECTATIVA"%></p>
                            <blockquote class="adjust2">
                               <p style="color:white;font-size:25px"><%=event.name.upcase%> <br><%= get_date(@events_first.event_date) if event.state != 1%></p>
                               <small><cite title="Source Title" style="font-size: 20px;"></i><%=@account1.name%></cite></small> 
                               <br>
-                              <a href="/<%=event.link%>" target="_blank" class="btn btn-primary">IR AL EVENTO</a>
+                              <a href="/<%=event.link%>" style = "background:<%=@account1.color_one%> !important;border:1px solid <%=@account1.color_one%>" target="_blank" class="btn btn-primary">IR AL EVENTO</a>
                            </blockquote>
 
                         </div>
@@ -126,7 +126,7 @@
             <div class="col-md-12 text-center">
                   <p><span style="padding: 10px;
                 text-align: center;
-                background: #0081ff;
+                background: <%=@account1.color_one%>;
                 color: white;
                 width: 400px;
                 padding: 5px 50px 20px 50px;
@@ -136,13 +136,13 @@
    
   
 
-  <div class="row" style="border-left: 10px solid #0081ff;
-    border-right: 10px solid #0081ff;">
+  <div class="row" style="border-left: 10px solid <%=@account1.color_one%>;
+    border-right: 10px solid <%=@account1.color_one%>;">
    
        
      
-      <div class="row" style="background: #f6f6f6;border-left: 10px solid #0081ff;
-    border-right: 10px solid #0081ff;"">
+      <div class="row" style="background: #f6f6f6;border-left: 10px solid <%=@account1.color_one%>;
+    border-right: 10px solid <%=@account1.color_one%>;"">
         
         
           
@@ -152,7 +152,7 @@
                 <p style="padding:10px; border:2px solid gray;color:#353535;font-weight:bold">MAR <br> Junio 2</p>
             </div>
             <div class="col-sm-9">
-              <p><span style="color:#353535;font-weight: bold;font-style: italic">Capacitacion Tableros</span> <br> <span style="font-style:none !important">Martes 12 de junio de 2018</span></p>
+              <p><span style="color:#353535;font-weight: bold;font-style: italic">Informe de Gestion del Alcalde</span> <br> <span style="font-style:none !important">Martes 12 de junio de 2018</span></p>
             </div>
          </div>
 
@@ -161,21 +161,21 @@
                 <p style="padding:10px; border:2px solid gray;color:#353535;font-weight:bold">MIE <br> Junio 2</p>
             </div>
             <div class="col-sm-9">
-              <p><span style="color:#353535;font-weight: bold;font-style: italic">Capacitacion Cables</span> <br> <span style="font-style:none !important">Miercoles 13 de junio de 2018</span></p>
+              <p><span style="color:#353535;font-weight: bold;font-style: italic">Inaguracion Juegos Departamentales</span> <br> <span style="font-style:none !important">Miercoles 13 de junio de 2018</span></p>
             </div>
          </div>
 
         </div>
 
-        <div class="row" style="background: #f6f6f6;border-left: 10px solid #0081ff;
-    border-right: 10px solid #0081ff;">
+        <div class="row" style="background: #f6f6f6;border-left: 10px solid <%=@account1.color_one%>;
+    border-right: 10px solid <%=@account1.color_one%>;">
                
            <div class="col-md-6" style="padding:20px;">
                 <div class="col-md-3 text-center">
                     <p style="padding:10px; border:2px solid gray;color:#353535;font-weight:bold">JUE <br> Junio 2</p>
                 </div>
                 <div class="col-sm-9">
-                  <p><span style="color:#353535;font-weight: bold;font-style: italic">Capacitacion Energia</span> <br> <span style="font-style:none !important">Jueves 14 de junio de 2018</span></p>
+                  <p><span style="color:#353535;font-weight: bold;font-style: italic">Presentacion POT Apartado</span> <br> <span style="font-style:none !important">Jueves 14 de junio de 2018</span></p>
                 </div>
             </div>
 
@@ -184,7 +184,7 @@
                     <p style="padding:10px; border:2px solid gray;color:#353535;font-weight:bold">VIE <br> Junio 2</p>
                 </div>
                 <div class="col-sm-9">
-                  <p><span style="color:#353535;font-weight: bold;font-style: italic">Capacitacion Fibra Óptica</span> <br> <span style="font-style:none !important">Viernes 15 de junio de 2018</span></p>
+                  <p><span style="color:#353535;font-weight: bold;font-style: italic">Inaguracion fiestas de Apartado</span> <br> <span style="font-style:none !important">Viernes 15 de junio de 2018</span></p>
                 </div>
             </div>
 
