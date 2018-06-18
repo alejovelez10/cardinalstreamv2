@@ -3,36 +3,23 @@
 
 <div class="row">
       <div class="col-md-12 blockhead ">
-       <div class="col-md-2 logo text-center">
+       <div class="col-md-12 logo">
          <img src="<%=@account.logo_url%>" alt="">
+          <span style="    font-size: 12px;color: white;margin-top: 30px;float: right;
+    margin-right: 10px;">
+              <%= link_to  portal_path, style: " color: white;background: #{@account.color_one};padding: 8px;font-weight: bold;border-radius: 10px;" do  %>
+             <span class="glyphicon glyphicon-arrow-left" aria-hidden="true" style="margin-right:10px"></span>Volver
+             <%end%></span>
       </div>
+     
+        <div class="col-md-6 name">
+             <p style="    font-size: 14px; text-align:center"><%= event.name.upcase%> 
+             </p>
+            
 
-         <div class="col-md-10 name">
-           <p style="    font-size: 16px;"><%= event.name.upcase%> <span style="font-size:12px;color:white;margin-left:50px;"> <%= link_to "Volver a listado", portal_path, style: "color:white" %></span><br><span  class="hidden-xs hidden-sm" style="font-size: 15px;"><%=edate[0]%> DE <%=edate[2]%> DE <%=edate[4]%></span></p>
-            <%= (link_to "Salir", logout_path(event.id), method: :delete, class: "viewer_salir") if event.has_register %>
 
          </div>
-         <!-- <div class="col-md-4 social hidden-sm hidden-xs">
-            <div class="redessociales" style="float:right;padding:0 2em;line-height: 2em;background: none;right: -0.7em;font-size: 1.7em;padding: 0;padding-right: 1.7em;margin-bottom: -0.8em;margin-top: -0.46em;">
-              <%if event.social%>
-
-                <%if !@account.facebook.blank?%>
-               <a href="<%=@account.facebook%>" target="_blank"><span class="fa fa-facebook" aria-hidden="true"></span></a>
-               <%end%>
-               <%if !@account.twitter.blank?%>
-               <a href="<%=@account.twitter%>" target="_blank"><span class="fa fa-twitter" aria-hidden="true"></span></a>
-               <%end%>
-             <%if !@account.instagram.blank?%>
-               <a href="<%=@account.instagram%>" target="_blank"><span class="fa fa-instagram" aria-hidden="true"></span></a>
-               <%end%>
-                <%if !@account.linkedin.blank?%>
-               <a href="<%=@account.linkedin%>" target="_blank"><span class="fa fa-linkedin" aria-hidden="true"></span></a>
-               <%end%>
-                 <%end%>
-               
-
-            </div>
-         </div>-->
+        
       </div>
    </div>
 	<div class="row">
@@ -46,6 +33,15 @@
         </div>
     	<div class="col-md-10 superppts">
     		<div class="backppt col-md-12 no-float">
+
+                   <br>
+         <button type="" class="atras btn-primary" ><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></button>
+
+          <button type="" class="adelante btn-primary"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+
+           <span style="background: black;padding: 7px;color: white;border-radius: 10px;
+    margin-left: 10px;"> <span class="count_m">1</span>/<%=@count%></span>
+
 					<div class="ppt-block">
 						<div class="ppt_cont"><div class="wrapppt" style="max-width: 555.4px; height: 416.55px; background: rgb(50, 50, 50);"><div id="ppts" style="opacity: 1;"><div id="controls"><div class="nextbutt">&gt;</div><div class="prevbutt">&lt;</div></div><img class = "imagensup img-responsive" src="<%=array[0]%>" style="height: auto;"></div></div></div>
 					</div>
@@ -161,6 +157,61 @@ $.get("create/" + <%=@event.id%> + "/0" , function(data)
       });
 
 
+          $('.adelante').click(function(){
+                    
+
+
+                var img = $('.imagensup').attr('src');
+                
+                var img1 = $( '.pad img[src="'+ img + '"]' ).attr('id');
+                console.log(img1)
+                  
+                if (parseInt(img1) < <%=@count%>)
+                {
+
+                var suma = parseInt(img1) + 1;
+                var img2 = $( '.pad img[id="'+ (suma) + '"]' ).attr('src');
+                console.log(img2)
+
+                $('.imagensup').attr('src', img2);
+                $('.count_m').html(suma);
+                  
+                } 
+
+
+
+   
+          }); 
+
+
+            $('.atras').click(function(){
+                    
+
+
+                var img = $('.imagensup').attr('src');
+                
+                var img1 = $( '.pad img[src="'+ img + '"]' ).attr('id');
+                console.log(img1)
+                  
+                if (parseInt(img1) > 1)
+                {
+
+                var suma = parseInt(img1) - 1;
+                var img2 = $( '.pad img[id="'+ (suma) + '"]' ).attr('src');
+                console.log(img2)
+
+                $('.imagensup').attr('src', img2);
+                $('.count_m').html(suma);
+                  
+                } 
+
+
+
+   
+          }); 
+
+
+
 
         });
 
@@ -203,7 +254,7 @@ WowzaPlayer.create('playerElement',
     "uiShowQuickRewind":true,
     "uiQuickRewindSeconds":"30"
     }
-).play();
+);
 
 
 
@@ -352,15 +403,6 @@ playheadTimeListener = function ( playheadTimeEvent ) {
 
 };
 
-onLoadListener = function () {
-               $('.gif').hide();
-    $('.png').show();
-    $('.play').hide();
-    $('.pause').show();
-
-
-}
-myPlayer.onLoad(onLoadListener);
 
 
 
@@ -554,9 +596,11 @@ myPlayer.onPlayheadTime( playheadTimeListener );
 .hp_slide:hover {
     cursor: pointer;
 }
- .btn-primary {
+.btn-primary {
     background: <%=event.color%> !important;
     color: white !important;
     border:none !important;
+        margin-right: 10px;
+    padding: 1px 18px;
 }
 </style>

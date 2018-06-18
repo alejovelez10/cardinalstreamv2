@@ -5,8 +5,17 @@
     <%if @event.state == 4%>
         <%if @event.event_type%>
           
+          <%if @navs == "SI" %>
+               
+                  <%= render "accounts/ondemands/ondemand_audio_movil", event: @event, array: @array, count: @count, sync: @sync%>
+               
+               <%else%>
+                          <%= render "accounts/ondemands/ondemand_audio", event: @event, array: @array, count: @count, sync: @sync%>
+               <%end%>
 
-            <%= render "accounts/ondemands/ondemand_audio", event: @event, array: @array, count: @count, sync: @sync%>
+
+
+          
         
 
         <%else%>
