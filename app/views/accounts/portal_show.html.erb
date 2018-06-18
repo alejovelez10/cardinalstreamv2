@@ -4,15 +4,42 @@
 
     <%if @event.state == 4%>
         <%if @event.event_type%>
+          
+
             <%= render "accounts/ondemands/ondemand_audio", event: @event, array: @array, count: @count, sync: @sync%>
+        
+
         <%else%>
+
             <%if @event.has_ppts && @event.slides != nil%>
-            <%= render "accounts/ondemands/ondemand_video_ppts", event: @event, array: @array,  count: @count, sync: @sync%>
+              
+              <%if @navs == "SI" %>
+               
+                 <%= render "accounts/ondemands/ondemand_video_ppts", event: @event, array: @array,  count: @count, sync: @sync%>
+               
+               <%else%>
+                         <%= render "accounts/ondemands/ondemand_video_ppts", event: @event, array: @array,  count: @count, sync: @sync%>
+               <%end%>
+
             <%else%>
-            <%= render "accounts/ondemands/ondemand_video", event: @event, array: @array,  count: @count, sync: @sync%>
+           
+                   <%if @navs == "SI" %>
+                          <%= render "accounts/ondemands/ondemand_video_movil", event: @event, array: @array,  count: @count, sync: @sync%>
+                    <%else%>
+                           <%= render "accounts/ondemands/ondemand_video", event: @event, array: @array,  count: @count, sync: @sync%>
+                    <%end%>
+            
+          
+
+
             <%end%>
+       
+
+
         <%end%>
+    
     <%else%>
+    
          <%if @event.event_type%>
 
          <%if @navs == "SI" %>
