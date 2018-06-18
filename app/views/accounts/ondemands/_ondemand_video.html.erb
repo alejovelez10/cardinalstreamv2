@@ -7,7 +7,13 @@
       </div>
      
          <div class="col-md-6 name">
-             <p style="    font-size: 16px;"><%= event.name.upcase%> <span style="font-size:12px;color:white;margin-left:50px;"> <%= link_to "Volver a listado", portal_path, style: "color:white" %></span><br><span  class="hidden-xs hidden-sm" style="font-size: 15px;"><%=edate[0]%> DE <%=edate[2]%> DE <%=edate[4]%></span></p>
+             <p style="    font-size: 16px;"><%= event.name.upcase%> <span style="font-size:12px;color:white;margin-left:150px;">
+              <%= link_to  portal_path, style: " color: #{@account.color_one};background: white;padding: 8px;font-weight: bold;border-radius: 10px;" do  %>
+             <span class="glyphicon glyphicon-arrow-left" aria-hidden="true" style="margin-right:10px"></span>Volver al Portal 
+             <%end%></span>
+             <br>
+             <span  class="hidden-xs hidden-sm" style="font-size: 15px;"><%=edate[0]%> DE <%=edate[2]%> DE <%=edate[4]%></span>
+             </p>
 
 
 

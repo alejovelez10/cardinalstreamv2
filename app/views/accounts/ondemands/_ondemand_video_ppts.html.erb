@@ -7,7 +7,11 @@
       </div>
      
          <div class="col-md-6 name">
-             <p style="    font-size: 16px;"><%= event.name.upcase%> <span style="font-size:12px;color:white;margin-left:50px;"> <%= link_to "Volver a listado", portal_path, style: "color:white" %></span><br><span  class="hidden-xs hidden-sm" style="font-size: 15px;"><%=edate[0]%> DE <%=edate[2]%> DE <%=edate[4]%></span></p>
+             <p style="    font-size: 16px;"><%= event.name.upcase%> <span style="font-size:12px;color:white;margin-left:150px;"> <%= link_to "Volver a listado", portal_path, style: " color: #{@account.color_one};
+    background: white;
+    padding: 8px;
+    font-weight: bold;
+    border-radius: 10px;" %></span><br><span  class="hidden-xs hidden-sm" style="font-size: 15px;"><%=edate[0]%> DE <%=edate[2]%> DE <%=edate[4]%></span></p>
 
          </div>
         <div class="col-md-4 social hidden-sm hidden-xs">
@@ -35,11 +39,12 @@
    </div>
    <div class="row">
       <div class="col-md-6">
-         <div id="playerElement" style="width:100%;height:0;padding:0 0 56.25% 0;margin-top:60px;">
+         <div id="playerElement" style="width:100%;height:0;padding:0 0 56.25% 0;margin-top:75px;">
          </div>
       </div>
       <div class="col-md-6">
          <div class="backppt col-md-12 no-float">
+         <button type="" class="atras hidden-lg hidden-md" >atras</button> <button type="" class="adelante hidden-lg hidden-md">Adelante</button>
             <div class="ppt-block">
                <div class="ppt_cont">
                   <div class="wrapppt" style="max-width: 555.4px; height: 416.55px; background: rgb(50, 50, 50);">
@@ -84,7 +89,7 @@
             </div>
          </div>
       </div>
-      
+
    </div>
    <div class="row">
    <div class="col-md-12 fixeddown">

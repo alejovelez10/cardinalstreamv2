@@ -31,9 +31,13 @@
   <div class="col-sm-6 col-md-3">
     <div class="thumbnail">
     <%if !event.event_type%>
+     <%= link_to  portal_show_path(event.id) do %>
       <img src="../../uploads/event/video/<%=event.id%>/screamshot.jpg" alt="...">
+      <%end%>
     <%else%>
+    <%= link_to  portal_show_path(event.id) do %>
       <img src="../../images/audio.jpg" alt="...">
+      <%end%>
     <%end%> 
       <div class="caption">
         <h5 style= "color:gray"><%= event.name%></h5>
