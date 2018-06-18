@@ -2,17 +2,19 @@
 <div class="container-fluid">
 <div class="row">
       <div class="col-md-12 blockhead ">
-       <div class="col-md-2 logo text-center">
+       <div class="col-md-12 logo">
          <img src="<%=@account.logo_url%>" alt="">
+          <span style="    font-size: 12px;color: white;margin-top: 30px;float: right;
+    margin-right: 10px;">
+              <%= link_to  portal_path, style: " color: white;background: #{@account.color_one};padding: 8px;font-weight: bold;border-radius: 10px;" do  %>
+             <span class="glyphicon glyphicon-arrow-left" aria-hidden="true" style="margin-right:10px"></span>Volver
+             <%end%></span>
       </div>
      
         <div class="col-md-6 name">
-             <p style="    font-size: 16px; text-align:center"><%= event.name.upcase%>  asfasdsdf asfdasdadsf asasdfasdf asfasfasd asf asdfasd asfasf 
+             <p style="    font-size: 14px; text-align:center"><%= event.name.upcase%> 
              </p>
-             <p style="text-align:center"><span style="font-size:12px;color:white;margin-top:5px;">
-              <%= link_to  portal_path, style: " color: #{@account.color_one};background: white;padding: 8px;font-weight: bold;border-radius: 10px;" do  %>
-             <span class="glyphicon glyphicon-arrow-left" aria-hidden="true" style="margin-right:10px"></span>Volver al Portal 
-             <%end%></span></p>
+            
 
 
          </div>
@@ -21,13 +23,17 @@
    </div>
    <div class="row">
       <div class="col-md-6">
-         <div id="playerElement" style="width:100%;height:0;padding:0 0 56.25% 0;margin-top:75px;">
+         <div id="playerElement" style="width:100%;height:0;padding:0 0 56.25% 0;margin-top:20px;">
          </div>
       </div>
       <div class="col-md-6">
          <div class="backppt col-md-12 no-float">
          <br>
-         <button type="" class="atras hidden-lg hidden-md" >atras</button> <button type="" class="adelante hidden-lg hidden-md">Adelante</button> <span style="background: black;padding: 7px;color: white;border-radius: 10px;
+         <button type="" class="atras btn-primary" ><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></button>
+
+          <button type="" class="adelante btn-primary"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+
+           <span style="background: black;padding: 7px;color: white;border-radius: 10px;
     margin-left: 10px;"> <span class="count_m">1</span>/<%=@count%></span>
             <div class="ppt-block">
                <div class="ppt_cont">
@@ -385,10 +391,7 @@
    #ppts {
    width: 100% !important;
    }
-    #playerElement 
-   {
-    margin-top: 0px !important;
-   }
+
    }
    #playerElement img
    {
