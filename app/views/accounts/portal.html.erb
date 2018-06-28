@@ -20,7 +20,7 @@
            <%= form_tag portal_path, :method => 'get'  do %>
               <%= text_field_tag :search, params[:search], style: "height: 33px;
     border-radius: 5px;color:gray"%>
-          <%= submit_tag "Buscar", class: "btn btn-primary" style: "border-color: 1px solid #{@account.color_one} !important;",:name => nil   %>
+          <%= submit_tag "Buscar", class: "btn btn-primary", style: "border-color: 1px solid #{@account.color_one} !important;",:name => nil   %>
         <% end %>
          </div>
       </div>
@@ -87,7 +87,7 @@
 </p>
    <%= form_tag portal_login_path, method: :post do %>
     <%= text_field_tag :cookie , nil, style: "    height: 34px;", placeholder: "Ingrese contraseña"%>
-    <%= submit_tag "Ingresar", class: "btn btn-primary"  style: "border-color: 1px solid #{@account.color_one} !important;"%>
+    <%= submit_tag "Ingresar", class: "btn btn-primary",  style: "border-color: 1px solid #{@account.color_one} !important;"%>
  <%end%>
 </div>
   
