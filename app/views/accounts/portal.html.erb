@@ -13,7 +13,7 @@
            
            <%= link_to "INICIO", home_path, data: { turbolinks: false } %>
             <%= link_to "TRANSMISIONES EN VIVO", home_path, style: "margin-left:20px;margin-right:20px;" %>
-            <%= link_to "GALERIA DE VIDEOS", home_path, class: "btn btn-primary" %>
+            <%= link_to "GALERIA DE VIDEOS", home_path, class: "btn btn-primary"  style: "border: 1px solid #{@account.color_one} !important;"%>
             
         </div>
           <div class="col-md-4 social hidden-sm hidden-xs">
@@ -168,7 +168,7 @@ font-size: 14px;
 {
 
      background: <%=@account.color_one%> !important;
-     border-color: 1px solid <%=@account.color_one%> !important;
+     border: 1px solid <%=@account.color_one%> !important;
     color: white !important;
 }
 </style>
