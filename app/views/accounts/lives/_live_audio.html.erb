@@ -79,7 +79,7 @@
 
                                      <div class="form-group">
                      <%= label_tag "Pregunta" %>
-                     <%= text_area_tag :description ,nil, class: "form form-control erase question", style: "height: 100px;" %>
+                     <%= text_area_tag :description ,nil, class: "form form-control erase question", style: "height: 80px;" %>
                   </div>
 
                   <%= hidden_field_tag :account_id , event.account_id%>
@@ -96,7 +96,14 @@
             </div> <%end%>
             <div class="col-md-12 play_stop text-center" >
 
-
+                    <span style="    position: absolute;
+    top: -23px;
+    left: 7px;
+    color: white;
+    background: #1c1cf0;
+    font-weight: bold;
+    padding: 0px 7px;
+    font-size: 17px;">¡PLAY PARA INICIAR!</span>
                      <img class="gif roundgif" src="/../../images/equ.gif" alt="">
                      <img class="png roundgif" src="/../../images/equ.png" alt="">
                                        <button class = "but play" type=""><i class="fa fa-play" aria-hidden="true"></i></button>
@@ -481,7 +488,7 @@ player.src({
   }
    .play_stop{
 
-    margin-top: 10px;
+    margin-top: 25px;
     right: 10px;
     left: 0px;
     padding-top: 10px;
