@@ -173,21 +173,25 @@ $.get("create/" + <%=@event.id%> + "/0" , function(data)
 
  $(document).on('turbolinks:load',function() {
 
-    $('.pause').hide();
+  $('.pause').hide();
     $('.gif').hide();
  $('.play').click(function(){
             $('.play').hide();
             $('.pause').show();
+             $('.gif').show();
+              $('.png').hide();
             myPlayer.play()
         });
  $('.pause').click(function(){
               $('.play').show();
              $('.pause').hide();
-
+                $('.png').show();
+                $('.gif').hide();
 
             myPlayer.pause()
 
         });
+
 
 WowzaPlayer.create('playerElement',
     {
@@ -214,10 +218,7 @@ WowzaPlayer.create('playerElement',
 
 errorListener = function ( errorEvent ) {
     console.log('Message: hoolaaaaaaaaaaaaaaaaaaa ' + errorEvent.error);
-    $('.gif').hide();
-    $('.png').show();
-    $('.play').show();
-    $('.pause').hide();
+
 
 };
 
@@ -341,11 +342,7 @@ playheadTimeListener = function ( playheadTimeEvent ) {
     $('h1').html(times)
 
   if ((duration == (currentTime + 1)) || (duration == (currentTime - 1)) || (duration == (currentTime )) && duration != 0) {
-    $('.gif').hide();
-    $('.png').show();
-    $('.play').show();
-    $('.pause').hide();
-    console.log("final")
+
 
 }
 
@@ -353,10 +350,7 @@ playheadTimeListener = function ( playheadTimeEvent ) {
 };
 
 onLoadListener = function () {
-               $('.gif').hide();
-    $('.png').show();
-    $('.play').hide();
-    $('.pause').show();
+              
 
 
 }
@@ -368,13 +362,9 @@ onStateChangedListener = function ( stateChangedEvent ) {
 if (stateChangedEvent.currentState == WowzaPlayer.State.PLAYING) {
 console.log('Playing');
 
-            $('.gif').show();
-            $('.png').hide();
+           
 } else if (stateChangedEvent.currentState == WowzaPlayer.State.PAUSED) {
 
-            $('.gif').hide();
-            $('.png').show();
-console.log('Paused');
 }
 }
 
