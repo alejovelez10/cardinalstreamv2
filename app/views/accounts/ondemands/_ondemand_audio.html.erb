@@ -96,7 +96,14 @@
                      <img class="png roundgif" src="/../../images/equ.png" alt="" >
                                        <button class = "but play" type=""><i class="fa fa-play" aria-hidden="true"></i></button>
                   <button class = " but pause" type=""><i class="fa fa-pause" aria-hidden="true"></i></button>
-
+               <button type="button" class="play" style="     position: absolute;
+    top: -26px;
+    left: 5px;
+    color: white;
+    background: #36b3d0;
+    font-weight: bold;
+    padding: 0px 7px;
+    font-size: 15px;">¡PLAY PARA INICIAR!</button>
 
             </div>
 
@@ -178,12 +185,15 @@ $.get("create/" + <%=@event.id%> + "/0" , function(data)
  $('.play').click(function(){
             $('.play').hide();
             $('.pause').show();
+             $('.gif').show();
+              $('.png').hide();
             myPlayer.play()
         });
  $('.pause').click(function(){
               $('.play').show();
              $('.pause').hide();
-
+                $('.png').show();
+                $('.gif').hide();
 
             myPlayer.pause()
 
@@ -212,14 +222,14 @@ WowzaPlayer.create('playerElement',
     console.log( 'Playhead time (ms): ' + myPlayer.getCurrentTime() );
 
 
-errorListener = function ( errorEvent ) {
+/*errorListener = function ( errorEvent ) {
     console.log('Message: hoolaaaaaaaaaaaaaaaaaaa ' + errorEvent.error);
     $('.gif').hide();
     $('.png').show();
     $('.play').show();
     $('.pause').hide();
 
-};
+};*/
 
     var array = "<%=sync%>".split(",");
      array.pop();
@@ -341,11 +351,7 @@ playheadTimeListener = function ( playheadTimeEvent ) {
     $('h1').html(times)
 
   if ((duration == (currentTime + 1)) || (duration == (currentTime - 1)) || (duration == (currentTime )) && duration != 0) {
-    $('.gif').hide();
-    $('.png').show();
-    $('.play').show();
-    $('.pause').hide();
-    console.log("final")
+   
 
 }
 
@@ -353,13 +359,14 @@ playheadTimeListener = function ( playheadTimeEvent ) {
 };
 
 onLoadListener = function () {
-               $('.gif').hide();
+    /*$('.gif').hide();
     $('.png').show();
     $('.play').hide();
-    $('.pause').show();
+    $('.pause').show();*/
 
 
 }
+
 myPlayer.onLoad(onLoadListener);
 
 
@@ -368,12 +375,10 @@ onStateChangedListener = function ( stateChangedEvent ) {
 if (stateChangedEvent.currentState == WowzaPlayer.State.PLAYING) {
 console.log('Playing');
 
-            $('.gif').show();
-            $('.png').hide();
+            
 } else if (stateChangedEvent.currentState == WowzaPlayer.State.PAUSED) {
 
-            $('.gif').hide();
-            $('.png').show();
+     
 console.log('Paused');
 }
 }
